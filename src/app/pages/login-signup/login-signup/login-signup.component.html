@@ -1,0 +1,282 @@
+<div>
+<!-- BODY -->
+<div class="main-container">
+    <div class="table-row">
+
+<!-- Sign up section -->
+        <div class="table-data-one">
+          <h2 class="heading">- Signup -</h2>
+<!-- tab switchig section -->
+<div class="container">
+  <div class="tab">
+    <ul>
+      <li id="userSU" [class.color]="idSignup === 'userSU'" (click)="tabChangesignup('userSU')">Users</li>
+      <li id="designerSU" [class.color]="idSignup === 'designerSU'" (click)="tabChangesignup('designerSU')">Designers</li>
+      <li id="hshopSU" [class.color]="idSignup === 'hshopSU'" (click)="tabChangesignup('hshopSU')">Hardware Shop</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FOR USERS -->
+            <div *ngIf="idSignup ==='userSU'">
+              <h2 class="">Create New Account (Users)</h2>
+            <p>Create your own Account</p>
+    
+            <form [formGroup]="userRegGroup" >
+            <div id="register-form">
+              
+              <div class="control-wrapper">
+                <label for="firstName">First Name<span class="req"> *</span></label>
+                <input type="text" id="userRegFirstName" formControlName="userRegFirstName"  required>
+              </div>
+    
+              <div class="control-wrapper">
+                <label for="lastName">Last Name</label>
+                <input type="text"  id="userRegLastName" formControlName="userRegLastName">
+              </div>
+              
+              <div class="control-wrapper">
+                <label for="email">Email Address<span class="req"> *</span></label>
+                <input type="email" id="userRegEmail" formControlName="userRegEmail" required>
+              </div>
+              
+              <div class="control-wrapper">
+                <label for="password">Password<span class="req"> *</span></label>
+                <input type="password" id="userRegPassword" formControlName="userRegPassword" required>
+              </div>
+              <div class="control-wrapper">
+                <label for="Confirm password">Confirm Password<span class="req"> *</span></label>
+                <input type="password" id="userRegConfirmPassword" formControlName="userRegConfirmPassword" required>
+              </div>
+              
+              <div class="control-wrapper">
+                <label for="Telephone">Telephone<span class="req"> *</span></label>
+                <input type="text" id="userRegTelephone" formControlName="userRegTelephone" required>
+              </div>
+
+              <div class="control-wrapper">
+                <label for="password">Address<span class="req"> *</span></label>
+                <input type="text" id="userRegAddressLine" placeholder="Address Line" formControlName="userRegAddress" required>
+                <input type="text" id="userRegDistrict" placeholder="District" formControlName="userRegDistrict">
+              </div>
+
+              <div class="control-wrapper">
+                <button class="btn" type="submit"  (click)="userRegistration()">Register</button>
+              </div>
+
+            </div>
+            </form>
+            </div>
+
+
+
+<!-- FOR PLAN DESIGNERS -->
+
+            <div *ngIf="idSignup ==='designerSU'">
+              <h2 class="">Create New Account (Designers)</h2>
+            <p>Create your own Account</p>
+
+            <!-- <form method="post" action="" [formGroup]="userGroup">
+            <div id="register-form">
+              
+              <div class="control-wrapper">
+                <label  for="first-name">First Name<span class="req"> *</span></label>
+                <input type="text"  id="first-name" autocapitalize="words" autofocus="">
+              </div>
+
+              <div class="control-wrapper">
+                <label for="last-name">Last Name</label>
+                <input type="text"  id="last-name" autocapitalize="words" autofocus="">
+              </div>
+              
+              <div class="control-wrapper">
+                <label for="email">Email Address<span class="req"> *</span></label>
+                <input type="email" id="email">
+              </div>
+              
+              <div class="control-wrapper">
+                <label for="password">Password<span class="req"> *</span></label>
+                <input type="password" id="password" class="password">
+              </div>
+              
+              <div class="control-wrapper">
+                <button class="btn" type="submit">Register</button>
+              </div>
+
+            </div>
+            </form> -->
+
+            </div>
+
+
+
+<!-- FOR HARDWARE SHOP   -->
+            <div *ngIf="idSignup ==='hshopSU'">
+              <h2 class="">Create New Account (Shops)</h2>
+            <p>Create your own Account</p>
+
+            <!-- <form method="post" action="" [formGroup]="userGroup">
+            <div id="register-form">
+              
+              <div class="control-wrapper">
+                <label  for="first-name">First Name<span class="req"> *</span></label>
+                <input type="text"  id="first-name" autocapitalize="words" autofocus="">
+              </div>
+
+              <div class="control-wrapper">
+                <label for="last-name">Last Name</label>
+                <input type="text"  id="last-name" autocapitalize="words" autofocus="">
+              </div>
+              
+              <div class="control-wrapper">
+                <label for="email">Email Address<span class="req"> *</span></label>
+                <input type="email" id="email">
+              </div>
+              
+              <div class="control-wrapper">
+                <label for="password">Password<span class="req"> *</span></label>
+                <input type="password" id="password" class="password">
+              </div>
+              
+              <div class="control-wrapper">
+                <button class="btn" type="submit">Register</button>
+              </div>
+
+            </div>
+            </form> -->
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Login Page -->
+
+        <div class="tabel-data-two">
+          <h2 class="heading">- Login -</h2>
+          <div class="container">
+            <div class="tab">
+              <ul>
+                <li id="userL" [class.color]="idLogin === 'userL'" (click)="tabChangelogin('userL')">Users</li>
+                <li id="designerL" [class.color]="idLogin === 'designerL'" (click)="tabChangelogin('designerL')">Designers</li>
+                <li id="shopL" [class.color]="idLogin === 'shopL'" (click)="tabChangelogin('shopL')">Hardware Shop</li>
+              </ul>
+            </div>
+          </div>
+ 
+          
+<!-- FOR USERS -->         
+          <div *ngIf="idLogin==='userL'">
+            <h2 class="">Login (User)</h2>
+            <p>Welcome back! Sign in to your account</p>
+
+            <form method="post" action="" id="customer_login" >
+
+                <div class="control-wrapper">
+                  <label for="customer_email">Email Address<span class="req"> *</span></label>
+                  <input type="email" required [(ngModel)]="userLogEmail" name="userLogEmail" id="userLogEmail">
+                </div>
+      
+                <div class="control-wrapper">
+                  <label for="customer_password">Password<span class="req"> *</span></label>
+                  <input type="password" required [(ngModel)]="userLogPassword" name="userLogPassword" id="userLogPassword">
+                </div>          
+                
+                <div class="control-wrapper ">
+                  <div class="action">
+                    <a class="return-store" href="">Return to Store</a>
+                  </div>
+                  <button class="btn" type="submit" (click)="userLogin()">Login</button>
+                </div>
+            </form>
+          </div>
+
+<!-- FOR PLAN DESIGNERS -->
+<div *ngIf="idLogin==='designerL'">
+            <h2 class="">Login (Designers)</h2>
+            <p>Welcome back! Sign in to your account</p>
+
+            <form method="post" action="" id="customer_login" >
+
+              <div class="control-wrapper">
+                <label for="customer_email">Email Address<span class="req"> *</span></label>
+                <input type="email" required [(ngModel)]="designerLogEmail" name="designerLogEmail" id="designerLogEmail">
+              </div>
+    
+              <div class="control-wrapper">
+                <label for="customer_password">Password<span class="req"> *</span></label>
+                <input type="password" required [(ngModel)]="designerLogPassword" name="designerLogPassword" id="designerLogPassword">
+              </div>          
+              
+              <div class="control-wrapper ">
+                <div class="action">
+                  <a class="return-store" href="">Return to Store</a>
+                </div>
+                
+                <button class="btn" type="submit" (click)="designerLogin()">Login</button>
+              </div>
+            </form>
+
+            </div>
+
+
+
+<!-- FOR HARDWARE SHOP -->
+
+<div *ngIf="idLogin==='shopL'">
+          <h2 class="">Login (Shops)</h2>
+          <p>Welcome back! Sign in to your account</p>
+
+          <form method="post" action="" id="customer_login" >
+
+            <div class="control-wrapper">
+              <label for="customer_email">Email Address<span class="req"> *</span></label>
+              <input type="email" required [(ngModel)]="shopLogEmail" name="shopLogEmail" id="shopLogEmail">
+            </div>
+  
+            <div class="control-wrapper">
+              <label for="customer_password">Password<span class="req"> *</span></label>
+              <input type="password" required [(ngModel)]="shopLogPassword" name="shopLogPassword" id="shopLogPassword">
+            </div>          
+            
+            <div class="control-wrapper ">
+              <div class="action">
+                <a class="return-store" href="">Return to Store</a>
+              </div>
+              
+              <button class="btn" type="submit" (click)="shopLogin()">Login</button>
+            </div>
+  
+          </form>
+
+          </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div>
+  <!-- FOOTER -->
+  <app-footer></app-footer>
+</div>

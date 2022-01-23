@@ -1,0 +1,290 @@
+.main-container {
+    margin: 2em 2em 0em 2em;
+    padding: 10em 2em 0em 3em ;
+   
+}
+
+.table-row-one {
+    padding : 1em 4em 1em 2em;
+    margin: 1em 1em 1em 1em;
+    background-color: rgb(255, 217, 0);
+    border-radius: 20px;
+    height: 3em;
+    width: 87.5%;
+    display: inline-flex;
+    
+}
+.news-letter {
+    margin: 0em 0em 0em 0em;
+    padding-top: 0.7em;
+    vertical-align: middle;
+    width:  22em;
+   
+}
+
+.discount {
+    margin: 0em 1em 0em 0em;
+    padding-top: 1.1em;
+    vertical-align: top;
+    width:  22em;
+   
+}
+
+.subscribe {
+    margin: 0em 0em 0em 0em;
+    padding-top: -1em;
+    width:  22em;
+
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"]:focus{
+    
+    outline: none;
+   
+}
+
+.news-letter-span {
+    font-size: 27px;
+    font-weight: 100;
+    color: #575757;
+}
+
+.dicount-span {
+    font-size: 14px;
+    font-weight: 100;
+    color: #575757;
+}
+.discount-pan-font {
+    font-weight: bold;
+}
+
+input[type="email"] {
+    margin-top: 0.2em;
+    width: 30%; 
+    border-radius: 30px;
+    height: 1.6em;
+    border-style: none;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+
+}
+
+input[type="email"]:hover{
+    border-color: rgb(255, 218, 5);
+}
+
+.btn{
+    position: absolute;
+    left: 80em;
+    background-color: rgb(0, 0, 0);
+    width: 10%; 
+    border-radius: 30px;
+    height: 3.5em;
+    border-style: none;
+    margin-top: 0em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.btn:hover{
+    background-color: rgb(9, 83, 126);
+    color: #ffffff;
+    
+}
+
+
+
+
+.table-row-two {
+    display: inline-flex;
+    padding : 0em 2em 1em 0em;
+    margin: 1em 1em 1em 1em;
+    height: 15em;
+    width: 90%;
+}
+
+
+.company-details {
+    padding : 0em 1em 1em 2em;
+    margin: 0em 1em 1em 0em;
+    vertical-align: top;
+    width:  50em;
+    height: 8em;
+
+}
+.image-logo {
+    height: 100px;
+    width: 200px;
+}
+
+.image-headphone {
+    padding-top: 1em;
+    height: 50px;
+    width: 50px;
+}
+.company-details-contacts {
+    display: inline-flex;
+}
+.company-details-contacts-para {
+    margin-left: 1em;
+    color: #575757;
+}
+.company-details-contacts-para-font-one {
+    font-size: 13px;
+}
+.company-details-contacts-para-font-two {
+    font-size: 20px;
+}
+.company-details-address {
+    font-size: 12px;
+    color: #3f3f3f;
+    font-weight: bold;
+   
+}
+.company-details-address-font {
+    font-size: 16px;
+    line-height: 2em;
+    
+}
+.company-details-social-media-item {
+    margin-right: 3em;
+   
+}
+
+
+
+
+.find-in-fast {
+    padding : 0em 1em 1em 0em;
+    margin: 0em 1em 1em 1em;
+    vertical-align: top;
+    width:  13em;
+    height: 8em;
+    
+}
+.find-in-fast-para {
+    font-weight: 700;
+    color: #575757;
+    font-size: large;
+}
+.find-in-fast-list {
+    margin-left: -2.5em;
+    list-style: none;
+    line-height: 2em;
+    font-weight: 100;
+   
+    
+}
+.find-in-fast-list-link {
+    text-decoration: none;
+    color: #575757;
+}
+
+
+
+
+
+
+
+
+.information-one {
+    padding : 0em 1em 1em 0em;
+    margin: 0em 1em 1em 1em;
+    vertical-align: top;
+    width:  13em;
+    height: 8em;
+
+
+}
+.information-one-para {
+    font-weight: 700;
+    color: #575757;
+    font-size: large;
+
+}
+.information-one-list {
+    margin-left: -2.5em;
+    list-style: none;
+    line-height: 2em;
+    font-weight: 100;
+
+}
+.information-one-list-link {
+    text-decoration: none;
+    color: #575757;
+    
+}
+
+
+
+
+.information-two {
+    padding : 0em 1em 1em 0em;
+    margin: 0em 1em 1em 1em;
+    vertical-align: top;
+    width:  13em;
+    height: 8em;
+
+}
+.information-two-list {
+    margin-top: 3.5em;
+    margin-left: -2.5em;
+    list-style: none;
+    line-height: 2em;
+    font-weight: 100;
+    
+}
+.information-two-list-link {
+    text-decoration: none;
+    color: #575757;
+}
+
+
+
+
+
+.at-glance {
+    padding : 0em 1em 1em 0em;
+    margin: 0em 1em 1em 1em;
+    vertical-align: top;
+    width:  13em;
+    height: 8em;
+
+}
+.at-glance-para {
+    font-weight: 700;
+    color: #575757;
+    font-size: large;
+}
+.at-glance-list {
+    margin-left: -2.5em;
+    list-style: none;
+    line-height: 2em;
+    font-weight: 100;
+   
+    
+}
+.at-glance-list-link {
+    text-decoration: none;
+    color: #575757;
+}
+
+
+.bottom-line {
+    margin: 6em 0em 0em 0em;
+    position: relative;
+    left: 0;
+    padding: 0.1em 5em  0.1em 8em;
+    background-color: rgba(85, 92, 92, 0.055);
+    height: 3em;
+    
+    
+}
+.bottom-line-para {
+    font-weight: 100;
+    font-size: 15px;
+}
