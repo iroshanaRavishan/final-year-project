@@ -101,6 +101,7 @@ input[type="password"]:hover{
         border-radius: 30px;
         height: 3.5em;
         border-style: none;
+        margin-right: 1.4em;
         margin-top: 1.2em;
         font-weight: bold;
         color: #555f66;
@@ -112,18 +113,39 @@ input[type="password"]:hover{
         
     }
 
-    .action {
+    .btn-reset{
+        background-color: rgb(255, 255, 255);
+        width: 30%; 
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-right: 15px;
+        padding-left: 15px;
+        border-radius: 30px;
+        height: 3.5em;
+        border-style: solid black;
+        border-width: 1px;
         margin-top: 1.2em;
-    }
-    .return-store {
-        display: block;
-        text-decoration: none;
-        clear: both;   
-        margin-top: 2em; 
-        margin-bottom: 10px;  
-        font-size: 0.9em;
+        margin-right: 1.4em ;
+        font-weight: bold;
         color: #555f66;
-   
+    }
+
+    .btn-reset:hover{
+        background-color: rgb(9, 83, 126);
+        color: #ffffff;
+        
+    }
+
+    .return-store {
+        background-color: rgb(255, 255, 255);
+        border-style: solid black;
+        margin-top: 2em;
+        font-weight: bold;
+        color: #555f66;
+    }
+
+    .return-store:hover{
+       font-size: 15px;
     }
 
     .req{
@@ -164,3 +186,11 @@ input[type="password"]:hover{
     .color{
         color: #fff !important;
     }
+.invalid-feedback{
+    width: 100%;
+    margin-top: -1em;
+    margin-left: 2.5em;
+    margin-bottom: 2em;
+    font-size: .8em;
+    color: #dc3545;
+}
