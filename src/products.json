@@ -1,0 +1,20 @@
+[
+    {
+        "imgUrl": "https://guesseu. scene7.com/is/image/GuessEU/ HWVG6216060-TAN?wid=700&amp; fmt=jpeg&amp;qlt=80&amp; op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
+        "name": "BAG",
+        "price": 94.5,
+        "id": 1
+    },
+    {
+        "imgUrl": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1552519507-da3b142c6e3d%3Fixlib%3Drb-1.2.1%26ixid%3DMnwxMjA3fDB8MHxzZWFyY2h8OHx8Y2Fyc3xlbnwwfHwwfHw%253D%26w%3D1000%26q%3D80&imgrefurl=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fcars&tbnid=uhxJ6c9W52vayM&vet=12ahUKEwiRsvDX1dn1AhWwgWMGHS0xDWwQMygCegUIARDYAQ..i&docid=pexCxKQSr2TtXM&w=1000&h=667&itg=1&q=car&ved=2ahUKEwiRsvDX1dn1AhWwgWMGHS0xDWwQMygCegUIARDYAQ",
+        "name": "WATCH",
+        "price": 94.5,
+        "id": 2
+    },
+    {
+        "imgUrl": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.cnet.com%2Fa%2Fimg%2FCSTqzAl5wJ57HHyASLD-a0vS2O0%3D%2F940x528%2F2021%2F04%2F05%2F9e065d90-51f2-46c5-bd3a-416fd4983c1a%2Felantra-1080p.jpg&imgrefurl=https%3A%2F%2Fwww.cnet.com%2Froadshow%2Fnews%2Fcheap-affordable-new-cars%2F&tbnid=BtRhmSKLxbaBcM&vet=12ahUKEwiRsvDX1dn1AhWwgWMGHS0xDWwQMygFegUIARDeAQ..i&docid=9HH_Gu_tMXbU8M&w=940&h=528&itg=1&q=car&ved=2ahUKEwiRsvDX1dn1AhWwgWMGHS0xDWwQMygFegUIARDeAQ",
+        "name": "LAPTOP",
+        "price": 94.5,
+        "id": 3
+    }
+]

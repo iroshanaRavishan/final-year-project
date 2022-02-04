@@ -1,0 +1,12 @@
+<h1>Product Page</h1>
+
+
+
+
+<div *ngFor="let product of (products | async)">
+    <img src="{{product.imgUrl}}"/>
+    {{product.name}}
+    <p>{{product.id}} - this costs : $ {{product.price}}</p>
+    <button>Buy this product {{product.name}}</button>
+    <br/><br/><br/><br/>
+</div>

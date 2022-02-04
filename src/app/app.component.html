@@ -1,6 +1,137 @@
 <!-- HEADER -->
-<app-header></app-header>
+      <div class="main-container" id="skel-layers-visibleWrapper">
+        <header id="header" class="skel-layers-fixed">
+            <img class="logo" src="/assets/image/logo.png" alt="logo">
+                <ul>
+                    <li><img class="phone" src="assets/image/phone.png" alt="phone"/><span>(+94) 78 303 0250</span></li>
+                    <li><img class="mail" src="assets/image/mail.png" alt="phone"/><span>sample@gmail.com</span> </li>
+                </ul>
+                <nav id="nav">
+                    <ul>
+                        <li><a routerLink="" >Home</a></li>
+                        <li><a routerLink="designers" >Designers</a></li>		
+                        <li><a routerLink="products" >Products</a></li>								
+                        <li><a routerLink="aboutus" >About Us</a></li>
+                        <li><button routerLink="contactus" class="button special" >Contact</button></li>
+                    </ul>
+                </nav>
+              <div class="container-top">
+                  <div class="table-row">
+                        <ul class="inline-list">
+                            <li class="list-item"> <button class="list-item-button">Rated Shop</button></li>
+                            <li class="list-item"> <button  class="list-item-button">Rated Designer</button></li>
+                            <li class="list-item"> <button class="list-item-button">Demamded Items</button></li>
+                            <li class="list-item"> <button  class="list-item-button">Demanded Designs</button></li>
+                            <li class="list-item"> <a href="#"><img class="list-item-image" src="assets/image/wishlist.png" alt="wishlist"></a></li>
+                            <li class="list-item"> <a href="#"><img class="list-item-image" src="assets/image/shoppingcart.png" alt="orders"></a></li>
+                        </ul>
+                  </div>
+              </div>
+            <div class="container-bottom">
+                <ul class="inline-list-bottom">
+                    <li class="list-item-bottom"> <a *ngIf="!user" class="list-item-link" routerLink="loginsignup">Register or Sign in</a>
+                        <div>
+                            <a *ngIf="user">{{user.userRegUsername}} | <button (click)="logout()" >Logout</button></a>
+                        </div>
+                    </li>
+                  </ul>
+            </div>
+        </header>
+    </div>
+
+
+
+
+
+
+
+
 
 <!-- ROUTING -->
 <router-outlet></router-outlet>
 
+
+
+
+
+
+
+
+
+<!-- FOOTER -->
+<div class="main-container-footer">
+    <div class="table-row-one" >
+        <div class="news-letter">
+            <span class="news-letter-span">Sign up to Newsletter</span>
+        </div>
+        <div class="discount">
+            <span class="dicount-span">...and receive <font class="discount-pan-font">$20 coupon for first shopping.</font></span>
+        </div>
+        <input type="email" id="email"><button class="sub-btn-footer">Subscribe!</button>
+    </div>
+    <div class="table-row-two" >
+        <div class="company-details" >
+            <div>
+                <img class="image-logo" src="assets/image/logo.png" alt="logo">
+            </div>
+            <div class="company-details-contacts">
+                <img class="image-headphone" src="assets/image/headphone.png" alt="logo">
+                <p class="company-details-contacts-para"> <font class="company-details-contacts-para-font-one" >Got questions? Call us 24/7! </font> <br/>
+                    <font class="company-details-contacts-para-font-two">(+94)78 303 0250, (+94)77 030 0729</font></p>
+            </div>
+            <div class="company-details-address">
+                <p> <font class="company-details-address-font" >Contact info</font>  <br>
+                    17 Princess Road, London, Greater London NW1 8JR, UK</p>
+            </div>
+            <div class="company-details-social-media">
+                <a class="company-details-social-media-item" href=""><img src="assets/image/facebook.png" alt="faebook"></a>
+                <a class="company-details-social-media-item" href=""><img src="assets/image/whatsapp.png" alt="faebook"></a>
+                <a class="company-details-social-media-item" href=""><img src="assets/image/twitter.png" alt="faebook"></a>
+                <a class="company-details-social-media-item" href=""><img src="assets/image/linkedin.png" alt="faebook"></a>
+            </div>
+        </div>
+        <div class="find-in-fast" >
+            <p class="find-in-fast-para">Find In Fast</p> 
+            <ul class="find-in-fast-list">
+                <li><a class="find-in-fast-list-link" href="#">Sample One</a></li>
+                <li><a class="find-in-fast-list-link" href="#">Sample Two</a></li>
+                <li><a class="find-in-fast-list-link"href="#">Sample Three</a></li>
+                <li><a class="find-in-fast-list-link" href="#">Sample Four</a></li>
+                <li><a class="find-in-fast-list-link" href="#">Sample Five</a></li>
+                <li><a class="find-in-fast-list-link"href="#">Sample Six</a></li>
+            </ul>
+        </div>
+        <div class="information-one" >
+            <p class="information-one-para">information</p>
+            <ul class="information-one-list">
+                <li><a class="information-one-list-link" routerLink="aboutus">About Us</a></li>
+                <li><a class="information-one-list-link" routerLink="contactus">Contact Us</a></li>
+                <li><a class="information-one-list-link"href="#">Sample Three</a></li>
+                <li><a class="information-one-list-link" href="#">Sample Four</a></li>
+                <li><a class="information-one-list-link" href="#">Sample Five</a></li>
+            </ul>
+        </div>
+        <div class="information-two"  >
+            <ul class="information-two-list">
+                <li><a class="information-two-list-link" href="#">Sample One</a></li>
+                <li><a class="information-two-list-link" href="#">Sample Two</a></li>
+                <li><a class="information-two-list-link"href="#">Sample Three</a></li>
+                <li><a class="information-two-list-link" href="#">Sample Four</a></li>
+                <li><a class="information-two-list-link" href="#">Sample Five</a></li>
+                <li><a class="information-two-list-link" href="#">Sample Five</a></li>
+            </ul>
+        </div>
+        <div class="at-glance" >
+            <p class="at-glance-para">At Glance</p>
+            <ul class="at-glance-list">
+                <li><a class="at-glance-list-link" href="#">Sample One</a></li>
+                <li><a class="at-glance-list-link" href="#">Sample Two</a></li>
+                <li><a class="at-glance-list-link"href="#">Sample Three</a></li>
+                <li><a class="at-glance-list-link" href="#">Sample Four</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="bottom-line">
+    <p class="bottom-line-para" >© 2021 <strong>IT2018001</strong>. All Rights Reserved</p>
+</div>

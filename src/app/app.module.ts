@@ -13,8 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-
-
+import { SignupSuccessComponent } from './pages/signup-success/signup-success.component';
 
 
 
@@ -29,6 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
     ContactUsComponent,
     LoginSignupComponent,
     FooterComponent,
+    SignupSuccessComponent,
     
   ],
   imports: [
