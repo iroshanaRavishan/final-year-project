@@ -12,14 +12,25 @@ async function insert(user) {
     return await new UserRegistration(user).save();
 }
 
-async function grtUserByEmailIdAndPassword(userRegUsername, userRegPassword) {
+async function getUserByEmailIdAndPassword(userRegUsername, userRegPassword) {
     let user = await UserRegistration.findOne({userRegUsername});
 
     if(isUserValid(user, userRegPassword, user.userHashedRegPassword)) {
         user = user.toObject();
         delete user.userHashedRegPassword;
         return user;
-    }else{
+    } else {
+        return null;
+    }
+}
+
+async function getUserById(id) {
+    let user = await UserRegistration.findById(id);
+    if(user) {
+        user = user.toObject();
+        delete user.userHashedRegPassword;
+        return user;
+    } else {
         return null;
     }
 }
@@ -30,5 +41,6 @@ function isUserValid(user, userRegPassword, userHashedRegPassword) {
 
 module.exports = {
     insert,
-    grtUserByEmailIdAndPassword
+    getUserByEmailIdAndPassword,
+    getUserById
 };
