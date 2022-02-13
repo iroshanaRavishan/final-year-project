@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, of, Subject, throwError } from 'rxjs';
 import { switchMap, catchError } from 'rxjs/operators';
+import { LogService } from '../core/log.service';
 import { User } from '../model/userRegistration';
 import { TokenStorageService } from '../token-storage.service';
 
@@ -23,8 +24,9 @@ export class AuthService {
    * injecting servise
    * @param httpClient 
    * @param tokenStorage 
+   * @param logService
    */
-  constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService) { }
+  constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService, private logService: LogService) { }
   
   /**
    * function of user login
@@ -44,7 +46,7 @@ export class AuthService {
         return of(user);
       }),
       catchError(e => {
-        console.log(`Your login details could not be verified. Please try again!`, e);
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e)
         return throwError(`Your login details could not be verified. Please try again!`);
       })
     );
@@ -108,7 +110,7 @@ export class AuthService {
         return of(user);
       }),
       catchError(e => {
-        console.log(`server error occured`, e);
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
         return throwError(`Registration Failed, please contact admin`);
       })
     );

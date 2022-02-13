@@ -2,8 +2,8 @@
   "name": "it2018001",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",  
-    "serve": "ng serve", 
+    "ng": "ng",
+    "serve": "ng serve",
     "start:server": "node server/index.js",
     "server:watch": "nodemon server",
     "server:client": "ng serve --port 4230 -o",
@@ -32,6 +32,7 @@
     "express": "^4.17.2",
     "express-async-handler": "^1.2.0",
     "helmet": "^5.0.2",
+    "http-errors": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.0",
     "morgan": "^1.10.0",
