@@ -24,7 +24,8 @@ export class LoginSignupComponent implements OnInit {
   // shopLogEmail: string | any;
   // shopLogPassword:string | any;
 
-    userRegGroup = new FormGroup({
+  //common user group for users
+  userRegGroup = new FormGroup({
     userRegUsername: new FormControl ('', [Validators.required]),
     userRegEmail: new FormControl('', [Validators.required, Validators.email]),
     userRegPassword: new FormControl ('', [Validators.required]),
@@ -34,7 +35,12 @@ export class LoginSignupComponent implements OnInit {
     userRegDistrict: new FormControl ('', [Validators.required])
   });
 
-
+  /**
+   * injecting servises
+   * @param router 
+   * @param authService 
+   * @param formBuilder 
+   */
   constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder) {  }
 
 
@@ -63,9 +69,11 @@ export class LoginSignupComponent implements OnInit {
   // }
 
   
-  
-  
-
+  /**
+   * function of matching passwords
+   * @param control 
+   * @returns 
+   */
   userpasswordMatch(control: FormControl){
     const password = control.root.get('userRegPassword');
     return password && control.value !== password.value ? {

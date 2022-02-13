@@ -8,6 +8,7 @@ import { LoginSignupComponent } from './pages/login-signup/login-signup/login-si
 import { ShopsComponent } from './pages/shops/shops.component';
 import { SignupSuccessComponent } from './pages/signup-success/signup-success.component';
 
+// creating path for routes
 const routes: Routes = [
   { path: '', pathMatch:'full', component:HomeComponent},
   { path: 'products', pathMatch:'full', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)},

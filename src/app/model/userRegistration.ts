@@ -1,3 +1,4 @@
+//interface for users
 export interface User{
   userRegUsername: string,
   userRegEmail: string,

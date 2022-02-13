@@ -1,9 +1,12 @@
 const UserRegistration = require('../models/userRegistration.model')
 const bcrypt = require('bcrypt');
 
-
+/**
+ * user inserting function
+ * @param {*} user 
+ * @returns 
+ */
 async function insert(user) {
-
     user.userHashedRegPassword = bcrypt.hashSync(user.userRegPassword, 10);
     delete user.userRegPassword;
 
@@ -12,6 +15,12 @@ async function insert(user) {
     return await new UserRegistration(user).save();
 }
 
+/**
+ * getting the user by emailId and password
+ * @param {*} userRegUsername 
+ * @param {*} userRegPassword 
+ * @returns 
+ */
 async function getUserByEmailIdAndPassword(userRegUsername, userRegPassword) {
     let user = await UserRegistration.findOne({userRegUsername});
 
@@ -24,6 +33,11 @@ async function getUserByEmailIdAndPassword(userRegUsername, userRegPassword) {
     }
 }
 
+/**
+ * getting user by id
+ * @param {*} id 
+ * @returns 
+ */
 async function getUserById(id) {
     let user = await UserRegistration.findById(id);
     if(user) {
@@ -35,6 +49,13 @@ async function getUserById(id) {
     }
 }
 
+/**
+ * checking user validation
+ * @param {*} user 
+ * @param {*} userRegPassword 
+ * @param {*} userHashedRegPassword 
+ * @returns 
+ */
 function isUserValid(user, userRegPassword, userHashedRegPassword) {
     return user && bcrypt.compareSync(userRegPassword, userHashedRegPassword);
 }

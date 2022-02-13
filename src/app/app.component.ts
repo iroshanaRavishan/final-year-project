@@ -13,17 +13,22 @@ export class AppComponent implements OnDestroy{
 
   user: User | any;
   userSubscription: Subscription | any;
-  
-  constructor(private router: Router, private authService: AuthService) { 
-    this.userSubscription = 
-    this.authService.user.subscribe(user => (this.user = user));
-  }
 
+  /**
+   * injecting servises
+   * @param router 
+   * @param authService 
+   */
+  constructor(private router: Router, private authService: AuthService) { 
+    this.authService.findMe().subscribe(user => (this.user = user));
+    this.userSubscription = this.authService.user.subscribe(user => (this.user = user));
+  }
+  
   logout(){
     this.authService.logout();
-    this.router.navigate(['loginsignup'])
+    this.router.navigate(['/'])
   }
-
+  
   ngOnDestroy(): void {
     if(this.userSubscription){
       this.userSubscription.unsubscribe();
