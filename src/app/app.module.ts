@@ -10,10 +10,11 @@ import { FooterComponent } from './share-comp/footer/footer.component';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { SignupSuccessComponent } from './pages/signup-success/signup-success.component';
+import { AuthHeaderInterceptorService } from './interceptors/auth-header-interceptor.service';
 
 
 
@@ -38,7 +39,11 @@ import { SignupSuccessComponent } from './pages/signup-success/signup-success.co
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthHeaderInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

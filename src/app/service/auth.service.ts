@@ -128,8 +128,8 @@ export class AuthService {
         return of(user);
       }),
       catchError(e => {
-        console.log(`Yourrrrrrrrrrrrr login details could not be verified. Please try again!`, e);
-        return throwError(`Yourrrrrrrrrrrrrr login details could not be verified. Please try again!`);
+        console.log(`Your login details could not be verified. Please try again!`, e);
+        return throwError(`Your login details could not be verified. Please try again!`);
       })
     );
   }
