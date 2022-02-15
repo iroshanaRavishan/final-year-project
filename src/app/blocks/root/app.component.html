@@ -29,7 +29,7 @@
               </div>
             <div class="container-bottom">
                 <ul class="inline-list-bottom">
-                    <li class="list-item-bottom"> <a *ngIf="!user" class="list-item-link" routerLink="loginsignup">Register or Sign in</a>
+                    <li class="list-item-bottom"> <a *ngIf="!user" class="list-item-link" routerLink="/auth">Register or Sign in</a>
                         <div>
                             <a *ngIf="user">{{user.userRegUsername}} | <button (click)="logout()" >Logout</button></a>
                         </div>

@@ -114,7 +114,7 @@ export class LoginSignupComponent implements OnInit {
     //    return;
     //  }
     const user = this.userRegGroup.getRawValue();
-    this.authService.userRegistration(user).subscribe(s => this.router.navigate(['signupsuccess']));
+    this.authService.userRegistration(user).subscribe(s => this.router.navigate(['aboutus']));
   }
 
   get userRegUsername() {
@@ -132,7 +132,7 @@ export class LoginSignupComponent implements OnInit {
 
   userLogin(){
     this.error = '';
-    this.authService.userLogin(this.userLogUsername, this.userLogPassword).subscribe(s => this.router.navigate(['signupsuccess']), e => (this.error = e));
+    this.authService.userLogin(this.userLogUsername, this.userLogPassword).subscribe(s => this.router.navigate(['aboutus']), e => (this.error = e));
   }
 
   // designerLogin(){
