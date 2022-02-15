@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../../core/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/model/userRegistration';
+import { User } from 'src/app/core/model/userRegistration';
 
 @Component({
   selector: 'app-root',

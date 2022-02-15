@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, of, Subject, throwError } from 'rxjs';
 import { switchMap, catchError } from 'rxjs/operators';
-import { LogService } from '../core/log.service';
+import { LogService } from '../../core-logs/log.service';
 import { User } from '../model/userRegistration';
-import { TokenStorageService } from '../token-storage.service';
+import { TokenStorageService } from './token-storage.service';
 
 // creating a common interface for the user object
 interface UserDto { 

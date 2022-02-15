@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/model/userRegistration';
-import { AuthService } from 'src/app/service/auth.service';
+import { User } from 'src/app/core/model/userRegistration';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 
 @Component({

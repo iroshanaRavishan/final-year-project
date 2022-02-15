@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductDataService } from '../product-data.service';
+import { ProductDataService } from '@core/index';
 
 @Component({
   selector: 'app-products',
