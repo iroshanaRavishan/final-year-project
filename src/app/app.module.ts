@@ -13,6 +13,7 @@ import { BlocksModule } from './blocks/blocks.module';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
+import { ProductDataService } from '@core/products/product-data.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,10 @@ import { ProductsModule } from './products/products.module';
     BlocksModule,
     AuthModule,
     ProductsModule,
-    CoreModule
+    CoreModule,
+  ],
+  providers: [
+    ProductDataService
   ],
   bootstrap: [AppComponent]
 })

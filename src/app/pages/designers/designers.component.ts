@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductDataService } from '@core/index';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-designers',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DesignersComponent implements OnInit {
 
-  constructor() { }
+
+  products: Observable<any> | any;
+  constructor(private productDataService: ProductDataService) { }
 
   ngOnInit(): void {
+    this.products = this.productDataService.getAllProducts();
   }
-
 }

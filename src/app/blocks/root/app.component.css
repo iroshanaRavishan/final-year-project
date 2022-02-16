@@ -13,7 +13,11 @@ body, input, select, textarea {
     font-weight: 300;
     line-height: 1.75em;
 }
-
+.searchBox{
+    background-color: rgb(177, 173, 173);
+    height: 3em;
+    width: 50%;
+}
 
 
 /**** HEADER ****/
@@ -194,7 +198,7 @@ header {
         padding-right: 15px;
         padding-left: 15px;
         margin-top: 3em;
-        margin-left: 42em;
+        margin-left: 26em;
     }
    
     .list-item {
@@ -357,6 +361,25 @@ input[type="email"] {
 
 input[type="email"]:hover{
     border-color: rgb(255, 218, 5);
+}
+
+input[type="text"] {
+    background-color: rgb(255, 218, 5);
+    margin-top: 0em;
+    width: 12em; 
+    border-radius: 30px;
+    height: 1em;
+    border-style: none;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    padding-right: 25px;
+    padding-left: 25px;
+    font-size: 1em;
+    vertical-align: 0.3em;
+}
+
+input[type="text"]:hover{
+    background-color: rgb(255, 230, 90);
 }
 
 .sub-btn-footer{
