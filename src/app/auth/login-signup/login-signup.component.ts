@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/model/userRegistration';
-import { AuthService } from 'src/app/service/auth.service';
+import { User } from 'src/app/core/model/userRegistration';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 
 @Component({
@@ -24,7 +24,8 @@ export class LoginSignupComponent implements OnInit {
   // shopLogEmail: string | any;
   // shopLogPassword:string | any;
 
-    userRegGroup = new FormGroup({
+  //common user group for users
+  userRegGroup = new FormGroup({
     userRegUsername: new FormControl ('', [Validators.required]),
     userRegEmail: new FormControl('', [Validators.required, Validators.email]),
     userRegPassword: new FormControl ('', [Validators.required]),
@@ -34,7 +35,12 @@ export class LoginSignupComponent implements OnInit {
     userRegDistrict: new FormControl ('', [Validators.required])
   });
 
-
+  /**
+   * injecting servises
+   * @param router 
+   * @param authService 
+   * @param formBuilder 
+   */
   constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder) {  }
 
 
@@ -63,9 +69,11 @@ export class LoginSignupComponent implements OnInit {
   // }
 
   
-  
-  
-
+  /**
+   * function of matching passwords
+   * @param control 
+   * @returns 
+   */
   userpasswordMatch(control: FormControl){
     const password = control.root.get('userRegPassword');
     return password && control.value !== password.value ? {
@@ -106,7 +114,7 @@ export class LoginSignupComponent implements OnInit {
     //    return;
     //  }
     const user = this.userRegGroup.getRawValue();
-    this.authService.userRegistration(user).subscribe(s => this.router.navigate(['signupsuccess']));
+    this.authService.userRegistration(user).subscribe(s => this.router.navigate(['aboutus']));
   }
 
   get userRegUsername() {
@@ -124,7 +132,7 @@ export class LoginSignupComponent implements OnInit {
 
   userLogin(){
     this.error = '';
-    this.authService.userLogin(this.userLogUsername, this.userLogPassword).subscribe(s => this.router.navigate(['signupsuccess']), e => (this.error = e));
+    this.authService.userLogin(this.userLogUsername, this.userLogPassword).subscribe(s => this.router.navigate(['aboutus']), e => (this.error = e));
   }
 
   // designerLogin(){

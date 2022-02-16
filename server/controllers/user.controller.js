@@ -1,9 +1,12 @@
 const UserRegistration = require('../models/userRegistration.model')
 const bcrypt = require('bcrypt');
 
-
+/**
+ * user inserting function
+ * @param {*} user 
+ * @returns 
+ */
 async function insert(user) {
-
     user.userHashedRegPassword = bcrypt.hashSync(user.userRegPassword, 10);
     delete user.userRegPassword;
 
@@ -12,23 +15,53 @@ async function insert(user) {
     return await new UserRegistration(user).save();
 }
 
-async function grtUserByEmailIdAndPassword(userRegUsername, userRegPassword) {
+/**
+ * getting the user by emailId and password
+ * @param {*} userRegUsername 
+ * @param {*} userRegPassword 
+ * @returns 
+ */
+async function getUserByEmailIdAndPassword(userRegUsername, userRegPassword) {
     let user = await UserRegistration.findOne({userRegUsername});
 
     if(isUserValid(user, userRegPassword, user.userHashedRegPassword)) {
         user = user.toObject();
         delete user.userHashedRegPassword;
         return user;
-    }else{
+    } else {
         return null;
     }
 }
 
+/**
+ * getting user by id
+ * @param {*} id 
+ * @returns 
+ */
+async function getUserById(id) {
+    let user = await UserRegistration.findById(id);
+    if(user) {
+        user = user.toObject();
+        delete user.userHashedRegPassword;
+        return user;
+    } else {
+        return null;
+    }
+}
+
+/**
+ * checking user validation
+ * @param {*} user 
+ * @param {*} userRegPassword 
+ * @param {*} userHashedRegPassword 
+ * @returns 
+ */
 function isUserValid(user, userRegPassword, userHashedRegPassword) {
     return user && bcrypt.compareSync(userRegPassword, userHashedRegPassword);
 }
 
 module.exports = {
     insert,
-    grtUserByEmailIdAndPassword
+    getUserByEmailIdAndPassword,
+    getUserById
 };

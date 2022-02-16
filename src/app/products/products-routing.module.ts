@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
 
+// creating inner path for routes of shop
 const routes: Routes = [
   {path: '', pathMatch:'full', component:ProductsComponent}
 ];
