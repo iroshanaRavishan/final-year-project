@@ -4,8 +4,9 @@ import { LoginSignupComponent } from './login-signup/login-signup.component';
 import { SignupSuccessComponent } from './signup-success/signup-success.component';
 
 const routes: Routes = [
-  { path: '', component:LoginSignupComponent},
-  { path: 'auth/signupsuccess', pathMatch:'full', component:SignupSuccessComponent} // this doesnt work///////////////////////////////////////////
+      { path: '', component: LoginSignupComponent},
+      { path: 'signupsuccess', component: SignupSuccessComponent}
+
 ];
 
 @NgModule({
