@@ -2,12 +2,14 @@
     {
         "name": "BAG",
         "category": "designer",
+        "description": "no description",
         "price": 94.5,
         "id": 1
     },
     {
         "name": "WATCH",
         "category": "designer",
+        "description": "no description",
         "price": 94.5,
         "id": 2
     },
@@ -20,36 +22,42 @@
     {
         "name": "PEN",
         "category": "shop",
+        "description": "no description",
         "price": 94.5,
         "id": 4
     },
     {
         "name": "PENSIL",
         "category": "shop",
+        "description": "no description",
         "price": 94.5,
         "id": 5
     },
     {
         "name": "ERASER",
         "category": "shop",
+        "description": "no description",
         "price": 94.5,
         "id": 6
     },
     {
         "name": "BOOK",
         "category": "shop",
+        "description": "no description",
         "price": 94.5,
         "id": 7
     },
     {
         "name": "CUP",
         "category": "designer",
+        "description": "no description",
         "price": 94.5,
         "id": 8
     },
     {
         "name": "PHONE",
         "category": "designer",
+        "description": "no description",
         "price": 94.5,
         "id": 9
     }

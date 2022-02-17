@@ -1,8 +1,9 @@
-<h1>PLAN DESIGNER PAGE</h1>
+<h1>DESIGNER PAGE</h1>
 
 <div *ngFor="let product of (products | async)">
    
     {{product.name}}
+    <p>{{product.description}}</p>
     <p>{{product.id}} - this costs : $ {{product.price}}</p>
     <button>Buy this product {{product.name}}</button>
     <br/><br/><br/><br/>

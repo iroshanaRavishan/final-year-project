@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductDataService } from '@core/index';
+import { ProductDataService } from '@core/products/product-data.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./designers.component.css']
 })
 export class DesignersComponent implements OnInit {
-
 
   products: Observable<any> | any;
   constructor(private productDataService: ProductDataService) { }

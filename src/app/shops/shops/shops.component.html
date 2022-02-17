@@ -1,12 +1,9 @@
-<h1>SHOPS PAGE</h1>
-
-
-
+<h1>SHOP PAGE</h1>
 
 <div *ngFor="let product of (products | async)">
-   
     {{product.name}}
-    <p>{{product.id}} -  this costs : $ {{product.price}}</p>
+    <p>{{product.description}}</p>
+    <p>{{product.id}} - this costs : $ {{product.price}}</p>
     <button>Buy this product {{product.name}}</button>
     <br/><br/><br/><br/>
 </div>
