@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDataService } from '@core/products/product-data.service';
 
+import { SharedModule } from '@shared/shared.module';
+
 @NgModule({
   declarations: [
     HomeComponent
@@ -13,10 +15,11 @@ import { ProductDataService } from '@core/products/product-data.service';
   imports: [
     CommonModule,
     HttpClientModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    SharedModule
   ],
   providers: [
-    ProductDataService
+    ProductDataService,
   ]
 })
 export class HomeModule { }

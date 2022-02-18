@@ -16,7 +16,7 @@
               <div class="container-top">
                   <div class="table-row">
                         <ul class="inline-list">
-                            <input type="text" placeholder="Search here">
+                            <input type="text" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search here">
                             <li class="list-item"> <button class="list-item-button">Rated Shop</button></li>
                             <li class="list-item"> <button  class="list-item-button">Rated Designer</button></li>
                             <li class="list-item"> <button class="list-item-button">Demamded Items</button></li>

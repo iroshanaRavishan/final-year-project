@@ -13,6 +13,7 @@ export class AppComponent implements OnDestroy{
 
   user: User | any;
   userSubscription: Subscription | any;
+  public searchTerm: string = "";
 
   /**
    * injecting servises
@@ -23,7 +24,10 @@ export class AppComponent implements OnDestroy{
     this.authService.findMe().subscribe(user => (this.user = user));
     this.userSubscription = this.authService.user.subscribe(user => (this.user = user));
   }
-  
+  search(event: any){
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    console.log(this.searchTerm);
+  }
   logout(){
     this.authService.logout();
     this.router.navigate(['/'])

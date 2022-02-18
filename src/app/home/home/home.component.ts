@@ -8,8 +8,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
+  searchKey:string = "";
+
   products: Observable<any> | any;
+  abc: any[] | any;
   constructor(private productDataService: ProductDataService) { }
 
   ngOnInit(): void {

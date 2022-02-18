@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BlocksRoutingModule } from './blocks-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { AppComponent } from './root/app.component';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AppComponent } from './root/app.component';
   ],
   imports: [
     CommonModule,
-    BlocksRoutingModule
+    BlocksRoutingModule,
+    SharedModule
   ], 
   exports: [HeaderComponent, AppComponent]
 })
