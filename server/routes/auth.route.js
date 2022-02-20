@@ -34,7 +34,7 @@ async function getUserByEmailIdAndPassword(req, res, next) {
     console.log(`Searching user for`, user);
 
     // taking the user's username and password from the class to the request
-    const savedUser = await userController.getUserByEmailIdAndPassword(user.userLogUsername, user.userLogPassword); 
+    const savedUser = await userController.getUserByEmailIdAndPassword(user.userLogEmail, user.userLogPassword); 
     req.user = savedUser;
     next(); //calling to the nest pipeline of the middleware
 }

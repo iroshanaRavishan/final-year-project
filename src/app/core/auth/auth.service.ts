@@ -30,24 +30,27 @@ export class AuthService {
   
   /**
    * function of user login
-   * @param userLogUsername 
+   * @param userLogEmail 
    * @param userLogPassword 
    * @returns 
    */
-  userLogin(userLogUsername: string, userLogPassword: string) {
-    const loginCredentials = {userLogUsername, userLogPassword};
+  userLogin(userLogEmail: string, userLogPassword: string) {
+    const loginCredentials = {userLogEmail, userLogPassword};
     console.log('login credential', loginCredentials);
 
     return this.httpClient.post<UserDto>(`${this.apiUrl}login`, loginCredentials).pipe(
       switchMap(({ user, token }) => {
-        this.setUser(user);// setting the user
-        this.tokenStorage.setToken(token); //storing the user in the local storage
-        console.log(`user found`, user);
-        return of(user);
+        if(user==null){
+          return EMPTY;
+        }
+          this.setUser(user);// setting the user
+          this.tokenStorage.setToken(token); //storing the user in the local storage
+          console.log(`user found`, user);
+          return of(user);
       }),
       catchError(e => {
         this.logService.log(`Server Error Occured!: ${e.error.message}`, e)
-        return throwError(`Your login details could not be verified. Please try again!`);
+        return throwError(`Your login details could not be verified. Please try again!!!!`);
       })
     );
   }

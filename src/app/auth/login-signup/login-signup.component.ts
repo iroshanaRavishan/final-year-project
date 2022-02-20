@@ -17,7 +17,7 @@ export class LoginSignupComponent implements OnInit {
   // form: FormGroup | any;
   // submitted = false;
   error: string | any;
-  userLogUsername: string | any;
+  userLogEmail: string | any;
   userLogPassword: string | any;
   // designerLogEmail: string | any;
   // designerLogPassword: string | any;
@@ -114,7 +114,7 @@ export class LoginSignupComponent implements OnInit {
     //    return;
     //  }
     const user = this.userRegGroup.getRawValue();
-    this.authService.userRegistration(user).subscribe(s => this.router.navigate(['signupsuccess']));
+    this.authService.userRegistration(user).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }
 
   get userRegUsername() {
@@ -132,7 +132,7 @@ export class LoginSignupComponent implements OnInit {
 
   userLogin(){
     this.error = '';
-    this.authService.userLogin(this.userLogUsername, this.userLogPassword).subscribe(s => this.router.navigate(['signupsuccess']), e => (this.error = e));
+    this.authService.userLogin(this.userLogEmail, this.userLogPassword).subscribe(s => this.router.navigate(['auth/signupsuccess']), e => (this.error = e));
   }
 
   // designerLogin(){

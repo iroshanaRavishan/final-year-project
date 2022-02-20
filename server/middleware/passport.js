@@ -10,9 +10,7 @@ const localLogin = new LocalStrategy(
     { usernameField: 'userRegUsername' },
     async (userRegUsername, userRegPassword, done) => {
         const user = userController.getUserByEmailIdAndPassword(userRegUsername, userRegPassword);
-        return user
-        ? done(null, user)
-        : done(null, false, {
+        return user? done(null, user): done(null, false, {
             error: 'Your login credentials are not valid. Please try again.'
         });
     }
@@ -22,9 +20,7 @@ const jwtLogin = new JwtStrategy(
     { jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), secretOrKey: config.jwtSecret },
     async (payload, done) => {
         const user = await userController.getUserById(payload._id);
-        return user
-        ? done(null, user)
-        : done(null, false, {
+        return user? done(null, user): done(null, false, {
             error: 'Your login credentials are not valid. Please try again.'
         });
     }

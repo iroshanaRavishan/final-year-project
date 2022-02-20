@@ -21,8 +21,8 @@ async function insert(user) {
  * @param {*} userRegPassword 
  * @returns 
  */
-async function getUserByEmailIdAndPassword(userRegUsername, userRegPassword) {
-    let user = await UserRegistration.findOne({userRegUsername});
+async function getUserByEmailIdAndPassword(userRegEmail, userRegPassword) {
+    let user = await UserRegistration.findOne({userRegEmail});
 
     if(isUserValid(user, userRegPassword, user.userHashedRegPassword)) {
         user = user.toObject();
