@@ -22,7 +22,7 @@
               <p>Create your own Account</p>
                
               <form [formGroup]="userRegGroup" >
-                <div>
+                
 
                   <div>
                     <label for="username">Username<span class="req"> *</span></label>
@@ -62,8 +62,8 @@
                     <button class="btn" type="submit" (click)="userRegistration()">Register</button>
                     <button class="btn-reset" type="reset">Reset</button>
                   </div>
-                </div>
               </form>  
+              <div id="box1" class="box-shadow1"></div>
             </div>
 
 
@@ -78,7 +78,7 @@
                     <div>
                       <a class="return-store" routerLink="">Return to Store</a>
                     </div>
-                    <button class="btn btn-other-page" type="button" routerLink="designersignup">Register</button><br/>
+                    <button class="btn btn-other-page" type="button" pageScroll href="#downDesignerSU" >Register</button><br/>
                     <button class="btn-reset btn-other-page" type="button" routerLink="">Cancel</button>
                   </div>
             </div>
@@ -94,7 +94,7 @@
                 <div>
                   <a class="return-store" routerLink="">Return to Store</a>
                 </div>
-                <button class="btn btn-other-page" type="button" routerLink="shopssignup">Register</button><br/>
+                <button class="btn btn-other-page" type="button" pageScroll href="#downHShopSU">Register</button><br/>
                 <button class="btn-reset btn-other-page" type="button" routerLink="">Cancel</button>
               </div>
             </div>
@@ -241,5 +241,801 @@
             -->
           </div>
       </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- DOWN REGISTRATION FORM - DESIGNERS -->
+
+  <div id="downDesignerSU" *ngIf="idSignup ==='designerSU'" class="down-form-container">
+    <div class="down-form-header">
+      <h2 class="down-form-header-line"> <span></span> </h2>
+      <p>Plant Your Own Plan Designing Account Here...!</p>
+    </div>
+  
+     
+    <form [formGroup]="userRegGroup" >
+      <div class="down-form-left">
+        <h3 class="down-form-form-section">Personal Information</h3>
+          <div>
+            <label>Username<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegUsername" placeholder="Enter Username" required>                                
+          </div> 
+          
+          <div>
+            <label>Email Address<span class="req"> *</span></label>
+            <input type="email" formControlName="userRegEmail" placeholder="Enter Email" required>                 
+          </div>
+          
+          <div>
+            <label>NIC Number<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegTelephone" placeholder="Enter NIC Number" required>
+          </div>
+
+          <div>
+            <label>Password<span class="req"> *</span></label>
+            <input type="password" formControlName="userRegPassword" placeholder="Enter Password" required>         
+          </div>
+
+          <div>
+            <label>Confirm Password<span class="req"> *</span></label>
+            <input type="password" formControlName="userRegConfirmPassword" placeholder="Re-Enter Password" required>
+          </div>
+
+        <h3 class="down-form-form-section">Contact Information</h3>  
+          <div>
+            <label>Telephone<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+          </div>
+
+          <div>
+            <label for="address">Address<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegAddress" placeholder="Enter Address" required>
+            <input type="text" formControlName="userRegDistrict" placeholder="Enter District" >
+          </div> 
+
+          <div>
+            <button class="btn" type="button" pageScroll href="#downDesignerSUNext1" >Next</button>
+          </div>
+      </div>
+
+<!-- NEXT -->
+
+      <div id="downDesignerSUNext1" class="down-form-right">
+        <h3 class="down-form-form-section">Business Information</h3>
+          <div>
+            <label>Name of the shop<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegUsername" placeholder="Enter Shop Name" required>                                
+          </div> 
+          
+          <div>
+            <label>Description of the shop<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegEmail" placeholder="Enter Description" required>                 
+          </div>
+
+          <div>
+            <label>Email of the shop<span class="req"> *</span></label>
+            <input type="email" formControlName="userRegEmail" placeholder="Enter Email" required>                 
+          </div>
+          
+          <div>
+            <label>Address<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegAddress" placeholder="Enter Address" required>
+            <input type="text" formControlName="userRegDistrict" placeholder="Enter District" >
+          </div>
+
+          <div>
+            <label>Postal Code<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegConfirmPassword" placeholder="Enter Postal Code" required>
+          </div>
+
+          <div>
+            <label>Digital Location of the shop<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegConfirmPassword" placeholder="Enter Postal Code" required>
+          </div>
+ 
+          <div>
+            <label>Telephone<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+          </div>
+
+          <div>
+            <label>Image for shop identification (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
+            <input type="file" class="upload-box" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+          </div>
+
+          <div>
+            <button class="btn" type="button" pageScroll href="#downDesignerSUNext2" >Next</button>
+            <button class="btn-reset" type="button" pageScroll href="#downDesignerSU" >Previous</button>
+          </div>
+      </div>
+
+      <div id="downDesignerSUNext2" class="down-form-center">
+        <h3 class="down-form-form-section">Pricing Area(You can choose a convenirnt plan to proceed further!)</h3>
+        <div class="down-form-table-container">
+
+<!-- IMPORTED TABLE           -->
+
+      <div id="generic_price_table">   
+      <section>
+
+              <div class="container">
+                  
+                  <!--BLOCK ROW START-->
+                  <div class="row">
+                    <div class="col-md-4">
+                      
+                      <div class="gc_1">
+                        
+                      <!--PRICE CONTENT START-->
+                        <div class="generic_content  clearfix">
+                            
+                         
+
+                          
+                            <!--HEAD PRICE DETAIL START-->
+                            <div class="generic_head_price clearfix">
+                            
+                                <!--HEAD CONTENT START-->
+                                <div class="generic_head_content clearfix">
+                                
+                                  <!--HEAD START-->
+                                    <div class="head_bg"></div>
+                                    <div class="head">
+                                        <span>Basic</span>
+                                    </div>
+                                    <!--//HEAD END-->
+                                    
+                                </div>
+                                <!--//HEAD CONTENT END-->
+                                
+                                <!--PRICE START-->
+                                <div class="generic_price_tag clearfix">  
+                                    <span class="price">
+                                        <span class="sign">$</span>
+                                        <span class="currency">299</span>
+                                        <span class="cent">.99</span>
+                                        <span class="month">/MON</span>
+                                    </span>
+                                </div>
+                                <!--//PRICE END-->
+                                
+                            </div>                            
+                            <!--//HEAD PRICE DETAIL END-->
+                            
+                            <!--FEATURE LIST START-->
+                            <div class="generic_feature_list">
+                              <ul>
+                                  <li><span>1 Year</span> Hosting time period</li>
+                                  <li><span>1 Shop</span> can be maintained</li>
+                                  <li><span>Free</span> User guidence</li>
+                                  <li><span>Free</span> User support 24/7</li>
+                                  <li class="pricing-plan-disable-lines disabled-color"><span class="disabled-text">Online</span> <font class="disabled-text">payment facilities</font> </li>
+                                  <li class="pricing-plan-disable-lines disabled-color"><span class="disabled-text">Developer</span> <font class="disabled-text">support</font> </li>
+                              </ul>
+                            </div>
+                            <!--//FEATURE LIST END-->
+                            
+                            <!--BUTTON START-->
+                            <div class="generic_price_btn clearfix">
+                              <input type="radio" name="btn"  >
+                              <label for="rounded" data-checked="The plan is selected"></label>
+                          </div>
+
+                            <!--//BUTTON END-->
+                            
+                        </div>
+                        <!--//PRICE CONTENT END-->
+                      
+                    </div>
+                  </div>
+
+                      <div class="col-md-4">
+                        <div class="gc_2">
+                      
+                        <!--PRICE CONTENT START-->
+                          <div class="generic_content clearfix">
+                              
+                              <!--HEAD PRICE DETAIL START-->
+                              <div class="generic_head_price clearfix">
+                              
+                                  <!--HEAD CONTENT START-->
+                                  <div class="generic_head_content clearfix">
+                                  
+                                    <!--HEAD START-->
+                                      <div class="head_bg"></div>
+                                      <div class="head">
+                                          <span>Startup</span>
+                                      </div>
+                                      <!--//HEAD END-->
+                                      
+                                  </div>
+                                  <!--//HEAD CONTENT END-->
+                                  
+                                  <!--PRICE START-->
+                                  <div class="generic_price_tag clearfix">  
+                                      <span class="price">
+                                          <span class="sign">$</span>
+                                          <span class="currency">299</span>
+                                          <span class="cent">.99</span>
+                                          <span class="month">/MON</span>
+                                      </span>
+                                  </div>
+                                  <!--//PRICE END-->
+                                  
+                              </div>                            
+                              <!--//HEAD PRICE DETAIL END-->
+                              
+                              <!--FEATURE LIST START-->
+                              <div class="generic_feature_list">
+                                <ul>
+                                  <li><span>5 Years</span> Hosting time period</li>
+                                  <li><span>2 Shop</span> can be maintained</li>
+                                  <li><span>Free</span> User guidence</li>
+                                  <li><span>Free</span> User support 24/7</li>
+                                  <li class="pricing-plan-disable-lines disabled-color"><span class="disabled-text">Online</span> <font class="disabled-text">payment facilities</font> </li>
+                                  <li class="pricing-plan-disable-lines disabled-color"><span class="disabled-text">Developer</span> <font class="disabled-text">support</font> </li>
+                                </ul>
+                              </div>
+                              <!--//FEATURE LIST END-->
+                              
+                              <!--BUTTON START-->
+                              <div class="generic_price_btn clearfix">
+                                <input type="radio" name="btn"  >
+                                <label for="rounded" data-checked="The plan is selected"></label>
+                            </div>
+                              <!--//BUTTON END-->
+                              
+                          </div>
+                          <!--//PRICE CONTENT END-->
+                      </div> 
+                    </div>
+                      
+                      <div class="col-md-4">
+                        <div class="gc_3">
+                        <!--PRICE CONTENT START-->
+                          <div class="generic_content active clearfix">
+                              
+                              <!--HEAD PRICE DETAIL START-->
+                              <div class="generic_head_price clearfix">
+                              
+                                  <!--HEAD CONTENT START-->
+                                  <div class="generic_head_content clearfix">
+                                  
+                                    <!--HEAD START-->
+                                      <div class="head_bg"></div>
+                                      <div class="head">
+                                          <span>Standard</span>
+                                      </div>
+                                      <!--//HEAD END-->
+                                      
+                                  </div>
+                                  <!--//HEAD CONTENT END-->
+                                  
+                                  <!--PRICE START-->
+                                  <div class="generic_price_tag clearfix">  
+                                      <span class="price">
+                                          <span class="sign">$</span>
+                                          <span class="currency">199</span>
+                                          <span class="cent">.99</span>
+                                          <span class="month">/MON</span>
+                                      </span>
+                                  </div>
+                                  <!--//PRICE END-->
+                                  
+                              </div>                            
+                              <!--//HEAD PRICE DETAIL END-->
+                              
+                              <!--FEATURE LIST START-->
+                              <div class="generic_feature_list">
+                                <ul>
+                                  <li><span>10 Years</span> Hosting time period</li>
+                                  <li><span>5 Shop</span> can be maintained</li>
+                                  <li><span>Free</span> User guidence</li>
+                                  <li><span>Free</span> User support 24/7</li>
+                                  <li><span>Online</span> payment facilities</li>
+                                  <li class="pricing-plan-disable-lines disabled-color"><span class="disabled-text">Developer</span> <font class="disabled-text">support</font> </li>
+                                </ul>
+                              </div>
+                              <!--//FEATURE LIST END-->
+                              
+                              <!--BUTTON START-->
+                              <div class="generic_price_btn clearfix">
+                                <input type="radio" name="btn"  >
+                                <label for="rounded" data-checked="The plan is selected"></label>
+                            </div>
+                              <!--//BUTTON END-->
+                              
+                          </div>
+                          <!--//PRICE CONTENT END-->
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="gc_4">
+                      
+                        <!--PRICE CONTENT START-->
+                          <div class="generic_content clearfix">
+                              
+                              <!--HEAD PRICE DETAIL START-->
+                              <div class="generic_head_price clearfix">
+                              
+                                  <!--HEAD CONTENT START-->
+                                  <div class="generic_head_content clearfix">
+                                  
+                                    <!--HEAD START-->
+                                      <div class="head_bg"></div>
+                                      <div class="head">
+                                          <span>Premiem</span>
+                                      </div>
+                                      <!--//HEAD END-->
+                                      
+                                  </div>
+                                  <!--//HEAD CONTENT END-->
+                                  
+                                  <!--PRICE START-->
+                                  <div class="generic_price_tag clearfix">  
+                                      <span class="price">
+                                          <span class="sign">$</span>
+                                          <span class="currency">299</span>
+                                          <span class="cent">.99</span>
+                                          <span class="month">/MON</span>
+                                      </span>
+                                  </div>
+                                  <!--//PRICE END-->
+                                  
+                              </div>                            
+                              <!--//HEAD PRICE DETAIL END-->
+                              
+                              <!--FEATURE LIST START-->
+                              <div class="generic_feature_list">
+                                <ul>
+                                  <li><span>Life time</span> Hosting</li>
+                                  <li><span>Unlimited</span> shops</li>
+                                  <li><span>Free</span> User guidence</li>
+                                  <li><span>Free</span> User support 24/7</li>
+                                  <li><span>Online</span> payment facilities</li>
+                                  <li><span>Developer</span> support</li>
+                                </ul>
+                              </div>
+                              <!--//FEATURE LIST END-->
+                              
+                              <!--BUTTON START-->
+                              <div class="generic_price_btn clearfix">
+                                <input type="radio" name="btn"  >
+                                <label for="rounded" data-checked="The plan is selected"></label>
+                            </div>
+                              <!--//BUTTON END-->
+                              
+                          </div>
+                          <!--//PRICE CONTENT END-->
+                        </div>
+                      </div>
+                  </div>  
+                  <!--//BLOCK ROW END-->
+
+
+                  
+              </div>
+          </section>   
+          <p>sample text here sample text here sample text here sample text heresample text here sample text here sample text 
+            here sample text here sample text here </p>          
+
+<!-- IMPORTED TABLE END -->
+      </div>
+        </div>
+        <div>
+          <div>
+            <a class="return-store">Return to Store</a>
+          </div>
+          <button class="btn" type="submit" (click)="userRegistration()">Register</button>
+          <button class="btn-reset" type="reset">Reset</button>
+        </div>
+      </div>
+
+    </form> 
+    <div id="box1" class="box-shadow1"></div>
+    <div id="box2" class="box-shadow2"></div>
+    <div id="box3" class="box-shadow3"></div>
+  </div>
+
+
+ <!-- DOWN REGISTRATION FORM - SHOPS -->
+
+  <div id="downHShopSU" *ngIf="idSignup ==='hshopSU'" class="down-form-container">
+    <div class="down-form-header">
+      <h2 class="down-form-header-line"> <span></span> </h2>
+      <p>Plant Your Own Hardware Shop Account Here...!</p>
+    </div>
+  
+    <form [formGroup]="userRegGroup" >
+      <div class="down-form-left">
+        <h3 class="down-form-form-section">Personal Information</h3>
+          <div>
+            <label>Username<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegUsername" placeholder="Enter Username" required>                                
+          </div> 
+          
+          <div>
+            <label>Email Address<span class="req"> *</span></label>
+            <input type="email" formControlName="userRegEmail" placeholder="Enter Email" required>                 
+          </div>
+          
+          <div>
+            <label>NIC Number<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegTelephone" placeholder="Enter NIC Number" required>
+          </div>
+
+          <div>
+            <label>Password<span class="req"> *</span></label>
+            <input type="password" formControlName="userRegPassword" placeholder="Enter Password" required>         
+          </div>
+
+          <div>
+            <label>Confirm Password<span class="req"> *</span></label>
+            <input type="password" formControlName="userRegConfirmPassword" placeholder="Re-Enter Password" required>
+          </div>
+
+        <h3 class="down-form-form-section">Contact Information</h3>  
+          <div>
+            <label>Telephone<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+          </div>
+
+          <div>
+            <label for="address">Address<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegAddress" placeholder="Enter Address" required>
+            <input type="text" formControlName="userRegDistrict" placeholder="Enter District" >
+          </div> 
+
+          <div>
+            <button class="btn" type="button" pageScroll href="#downDesignerSUNext1" >Next</button>
+          </div>
+      </div>
+
+<!-- NEXT -->
+
+      <div id="downDesignerSUNext1" class="down-form-right">
+        <h3 class="down-form-form-section">Business Information</h3>
+          <div>
+            <label>Name of the shop<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegUsername" placeholder="Enter Shop Name" required>                                
+          </div> 
+          
+          <div>
+            <label>Description of the shop<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegEmail" placeholder="Enter Description" required>                 
+          </div>
+
+          <div>
+            <label>Email of the shop<span class="req"> *</span></label>
+            <input type="email" formControlName="userRegEmail" placeholder="Enter Email" required>                 
+          </div>
+          
+          <div>
+            <label>Address<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegAddress" placeholder="Enter Address" required>
+            <input type="text" formControlName="userRegDistrict" placeholder="Enter District" >
+          </div>
+
+          <div>
+            <label>Postal Code<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegConfirmPassword" placeholder="Enter Postal Code" required>
+          </div>
+
+          <div>
+            <label>Digital Location of the shop<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegConfirmPassword" placeholder="Enter Postal Code" required>
+          </div>
+ 
+          <div>
+            <label>Telephone<span class="req"> *</span></label>
+            <input type="text" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+          </div>
+
+          <div>
+            <label>Image for shop identification (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
+            <input type="file" class="upload-box" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+          </div>
+
+          <div>
+            <button class="btn" type="button" pageScroll href="#downDesignerSUNext2" >Next</button>
+            <button class="btn-reset" type="button" pageScroll href="#downDesignerSU" >Previous</button>
+          </div>
+      </div>
+
+      <div id="downDesignerSUNext2" class="down-form-center">
+        <h3 class="down-form-form-section">Pricing Area (You can choose a convenirnt plan to proceed further!)</h3>
+        <div class="down-form-table-container">
+
+<!-- IMPORTED TABLE           -->
+
+      <div id="generic_price_table">   
+      <section>
+
+              <div class="container">
+                  
+                  <!--BLOCK ROW START-->
+                  <div class="row">
+                    <div class="col-md-4">
+                      
+                      <div class="gc_1">
+                        
+                      <!--PRICE CONTENT START-->
+                        <div class="generic_content  clearfix">
+                            
+                         
+
+                          
+                            <!--HEAD PRICE DETAIL START-->
+                            <div class="generic_head_price clearfix">
+                            
+                                <!--HEAD CONTENT START-->
+                                <div class="generic_head_content clearfix">
+                                
+                                  <!--HEAD START-->
+                                    <div class="head_bg"></div>
+                                    <div class="head">
+                                        <span>Basic</span>
+                                    </div>
+                                    <!--//HEAD END-->
+                                    
+                                </div>
+                                <!--//HEAD CONTENT END-->
+                                
+                                <!--PRICE START-->
+                                <div class="generic_price_tag clearfix">  
+                                    <span class="price">
+                                        <span class="sign">$</span>
+                                        <span class="currency">299</span>
+                                        <span class="cent">.99</span>
+                                        <span class="month">/MON</span>
+                                    </span>
+                                </div>
+                                <!--//PRICE END-->
+                                
+                            </div>                            
+                            <!--//HEAD PRICE DETAIL END-->
+                            
+                            <!--FEATURE LIST START-->
+                            <div class="generic_feature_list">
+                              <ul>
+                                  <li><span>1 Year</span> Hosting time period</li>
+                                  <li><span>1 Shop</span> can be maintained</li>
+                                  <li><span>Free</span> User guidence</li>
+                                  <li><span>Free</span> User support 24/7</li>
+                                  <li class="pricing-plan-disable-lines disabled-color"><span class="disabled-text">Online</span> <font class="disabled-text">payment facilities</font> </li>
+                                  <li class="pricing-plan-disable-lines disabled-color"><span class="disabled-text">Developer</span> <font class="disabled-text">support</font> </li>
+                              </ul>
+                            </div>
+                            <!--//FEATURE LIST END-->
+                            
+                            <!--BUTTON START-->
+                            <div class="generic_price_btn clearfix">
+                              <input type="radio" name="btn"  >
+                              <label for="rounded" data-checked="The plan is selected"></label>
+                          </div>
+
+                            <!--//BUTTON END-->
+                            
+                        </div>
+                        <!--//PRICE CONTENT END-->
+                      
+                    </div>
+                  </div>
+
+                      <div class="col-md-4">
+                        <div class="gc_2">
+                      
+                        <!--PRICE CONTENT START-->
+                          <div class="generic_content clearfix">
+                              
+                              <!--HEAD PRICE DETAIL START-->
+                              <div class="generic_head_price clearfix">
+                              
+                                  <!--HEAD CONTENT START-->
+                                  <div class="generic_head_content clearfix">
+                                  
+                                    <!--HEAD START-->
+                                      <div class="head_bg"></div>
+                                      <div class="head">
+                                          <span>Startup</span>
+                                      </div>
+                                      <!--//HEAD END-->
+                                      
+                                  </div>
+                                  <!--//HEAD CONTENT END-->
+                                  
+                                  <!--PRICE START-->
+                                  <div class="generic_price_tag clearfix">  
+                                      <span class="price">
+                                          <span class="sign">$</span>
+                                          <span class="currency">299</span>
+                                          <span class="cent">.99</span>
+                                          <span class="month">/MON</span>
+                                      </span>
+                                  </div>
+                                  <!--//PRICE END-->
+                                  
+                              </div>                            
+                              <!--//HEAD PRICE DETAIL END-->
+                              
+                              <!--FEATURE LIST START-->
+                              <div class="generic_feature_list">
+                                <ul>
+                                  <li><span>5 Years</span> Hosting time period</li>
+                                  <li><span>2 Shop</span> can be maintained</li>
+                                  <li><span>Free</span> User guidence</li>
+                                  <li><span>Free</span> User support 24/7</li>
+                                  <li class="pricing-plan-disable-lines disabled-color"><span class="disabled-text">Online</span> <font class="disabled-text">payment facilities</font> </li>
+                                  <li class="pricing-plan-disable-lines disabled-color"><span class="disabled-text">Developer</span> <font class="disabled-text">support</font> </li>
+                                </ul>
+                              </div>
+                              <!--//FEATURE LIST END-->
+                              
+                              <!--BUTTON START-->
+                              <div class="generic_price_btn clearfix">
+                                <input type="radio" name="btn"  >
+                                <label for="rounded" data-checked="The plan is selected"></label>
+                            </div>
+                              <!--//BUTTON END-->
+                              
+                          </div>
+                          <!--//PRICE CONTENT END-->
+                      </div> 
+                    </div>
+                      
+                      <div class="col-md-4">
+                        <div class="gc_3">
+                        <!--PRICE CONTENT START-->
+                          <div class="generic_content active clearfix">
+                              
+                              <!--HEAD PRICE DETAIL START-->
+                              <div class="generic_head_price clearfix">
+                              
+                                  <!--HEAD CONTENT START-->
+                                  <div class="generic_head_content clearfix">
+                                  
+                                    <!--HEAD START-->
+                                      <div class="head_bg"></div>
+                                      <div class="head">
+                                          <span>Standard</span>
+                                      </div>
+                                      <!--//HEAD END-->
+                                      
+                                  </div>
+                                  <!--//HEAD CONTENT END-->
+                                  
+                                  <!--PRICE START-->
+                                  <div class="generic_price_tag clearfix">  
+                                      <span class="price">
+                                          <span class="sign">$</span>
+                                          <span class="currency">199</span>
+                                          <span class="cent">.99</span>
+                                          <span class="month">/MON</span>
+                                      </span>
+                                  </div>
+                                  <!--//PRICE END-->
+                                  
+                              </div>                            
+                              <!--//HEAD PRICE DETAIL END-->
+                              
+                              <!--FEATURE LIST START-->
+                              <div class="generic_feature_list">
+                                <ul>
+                                  <li><span>10 Years</span> Hosting time period</li>
+                                  <li><span>5 Shop</span> can be maintained</li>
+                                  <li><span>Free</span> User guidence</li>
+                                  <li><span>Free</span> User support 24/7</li>
+                                  <li><span>Online</span> payment facilities</li>
+                                  <li class="pricing-plan-disable-lines disabled-color"><span class="disabled-text">Developer</span> <font class="disabled-text">support</font> </li>
+                                </ul>
+                              </div>
+                              <!--//FEATURE LIST END-->
+                              
+                              <!--BUTTON START-->
+                              <div class="generic_price_btn clearfix">
+                                <input type="radio" name="btn"  >
+                                <label for="rounded" data-checked="The plan is selected"></label>
+                            </div>
+                              <!--//BUTTON END-->
+                              
+                          </div>
+                          <!--//PRICE CONTENT END-->
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="gc_4">
+                      
+                        <!--PRICE CONTENT START-->
+                          <div class="generic_content clearfix">
+                              
+                              <!--HEAD PRICE DETAIL START-->
+                              <div class="generic_head_price clearfix">
+                              
+                                  <!--HEAD CONTENT START-->
+                                  <div class="generic_head_content clearfix">
+                                  
+                                    <!--HEAD START-->
+                                      <div class="head_bg"></div>
+                                      <div class="head">
+                                          <span>Premiem</span>
+                                      </div>
+                                      <!--//HEAD END-->
+                                      
+                                  </div>
+                                  <!--//HEAD CONTENT END-->
+                                  
+                                  <!--PRICE START-->
+                                  <div class="generic_price_tag clearfix">  
+                                      <span class="price">
+                                          <span class="sign">$</span>
+                                          <span class="currency">299</span>
+                                          <span class="cent">.99</span>
+                                          <span class="month">/MON</span>
+                                      </span>
+                                  </div>
+                                  <!--//PRICE END-->
+                                  
+                              </div>                            
+                              <!--//HEAD PRICE DETAIL END-->
+                              
+                              <!--FEATURE LIST START-->
+                              <div class="generic_feature_list">
+                                <ul>
+                                  <li><span>Life time</span> Hosting</li>
+                                  <li><span>Unlimited</span> shops</li>
+                                  <li><span>Free</span> User guidence</li>
+                                  <li><span>Free</span> User support 24/7</li>
+                                  <li><span>Online</span> payment facilities</li>
+                                  <li><span>Developer</span> support</li>
+                                </ul>
+                              </div>
+                              <!--//FEATURE LIST END-->
+                              
+                              <!--BUTTON START-->
+                              <div class="generic_price_btn clearfix">
+                                <input type="radio" name="btn"  >
+                                <label for="rounded" data-checked="The plan is selected"></label>
+                            </div>
+                              <!--//BUTTON END-->
+                              
+                          </div>
+                          <!--//PRICE CONTENT END-->
+                        </div>
+                      </div>
+                  </div>  
+                  <!--//BLOCK ROW END-->
+
+
+                  
+              </div>
+          </section>             
+<p>sample text here sample text here sample text here sample text heresample text here sample text here sample text 
+  here sample text here sample text here </p>
+<!-- IMPORTED TABLE END -->
+      </div>
+        </div>
+        <div>
+          <div>
+            <a class="return-store">Return to Store</a>
+          </div>
+          <button class="btn" type="submit" (click)="userRegistration()">Register</button>
+          <button class="btn-reset" type="reset">Reset</button>
+        </div>
+      </div>
+
+    </form> 
+    <div id="box1" class="box-shadow1"></div>
+    <div id="box2" class="box-shadow2"></div>
+    <div id="box3" class="box-shadow3"></div>
   </div>
 </div> 
