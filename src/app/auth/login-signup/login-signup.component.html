@@ -11,7 +11,7 @@
               <ul>
                 <li id="userSU" [class.color]="idSignup === 'userSU'" (click)="tabChangesignup('userSU')">Users</li>
                 <li id="designerSU" [class.color]="idSignup === 'designerSU'" (click)="tabChangesignup('designerSU')">Designers</li>
-                <li id="hshopSU" [class.color]="idSignup === 'hshopSU'" (click)="tabChangesignup('hshopSU')">Hardware Shop</li>
+                <li id="hShopSU" [class.color]="idSignup === 'hShopSU'" (click)="tabChangesignup('hShopSU')">Hardware Shop</li>
               </ul>
             </div>
           </div>
@@ -86,7 +86,7 @@
 
 
 <!-- FOR HARDWARE SHOP   -->
-            <div *ngIf="idSignup ==='hshopSU'">
+            <div *ngIf="idSignup ==='hShopSU'">
               <h2 class="">Create New Account (Shops)</h2>
               <p>Create your own Account</p>
 
@@ -130,7 +130,7 @@
                 <ul>
                   <li id="userL" [class.color]="idLogin === 'userL'" (click)="tabChangelogin('userL')">Users</li>
                   <li id="designerL" [class.color]="idLogin === 'designerL'" (click)="tabChangelogin('designerL')">Designers</li>
-                  <li id="shopL" [class.color]="idLogin === 'shopL'" (click)="tabChangelogin('shopL')">Hardware Shop</li>
+                  <li id="hShopL" [class.color]="idLogin === 'hShopL'" (click)="tabChangelogin('hShopL')">Hardware Shop</li>
                 </ul>
               </div>
             </div>
@@ -171,74 +171,61 @@
             <div *ngIf="idLogin==='designerL'">
               <h2 class="">Login (Designers)</h2>
               <p>Welcome back! Sign in to your account</p>
-<!--
-              <form method="post" action="" id="customer_login" >
 
+              <form>
                 <div>
-                  <label for="designerUsername">Username<span class="req"> *</span></label>
-                  <input type="email" formControlName="designerLogUsername" [ngClass]="{ 'is-invalid' :submitted && f.designerLogUsername.errors }" placeholder="Enter Username" [(ngModel)]="designerLogUsername" name="designerLogUsername" required>
-                  <div *ngIf="submitted && f.designerLogUsername.errors" class="invalid-feedback"> 
-                    <div *ngIf="f.designerLogUsername.errors.required">Username is required</div>    
-                  </div>
+                  <label>Email<span class="req"> *</span></label>
+                  <input type="email" placeholder="Enter Email"  [(ngModel)]="designerLogEmail"  name="designerLogEmail" required>
                 </div>
       
                 <div>
-                  <label for="designerPassword">Password<span class="req"> *</span></label>
-                  <input type="password" formControlName="designerLogPassword" [ngClass]="{ 'is-invalid' :submitted && f.designerLogPassword.errors }" placeholder="Enter Password" [(ngModel)]="designerLogPassword" name="designerLogPassword" required>
-                  <div *ngIf="submitted && f.designerLogPassword.errors" class="invalid-feedback"> 
-                    <div *ngIf="f.designerLogPassword.errors.required">Email is required</div>    
-                  </div>
+                  <label>Password<span class="req"> *</span></label>
+                  <input type="password" placeholder="Enter Password" [(ngModel)]="designerLogPassword" name="designerLogPassword" required>          
                 </div>          
                 
+                <div *ngIf="error">{{error}}</div>
+
                 <div>
-                  <div class="action">
-                    <a class="return-store" href="">Return to Store</a>
+                  <div>
+                    <a class="return-store">Return to Store</a>
                   </div>
                   <button class="btn" type="submit" (click)="designerLogin()">Login</button>
                   <button class="btn-reset" type="reset">Reset</button>
                 </div>
 
-              </form>
-              -->
+            </form>
             </div> 
 
 
 
 <!-- FOR HARDWARE SHOP -->
  
-            <div *ngIf="idLogin==='shopL'">
+            <div *ngIf="idLogin==='hShopL'">
               <h2 class="">Login (Shops)</h2>
               <p>Welcome back! Sign in to your account</p>
-<!--
-              <form method="post" action="" id="customer_login" >
 
+              <form>
                 <div>
-                  <label for="shopEmail">Username<span class="req"> *</span></label>
-                  <input type="email" formControlName="shopLogUsername" [ngClass]="{ 'is-invalid' :submitted && f.shopLogUsername.errors }" placeholder="Enter Username" [(ngModel)]="shopLogUsername" name="shopLogUsername" required>
-                  <div *ngIf="submitted && f.shopLogUsername.errors" class="invalid-feedback"> 
-                    <div *ngIf="f.shopLogUsername.errors.required">Email is required</div>    
-                  </div>
+                  <label>Email<span class="req"> *</span></label>
+                  <input type="email" placeholder="Enter Email"  [(ngModel)]="hShopLogEmail"  name="hShopLogEmail" required>
                 </div>
       
                 <div>
-                  <label for="shopPassword">Password<span class="req"> *</span></label>
-                  <input type="password" formControlName="shopLogPassword" [ngClass]="{ 'is-invalid' :submitted && f.shopLogPassword.errors }" placeholder="Enter Password" [(ngModel)]="shopLogPassword" name="shopLogPassword" required>
-                  <div *ngIf="submitted && f.shopLogPassword.errors" class="invalid-feedback"> 
-                    <div *ngIf="f.shopLogPassword.errors.required">Email is required</div>    
-                  </div>
+                  <label>Password<span class="req"> *</span></label>
+                  <input type="password" placeholder="Enter Password" [(ngModel)]="hShopLogPassword" name="hShopLogPassword" required>          
                 </div>          
                 
+                <div *ngIf="error">{{error}}</div>
+
                 <div>
-                  <div class="action">
-                    <a class="return-store" href="">Return to Store</a>
+                  <div>
+                    <a class="return-store">Return to Store</a>
                   </div>
-                  <button class="btn" type="submit" (click)="shopLogin()">Login</button>
+                  <button class="btn" type="submit" (click)="hShopLogin()">Login</button>
                   <button class="btn-reset" type="reset">Reset</button>
                 </div>
-      
-              </form>
+            </form>
             </div>
-            -->
           </div>
       </div>
   </div>
@@ -263,44 +250,44 @@
     </div>
   
      
-    <form [formGroup]="userRegGroup" >
+    <form [formGroup]="designerRegGroup" >
       <div class="down-form-left">
         <h3 class="down-form-form-section">Personal Information</h3>
           <div>
             <label>Username<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegUsername" placeholder="Enter Username" required>                                
+            <input type="text" formControlName="designerRegUsername" placeholder="Enter Username" required>                                
           </div> 
           
           <div>
             <label>Email Address<span class="req"> *</span></label>
-            <input type="email" formControlName="userRegEmail" placeholder="Enter Email" required>                 
+            <input type="email" formControlName="designerRegEmail" placeholder="Enter Email" required>                 
           </div>
           
           <div>
             <label>NIC Number<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegTelephone" placeholder="Enter NIC Number" required>
+            <input type="text" formControlName="designerRegNIC" placeholder="Enter NIC Number" required>
           </div>
 
           <div>
             <label>Password<span class="req"> *</span></label>
-            <input type="password" formControlName="userRegPassword" placeholder="Enter Password" required>         
+            <input type="password" formControlName="designerRegPassword" placeholder="Enter Password" required>         
           </div>
 
           <div>
             <label>Confirm Password<span class="req"> *</span></label>
-            <input type="password" formControlName="userRegConfirmPassword" placeholder="Re-Enter Password" required>
+            <input type="password" formControlName="designerRegConfirmPassword" placeholder="Re-Enter Password" required>
           </div>
 
         <h3 class="down-form-form-section">Contact Information</h3>  
           <div>
             <label>Telephone<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+            <input type="text" formControlName="designerRegTelephone" placeholder="Enter Telephone" required>
           </div>
 
           <div>
             <label for="address">Address<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegAddress" placeholder="Enter Address" required>
-            <input type="text" formControlName="userRegDistrict" placeholder="Enter District" >
+            <input type="text" formControlName="designerRegAddress" placeholder="Enter Address" required>
+            <input type="text" formControlName="designerRegDistrict" placeholder="Enter District" >
           </div> 
 
           <div>
@@ -314,43 +301,43 @@
         <h3 class="down-form-form-section">Business Information</h3>
           <div>
             <label>Name of the shop<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegUsername" placeholder="Enter Shop Name" required>                                
+            <input type="text" formControlName="designerRegShopName" placeholder="Enter Shop Name" required>                                
           </div> 
           
           <div>
             <label>Description of the shop<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegEmail" placeholder="Enter Description" required>                 
+            <input type="text" formControlName="designerRegShopDesc" placeholder="Enter Description" required>                 
           </div>
 
           <div>
             <label>Email of the shop<span class="req"> *</span></label>
-            <input type="email" formControlName="userRegEmail" placeholder="Enter Email" required>                 
+            <input type="email" formControlName="designerRegShopEmail" placeholder="Enter Email" required>                 
           </div>
           
           <div>
             <label>Address<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegAddress" placeholder="Enter Address" required>
-            <input type="text" formControlName="userRegDistrict" placeholder="Enter District" >
+            <input type="text" formControlName="designerRegShopAddress" placeholder="Enter Address" required>
+            <input type="text" formControlName="designerRegShopDistrict" placeholder="Enter District" >
           </div>
 
           <div>
             <label>Postal Code<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegConfirmPassword" placeholder="Enter Postal Code" required>
+            <input type="text" formControlName="designerRegShopPostalCode" placeholder="Enter Postal Code" required>
           </div>
 
           <div>
             <label>Digital Location of the shop<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegConfirmPassword" placeholder="Enter Postal Code" required>
+            <input type="text" formControlName="designerRegShopLocation" placeholder="Enter Postal Code" required>
           </div>
  
           <div>
             <label>Telephone<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+            <input type="text" formControlName="designerRegShopTelephone" placeholder="Enter Telephone" required>
           </div>
 
           <div>
             <label>Image for shop identification (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-            <input type="file" class="upload-box" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+            <input type="file" class="upload-box" formControlName="designerRegImageUrl" placeholder="Enter Telephone" required>
           </div>
 
           <div>
@@ -427,7 +414,7 @@
                             
                             <!--BUTTON START-->
                             <div class="generic_price_btn clearfix">
-                              <input type="radio" name="btn"  >
+                              <input type="radio" value="Basic" formControlName="designerRegPricing" name="designerRegPricing"  >
                               <label for="rounded" data-checked="The plan is selected"></label>
                           </div>
 
@@ -490,7 +477,7 @@
                               
                               <!--BUTTON START-->
                               <div class="generic_price_btn clearfix">
-                                <input type="radio" name="btn"  >
+                                <input type="radio" value="Startup" formControlName="designerRegPricing" name="designerRegPricing"  >
                                 <label for="rounded" data-checked="The plan is selected"></label>
                             </div>
                               <!--//BUTTON END-->
@@ -550,7 +537,7 @@
                               
                               <!--BUTTON START-->
                               <div class="generic_price_btn clearfix">
-                                <input type="radio" name="btn"  >
+                                <input type="radio" value="Standard" formControlName="designerRegPricing" name="designerRegPricing"  >
                                 <label for="rounded" data-checked="The plan is selected"></label>
                             </div>
                               <!--//BUTTON END-->
@@ -610,7 +597,7 @@
                               
                               <!--BUTTON START-->
                               <div class="generic_price_btn clearfix">
-                                <input type="radio" name="btn"  >
+                                <input type="radio" value="Premiem" formControlName="designerRegPricing" name="designerRegPricing"  >
                                 <label for="rounded" data-checked="The plan is selected"></label>
                             </div>
                               <!--//BUTTON END-->
@@ -636,7 +623,7 @@
           <div>
             <a class="return-store">Return to Store</a>
           </div>
-          <button class="btn" type="submit" (click)="userRegistration()">Register</button>
+          <button class="btn" type="submit" (click)="designerRegistration()">Register</button>
           <button class="btn-reset" type="reset">Reset</button>
         </div>
       </div>
@@ -650,109 +637,109 @@
 
  <!-- DOWN REGISTRATION FORM - SHOPS -->
 
-  <div id="downHShopSU" *ngIf="idSignup ==='hshopSU'" class="down-form-container">
+  <div id="downHShopSU" *ngIf="idSignup ==='hShopSU'" class="down-form-container">
     <div class="down-form-header">
       <h2 class="down-form-header-line"> <span></span> </h2>
       <p>Plant Your Own Hardware Shop Account Here...!</p>
     </div>
   
-    <form [formGroup]="userRegGroup" >
+    <form [formGroup]="hShopRegGroup" >
       <div class="down-form-left">
         <h3 class="down-form-form-section">Personal Information</h3>
           <div>
             <label>Username<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegUsername" placeholder="Enter Username" required>                                
+            <input type="text" formControlName="hShopRegUsername" placeholder="Enter Username" required>                                
           </div> 
           
           <div>
             <label>Email Address<span class="req"> *</span></label>
-            <input type="email" formControlName="userRegEmail" placeholder="Enter Email" required>                 
+            <input type="email" formControlName="hShopRegEmail" placeholder="Enter Email" required>                 
           </div>
           
           <div>
             <label>NIC Number<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegTelephone" placeholder="Enter NIC Number" required>
+            <input type="text" formControlName="hShopRegNIC" placeholder="Enter NIC Number" required>
           </div>
 
           <div>
             <label>Password<span class="req"> *</span></label>
-            <input type="password" formControlName="userRegPassword" placeholder="Enter Password" required>         
+            <input type="password" formControlName="hShopRegPassword" placeholder="Enter Password" required>         
           </div>
 
           <div>
             <label>Confirm Password<span class="req"> *</span></label>
-            <input type="password" formControlName="userRegConfirmPassword" placeholder="Re-Enter Password" required>
+            <input type="password" formControlName="hShopRegConfirmPassword" placeholder="Re-Enter Password" required>
           </div>
 
         <h3 class="down-form-form-section">Contact Information</h3>  
           <div>
             <label>Telephone<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+            <input type="text" formControlName="hShopRegTelephone" placeholder="Enter Telephone" required>
           </div>
 
           <div>
             <label for="address">Address<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegAddress" placeholder="Enter Address" required>
-            <input type="text" formControlName="userRegDistrict" placeholder="Enter District" >
+            <input type="text" formControlName="hShopRegAddress" placeholder="Enter Address" required>
+            <input type="text" formControlName="hShopRegDistrict" placeholder="Enter District" >
           </div> 
 
           <div>
-            <button class="btn" type="button" pageScroll href="#downDesignerSUNext1" >Next</button>
+            <button class="btn" type="button" pageScroll href="#downHShopSUNext1" >Next</button>
           </div>
       </div>
 
 <!-- NEXT -->
 
-      <div id="downDesignerSUNext1" class="down-form-right">
+      <div id="downHShopSUNext1" class="down-form-right">
         <h3 class="down-form-form-section">Business Information</h3>
           <div>
             <label>Name of the shop<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegUsername" placeholder="Enter Shop Name" required>                                
+            <input type="text" formControlName="hShopRegShopName" placeholder="Enter Shop Name" required>                                
           </div> 
           
           <div>
             <label>Description of the shop<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegEmail" placeholder="Enter Description" required>                 
+            <input type="text" formControlName="hShopRegShopDesc" placeholder="Enter Description" required>                 
           </div>
 
           <div>
             <label>Email of the shop<span class="req"> *</span></label>
-            <input type="email" formControlName="userRegEmail" placeholder="Enter Email" required>                 
+            <input type="email" formControlName="hShopRegShopEmail" placeholder="Enter Email" required>                 
           </div>
           
           <div>
             <label>Address<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegAddress" placeholder="Enter Address" required>
-            <input type="text" formControlName="userRegDistrict" placeholder="Enter District" >
+            <input type="text" formControlName="hShopRegShopAddress" placeholder="Enter Address" required>
+            <input type="text" formControlName="hShopRegShopDistrict" placeholder="Enter District" >
           </div>
 
           <div>
             <label>Postal Code<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegConfirmPassword" placeholder="Enter Postal Code" required>
+            <input type="text" formControlName="hShopRegShopPostalCode" placeholder="Enter Postal Code" required>
           </div>
 
           <div>
             <label>Digital Location of the shop<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegConfirmPassword" placeholder="Enter Postal Code" required>
+            <input type="text" formControlName="hShopRegShopLocation" placeholder="Enter Postal Code" required>
           </div>
  
           <div>
             <label>Telephone<span class="req"> *</span></label>
-            <input type="text" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+            <input type="text" formControlName="hShopRegShopTelephone" placeholder="Enter Telephone" required>
           </div>
 
           <div>
             <label>Image for shop identification (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-            <input type="file" class="upload-box" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+            <input type="file" class="upload-box" formControlName="hShopRegImageUrl" placeholder="Enter Telephone" required>
           </div>
 
           <div>
-            <button class="btn" type="button" pageScroll href="#downDesignerSUNext2" >Next</button>
-            <button class="btn-reset" type="button" pageScroll href="#downDesignerSU" >Previous</button>
+            <button class="btn" type="button" pageScroll href="#downHShopSUNext2" >Next</button>
+            <button class="btn-reset" type="button" pageScroll href="#downHShopSU" >Previous</button>
           </div>
       </div>
 
-      <div id="downDesignerSUNext2" class="down-form-center">
+      <div id="downHShopSUNext2" class="down-form-center">
         <h3 class="down-form-form-section">Pricing Area (You can choose a convenirnt plan to proceed further!)</h3>
         <div class="down-form-table-container">
 
@@ -820,7 +807,7 @@
                             
                             <!--BUTTON START-->
                             <div class="generic_price_btn clearfix">
-                              <input type="radio" name="btn"  >
+                              <input type="radio" value="Basic" formControlName="hShopRegPricing" name="hShopRegPricing">
                               <label for="rounded" data-checked="The plan is selected"></label>
                           </div>
 
@@ -883,7 +870,7 @@
                               
                               <!--BUTTON START-->
                               <div class="generic_price_btn clearfix">
-                                <input type="radio" name="btn"  >
+                                <input type="radio" value="Startup" formControlName="hShopRegPricing" name="hShopRegPricing">
                                 <label for="rounded" data-checked="The plan is selected"></label>
                             </div>
                               <!--//BUTTON END-->
@@ -943,7 +930,7 @@
                               
                               <!--BUTTON START-->
                               <div class="generic_price_btn clearfix">
-                                <input type="radio" name="btn"  >
+                                <input type="radio" value="Standard" formControlName="hShopRegPricing" name="hShopRegPricing"  >
                                 <label for="rounded" data-checked="The plan is selected"></label>
                             </div>
                               <!--//BUTTON END-->
@@ -1003,7 +990,7 @@
                               
                               <!--BUTTON START-->
                               <div class="generic_price_btn clearfix">
-                                <input type="radio" name="btn"  >
+                                <input type="radio" value="Premiem" formControlName="hShopRegPricing" name="hShopRegPricing">
                                 <label for="rounded" data-checked="The plan is selected"></label>
                             </div>
                               <!--//BUTTON END-->
@@ -1028,7 +1015,7 @@
           <div>
             <a class="return-store">Return to Store</a>
           </div>
-          <button class="btn" type="submit" (click)="userRegistration()">Register</button>
+          <button class="btn" type="submit" (click)="hShopRegistration()">Register</button>
           <button class="btn-reset" type="reset">Reset</button>
         </div>
       </div>
@@ -1038,4 +1025,3 @@
     <div id="box2" class="box-shadow2"></div>
     <div id="box3" class="box-shadow3"></div>
   </div>
-</div> 

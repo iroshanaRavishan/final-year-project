@@ -9,8 +9,22 @@ const userController = require('../controllers/user.controller');
 const localLogin = new LocalStrategy(
     { usernameField: 'userRegUsername' },
     async (userRegUsername, userRegPassword, done) => {
-        const user = userController.getUserByEmailIdAndPassword(userRegUsername, userRegPassword);
+        const user = userController.getUserByEmailIdAndPasswordUser(userRegUsername, userRegPassword);
         return user? done(null, user): done(null, false, {
+            error: 'Your login credentials are not valid. Please try again.'
+        });
+    },
+    { usernameField: 'designerRegUsername' },
+    async (designerRegUsername, designerRegPassword, done) => {
+        const designer = userController.getUserByEmailIdAndPasswordDesigner(designerRegUsername, designerRegPassword);
+        return designer? done(null, designer): done(null, false, {
+            error: 'Your login credentials are not valid. Please try again.'
+        });
+    },
+    { usernameField: 'hShopRegUsername' },
+    async (hShopRegUsername, hShopRegPassword, done) => {
+        const hShop = userController.getUserByEmailIdAndPasswordHShop(hShopRegUsername, hShopRegPassword);
+        return hShop? done(null, hShop): done(null, false, {
             error: 'Your login credentials are not valid. Please try again.'
         });
     }
