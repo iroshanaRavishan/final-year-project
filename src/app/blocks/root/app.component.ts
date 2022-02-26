@@ -27,10 +27,8 @@ export class AppComponent implements OnDestroy{
     this.authService.findMe().subscribe(user => (this.user = user));
     this.userSubscription = this.authService.user.subscribe(user => (this.user = user));
     
-    this.authService.findMe().subscribe(designer => (this.designer = designer));
     this.designerSubscription = this.authService.designer.subscribe(designer => (this.designer = designer));
 
-    this.authService.findMe().subscribe(hShop => (this.hShop = hShop));
     this.hShopSubscription = this.authService.hShop.subscribe(hShop => (this.hShop = hShop));
   }
   search(event: any){

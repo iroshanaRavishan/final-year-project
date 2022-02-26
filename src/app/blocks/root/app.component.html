@@ -31,7 +31,7 @@
                     <li class="list-item-bottom"> 
                         <a *ngIf="!user && !designer && !hShop" class="list-item-link" routerLink="/auth">Register or Sign in</a>
                         <div>
-                            <a *ngIf="user">{{user.userRegUsername}} | <button (click)="logout()" >Logout</button></a>
+                            <a *ngIf="user">{{user.userRegUsername || user.designerRegUsername || user.hShopRegUsername}}  | <button (click)="logout()" >Logout</button></a>
                             <a *ngIf="designer">{{designer.designerRegUsername}} | <button (click)="logout()" >Logout</button></a>
                             <a *ngIf="hShop">{{hShop.hShopRegUsername}} | <button (click)="logout()" >Logout</button></a>
                         </div>

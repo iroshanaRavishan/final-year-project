@@ -179,35 +179,8 @@ export class AuthService {
       switchMap(({ user }) => {
         this.setUser(user); //setting the user 
         console.log(`user found`, user);
-        if(user===undefined){
-          return EMPTY;
-        }
-        else {
-          return of(user);
-        }
-        
+        return of(user);
       }),
-      switchMap(({ designer }) => {
-        this.setDesigner(designer);//setting the designer 
-        console.log(`designer found`, designer);
-        if(designer===undefined){
-          return EMPTY;
-        } 
-        else {
-          return of(designer);
-        }
-        
-      }),
-      switchMap(({ hShop }) => {
-        this.setHShop(hShop);//setting the shop 
-        console.log(`Shop found`, hShop);
-        return of(hShop);
-      }),
-      catchError(e => {
-        console.log(`Your login details could not be verified. Please try again!`, e);
-        return throwError(`Your login details could not be verified. Please try again!`);
-      }),
-
     );
   }
 
