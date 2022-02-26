@@ -15,9 +15,6 @@ router.post("/logindesigner", asyncHandler(getUserByEmailIdAndPasswordDesigner),
 router.post("/loginhshop", asyncHandler(getUserByEmailIdAndPasswordHShop), loginHShop);
 
 router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
-////router.get("/findme", passport.authenticate("jwt", { session: false}), loginDesigner);
-////router.get("/findme", passport.authenticate("jwt", { session: false}), loginHShop);
-
 /**
  * function of user inserting
  * @param {*} req 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '@core/model/userRegistration';
 import { AuthService } from 'src/app/core/auth/auth.service';
 
 
@@ -13,6 +14,11 @@ export class LoginSignupComponent implements OnInit {
 
   error: string | any;
 
+  User: User |any;
+  userRegGroup: FormGroup | any;
+  imageData: string | any; 
+  fileType: String | any;
+
   userLogEmail: string | any;
   userLogPassword: string | any;
 
@@ -23,16 +29,6 @@ export class LoginSignupComponent implements OnInit {
   hShopLogPassword:string | any;
 
   //common user group for users
-  userRegGroup = new FormGroup({
-    userRegUsername: new FormControl ('', [Validators.required]),
-    userRegEmail: new FormControl('', [Validators.required, Validators.email]),
-    userRegPassword: new FormControl ('', [Validators.required]),
-    userRegConfirmPassword: new FormControl ('', [Validators.required, this.userPasswordMatch]),
-    userRegProfilePic: new FormControl (''), 
-    userRegTelephone: new FormControl ('', [Validators.required]),
-    userRegAddress: new FormControl ('', [Validators.required]),
-    userRegDistrict: new FormControl ('', [Validators.required])
-  });
 
   //common designer group for designers
   designerRegGroup = new FormGroup({
@@ -104,7 +100,37 @@ export class LoginSignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.userRegGroup = new FormGroup({
+      userRegUsername: new FormControl ('', [Validators.required]),
+      userRegEmail: new FormControl('', [Validators.required, Validators.email]),
+      userRegPassword: new FormControl ('', [Validators.required]),
+      userRegConfirmPassword: new FormControl ('', [Validators.required, this.userPasswordMatch]),
+      userRegProfilePic: new FormControl (null), 
+      userRegTelephone: new FormControl ('', [Validators.required]),
+      userRegAddress: new FormControl ('', [Validators.required]),
+      userRegDistrict: new FormControl ('', [Validators.required])
+    });
+  }
+
+  onFileSelect(event: Event) { //execute when fire on selecting the file form the input
+    console.log("A file selected");
+    const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
+    const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
+
+    if (file && allowedMimeTypes.includes(file.type)) {
+      const reader = new FileReader(); // this reads the file asynchronusly and store the content
+      reader.onload = () => {
+        this.imageData = reader.result as string;
+        this.userRegGroup.patchValue = ({userRegProfilePic: file}); // storing on the allocated variavle of the form
+        this.fileType = null;
+      }
+      reader.readAsDataURL(file);
+    } 
+    else { // if the file type is not applicable
+      console.log("file type is not acceptable");
+      this.fileType = "File type is not acceptable";
+      this.imageData = null;
+    }
   }
 
   idSignup:any = "userSU";
