@@ -4,6 +4,7 @@ export interface Designer{
     designerRegEmail: string,
     designerRegNIC: string,
     designerRegPassword: string,
+    designerRegProfilePic: string,
     designerRegTelephone: string,
     designerRegAddress: string,
     designerRegDistrict: string,
@@ -16,6 +17,6 @@ export interface Designer{
     designerRegShopPostalCode: string,
     designerRegShopLocation: string,
     designerRegShopTelephone: string,
-    designerRegImageUrl: String,
+    designerRegShopPic: String,
     designerRegPricing: string
 }

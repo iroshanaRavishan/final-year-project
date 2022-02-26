@@ -1,5 +1,5 @@
 body{
-   
+
 }
 .main-container {
   width: 100%;
@@ -107,11 +107,13 @@ input[type="password"]:hover{
         margin-top: 1.2em;
         font-weight: bold;
         color: #555f66;
+        transition-duration: 0.3s;
     }
 
     .btn:hover{
         background-color: rgb(9, 83, 126);
         color: #ffffff;
+
         
     }
 
@@ -130,6 +132,7 @@ input[type="password"]:hover{
         margin-right: 1.4em ;
         font-weight: bold;
         color: #555f66;
+        transition-duration: 0.3s;
     }
 
     .btn-reset:hover{
@@ -144,6 +147,7 @@ input[type="password"]:hover{
         margin-top: 2em;
         font-weight: bold;
         color: #555f66;
+        transition-duration: 0.3s;
     }
 
     .return-store:hover{
@@ -215,6 +219,7 @@ input[type="password"]:hover{
         text-align: center;
         position: relative;
         padding: 1em;
+        transition-duration: 0.3s;
     }
     .tab ul li:last-child{
         border-right: none;

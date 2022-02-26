@@ -4,6 +4,7 @@ export interface HShop{
     hShopRegEmail: string,
     hShopRegNIC: string,
     hShopRegPassword: string,
+    hShopRegProfilePic: string,
     hShopRegTelephone: string,
     hShopRegAddress: string,
     hShopRegDistrict: string,
@@ -16,6 +17,6 @@ export interface HShop{
     hShopRegShopPostalCode: string,
     hShopRegShopLocation: string,
     hShopRegShopTelephone: string,
-    hShopRegImageUrl: String,
+    hShopRegShopPic: String,
     hShopRegPricing: string
 }

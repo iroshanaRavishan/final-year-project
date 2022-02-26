@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DesignersSignupComponent } from './designers-signup/designers-signup.component';
 import { ShopsSignupComponent } from './shops-signup/shops-signup.component';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -23,7 +24,8 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
     CommonModule,
     AuthRoutingModule,
     SharedModule,
-    Ng2PageScrollModule
+    Ng2PageScrollModule,
+    HttpClientModule
   ]
 })
 export class AuthModule { }

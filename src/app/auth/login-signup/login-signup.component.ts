@@ -28,6 +28,7 @@ export class LoginSignupComponent implements OnInit {
     userRegEmail: new FormControl('', [Validators.required, Validators.email]),
     userRegPassword: new FormControl ('', [Validators.required]),
     userRegConfirmPassword: new FormControl ('', [Validators.required, this.userPasswordMatch]),
+    userRegProfilePic: new FormControl (''), 
     userRegTelephone: new FormControl ('', [Validators.required]),
     userRegAddress: new FormControl ('', [Validators.required]),
     userRegDistrict: new FormControl ('', [Validators.required])
@@ -40,6 +41,7 @@ export class LoginSignupComponent implements OnInit {
     designerRegNIC: new FormControl ('', [Validators.required]),
     designerRegPassword: new FormControl ('', [Validators.required]),
     designerRegConfirmPassword: new FormControl ('', [Validators.required, this.designerPasswordMatch]),
+    designerRegProfilePic: new FormControl (''),
     designerRegTelephone: new FormControl ('', [Validators.required]),
     designerRegAddress: new FormControl ('', [Validators.required]),
     designerRegDistrict: new FormControl ('', [Validators.required]),
@@ -51,7 +53,7 @@ export class LoginSignupComponent implements OnInit {
     designerRegShopPostalCode: new FormControl ('', [Validators.required]),
     designerRegShopLocation: new FormControl('', [Validators.required]),
     designerRegShopTelephone: new FormControl ('', [Validators.required]),
-    designerRegImageUrl: new FormControl ('', [Validators.required]),
+    designerRegShopPic: new FormControl ('', [Validators.required]),
     designerRegPricing: new FormControl ('', [Validators.required])
   });
 
@@ -62,6 +64,7 @@ export class LoginSignupComponent implements OnInit {
     hShopRegNIC: new FormControl ('', [Validators.required]),
     hShopRegPassword: new FormControl ('', [Validators.required]),
     hShopRegConfirmPassword: new FormControl ('', [Validators.required, this.hShopPasswordMatch]),
+    hShopRegProfilePic: new FormControl (''),
     hShopRegTelephone: new FormControl ('', [Validators.required]),
     hShopRegAddress: new FormControl ('', [Validators.required]),
     hShopRegDistrict: new FormControl ('', [Validators.required]),
@@ -73,7 +76,7 @@ export class LoginSignupComponent implements OnInit {
     hShopRegShopPostalCode: new FormControl ('', [Validators.required]),
     hShopRegShopLocation: new FormControl('', [Validators.required]),
     hShopRegShopTelephone: new FormControl ('', [Validators.required]),
-    hShopRegImageUrl: new FormControl ('', [Validators.required]),
+    hShopRegShopPic: new FormControl ('', [Validators.required]),
     hShopRegPricing: new FormControl ('', [Validators.required])
   });
 

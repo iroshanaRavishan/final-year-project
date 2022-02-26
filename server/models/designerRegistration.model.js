@@ -12,6 +12,7 @@ const DesignerSchema = new mongoose.Schema({
     designerHashedRegPassword : {type : String, required: true},
     createdAt : {type : Date, default: Date.now},
     designerRoles : [{type : String}],
+    designerRegProfilePic: {type: String},
     designerRegTelephone : {type : String, required: true},
     designerRegAddress : {type : String, required: true},
     designerRegDistrict : {type : String},
@@ -23,7 +24,7 @@ const DesignerSchema = new mongoose.Schema({
     designerRegShopPostalCode : {type : String, required: true},
     designerRegShopLocation : {type : String, required: true},
     designerRegShopTelephone : {type : String, required: true},
-    designerRegImageUrl:  {type : String, required: true},
+    designerRegShopPic:  {type : String, required: true},
     designerRegPricing : {type : String, required: true}
     
 

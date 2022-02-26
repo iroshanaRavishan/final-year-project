@@ -12,6 +12,7 @@ const HShopsSchema = new mongoose.Schema({
     hShopHashedRegPassword : {type : String, required: true},
     createdAt : {type : Date, default: Date.now},
     hShopRoles : [{type : String}],
+    hShopRegProfilePic: {type: String},
     hShopRegTelephone : {type : String, required: true},
     hShopRegAddress : {type : String, required: true},
     hShopRegDistrict : {type : String},
@@ -23,7 +24,7 @@ const HShopsSchema = new mongoose.Schema({
     hShopRegShopPostalCode : {type : String, required: true},
     hShopRegShopLocation : {type : String, required: true},
     hShopRegShopTelephone : {type : String, required: true},
-    hShopRegImageUrl:  {type : String, required: true},
+    hShopRegShopPic:  {type : String, required: true},
     hShopRegPricing : {type : String, required: true}
     
 

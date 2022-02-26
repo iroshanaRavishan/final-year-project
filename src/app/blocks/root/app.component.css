@@ -1,11 +1,23 @@
 /* HEADER */
 
-
 body {
     background: #fff;
     scroll-behavior: smooth;
-    animation: transitionIn 0.75s;
+    animation: transitionIn 1s;
 }
+
+@keyframes transitionIn{
+    from{
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 body, input, select, textarea {
     color: #555f66;
@@ -211,6 +223,24 @@ header {
         margin-left: 1em;
         
     }
+
+    .profile-picture-on-nav {
+        padding-left: 0em;
+        margin-left: 0em;
+        vertical-align: middle;
+        width: 30px;
+        height: 30px;
+        box-sizing: border-box;
+        justify-content: center;
+        align-items: center;
+        clip-path: circle();
+        box-shadow: 2px 2px 20px#535151;
+        object-fit: cover;
+        overflow: hidden;
+        transition-duration: 0.8s;
+        transition-delay: 0.8s;
+    }
+
     .list-item-button {
         display: inline;
         height: 2em;
@@ -223,6 +253,7 @@ header {
         border: none;
         background-color: transparent;
         cursor: pointer;
+        transition-duration: 0.3s;
         
     }
     .list-item-button:hover {
