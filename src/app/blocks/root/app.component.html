@@ -10,14 +10,13 @@
                     <ul>
                         <li><a routerLink="" >Home</a></li>
                         <li><a routerLink="designers" >Designers</a></li>		
-                        <li><a routerLink="products" >Products</a></li>								
-                        <li><a routerLink="aboutus" >About Us</a></li>
-                        <li><button routerLink="contactus" class="button special" >Contact</button></li>
+                        <li><a routerLink="shops" >Shops</a></li>								
                     </ul>
                 </nav>
               <div class="container-top">
                   <div class="table-row">
                         <ul class="inline-list">
+                            <input type="text" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search here">
                             <li class="list-item"> <button class="list-item-button">Rated Shop</button></li>
                             <li class="list-item"> <button  class="list-item-button">Rated Designer</button></li>
                             <li class="list-item"> <button class="list-item-button">Demamded Items</button></li>
@@ -29,12 +28,15 @@
               </div>
             <div class="container-bottom">
                 <ul class="inline-list-bottom">
-                    <li class="list-item-bottom"> <a *ngIf="!user" class="list-item-link" routerLink="/auth">Register or Sign in</a>
+                    <li class="list-item-bottom"> 
+                        <a *ngIf="!user && !designer && !hShop" class="list-item-link" routerLink="/auth">Register or Sign in</a>
                         <div>
-                            <a *ngIf="user">{{user.userRegUsername}} | <button (click)="logout()" >Logout</button></a>
+                            <a *ngIf="user">{{user.userRegUsername || user.designerRegUsername || user.hShopRegUsername}}  | <img class="profile-picture-on-nav" src="assets/image/sample-profile-1.jpg"> | <button (click)="logout()" > Logout</button></a>
+                            <a *ngIf="designer">{{designer.designerRegUsername}} | <img class="profile-picture-on-nav" src="assets/image/sample-profile-2.png"> |  <button (click)="logout()" >Logout</button></a>
+                            <a *ngIf="hShop">{{hShop.hShopRegUsername}} | <img class="profile-picture-on-nav" src="assets/image/shoppingcart.png"> |  <button (click)="logout()" >Logout</button></a>
                         </div>
                     </li>
-                  </ul>
+                </ul>
             </div>
         </header>
     </div>
@@ -81,7 +83,7 @@
             </div>
             <div class="company-details-address">
                 <p> <font class="company-details-address-font" >Contact info</font>  <br>
-                    17 Princess Road, London, Greater London NW1 8JR, UK</p>
+                    17 Princess Road, Colombo, Sri Lanka,</p>
             </div>
             <div class="company-details-social-media">
                 <a class="company-details-social-media-item" href=""><img src="assets/image/facebook.png" alt="faebook"></a>

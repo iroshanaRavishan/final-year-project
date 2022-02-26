@@ -1,9 +1,4 @@
 import { AppComponent } from './blocks/root/app.component';
-import { HomeComponent } from './pages/home/home.component';
-import { DesignersComponent } from './pages/designers/designers.component';
-import { ShopsComponent } from './pages/shops/shops.component';
-import { AboutUsComponent } from './pages/about-us/about-us.component';
-import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { FooterComponent } from './share-comp/footer/footer.component';
 
 import { NgModule } from '@angular/core';
@@ -12,14 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BlocksModule } from './blocks/blocks.module';
 import { CoreModule } from './core/core.module';
+import { AuthModule } from './auth/auth.module';
+import { ProductDataService } from '@core/products/product-data.service';
+import { ShopsModule } from './shops/shops.module';
+import { DesignersModule } from './designers/designers.module';
 
 @NgModule({
   declarations: [
-   
-    DesignersComponent,
-    ShopsComponent,
-    AboutUsComponent,
-    ContactUsComponent,
     FooterComponent
   ],
   imports: [
@@ -27,7 +21,13 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     HttpClientModule,
     BlocksModule,
-    CoreModule
+    AuthModule,
+    ShopsModule,
+    DesignersModule,
+    CoreModule,
+  ],
+  providers: [
+    ProductDataService
   ],
   bootstrap: [AppComponent]
 })

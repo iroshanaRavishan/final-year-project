@@ -4,9 +4,12 @@ import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './filter/filter.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    FilterPipe
+  ],
   imports: [
     CommonModule,
     SharedRoutingModule,
@@ -17,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   exports: [
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    FilterPipe
   ]
 })
 export class SharedModule { }
