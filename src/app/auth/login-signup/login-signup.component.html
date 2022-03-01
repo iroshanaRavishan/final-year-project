@@ -21,7 +21,7 @@
               <h2 class="">Create New Account (Users)</h2>
               <p>Create your own Account</p>
                
-              <form [formGroup]="userRegGroup" >
+              <form [formGroup]="userRegGroup" enctype="multipart/form-data" method="post">
                 
 
                   <div>
@@ -46,7 +46,7 @@
 
                   <div>
                     <label>Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-                    <input type="file" (change)="onFileSelect($event)" class="upload-box" formControlName="userRegProfilePic" placeholder="Enter Profile Picture" required>
+                    <input type="file" (change)="onFileSelect($event)" class="upload-box" formControlName="userRegProfilePic" name="userRegProfilePic" placeholder="Enter Profile Picture" required>
                     <div *ngIf="imageData">
                       <img [src]="imageData" [alt]="userRegGroup.value.userRegUsername">
                     </div>
