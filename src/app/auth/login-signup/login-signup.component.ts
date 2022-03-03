@@ -15,7 +15,7 @@ export class LoginSignupComponent implements OnInit {
   error: string | any;
 
   User: User |any;
-  userRegGroup: FormGroup | any;
+  userRegGroup!: FormGroup;
   imageData: string | any; 
   fileType: String | any;
 
@@ -115,13 +115,13 @@ export class LoginSignupComponent implements OnInit {
   onFileSelect(event: Event) { //execute when fire on selecting the file form the input
     console.log("A file selected");
     const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
+    this.userRegGroup.patchValue({ userRegProfilePic: file }); // storing on the allocated variavle of the form
     const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
 
     if (file && allowedMimeTypes.includes(file.type)) {
       const reader = new FileReader(); // this reads the file asynchronusly and store the content
       reader.onload = () => {
         this.imageData = reader.result as string;
-        this.userRegGroup.patchValue = ({userRegProfilePic: file}); // storing on the allocated variavle of the form
         this.fileType = null;
       }
       reader.readAsDataURL(file);
@@ -131,6 +131,7 @@ export class LoginSignupComponent implements OnInit {
       this.fileType = "File type is not acceptable";
       this.imageData = null;
     }
+    console.log(this.userRegGroup.value.userRegProfilePic);
   }
 
   idSignup:any = "userSU";
@@ -146,8 +147,8 @@ export class LoginSignupComponent implements OnInit {
   }
 
   userRegistration(){
-    const user = this.userRegGroup.getRawValue();
-    this.authService.userRegistration(user).subscribe(s => this.router.navigate(['auth/signupsuccess']));
+    const user:File = this.userRegGroup.getRawValue();
+    this.authService.userRegistration(user, this.userRegGroup.value.userRegProfilePic).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }
 
   designerRegistration(){

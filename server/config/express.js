@@ -25,6 +25,8 @@ const distDir = path.join(__dirname, '../../dist');
 //use dist folder as hosting folder by express
 app.use(express.static(distDir));
 
+app.use('/images', express.static(path.join('images')));
+
 //parsing from api
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

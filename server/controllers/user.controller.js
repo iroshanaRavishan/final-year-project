@@ -8,14 +8,14 @@ const bcrypt = require('bcrypt');
  * @param {*} user 
  * @returns 
  */
-async function insertUser(user) {
-    user.userHashedRegPassword = bcrypt.hashSync(user.userRegPassword, 10);
-    delete user.userRegPassword;
+// async function insertUser(user) {
+//     user.userHashedRegPassword = bcrypt.hashSync(user.userRegPassword, 10);
+//     delete user.userRegPassword;
 
-    //make a DB call to save the users in the DB
-    console.log('Saving the user to the DB', user);
-    return await new UserRegistration(user).save()
-}
+//     //make a DB call to save the users in the DB
+//     console.log('Saving the user to the DB', user);
+//     return await new UserRegistration(user).save()
+// }
 
 async function insertDesigner(designer) {
     designer.designerHashedRegPassword = bcrypt.hashSync(designer.designerRegPassword, 10);
@@ -128,7 +128,7 @@ function isUserValidHShop(hShop, hShopRegPassword, hShopHashedRegPassword) {
 }
 
 module.exports = {
-    insertUser,
+    // insertUser,
     insertDesigner,
     insertHShop,
     getUserByEmailIdAndPasswordUser,

@@ -4,9 +4,13 @@ const userController = require('../controllers/user.controller');
 const authController = require('../controllers/auth.controller');
 const passport = require('../middleware/passport');
 const router = express.Router();
+const storage = require('../helpers/storage');
+const UserRegistration = require('../models/userRegistration.model');
+const bcrypt = require('bcrypt');
 
-//localhost:4050/api/auth/register
-router.post("/registeruser", asyncHandler(insertUser), loginUser);
+
+//localhost:4050/api/auth/registeruser
+router.post("/registeruser", storage, asyncHandler(insertUser), loginUser);
 router.post("/registerdesigner", asyncHandler(insertDesigner), loginDesigner);
 router.post("/registerhshop", asyncHandler(insertHShop), loginHShop);
 
@@ -22,9 +26,29 @@ router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser
  * @param {*} next 
  */
 async function insertUser(req, res, next) {
-    const user = req.body;
-    console.log('registering the user', user);
-    req.user = await userController.insertUser(user); // taking the user from the class to the request
+    const userRegUsername = req.body.userRegUsername;
+    const userRegEmail = req.body.userRegEmail;
+    const userHashedRegPassword = bcrypt.hashSync(req.body.userRegPassword, 10);
+    const userRegPassword = req.body.userRegPassword;
+    const userRegProfilePic = 'http://localhost:4050/images/' + req.file.filename; // Note: set path dynamically
+    const userRegTelephone = req.body.userRegTelephone;
+    const userRegAddress = req.body.userRegAddress;
+    const userRegDistrict = req.body.userRegDistrict;
+    delete userRegPassword;
+    
+    const user = new UserRegistration({
+        userRegUsername,
+        userRegEmail,
+        userHashedRegPassword,
+        userRegProfilePic,
+        userRegTelephone,
+        userRegAddress,
+        userRegDistrict,
+      });
+
+    console.log('Saving the user to the DB', user);
+    req.user = await user.save(); // taking the user from the class to the request
+    console.log('posted');
     next();
 }
 

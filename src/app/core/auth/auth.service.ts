@@ -123,7 +123,18 @@ export class AuthService {
     return this.hShop$.asObservable();
   }
 
-  userRegistration(userToSave: any) {
+  userRegistration(user: any, image: File) {
+    const userToSave = new FormData();
+
+    userToSave.append("userRegUsername", user.userRegUsername);
+    userToSave.append("userRegEmail", user.userRegEmail);
+    userToSave.append("userRegPassword", user.userRegPassword);
+    userToSave.append("userRegConfirmPassword", user.userRegConfirmPassword);
+    userToSave.append("userRegProfilePic", image);
+    userToSave.append("userRegTelephone", user.userRegTelephone);
+    userToSave.append("userRegAddress", user.userRegAddress);
+    userToSave.append("userRegDistrict", user.userRegDistrict);
+   
     return this.httpClient.post<any>(`${this.apiUrl}registeruser`, userToSave).pipe(
       switchMap(({user, token})=> { // separating the user object to user and token from the payload
         this.setUser(user); //setting the user 
@@ -137,6 +148,17 @@ export class AuthService {
       })
     );
   }
+
+  
+  // addProfile(name: string, image: File) {
+  //   const profileData = new FormData();
+  //   profileData.append("name", name);
+  //   profileData.append("image", image, name);
+  //   this.http.post<any>(this.url, profileData).subscribe((profileData) => {
+   
+  //       console.log(profileData);
+  //   });
+  // }
 
   designerRegistration(designerToSave: any) {
     return this.httpClient.post<any>(`${this.apiUrl}registerdesigner`, designerToSave).pipe(

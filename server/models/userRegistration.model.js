@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // schema for users
 const UserSchema = new mongoose.Schema({
-    userRegUsername : {type : String, required: true, unique: true},
+    userRegUsername : {type : String, required: true},
     userRegEmail : {type : String, required: true, unique: true, match: [
             /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             'Please enter a valid email'
@@ -12,8 +12,8 @@ const UserSchema = new mongoose.Schema({
     createdAt : {type : Date, default: Date.now},
     userRoles : [{type : String}],
     userRegProfilePic: {type: String},
-    userRegTelephone : {type : String, required: true},
-    userRegAddress : {type : String, required: true},
+    userRegTelephone : {type : String},
+    userRegAddress : {type : String},
     userRegDistrict : {type : String}
 });
 
