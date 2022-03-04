@@ -275,22 +275,25 @@ header {
     .inline-list-bottom {
         list-style: none;
         height: 1em;
-       
+        
     }
 
     .list-item-link {
         text-decoration: none;
-        float: right;
         font-size: 0.9em;
         color: #575757;
-       
+        padding-left: 5em;
     }
 
-   
+    .list-item-anchor {
+       float: right;
+
+    }
+
     .list-item-bottom {
         position: absolute;
         margin-top: -2em;
-        margin-left: 73em;
+        margin-left: 68em;
         height: 0em;
     
     }

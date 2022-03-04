@@ -149,17 +149,6 @@ export class AuthService {
     );
   }
 
-  
-  // addProfile(name: string, image: File) {
-  //   const profileData = new FormData();
-  //   profileData.append("name", name);
-  //   profileData.append("image", image, name);
-  //   this.http.post<any>(this.url, profileData).subscribe((profileData) => {
-   
-  //       console.log(profileData);
-  //   });
-  // }
-
   designerRegistration(designerToSave: any) {
     return this.httpClient.post<any>(`${this.apiUrl}registerdesigner`, designerToSave).pipe(
       switchMap(({designer, token})=> { // separating the user object to user and token from the payload

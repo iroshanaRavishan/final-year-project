@@ -45,13 +45,18 @@
                   </div>
 
                   <div>
-                    <label>Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-                    <input type="file" (change)="onFileSelect($event)" class="upload-box"  name="userRegProfilePic" placeholder="Enter Profile Picture" required>
-                    <div *ngIf="imageData">
-                      <img [src]="imageData" [alt]="userRegGroup.value.userRegUsername">
+                    <div>
+                      <label>Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
+                      <input type="file" (change)="onFileSelect($event)" class="upload-box"  name="userRegProfilePic" placeholder="Enter Profile Picture" required>
                     </div>
-                    <div *ngIf="fileType">
-                      {{fileType}}
+
+                    <div>                
+                      <div  *ngIf="imageData">
+                        <img class="profile-picture-on-login-signup" [src]="imageData" [alt]="userRegGroup.value.userRegUsername">
+                      </div>
+                      <div *ngIf="fileType">
+                        {{fileType}}
+                      </div>
                     </div>
                   </div>
                   
