@@ -15,7 +15,7 @@ export class LoginSignupComponent implements OnInit {
   error: string | any;
 
   User: User |any;
-  userRegGroup!: FormGroup;
+  
   imageData: string | any; 
   fileType: String | any;
 
@@ -29,7 +29,16 @@ export class LoginSignupComponent implements OnInit {
   hShopLogPassword:string | any;
 
   //common user group for users
-
+  userRegGroup = new FormGroup({
+    userRegUsername: new FormControl ('', [Validators.required]),
+    userRegEmail: new FormControl('', [Validators.required, Validators.email]),
+    userRegPassword: new FormControl ('', [Validators.required]),
+    userRegConfirmPassword: new FormControl ('', [Validators.required, this.userPasswordMatch]),
+    userRegProfilePic: new FormControl (null), 
+    userRegTelephone: new FormControl ('', [Validators.required]),
+    userRegAddress: new FormControl ('', [Validators.required]),
+    userRegDistrict: new FormControl ('', [Validators.required])
+  });
   //common designer group for designers
   designerRegGroup = new FormGroup({
     designerRegUsername: new FormControl ('', [Validators.required]),
@@ -100,16 +109,7 @@ export class LoginSignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userRegGroup = new FormGroup({
-      userRegUsername: new FormControl ('', [Validators.required]),
-      userRegEmail: new FormControl('', [Validators.required, Validators.email]),
-      userRegPassword: new FormControl ('', [Validators.required]),
-      userRegConfirmPassword: new FormControl ('', [Validators.required, this.userPasswordMatch]),
-      userRegProfilePic: new FormControl (null), 
-      userRegTelephone: new FormControl ('', [Validators.required]),
-      userRegAddress: new FormControl ('', [Validators.required]),
-      userRegDistrict: new FormControl ('', [Validators.required])
-    });
+
   }
 
   onFileSelect(event: Event) { //execute when fire on selecting the file form the input
