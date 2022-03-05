@@ -149,7 +149,29 @@ export class AuthService {
     );
   }
 
-  designerRegistration(designerToSave: any) {
+  designerRegistration(designer: any, dProfile: File, sProfile: File) {
+    const designerToSave = new FormData();
+
+    designerToSave.append("designerRegUsername", designer.designerRegUsername);
+    designerToSave.append("designerRegEmail", designer.designerRegEmail);
+    designerToSave.append("designerRegNIC", designer.designerRegNIC);
+    designerToSave.append("designerRegPassword", designer.designerRegPassword);
+    designerToSave.append("designerRegConfirmPassword", designer.designerRegConfirmPassword);
+    designerToSave.append("designerRegProfilePic", dProfile);
+    designerToSave.append("designerRegTelephone", designer.designerRegTelephone);
+    designerToSave.append("designerRegAddress", designer.designerRegAddress);
+    designerToSave.append("designerRegDistrict", designer.designerRegDistrict);
+    designerToSave.append("designerRegShopName", designer.designerRegShopName);
+    designerToSave.append("designerRegShopDesc", designer.designerRegShopDesc);
+    designerToSave.append("designerRegShopEmail", designer.designerRegShopEmail);
+    designerToSave.append("designerRegShopAddress", designer.designerRegShopAddress);
+    designerToSave.append("designerRegShopDistrict", designer.designerRegShopDistrict);
+    designerToSave.append("designerRegShopPostalCode", designer.designerRegShopPostalCode);
+    designerToSave.append("designerRegShopLocation", designer.designerRegShopLocation);
+    designerToSave.append("designerRegShopTelephone", designer.designerRegShopTelephone);
+    designerToSave.append("designerRegShopPic", sProfile);
+    designerToSave.append("designerRegPricing", designer.designerRegPricing);
+
     return this.httpClient.post<any>(`${this.apiUrl}registerdesigner`, designerToSave).pipe(
       switchMap(({designer, token})=> { // separating the user object to user and token from the payload
         this.setDesigner(designer); //setting the user 

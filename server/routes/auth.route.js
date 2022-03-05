@@ -4,14 +4,15 @@ const userController = require('../controllers/user.controller');
 const authController = require('../controllers/auth.controller');
 const passport = require('../middleware/passport');
 const router = express.Router();
-const storage = require('../helpers/storage');
+const userStorage = require('../helpers/storage');
 const UserRegistration = require('../models/userRegistration.model');
+const DesignerRegistration = require('../models/designerRegistration.model')
 const bcrypt = require('bcrypt');
 
 
 //localhost:4050/api/auth/registeruser
-router.post("/registeruser", storage, asyncHandler(insertUser), loginUser);
-router.post("/registerdesigner", asyncHandler(insertDesigner), loginDesigner);
+router.post("/registeruser", userStorage.single('userRegProfilePic'), asyncHandler(insertUser), loginUser);
+router.post("/registerdesigner", userStorage.single('designerRegProfilePic'), asyncHandler(insertDesigner), loginDesigner);
 router.post("/registerhshop", asyncHandler(insertHShop), loginHShop);
 
 router.post("/loginuser", asyncHandler(getUserByEmailIdAndPasswordUser), loginUser);
@@ -53,9 +54,52 @@ async function insertUser(req, res, next) {
 }
 
 async function insertDesigner(req, res, next) {
-    const designer = req.body;
+    const designerRegUsername = req.body.designerRegUsername;
+    const designerRegEmail = req.body.designerRegEmail;
+    const designerRegNIC = req.body.designerRegNIC;
+    const designerHashedRegPassword = bcrypt.hashSync(req.body.designerRegPassword, 10);
+    const designerRegPassword = req.body.designerRegPassword;
+    const designerRegProfilePic = 'http://localhost:4050/images/' + req.file.filename; // Note: set path dynamically
+    const designerRegTelephone = req.body.designerRegTelephone;
+    const designerRegAddress = req.body.designerRegAddress;
+    const designerRegDistrict = req.body.designerRegDistrict;
+    const designerRegShopName = req.body.designerRegShopName;
+    const designerRegShopDesc = req.body.designerRegShopDesc;
+    const designerRegShopEmail = req.body.designerRegShopEmail;
+    const designerRegShopAddress = req.body.designerRegShopAddress;
+    const designerRegShopDistrict = req.body.designerRegShopDistrict;
+    const designerRegShopPostalCode = req.body.designerRegShopPostalCode;
+    const designerRegShopLocation = req.body.designerRegShopLocation;
+    const designerRegShopTelephone = req.body.designerRegShopTelephone;
+    //const designerRegShopPic = 'http://localhost:4050/images/' + req.file.filename; // Note: set path dynamically
+    const designerRegPricing = req.body.designerRegPricing;
+
+    delete designerRegPassword;
+    
+    const designer = new DesignerRegistration({
+        designerRegUsername,
+        designerRegEmail,
+        designerRegNIC,
+        designerHashedRegPassword,
+        designerRegProfilePic,
+        designerRegTelephone,
+        designerRegAddress,
+        designerRegDistrict,
+        designerRegShopName,
+        designerRegShopDesc,
+        designerRegShopEmail,
+        designerRegShopAddress,
+        designerRegShopDistrict ,
+        designerRegShopPostalCode,
+        designerRegShopLocation,
+        designerRegShopTelephone,
+        //designerRegShopPic,
+        designerRegPricing
+    });
+
     console.log('registering the designer', designer);
-    req.designer = await userController.insertDesigner(designer); // taking the user from the class to the request
+    req.designer = await designer.save(); // taking the user from the class to the request
+    console.log('posted');
     next();
 }
 

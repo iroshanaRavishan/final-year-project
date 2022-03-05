@@ -31,8 +31,8 @@
                     <li class="list-item-bottom"> 
                         <a *ngIf="!user && !designer && !hShop" class="list-item-link" routerLink="/auth">Register or Sign in</a>
                         <div>
-                            <a class="list-item-anchor" *ngIf="user">{{user.userRegUsername || user.designerRegUsername || user.hShopRegUsername}}  | <img class="profile-picture-on-nav" src= {{user.userRegProfilePic}}> | <button (click)="logout()" > Logout</button></a>
-                            <a class="list-item-anchor" *ngIf="designer">{{designer.designerRegUsername}} | <img class="profile-picture-on-nav" src={{user.userRegProfilePic}}> |  <button (click)="logout()" >Logout</button></a>
+                            <a class="list-item-anchor" *ngIf="user">{{user.userRegUsername || user.designerRegUsername || user.hShopRegUsername}}  | <img class="profile-picture-on-nav" src= "{{user.designerRegProfilePic}}"> | <button (click)="logout()" > Logout</button></a>
+                            <a class="list-item-anchor" *ngIf="designer">{{designer.designerRegUsername}} | <img class="profile-picture-on-nav" src={{designer.designerRegProfilePic}}> |  <button (click)="logout()" >Logout</button></a>
                             <a class="list-item-anchor" *ngIf="hShop">{{hShop.hShopRegUsername}} | <img class="profile-picture-on-nav" src={{user.userRegProfilePic}}> |  <button (click)="logout()" >Logout</button></a>
                         </div>
                     </li>

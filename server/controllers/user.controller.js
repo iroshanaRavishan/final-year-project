@@ -17,14 +17,14 @@ const bcrypt = require('bcrypt');
 //     return await new UserRegistration(user).save()
 // }
 
-async function insertDesigner(designer) {
-    designer.designerHashedRegPassword = bcrypt.hashSync(designer.designerRegPassword, 10);
-    delete designer.designerRegPassword;
+// async function insertDesigner(designer) {
+//     designer.designerHashedRegPassword = bcrypt.hashSync(designer.designerRegPassword, 10);
+//     delete designer.designerRegPassword;
 
-    //make a DB call to save the users in the DB
-    console.log('Saving the designer to the DB', designer);
-    return await new DesignerRegistration(designer).save();
-}
+//     //make a DB call to save the users in the DB
+//     console.log('Saving the designer to the DB', designer);
+//     return await new DesignerRegistration(designer).save();
+// }
 
 async function insertHShop(hShop) {
     hShop.hShopHashedRegPassword = bcrypt.hashSync(hShop.hShopRegPassword, 10);
@@ -129,7 +129,7 @@ function isUserValidHShop(hShop, hShopRegPassword, hShopHashedRegPassword) {
 
 module.exports = {
     // insertUser,
-    insertDesigner,
+    // insertDesigner,
     insertHShop,
     getUserByEmailIdAndPasswordUser,
     getUserByEmailIdAndPasswordDesigner,

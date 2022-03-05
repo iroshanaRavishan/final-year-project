@@ -17,8 +17,6 @@ const fileFilter = (req, file, cb, next) => {
   allowedMimeTypes.includes(file.mimetype) ? cb(null, true) : cb(null, false);
 };
 
-const storage = multer({ storage: diskStorage, fileFilter: fileFilter }).single(
-  'userRegProfilePic'
-);
+const userStorage = multer({ storage: diskStorage, fileFilter: fileFilter });
 
-module.exports = storage;
+module.exports = userStorage;

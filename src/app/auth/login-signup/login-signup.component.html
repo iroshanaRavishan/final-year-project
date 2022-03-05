@@ -22,37 +22,49 @@
               <p>Create your own Account</p>
                
               <form [formGroup]="userRegGroup" enctype="multipart/form-data" method="post">
-                
-
+              
                   <div>
-                    <label for="username">Username<span class="req"> *</span></label>
-                    <input type="text" formControlName="userRegUsername" placeholder="Enter Username" required>                                
+                    <label>Username<span class="req"> *</span></label>
+                    <input type="text" formControlName="userRegUsername" [ngClass]="{ 'is-invalid' : submitted && userRegFormValidation.userRegUsername.errors }" placeholder="Enter Username" required>                                
+                    <div *ngIf="submitted && userRegFormValidation.userRegUsername.errors" class="invalid-feedback">
+                      <div *ngIf="userRegFormValidation.userRegUsername.errors.required" >Username is required</div>
+                    </div>
                   </div> 
-                  
+
+
                   <div>
-                    <label for="email">Email Address<span class="req"> *</span></label>
-                    <input type="email" formControlName="userRegEmail" placeholder="Enter Email" required>                 
+                    <label>Email Address<span class="req"> *</span></label>
+                    <input type="email" formControlName="userRegEmail" [ngClass]="{ 'is-invalid' : submitted && userRegFormValidation.userRegEmail.errors }" placeholder="Enter Email" required>                 
+                    <div *ngIf="submitted && userRegFormValidation.userRegEmail.errors" class="invalid-feedback">
+                      <div *ngIf="userRegFormValidation.userRegEmail.errors.required" >Email is required</div>
+                    </div>
                   </div>
                   
                   <div>
-                    <label for="password">Password<span class="req"> *</span></label>
-                    <input type="password" formControlName="userRegPassword" placeholder="Enter Password" required>         
+                    <label>Password<span class="req"> *</span></label>
+                    <input type="password" formControlName="userRegPassword" [ngClass]="{ 'is-invalid' : submitted && userRegFormValidation.userRegPassword.errors }" placeholder="Enter Password" required>         
+                    <div *ngIf="submitted && userRegFormValidation.userRegPassword.errors" class="invalid-feedback">
+                      <div *ngIf="userRegFormValidation.userRegPassword.errors.required" >Password is required</div>
+                    </div>
                   </div>
 
                   <div>
-                    <label for="confirm password">Confirm Password<span class="req"> *</span></label>
-                    <input type="password" formControlName="userRegConfirmPassword" placeholder="Re-Enter Password" required>
+                    <label>Confirm Password<span class="req"> *</span></label>
+                    <input type="password" formControlName="userRegConfirmPassword" [ngClass]="{ 'is-invalid' : submitted && userRegFormValidation.userRegConfirmPassword.errors }" placeholder="Re-Enter Password" required>
+                    <div *ngIf="submitted && userRegFormValidation.userRegConfirmPassword.errors" class="invalid-feedback">
+                      <div *ngIf="userRegFormValidation.userRegConfirmPassword.errors.required" >Confirmation is required</div>
+                    </div>
                   </div>
 
                   <div>
                     <div>
                       <label>Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-                      <input type="file" (change)="onFileSelect($event)" class="upload-box"  name="userRegProfilePic" placeholder="Enter Profile Picture" required>
+                      <input type="file" (change)="onFileSelectUser($event)" class="upload-box" name="userRegProfilePic" placeholder="Enter Profile Picture" required>
                     </div>
 
                     <div>                
-                      <div  *ngIf="imageData">
-                        <img class="profile-picture-on-login-signup" [src]="imageData" [alt]="userRegGroup.value.userRegUsername">
+                      <div  *ngIf="imageDataUser">
+                        <img class="profile-picture-on-login-signup" [src]="imageDataUser" [alt]="userRegGroup.value.userRegUsername">
                       </div>
                       <div *ngIf="fileType">
                         {{fileType}}
@@ -61,14 +73,20 @@
                   </div>
                   
                   <div>
-                    <label for="telephone">Telephone<span class="req"> *</span></label>
-                    <input type="text" formControlName="userRegTelephone" placeholder="Enter Telephone" required>
+                    <label>Telephone<span class="req"> *</span></label>
+                    <input type="text" formControlName="userRegTelephone" [ngClass]="{ 'is-invalid' : submitted && userRegFormValidation.userRegTelephone.errors }" placeholder="Enter Telephone" required>
+                    <div *ngIf="submitted && userRegFormValidation.userRegTelephone.errors" class="invalid-feedback">
+                      <div *ngIf="userRegFormValidation.userRegTelephone.errors.required" >Telephone is required</div>
+                    </div>
                   </div>
 
                   <div>
-                    <label for="address">Address<span class="req"> *</span></label>
-                    <input type="text" formControlName="userRegAddress" placeholder="Enter Address" required>
-                    <input type="text" formControlName="userRegDistrict" placeholder="Enter District" >
+                    <label>Address<span class="req"> *</span></label>
+                    <input type="text" formControlName="userRegAddress" [ngClass]="{ 'is-invalid' : submitted && userRegFormValidation.userRegAddress.errors }" placeholder="Enter Address" required>
+                    <div *ngIf="submitted && userRegFormValidation.userRegAddress.errors" class="invalid-feedback">
+                      <div *ngIf="userRegFormValidation.userRegAddress.errors.required" >Address is required</div>
+                    </div>
+                    <input type="text" formControlName="userRegDistrict" placeholder="Enter District" >                                       
                   </div> 
 
                   <div>
@@ -266,7 +284,8 @@
     </div>
   
      
-    <form [formGroup]="designerRegGroup" >
+    <form [formGroup]="designerRegGroup" enctype="multipart/form-data" method="post">
+      
       <div class="down-form-left">
         <h3 class="down-form-form-section">Personal Information</h3>
           <div>
@@ -296,7 +315,15 @@
 
           <div>
             <label>Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-            <input type="file" class="upload-box" formControlName="designerRegProfilePic" placeholder="Enter Telephone" required>
+            <input type="file" (change)="onFileSelectDesignerUserPro($event)" class="upload-box" name="designerRegProfilePic" placeholder="Enter Profile Picture" required>
+            <div>                
+              <div  *ngIf="imageDataDesignerUserPro">
+                <img class="profile-picture-on-login-signup" [src]="imageDataDesignerUserPro" [alt]="designerRegGroup.value.designerRegUsername">
+              </div>
+              <div *ngIf="fileType">
+                {{fileType}}
+              </div>
+            </div>
           </div>
 
         <h3 class="down-form-form-section">Contact Information</h3>  
@@ -358,7 +385,15 @@
 
           <div>
             <label>Image for shop identification (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-            <input type="file" class="upload-box" formControlName="designerRegShopPic" placeholder="Enter Shop Picture" required>
+            <input type="file" (change)="onFileSelectDesignerShopPro($event)" class="upload-box" name="designerRegShopPic" placeholder="Enter Shop Picture" required>
+            <div>                
+              <div  *ngIf="imageDataDesignerShopPro">
+                <img class="profile-picture-on-login-signup" [src]="imageDataDesignerShopPro" [alt]="designerRegGroup.value.designerRegUsername">
+              </div>
+              <div *ngIf="fileType">
+                {{fileType}}
+              </div>
+            </div>
           </div>
 
           <div>
@@ -664,7 +699,7 @@
       <p>Plant Your Own Hardware Shop Account Here...!</p>
     </div>
   
-    <form [formGroup]="hShopRegGroup" >
+    <form [formGroup]="hShopRegGroup" enctype="multipart/form-data" method="post">
       <div class="down-form-left">
         <h3 class="down-form-form-section">Personal Information</h3>
           <div>
