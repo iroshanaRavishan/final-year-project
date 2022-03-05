@@ -149,7 +149,7 @@ export class AuthService {
     );
   }
 
-  designerRegistration(designer: any, dProfile: File, sProfile: File) {
+  designerRegistration(designer: any, abc: File[]) {
     const designerToSave = new FormData();
 
     designerToSave.append("designerRegUsername", designer.designerRegUsername);
@@ -157,7 +157,7 @@ export class AuthService {
     designerToSave.append("designerRegNIC", designer.designerRegNIC);
     designerToSave.append("designerRegPassword", designer.designerRegPassword);
     designerToSave.append("designerRegConfirmPassword", designer.designerRegConfirmPassword);
-    designerToSave.append("designerRegProfilePic", dProfile);
+    designerToSave.append("designerRegProfilePic", abc[0]);
     designerToSave.append("designerRegTelephone", designer.designerRegTelephone);
     designerToSave.append("designerRegAddress", designer.designerRegAddress);
     designerToSave.append("designerRegDistrict", designer.designerRegDistrict);
@@ -169,7 +169,7 @@ export class AuthService {
     designerToSave.append("designerRegShopPostalCode", designer.designerRegShopPostalCode);
     designerToSave.append("designerRegShopLocation", designer.designerRegShopLocation);
     designerToSave.append("designerRegShopTelephone", designer.designerRegShopTelephone);
-    designerToSave.append("designerRegShopPic", sProfile);
+    designerToSave.append("designerRegProfilePic", abc[1]);
     designerToSave.append("designerRegPricing", designer.designerRegPricing);
 
     return this.httpClient.post<any>(`${this.apiUrl}registerdesigner`, designerToSave).pipe(

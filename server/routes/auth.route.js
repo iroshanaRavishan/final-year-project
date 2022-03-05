@@ -12,7 +12,7 @@ const bcrypt = require('bcrypt');
 
 //localhost:4050/api/auth/registeruser
 router.post("/registeruser", userStorage.single('userRegProfilePic'), asyncHandler(insertUser), loginUser);
-router.post("/registerdesigner", userStorage.single('designerRegProfilePic'), asyncHandler(insertDesigner), loginDesigner);
+router.post("/registerdesigner", userStorage.array('designerRegProfilePic', 2), asyncHandler(insertDesigner), loginDesigner);
 router.post("/registerhshop", asyncHandler(insertHShop), loginHShop);
 
 router.post("/loginuser", asyncHandler(getUserByEmailIdAndPasswordUser), loginUser);
@@ -59,7 +59,7 @@ async function insertDesigner(req, res, next) {
     const designerRegNIC = req.body.designerRegNIC;
     const designerHashedRegPassword = bcrypt.hashSync(req.body.designerRegPassword, 10);
     const designerRegPassword = req.body.designerRegPassword;
-    const designerRegProfilePic = 'http://localhost:4050/images/' + req.file.filename; // Note: set path dynamically
+    const designerRegProfilePic = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
     const designerRegTelephone = req.body.designerRegTelephone;
     const designerRegAddress = req.body.designerRegAddress;
     const designerRegDistrict = req.body.designerRegDistrict;
@@ -71,7 +71,7 @@ async function insertDesigner(req, res, next) {
     const designerRegShopPostalCode = req.body.designerRegShopPostalCode;
     const designerRegShopLocation = req.body.designerRegShopLocation;
     const designerRegShopTelephone = req.body.designerRegShopTelephone;
-    //const designerRegShopPic = 'http://localhost:4050/images/' + req.file.filename; // Note: set path dynamically
+    const designerRegShopPic = 'http://localhost:4050/images/' + req.files[1].filename; // Note: set path dynamically
     const designerRegPricing = req.body.designerRegPricing;
 
     delete designerRegPassword;
@@ -93,7 +93,7 @@ async function insertDesigner(req, res, next) {
         designerRegShopPostalCode,
         designerRegShopLocation,
         designerRegShopTelephone,
-        //designerRegShopPic,
+        designerRegShopPic,
         designerRegPricing
     });
 

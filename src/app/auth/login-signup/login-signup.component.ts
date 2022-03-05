@@ -231,8 +231,13 @@ createHShopRegForm(){
     if(this.designerRegGroup.invalid){
       return;
     }
+
+    let designerRegProfilePics : File[] = [];
+    designerRegProfilePics.push(this.designerRegGroup.value.designerRegProfilePic);
+    designerRegProfilePics.push(this.designerRegGroup.value.designerRegShopPic);
+
     const designer: File = this.designerRegGroup.getRawValue();
-    this.authService.designerRegistration(designer, this.designerRegGroup.value.designerRegProfilePic, this.designerRegGroup.value.designerRegShopPic).subscribe(s => this.router.navigate(['auth/signupsuccess']));
+    this.authService.designerRegistration(designer, designerRegProfilePics).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }
 
   hShopRegistration(){
