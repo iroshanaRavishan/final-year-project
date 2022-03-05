@@ -257,6 +257,17 @@ input[type="password"]:hover{
     font-size: .8em;
     color: #dc3545;
 }
+.pricing-area{
+  margin-left: -2.5em;
+  margin-top: 2em;
+  text-align: center;
+  font-size: 1.5em;
+  padding-top: 1em;
+  background-color: #dc354628;
+  height: 2.5em;
+  border-radius: 5px;
+  letter-spacing: 2px;
+}
 
 .down-form-container{
     padding-top: 8em;

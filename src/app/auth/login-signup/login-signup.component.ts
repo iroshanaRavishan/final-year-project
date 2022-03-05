@@ -26,7 +26,11 @@ export class LoginSignupComponent implements OnInit {
   imageDataHShopUserPro: string | any; 
   imageDataHShopShopPro: string | any; 
 
-  fileType: String | any;
+  fileTypeUser: String | any;
+  fileTypeDesignerUserPro: String | any;
+  fileTypeDesignerShopPro: String | any;
+  fileTypeHShopUserPro: String | any;
+  fileTypeHShopShopPro: String | any;
 
   userLogEmail: string | any;
   userLogPassword: string | any;
@@ -152,13 +156,12 @@ export class LoginSignupComponent implements OnInit {
       const reader = new FileReader(); // this reads the file asynchronusly and store the content
       reader.onload = () => {
         this.imageDataUser = reader.result as string;
-        this.fileType = null;
+        this.fileTypeUser = null;
       }
       reader.readAsDataURL(file);
     } 
     else { // if the file type is not applicable
-      console.log("file type is not acceptable");
-      this.fileType = "File type is not acceptable";
+      this.fileTypeUser = "File type is not acceptable";
       this.imageDataUser = null;
     }
     console.log(this.userRegGroup.value.userRegProfilePic);
@@ -174,13 +177,12 @@ export class LoginSignupComponent implements OnInit {
       const reader = new FileReader(); // this reads the file asynchronusly and store the content
       reader.onload = () => {
         this.imageDataDesignerUserPro = reader.result as string;
-        this.fileType = null;
+        this.fileTypeDesignerUserPro = null;
       }
       reader.readAsDataURL(file);
     } 
     else { // if the file type is not applicable
-      console.log("file type is not acceptable");
-      this.fileType = "File type is not acceptable";
+      this.fileTypeDesignerUserPro = "File type is not acceptable";
       this.imageDataDesignerUserPro = null;
     }
     console.log(this.designerRegGroup.value.designerRegProfilePic);
@@ -196,13 +198,12 @@ export class LoginSignupComponent implements OnInit {
       const reader = new FileReader(); // this reads the file asynchronusly and store the content
       reader.onload = () => {
         this.imageDataDesignerShopPro = reader.result as string;
-        this.fileType = null;
+        this.fileTypeDesignerShopPro = null;
       }
       reader.readAsDataURL(file);
     } 
     else { // if the file type is not applicable
-      console.log("file type is not acceptable");
-      this.fileType = "File type is not acceptable";
+      this.fileTypeDesignerShopPro = "File type is not acceptable";
       this.imageDataDesignerShopPro = null;
     }
     console.log(this.designerRegGroup.value.designerRegShopPic);
@@ -218,13 +219,12 @@ export class LoginSignupComponent implements OnInit {
       const reader = new FileReader(); // this reads the file asynchronusly and store the content
       reader.onload = () => {
         this.imageDataHShopUserPro = reader.result as string;
-        this.fileType = null;
+        this.fileTypeHShopUserPro = null;
       }
       reader.readAsDataURL(file);
     } 
     else { // if the file type is not applicable
-      console.log("file type is not acceptable");
-      this.fileType = "File type is not acceptable";
+      this.fileTypeHShopUserPro = "File type is not acceptable";
       this.imageDataHShopUserPro = null;
     }
     console.log(this.hShopRegGroup.value.hShopRegProfilePic);
@@ -240,13 +240,12 @@ export class LoginSignupComponent implements OnInit {
       const reader = new FileReader(); // this reads the file asynchronusly and store the content
       reader.onload = () => {
         this.imageDataHShopShopPro = reader.result as string;
-        this.fileType = null;
+        this.fileTypeHShopShopPro = null;
       }
       reader.readAsDataURL(file);
     } 
     else { // if the file type is not applicable
-      console.log("file type is not acceptable");
-      this.fileType = "File type is not acceptable";
+      this.fileTypeHShopShopPro = "File type is not acceptable";
       this.imageDataHShopShopPro = null;
     }
     console.log(this.hShopRegGroup.value.hShopRegProfilePic);
