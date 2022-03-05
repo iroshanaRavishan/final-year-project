@@ -315,7 +315,7 @@
 
           <div>
             <label>Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-            <input type="file" (change)="onFileSelectDesignerUserPro($event)" class="upload-box" name="designerRegProfilePic" placeholder="Enter Profile Picture" required>
+            <input type="file" (change)="onFileSelectDesignerUserPro($event)" class="upload-box" name="designerRegProfilePics" placeholder="Enter Profile Picture" required>
             <div>                
               <div  *ngIf="imageDataDesignerUserPro">
                 <img class="profile-picture-on-login-signup" [src]="imageDataDesignerUserPro" [alt]="designerRegGroup.value.designerRegUsername">
@@ -385,7 +385,7 @@
 
           <div>
             <label>Image for shop identification (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-            <input type="file" (change)="onFileSelectDesignerShopPro($event)" class="upload-box" name="designerRegProfilePic" placeholder="Enter Shop Picture" required>
+            <input type="file" (change)="onFileSelectDesignerShopPro($event)" class="upload-box" name="designerRegProfilePics" placeholder="Enter Shop Picture" required>
             <div>                
               <div  *ngIf="imageDataDesignerShopPro">
                 <img class="profile-picture-on-login-signup" [src]="imageDataDesignerShopPro" [alt]="designerRegGroup.value.designerRegUsername">
@@ -729,7 +729,15 @@
 
           <div>
             <label>profile picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-            <input type="file" class="upload-box" formControlName="hShopRegProfilePic" placeholder="Enter Profile Picture" required>
+            <input type="file" (change)="onFileSelectHShopUserPro($event)" class="upload-box" name="hShopRegProfilePics" placeholder="Enter Profile Picture" required>
+            <div>                
+              <div  *ngIf="imageDataHShopUserPro">
+                <img class="profile-picture-on-login-signup" [src]="imageDataHShopUserPro" [alt]="hShopRegGroup.value.hShopRegUsername">
+              </div>
+              <div *ngIf="fileType">
+                {{fileType}}
+              </div>
+            </div>
           </div>
 
         <h3 class="down-form-form-section">Contact Information</h3>  
@@ -791,7 +799,15 @@
 
           <div>
             <label>Image for shop identification (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-            <input type="file" class="upload-box" formControlName="hShopRegShopPic" placeholder="Enter Telephone" required>
+            <input type="file" (change)="onFileSelectHShopShopPro($event)" class="upload-box" name="hShopRegProfilePics" placeholder="Enter Telephone" required>
+            <div>                
+              <div  *ngIf="imageDataHShopShopPro">
+                <img class="profile-picture-on-login-signup" [src]="imageDataHShopShopPro" [alt]="hShopRegGroup.value.hShopRegUsername">
+              </div>
+              <div *ngIf="fileType">
+                {{fileType}}
+              </div>
+            </div>
           </div>
 
           <div>

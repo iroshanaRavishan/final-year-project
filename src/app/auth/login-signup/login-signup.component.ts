@@ -23,6 +23,9 @@ export class LoginSignupComponent implements OnInit {
   imageDataUser: string | any; 
   imageDataDesignerUserPro: string | any; 
   imageDataDesignerShopPro: string | any; 
+  imageDataHShopUserPro: string | any; 
+  imageDataHShopShopPro: string | any; 
+
   fileType: String | any;
 
   userLogEmail: string | any;
@@ -73,7 +76,7 @@ export class LoginSignupComponent implements OnInit {
     });
   }
 
-createHShopRegForm(){
+  createHShopRegForm(){
     //common shop group for hardware shops
     this.hShopRegGroup = new FormGroup({
       hShopRegUsername: new FormControl ('', [Validators.required]),
@@ -81,7 +84,7 @@ createHShopRegForm(){
       hShopRegNIC: new FormControl ('', [Validators.required]),
       hShopRegPassword: new FormControl ('', [Validators.required]),
       hShopRegConfirmPassword: new FormControl ('', [Validators.required, this.hShopPasswordMatch]),
-      hShopRegProfilePic: new FormControl (''),
+      hShopRegProfilePic: new FormControl (null),
       hShopRegTelephone: new FormControl ('', [Validators.required]),
       hShopRegAddress: new FormControl ('', [Validators.required]),
       hShopRegDistrict: new FormControl ('', [Validators.required]),
@@ -93,7 +96,7 @@ createHShopRegForm(){
       hShopRegShopPostalCode: new FormControl ('', [Validators.required]),
       hShopRegShopLocation: new FormControl('', [Validators.required]),
       hShopRegShopTelephone: new FormControl ('', [Validators.required]),
-      hShopRegShopPic: new FormControl ('', [Validators.required]),
+      hShopRegShopPic: new FormControl (null),
       hShopRegPricing: new FormControl ('', [Validators.required])
     });
   }
@@ -205,6 +208,50 @@ createHShopRegForm(){
     console.log(this.designerRegGroup.value.designerRegShopPic);
   }
 
+  onFileSelectHShopUserPro(event: Event) { //execute when fire on selecting the file form the input
+    console.log("A file selected");
+    const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
+    this.hShopRegGroup.patchValue({ hShopRegProfilePic: file });
+    const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
+
+    if (file && allowedMimeTypes.includes(file.type)) {
+      const reader = new FileReader(); // this reads the file asynchronusly and store the content
+      reader.onload = () => {
+        this.imageDataHShopUserPro = reader.result as string;
+        this.fileType = null;
+      }
+      reader.readAsDataURL(file);
+    } 
+    else { // if the file type is not applicable
+      console.log("file type is not acceptable");
+      this.fileType = "File type is not acceptable";
+      this.imageDataHShopUserPro = null;
+    }
+    console.log(this.hShopRegGroup.value.hShopRegProfilePic);
+  }
+
+  onFileSelectHShopShopPro(event: Event) { //execute when fire on selecting the file form the input
+    console.log("A file selected");
+    const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
+    this.hShopRegGroup.patchValue({ hShopRegShopPic: file });
+    const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
+
+    if (file && allowedMimeTypes.includes(file.type)) {
+      const reader = new FileReader(); // this reads the file asynchronusly and store the content
+      reader.onload = () => {
+        this.imageDataHShopShopPro = reader.result as string;
+        this.fileType = null;
+      }
+      reader.readAsDataURL(file);
+    } 
+    else { // if the file type is not applicable
+      console.log("file type is not acceptable");
+      this.fileType = "File type is not acceptable";
+      this.imageDataHShopShopPro = null;
+    }
+    console.log(this.hShopRegGroup.value.hShopRegProfilePic);
+  }
+
   idSignup:any = "userSU";
   tabChangesignup(id:any){
     console.log(id);
@@ -245,8 +292,13 @@ createHShopRegForm(){
     if(this.hShopRegGroup.invalid){
       return;
     }
-    const hShop = this.hShopRegGroup.getRawValue();
-    this.authService.hShopRegistration(hShop).subscribe(s => this.router.navigate(['auth/signupsuccess']));
+
+    let hShopRegProfilePics : File[] = [];
+    hShopRegProfilePics.push(this.hShopRegGroup.value.hShopRegProfilePic);
+    hShopRegProfilePics.push(this.hShopRegGroup.value.hShopRegShopPic);
+
+    const hShop: File = this.hShopRegGroup.getRawValue();
+    this.authService.hShopRegistration(hShop, hShopRegProfilePics).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }
 
 

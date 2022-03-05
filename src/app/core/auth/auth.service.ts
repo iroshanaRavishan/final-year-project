@@ -149,7 +149,7 @@ export class AuthService {
     );
   }
 
-  designerRegistration(designer: any, abc: File[]) {
+  designerRegistration(designer: any, imgFiles: File[]) {
     const designerToSave = new FormData();
 
     designerToSave.append("designerRegUsername", designer.designerRegUsername);
@@ -157,7 +157,7 @@ export class AuthService {
     designerToSave.append("designerRegNIC", designer.designerRegNIC);
     designerToSave.append("designerRegPassword", designer.designerRegPassword);
     designerToSave.append("designerRegConfirmPassword", designer.designerRegConfirmPassword);
-    designerToSave.append("designerRegProfilePic", abc[0]);
+    designerToSave.append("designerRegProfilePics", imgFiles[0]);
     designerToSave.append("designerRegTelephone", designer.designerRegTelephone);
     designerToSave.append("designerRegAddress", designer.designerRegAddress);
     designerToSave.append("designerRegDistrict", designer.designerRegDistrict);
@@ -169,7 +169,7 @@ export class AuthService {
     designerToSave.append("designerRegShopPostalCode", designer.designerRegShopPostalCode);
     designerToSave.append("designerRegShopLocation", designer.designerRegShopLocation);
     designerToSave.append("designerRegShopTelephone", designer.designerRegShopTelephone);
-    designerToSave.append("designerRegProfilePic", abc[1]);
+    designerToSave.append("designerRegProfilePics", imgFiles[1]);
     designerToSave.append("designerRegPricing", designer.designerRegPricing);
 
     return this.httpClient.post<any>(`${this.apiUrl}registerdesigner`, designerToSave).pipe(
@@ -186,7 +186,29 @@ export class AuthService {
     );
   }
 
-  hShopRegistration(hShopToSave: any) {
+  hShopRegistration(hShop: any, imgFiles: File[]) {
+    const hShopToSave = new FormData();
+
+    hShopToSave.append("hShopRegUsername", hShop.hShopRegUsername);
+    hShopToSave.append("hShopRegEmail", hShop.hShopRegEmail);
+    hShopToSave.append("hShopRegNIC", hShop.hShopRegNIC);
+    hShopToSave.append("hShopRegPassword", hShop.hShopRegPassword);
+    hShopToSave.append("hShopRegConfirmPassword", hShop.hShopRegConfirmPassword);
+    hShopToSave.append("hShopRegProfilePics", imgFiles[0]);
+    hShopToSave.append("hShopRegTelephone", hShop.hShopRegTelephone);
+    hShopToSave.append("hShopRegAddress", hShop.hShopRegAddress);
+    hShopToSave.append("hShopRegDistrict", hShop.hShopRegDistrict);
+    hShopToSave.append("hShopRegShopName", hShop.hShopRegShopName);
+    hShopToSave.append("hShopRegShopDesc", hShop.hShopRegShopDesc);
+    hShopToSave.append("hShopRegShopEmail", hShop.hShopRegShopEmail);
+    hShopToSave.append("hShopRegShopAddress", hShop.hShopRegShopAddress);
+    hShopToSave.append("hShopRegShopDistrict", hShop.hShopRegShopDistrict);
+    hShopToSave.append("hShopRegShopPostalCode", hShop.hShopRegShopPostalCode);
+    hShopToSave.append("hShopRegShopLocation", hShop.hShopRegShopLocation);
+    hShopToSave.append("hShopRegShopTelephone", hShop.hShopRegShopTelephone);
+    hShopToSave.append("hShopRegProfilePics", imgFiles[1]);
+    hShopToSave.append("hShopRegPricing", hShop.hShopRegPricing);
+
     return this.httpClient.post<any>(`${this.apiUrl}registerhshop`, hShopToSave).pipe(
       switchMap(({hShop, token})=> { // separating the user object to user and token from the payload
         this.setHShop(hShop); //setting the user 

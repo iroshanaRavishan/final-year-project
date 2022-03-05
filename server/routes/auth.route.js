@@ -6,14 +6,15 @@ const passport = require('../middleware/passport');
 const router = express.Router();
 const userStorage = require('../helpers/storage');
 const UserRegistration = require('../models/userRegistration.model');
-const DesignerRegistration = require('../models/designerRegistration.model')
+const DesignerRegistration = require('../models/designerRegistration.model');
+const HShopRegistration =  require('../models/hShopRegistration.model');
 const bcrypt = require('bcrypt');
 
 
 //localhost:4050/api/auth/registeruser
 router.post("/registeruser", userStorage.single('userRegProfilePic'), asyncHandler(insertUser), loginUser);
-router.post("/registerdesigner", userStorage.array('designerRegProfilePic', 2), asyncHandler(insertDesigner), loginDesigner);
-router.post("/registerhshop", asyncHandler(insertHShop), loginHShop);
+router.post("/registerdesigner", userStorage.array('designerRegProfilePics', 2), asyncHandler(insertDesigner), loginDesigner);
+router.post("/registerhshop", userStorage.array('hShopRegProfilePics', 2), asyncHandler(insertHShop), loginHShop);
 
 router.post("/loginuser", asyncHandler(getUserByEmailIdAndPasswordUser), loginUser);
 router.post("/logindesigner", asyncHandler(getUserByEmailIdAndPasswordDesigner), loginDesigner);
@@ -104,9 +105,52 @@ async function insertDesigner(req, res, next) {
 }
 
 async function insertHShop(req, res, next) {
-    const hShop = req.body;
+    const hShopRegUsername = req.body.hShopRegUsername;
+    const hShopRegEmail = req.body.hShopRegEmail;
+    const hShopRegNIC = req.body.hShopRegNIC;
+    const hShopHashedRegPassword = bcrypt.hashSync(req.body.hShopRegPassword, 10);
+    const hShopRegPassword = req.body.hShopRegPassword;
+    const hShopRegProfilePic = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
+    const hShopRegTelephone = req.body.hShopRegTelephone;
+    const hShopRegAddress = req.body.hShopRegAddress;
+    const hShopRegDistrict = req.body.hShopRegDistrict;
+    const hShopRegShopName = req.body.hShopRegShopName;
+    const hShopRegShopDesc = req.body.hShopRegShopDesc;
+    const hShopRegShopEmail = req.body.hShopRegShopEmail;
+    const hShopRegShopAddress = req.body.hShopRegShopAddress;
+    const hShopRegShopDistrict = req.body.hShopRegShopDistrict;
+    const hShopRegShopPostalCode = req.body.hShopRegShopPostalCode;
+    const hShopRegShopLocation = req.body.hShopRegShopLocation;
+    const hShopRegShopTelephone = req.body.hShopRegShopTelephone;
+    const hShopRegShopPic = 'http://localhost:4050/images/' + req.files[1].filename; // Note: set path dynamically
+    const hShopRegPricing = req.body.hShopRegPricing;
+
+    delete hShopRegPassword;
+    
+    const hShop = new HShopRegistration({
+        hShopRegUsername,
+        hShopRegEmail,
+        hShopRegNIC,
+        hShopHashedRegPassword,
+        hShopRegProfilePic,
+        hShopRegTelephone,
+        hShopRegAddress,
+        hShopRegDistrict,
+        hShopRegShopName,
+        hShopRegShopDesc,
+        hShopRegShopEmail,
+        hShopRegShopAddress,
+        hShopRegShopDistrict ,
+        hShopRegShopPostalCode,
+        hShopRegShopLocation,
+        hShopRegShopTelephone,
+        hShopRegShopPic,
+        hShopRegPricing
+    });
+
     console.log('registering the hShop', hShop);
-    req.hShop = await userController.insertHShop(hShop); // taking the user from the class to the request
+    req.hShop = await hShop.save(); // taking the user from the class to the request
+    console.log('posted');
     next();
 }
 
