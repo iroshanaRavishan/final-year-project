@@ -31,11 +31,15 @@ export class AuthService {
  
   private user$ = new Subject<User>();
   private designer$ = new Subject<Designer>();
+  private designers$ = new Subject<Designer[]>();
+
   private hShop$ = new Subject<HShop>();
+  private hShops$ = new Subject<HShop[]>();
   private apiUrl = '/api/auth/';
 
-  private designers$ = new Subject<Designer[]>();
+  
   private designers: Designer[] = [];
+  private hShops: HShop[] = [];
  
   constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService, private logService: LogService) { }
   
@@ -51,6 +55,20 @@ export class AuthService {
   }
   getDesignersStream() {
     return this.designers$.asObservable();
+  }
+
+  getHShops() {
+    this.httpClient.get<{ hShops: HShop[] }>(`${this.apiUrl}registerhshop`).pipe(
+      map((hShopData) => {
+        return hShopData.hShops;
+      })
+    ).subscribe((hShops) => {
+      this.hShops = hShops;
+      this.hShops$.next(this.hShops);
+    });
+  }
+  getHShopsStream() {
+    return this.hShops$.asObservable();
   }
 
   userLogin(userLogEmail: string, userLogPassword: string) {

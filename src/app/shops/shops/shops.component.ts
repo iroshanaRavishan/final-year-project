@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@core/auth/auth.service';
+import { HShop } from '@core/model/hShopRegistration';
 import { ProductDataService } from '@core/products/product-data.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shops',
@@ -9,12 +11,20 @@ import { Observable } from 'rxjs';
 })
 export class ShopsComponent implements OnInit {
 
+  hShops: HShop[] = [];
+  hShopSubscription: Subscription | any;
 
-  products: Observable<any> | any;
-  constructor(private productDataService: ProductDataService) { }
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.products = this.productDataService.getAllProducts();
+    this.authService.getHShops();
+    this.hShopSubscription = this.authService.getHShopsStream().subscribe((hShops: HShop[]) => {
+        this.hShops = hShops;
+      });
+  }
+
+  ngOnDestroy() {
+    this.hShopSubscription.unsubscribe();
   }
 
 }

@@ -20,7 +20,8 @@ router.post("/loginuser", asyncHandler(getUserByEmailIdAndPasswordUser), loginUs
 router.post("/logindesigner", asyncHandler(getUserByEmailIdAndPasswordDesigner), loginDesigner);
 router.post("/loginhshop", asyncHandler(getUserByEmailIdAndPasswordHShop), loginHShop);
 
-router.get("/registerdesigner", getProfiles, loginDesigner);
+router.get("/registerdesigner", getDesigners, loginDesigner);
+router.get("/registerhshop", getHShops, loginHShop);
 
 router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
 /**
@@ -156,10 +157,16 @@ async function insertHShop(req, res, next) {
     next();
 }
 
-async function getProfiles(req, res) {
+async function getDesigners(req, res) {
     const designers = await DesignerRegistration.find();
     console.log('found designers');
     res.status(200).json({ designers });
+};
+
+async function getHShops(req, res) {
+    const hShops = await HShopRegistration.find();
+    console.log('found hardware shops');
+    res.status(200).json({ hShops });
 };
 
 /**
