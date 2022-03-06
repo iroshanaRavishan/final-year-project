@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Designer } from '@core/model/designerRegistration';
 import { HShop } from '@core/model/hShopRegistration';
 import { EMPTY, of, Subject, throwError } from 'rxjs';
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError, map } from 'rxjs/operators';
 import { LogService } from '../../core-logs/log.service';
 import { User } from '../model/userRegistration';
 import { TokenStorageService } from './token-storage.service';
@@ -32,11 +32,26 @@ export class AuthService {
   private user$ = new Subject<User>();
   private designer$ = new Subject<Designer>();
   private hShop$ = new Subject<HShop>();
-  
   private apiUrl = '/api/auth/';
 
+  private designers$ = new Subject<Designer[]>();
+  private designers: Designer[] = [];
+ 
   constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService, private logService: LogService) { }
   
+  getDesigners() {
+    this.httpClient.get<{ designers: Designer[] }>(`${this.apiUrl}registerdesigner`).pipe(
+      map((designerData) => {
+        return designerData.designers;
+      })
+    ).subscribe((designers) => {
+      this.designers = designers;
+      this.designers$.next(this.designers);
+    });
+  }
+  getDesignersStream() {
+    return this.designers$.asObservable();
+  }
 
   userLogin(userLogEmail: string, userLogPassword: string) {
     const loginCredentials = {userLogEmail, userLogPassword};

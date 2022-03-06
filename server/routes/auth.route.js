@@ -20,6 +20,8 @@ router.post("/loginuser", asyncHandler(getUserByEmailIdAndPasswordUser), loginUs
 router.post("/logindesigner", asyncHandler(getUserByEmailIdAndPasswordDesigner), loginDesigner);
 router.post("/loginhshop", asyncHandler(getUserByEmailIdAndPasswordHShop), loginHShop);
 
+router.get("/registerdesigner", getProfiles, loginDesigner);
+
 router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
 /**
  * function of user inserting
@@ -153,6 +155,12 @@ async function insertHShop(req, res, next) {
     console.log('posted');
     next();
 }
+
+async function getProfiles(req, res) {
+    const designers = await DesignerRegistration.find();
+    console.log('found designers');
+    res.status(200).json({ designers });
+};
 
 /**
  * getting the user by emailId and password

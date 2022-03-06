@@ -1,31 +1,23 @@
 <h1>DESIGNER PAGE</h1>
 
-<div *ngFor="let product of (products | async)">
+<!-- <div *ngFor="let product of (products | async)">
    
     {{product.name}}
     <p>{{product.description}}</p>
     <p>{{product.id}} - this costs : $ {{product.price}}</p>
     <button>Buy this product {{product.name}}</button>
     <br/><br/><br/><br/>
+</div> -->
+
+<h1>All Profiles</h1>
+<hr />
+<div *ngIf="designers.length > 0">
+  <div *ngFor="let designer of designers">
+    <div>
+      <span>{{ designer.designerRegUsername }}</span>
+    </div>
+  </div>
 </div>
-
-
-    <div>
-        <input type="radio" name="btn" id="rb1">
-        <label for="rounded" data-checked="Selected"></label>
-    </div>
-  
-
-    <div>
-        <input type="radio" name="btn" id="rb2" >
-        <label for="rounded" data-checked="Selected"></label>
-    </div>
-  
-
-    <div>
-        <input type="radio" name="btn"  id="rb3">
-        <label for="rounded" data-checked="Selected"></label>
-    </div>
 
 
 
