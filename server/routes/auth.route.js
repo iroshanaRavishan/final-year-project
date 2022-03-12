@@ -4,20 +4,26 @@ const userController = require('../controllers/user.controller');
 const authController = require('../controllers/auth.controller');
 const passport = require('../middleware/passport');
 const router = express.Router();
+const userStorage = require('../helpers/storage');
+const UserRegistration = require('../models/userRegistration.model');
+const DesignerRegistration = require('../models/designerRegistration.model');
+const HShopRegistration =  require('../models/hShopRegistration.model');
+const bcrypt = require('bcrypt');
 
-//localhost:4050/api/auth/register
-router.post("/registeruser", asyncHandler(insertUser), loginUser);
-router.post("/registerdesigner", asyncHandler(insertDesigner), loginDesigner);
-router.post("/registerhshop", asyncHandler(insertHShop), loginHShop);
+
+//localhost:4050/api/auth/registeruser
+router.post("/registeruser", userStorage.single('userRegProfilePic'), asyncHandler(insertUser), loginUser);
+router.post("/registerdesigner", userStorage.array('designerRegProfilePics', 2), asyncHandler(insertDesigner), loginDesigner);
+router.post("/registerhshop", userStorage.array('hShopRegProfilePics', 2), asyncHandler(insertHShop), loginHShop);
 
 router.post("/loginuser", asyncHandler(getUserByEmailIdAndPasswordUser), loginUser);
 router.post("/logindesigner", asyncHandler(getUserByEmailIdAndPasswordDesigner), loginDesigner);
 router.post("/loginhshop", asyncHandler(getUserByEmailIdAndPasswordHShop), loginHShop);
 
-router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
-////router.get("/findme", passport.authenticate("jwt", { session: false}), loginDesigner);
-////router.get("/findme", passport.authenticate("jwt", { session: false}), loginHShop);
+router.get("/registerdesigner", getDesigners, loginDesigner);
+router.get("/registerhshop", getHShops, loginHShop);
 
+router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
 /**
  * function of user inserting
  * @param {*} req 
@@ -25,25 +31,143 @@ router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser
  * @param {*} next 
  */
 async function insertUser(req, res, next) {
-    const user = req.body;
-    console.log('registering the user', user);
-    req.user = await userController.insertUser(user); // taking the user from the class to the request
+    const userRegUsername = req.body.userRegUsername;
+    const userRegEmail = req.body.userRegEmail;
+    const userHashedRegPassword = bcrypt.hashSync(req.body.userRegPassword, 10);
+    const userRegPassword = req.body.userRegPassword;
+    const userRegProfilePic = 'http://localhost:4050/images/' + req.file.filename; // Note: set path dynamically
+    const userRegTelephone = req.body.userRegTelephone;
+    const userRegAddress = req.body.userRegAddress;
+    const userRegDistrict = req.body.userRegDistrict;
+    delete userRegPassword;
+    
+    const user = new UserRegistration({
+        userRegUsername,
+        userRegEmail,
+        userHashedRegPassword,
+        userRegProfilePic,
+        userRegTelephone,
+        userRegAddress,
+        userRegDistrict,
+      });
+
+    console.log('Saving the user to the DB', user);
+    req.user = await user.save(); // taking the user from the class to the request
+    console.log('posted');
     next();
 }
 
 async function insertDesigner(req, res, next) {
-    const designer = req.body;
+    const designerRegUsername = req.body.designerRegUsername;
+    const designerRegEmail = req.body.designerRegEmail;
+    const designerRegNIC = req.body.designerRegNIC;
+    const designerHashedRegPassword = bcrypt.hashSync(req.body.designerRegPassword, 10);
+    const designerRegPassword = req.body.designerRegPassword;
+    const designerRegProfilePic = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
+    const designerRegTelephone = req.body.designerRegTelephone;
+    const designerRegAddress = req.body.designerRegAddress;
+    const designerRegDistrict = req.body.designerRegDistrict;
+    const designerRegShopName = req.body.designerRegShopName;
+    const designerRegShopDesc = req.body.designerRegShopDesc;
+    const designerRegShopEmail = req.body.designerRegShopEmail;
+    const designerRegShopAddress = req.body.designerRegShopAddress;
+    const designerRegShopDistrict = req.body.designerRegShopDistrict;
+    const designerRegShopPostalCode = req.body.designerRegShopPostalCode;
+    const designerRegShopLocation = req.body.designerRegShopLocation;
+    const designerRegShopTelephone = req.body.designerRegShopTelephone;
+    const designerRegShopPic = 'http://localhost:4050/images/' + req.files[1].filename; // Note: set path dynamically
+    const designerRegPricing = req.body.designerRegPricing;
+
+    delete designerRegPassword;
+    
+    const designer = new DesignerRegistration({
+        designerRegUsername,
+        designerRegEmail,
+        designerRegNIC,
+        designerHashedRegPassword,
+        designerRegProfilePic,
+        designerRegTelephone,
+        designerRegAddress,
+        designerRegDistrict,
+        designerRegShopName,
+        designerRegShopDesc,
+        designerRegShopEmail,
+        designerRegShopAddress,
+        designerRegShopDistrict ,
+        designerRegShopPostalCode,
+        designerRegShopLocation,
+        designerRegShopTelephone,
+        designerRegShopPic,
+        designerRegPricing
+    });
+
     console.log('registering the designer', designer);
-    req.designer = await userController.insertDesigner(designer); // taking the user from the class to the request
+    req.designer = await designer.save(); // taking the user from the class to the request
+    console.log('posted');
     next();
 }
 
 async function insertHShop(req, res, next) {
-    const hShop = req.body;
+    const hShopRegUsername = req.body.hShopRegUsername;
+    const hShopRegEmail = req.body.hShopRegEmail;
+    const hShopRegNIC = req.body.hShopRegNIC;
+    const hShopHashedRegPassword = bcrypt.hashSync(req.body.hShopRegPassword, 10);
+    const hShopRegPassword = req.body.hShopRegPassword;
+    const hShopRegProfilePic = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
+    const hShopRegTelephone = req.body.hShopRegTelephone;
+    const hShopRegAddress = req.body.hShopRegAddress;
+    const hShopRegDistrict = req.body.hShopRegDistrict;
+    const hShopRegShopName = req.body.hShopRegShopName;
+    const hShopRegShopDesc = req.body.hShopRegShopDesc;
+    const hShopRegShopEmail = req.body.hShopRegShopEmail;
+    const hShopRegShopAddress = req.body.hShopRegShopAddress;
+    const hShopRegShopDistrict = req.body.hShopRegShopDistrict;
+    const hShopRegShopPostalCode = req.body.hShopRegShopPostalCode;
+    const hShopRegShopLocation = req.body.hShopRegShopLocation;
+    const hShopRegShopTelephone = req.body.hShopRegShopTelephone;
+    const hShopRegShopPic = 'http://localhost:4050/images/' + req.files[1].filename; // Note: set path dynamically
+    const hShopRegPricing = req.body.hShopRegPricing;
+
+    delete hShopRegPassword;
+    
+    const hShop = new HShopRegistration({
+        hShopRegUsername,
+        hShopRegEmail,
+        hShopRegNIC,
+        hShopHashedRegPassword,
+        hShopRegProfilePic,
+        hShopRegTelephone,
+        hShopRegAddress,
+        hShopRegDistrict,
+        hShopRegShopName,
+        hShopRegShopDesc,
+        hShopRegShopEmail,
+        hShopRegShopAddress,
+        hShopRegShopDistrict ,
+        hShopRegShopPostalCode,
+        hShopRegShopLocation,
+        hShopRegShopTelephone,
+        hShopRegShopPic,
+        hShopRegPricing
+    });
+
     console.log('registering the hShop', hShop);
-    req.hShop = await userController.insertHShop(hShop); // taking the user from the class to the request
+    req.hShop = await hShop.save(); // taking the user from the class to the request
+    console.log('posted');
     next();
 }
+
+async function getDesigners(req, res) {
+    const designers = await DesignerRegistration.find();
+    console.log('found designers');
+    res.status(200).json({ designers });
+};
+
+async function getHShops(req, res) {
+    const hShops = await HShopRegistration.find();
+    console.log('found hardware shops');
+    res.status(200).json({ hShops });
+};
 
 /**
  * getting the user by emailId and password

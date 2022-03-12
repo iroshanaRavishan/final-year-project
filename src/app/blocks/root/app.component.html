@@ -31,9 +31,9 @@
                     <li class="list-item-bottom"> 
                         <a *ngIf="!user && !designer && !hShop" class="list-item-link" routerLink="/auth">Register or Sign in</a>
                         <div>
-                            <a *ngIf="user">{{user.userRegUsername || user.designerRegUsername || user.hShopRegUsername}}  | <img class="profile-picture-on-nav" src="assets/image/sample-profile-1.jpg"> | <button (click)="logout()" > Logout</button></a>
-                            <a *ngIf="designer">{{designer.designerRegUsername}} | <img class="profile-picture-on-nav" src="assets/image/sample-profile-2.png"> |  <button (click)="logout()" >Logout</button></a>
-                            <a *ngIf="hShop">{{hShop.hShopRegUsername}} | <img class="profile-picture-on-nav" src="assets/image/shoppingcart.png"> |  <button (click)="logout()" >Logout</button></a>
+                            <a class="list-item-anchor" *ngIf="user">{{user.userRegUsername || user.designerRegUsername || user.hShopRegUsername}}  | <img class="profile-picture-on-nav" src= "{{user.hShopRegProfilePic}}"> | <button (click)="logout()" > Logout</button></a>
+                            <a class="list-item-anchor" *ngIf="designer">{{designer.designerRegUsername}} | <img class="profile-picture-on-nav" src={{designer.designerRegProfilePic}}> |  <button (click)="logout()" >Logout</button></a>
+                            <a class="list-item-anchor" *ngIf="hShop">{{hShop.hShopRegUsername}} | <img class="profile-picture-on-nav" src={{hShop.hShopRegProfilePic}}> |  <button (click)="logout()" >Logout</button></a>
                         </div>
                     </li>
                 </ul>

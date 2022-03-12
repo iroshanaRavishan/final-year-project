@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '@core/model/userRegistration';
 import { AuthService } from 'src/app/core/auth/auth.service';
 
 
@@ -11,7 +12,25 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 })
 export class LoginSignupComponent implements OnInit {
 
+  // User: User |any;
   error: string | any;
+  submitted = false;
+  
+  userRegGroup!: FormGroup;
+  designerRegGroup!: FormGroup;
+  hShopRegGroup!: FormGroup;
+
+  imageDataUser: string | any; 
+  imageDataDesignerUserPro: string | any; 
+  imageDataDesignerShopPro: string | any; 
+  imageDataHShopUserPro: string | any; 
+  imageDataHShopShopPro: string | any; 
+
+  fileTypeUser: String | any;
+  fileTypeDesignerUserPro: String | any;
+  fileTypeDesignerShopPro: String | any;
+  fileTypeHShopUserPro: String | any;
+  fileTypeHShopShopPro: String | any;
 
   userLogEmail: string | any;
   userLogPassword: string | any;
@@ -22,63 +41,69 @@ export class LoginSignupComponent implements OnInit {
   hShopLogEmail: string | any;
   hShopLogPassword:string | any;
 
-  //common user group for users
-  userRegGroup = new FormGroup({
-    userRegUsername: new FormControl ('', [Validators.required]),
-    userRegEmail: new FormControl('', [Validators.required, Validators.email]),
-    userRegPassword: new FormControl ('', [Validators.required]),
-    userRegConfirmPassword: new FormControl ('', [Validators.required, this.userPasswordMatch]),
-    userRegProfilePic: new FormControl (''), 
-    userRegTelephone: new FormControl ('', [Validators.required]),
-    userRegAddress: new FormControl ('', [Validators.required]),
-    userRegDistrict: new FormControl ('', [Validators.required])
-  });
+  createUserRegForm(){
+    //common user group for users
+    this.userRegGroup = new FormGroup({
+      userRegUsername: new FormControl ('', [Validators.required]),
+      userRegEmail: new FormControl('', [Validators.required, Validators.email]),
+      userRegPassword: new FormControl ('', [Validators.required]),
+      userRegConfirmPassword: new FormControl ('', [Validators.required, this.userPasswordMatch]),
+      userRegProfilePic: new FormControl (null), 
+      userRegTelephone: new FormControl ('', [Validators.required]),
+      userRegAddress: new FormControl ('', [Validators.required]),
+      userRegDistrict: new FormControl ('', [Validators.required])
+    });
+  }
 
-  //common designer group for designers
-  designerRegGroup = new FormGroup({
-    designerRegUsername: new FormControl ('', [Validators.required]),
-    designerRegEmail: new FormControl('', [Validators.required, Validators.email]),
-    designerRegNIC: new FormControl ('', [Validators.required]),
-    designerRegPassword: new FormControl ('', [Validators.required]),
-    designerRegConfirmPassword: new FormControl ('', [Validators.required, this.designerPasswordMatch]),
-    designerRegProfilePic: new FormControl (''),
-    designerRegTelephone: new FormControl ('', [Validators.required]),
-    designerRegAddress: new FormControl ('', [Validators.required]),
-    designerRegDistrict: new FormControl ('', [Validators.required]),
-    designerRegShopName: new FormControl ('', [Validators.required]),
-    designerRegShopDesc: new FormControl('', [Validators.required]),
-    designerRegShopEmail: new FormControl('', [Validators.required, Validators.email]),
-    designerRegShopAddress: new FormControl ('', [Validators.required]),
-    designerRegShopDistrict: new FormControl ('', [Validators.required]),
-    designerRegShopPostalCode: new FormControl ('', [Validators.required]),
-    designerRegShopLocation: new FormControl('', [Validators.required]),
-    designerRegShopTelephone: new FormControl ('', [Validators.required]),
-    designerRegShopPic: new FormControl ('', [Validators.required]),
-    designerRegPricing: new FormControl ('', [Validators.required])
-  });
+  createDesignerRegForm(){
+    //common designer group for designers
+    this.designerRegGroup = new FormGroup({
+      designerRegUsername: new FormControl ('', [Validators.required]),
+      designerRegEmail: new FormControl('', [Validators.required, Validators.email]),
+      designerRegNIC: new FormControl ('', [Validators.required]),
+      designerRegPassword: new FormControl ('', [Validators.required]),
+      designerRegConfirmPassword: new FormControl ('', [Validators.required, this.designerPasswordMatch]),
+      designerRegProfilePic: new FormControl (null),
+      designerRegTelephone: new FormControl ('', [Validators.required]),
+      designerRegAddress: new FormControl ('', [Validators.required]),
+      designerRegDistrict: new FormControl ('', [Validators.required]),
+      designerRegShopName: new FormControl ('', [Validators.required]),
+      designerRegShopDesc: new FormControl('', [Validators.required]),
+      designerRegShopEmail: new FormControl('', [Validators.required, Validators.email]),
+      designerRegShopAddress: new FormControl ('', [Validators.required]),
+      designerRegShopDistrict: new FormControl ('', [Validators.required]),
+      designerRegShopPostalCode: new FormControl ('', [Validators.required]),
+      designerRegShopLocation: new FormControl('', [Validators.required]),
+      designerRegShopTelephone: new FormControl ('', [Validators.required]),
+      designerRegShopPic: new FormControl (null),
+      designerRegPricing: new FormControl ('', [Validators.required])
+    });
+  }
 
+  createHShopRegForm(){
     //common shop group for hardware shops
-  hShopRegGroup = new FormGroup({
-    hShopRegUsername: new FormControl ('', [Validators.required]),
-    hShopRegEmail: new FormControl('', [Validators.required, Validators.email]),
-    hShopRegNIC: new FormControl ('', [Validators.required]),
-    hShopRegPassword: new FormControl ('', [Validators.required]),
-    hShopRegConfirmPassword: new FormControl ('', [Validators.required, this.hShopPasswordMatch]),
-    hShopRegProfilePic: new FormControl (''),
-    hShopRegTelephone: new FormControl ('', [Validators.required]),
-    hShopRegAddress: new FormControl ('', [Validators.required]),
-    hShopRegDistrict: new FormControl ('', [Validators.required]),
-    hShopRegShopName: new FormControl ('', [Validators.required]),
-    hShopRegShopDesc: new FormControl('', [Validators.required]),
-    hShopRegShopEmail: new FormControl('', [Validators.required, Validators.email]),
-    hShopRegShopAddress: new FormControl ('', [Validators.required]),
-    hShopRegShopDistrict: new FormControl ('', [Validators.required]),
-    hShopRegShopPostalCode: new FormControl ('', [Validators.required]),
-    hShopRegShopLocation: new FormControl('', [Validators.required]),
-    hShopRegShopTelephone: new FormControl ('', [Validators.required]),
-    hShopRegShopPic: new FormControl ('', [Validators.required]),
-    hShopRegPricing: new FormControl ('', [Validators.required])
-  });
+    this.hShopRegGroup = new FormGroup({
+      hShopRegUsername: new FormControl ('', [Validators.required]),
+      hShopRegEmail: new FormControl('', [Validators.required, Validators.email]),
+      hShopRegNIC: new FormControl ('', [Validators.required]),
+      hShopRegPassword: new FormControl ('', [Validators.required]),
+      hShopRegConfirmPassword: new FormControl ('', [Validators.required, this.hShopPasswordMatch]),
+      hShopRegProfilePic: new FormControl (null),
+      hShopRegTelephone: new FormControl ('', [Validators.required]),
+      hShopRegAddress: new FormControl ('', [Validators.required]),
+      hShopRegDistrict: new FormControl ('', [Validators.required]),
+      hShopRegShopName: new FormControl ('', [Validators.required]),
+      hShopRegShopDesc: new FormControl('', [Validators.required]),
+      hShopRegShopEmail: new FormControl('', [Validators.required, Validators.email]),
+      hShopRegShopAddress: new FormControl ('', [Validators.required]),
+      hShopRegShopDistrict: new FormControl ('', [Validators.required]),
+      hShopRegShopPostalCode: new FormControl ('', [Validators.required]),
+      hShopRegShopLocation: new FormControl('', [Validators.required]),
+      hShopRegShopTelephone: new FormControl ('', [Validators.required]),
+      hShopRegShopPic: new FormControl (null),
+      hShopRegPricing: new FormControl ('', [Validators.required])
+    });
+  }
 
   constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder) {  }
   
@@ -104,7 +129,126 @@ export class LoginSignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.createUserRegForm();
+    this.createDesignerRegForm();
+    this.createHShopRegForm();
+  }
+
+  get userRegFormValidation(){
+    return this.userRegGroup.controls;
+  }
+
+  get designerRegFormValidation(){
+    return this.designerRegGroup.controls;
+  }
+
+  get hShopRegFormValidation(){
+    return this.hShopRegGroup.controls;
+  }
+
+  onFileSelectUser(event: Event) { //execute when fire on selecting the file form the input
+    console.log("A file selected");
+    const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
+    this.userRegGroup.patchValue({ userRegProfilePic: file }); // storing on the allocated variavle of the form
+    const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
+
+    if (file && allowedMimeTypes.includes(file.type)) {
+      const reader = new FileReader(); // this reads the file asynchronusly and store the content
+      reader.onload = () => {
+        this.imageDataUser = reader.result as string;
+        this.fileTypeUser = null;
+      }
+      reader.readAsDataURL(file);
+    } 
+    else { // if the file type is not applicable
+      this.fileTypeUser = "File type is not acceptable";
+      this.imageDataUser = null;
+    }
+    console.log(this.userRegGroup.value.userRegProfilePic);
+  }
+
+  onFileSelectDesignerUserPro(event: Event) { //execute when fire on selecting the file form the input
+    console.log("A file selected");
+    const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
+    this.designerRegGroup.patchValue({ designerRegProfilePic: file });
+    const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
+
+    if (file && allowedMimeTypes.includes(file.type)) {
+      const reader = new FileReader(); // this reads the file asynchronusly and store the content
+      reader.onload = () => {
+        this.imageDataDesignerUserPro = reader.result as string;
+        this.fileTypeDesignerUserPro = null;
+      }
+      reader.readAsDataURL(file);
+    } 
+    else { // if the file type is not applicable
+      this.fileTypeDesignerUserPro = "File type is not acceptable";
+      this.imageDataDesignerUserPro = null;
+    }
+    console.log(this.designerRegGroup.value.designerRegProfilePic);
+  }
+
+  onFileSelectDesignerShopPro(event: Event) { //execute when fire on selecting the file form the input
+    console.log("A file selected");
+    const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
+    this.designerRegGroup.patchValue({ designerRegShopPic: file });
+    const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
+
+    if (file && allowedMimeTypes.includes(file.type)) {
+      const reader = new FileReader(); // this reads the file asynchronusly and store the content
+      reader.onload = () => {
+        this.imageDataDesignerShopPro = reader.result as string;
+        this.fileTypeDesignerShopPro = null;
+      }
+      reader.readAsDataURL(file);
+    } 
+    else { // if the file type is not applicable
+      this.fileTypeDesignerShopPro = "File type is not acceptable";
+      this.imageDataDesignerShopPro = null;
+    }
+    console.log(this.designerRegGroup.value.designerRegShopPic);
+  }
+
+  onFileSelectHShopUserPro(event: Event) { //execute when fire on selecting the file form the input
+    console.log("A file selected");
+    const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
+    this.hShopRegGroup.patchValue({ hShopRegProfilePic: file });
+    const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
+
+    if (file && allowedMimeTypes.includes(file.type)) {
+      const reader = new FileReader(); // this reads the file asynchronusly and store the content
+      reader.onload = () => {
+        this.imageDataHShopUserPro = reader.result as string;
+        this.fileTypeHShopUserPro = null;
+      }
+      reader.readAsDataURL(file);
+    } 
+    else { // if the file type is not applicable
+      this.fileTypeHShopUserPro = "File type is not acceptable";
+      this.imageDataHShopUserPro = null;
+    }
+    console.log(this.hShopRegGroup.value.hShopRegProfilePic);
+  }
+
+  onFileSelectHShopShopPro(event: Event) { //execute when fire on selecting the file form the input
+    console.log("A file selected");
+    const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
+    this.hShopRegGroup.patchValue({ hShopRegShopPic: file });
+    const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
+
+    if (file && allowedMimeTypes.includes(file.type)) {
+      const reader = new FileReader(); // this reads the file asynchronusly and store the content
+      reader.onload = () => {
+        this.imageDataHShopShopPro = reader.result as string;
+        this.fileTypeHShopShopPro = null;
+      }
+      reader.readAsDataURL(file);
+    } 
+    else { // if the file type is not applicable
+      this.fileTypeHShopShopPro = "File type is not acceptable";
+      this.imageDataHShopShopPro = null;
+    }
+    console.log(this.hShopRegGroup.value.hShopRegProfilePic);
   }
 
   idSignup:any = "userSU";
@@ -120,18 +264,40 @@ export class LoginSignupComponent implements OnInit {
   }
 
   userRegistration(){
-    const user = this.userRegGroup.getRawValue();
-    this.authService.userRegistration(user).subscribe(s => this.router.navigate(['auth/signupsuccess']));
+    this.submitted = true;
+    if(this.userRegGroup.invalid){
+      return;
+    }
+    const user: File = this.userRegGroup.getRawValue();
+    this.authService.userRegistration(user, this.userRegGroup.value.userRegProfilePic).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }
 
   designerRegistration(){
-    const designer = this.designerRegGroup.getRawValue();
-    this.authService.designerRegistration(designer).subscribe(s => this.router.navigate(['auth/signupsuccess']));
+    this.submitted = true;
+    if(this.designerRegGroup.invalid){
+      return;
+    }
+
+    let designerRegProfilePics : File[] = [];
+    designerRegProfilePics.push(this.designerRegGroup.value.designerRegProfilePic);
+    designerRegProfilePics.push(this.designerRegGroup.value.designerRegShopPic);
+
+    const designer: File = this.designerRegGroup.getRawValue();
+    this.authService.designerRegistration(designer, designerRegProfilePics).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }
 
   hShopRegistration(){
-    const hShop = this.hShopRegGroup.getRawValue();
-    this.authService.hShopRegistration(hShop).subscribe(s => this.router.navigate(['auth/signupsuccess']));
+    this.submitted = true;
+    if(this.hShopRegGroup.invalid){
+      return;
+    }
+
+    let hShopRegProfilePics : File[] = [];
+    hShopRegProfilePics.push(this.hShopRegGroup.value.hShopRegProfilePic);
+    hShopRegProfilePics.push(this.hShopRegGroup.value.hShopRegShopPic);
+
+    const hShop: File = this.hShopRegGroup.getRawValue();
+    this.authService.hShopRegistration(hShop, hShopRegProfilePics).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }
 
 

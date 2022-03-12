@@ -9,6 +9,7 @@ import { DesignersSignupComponent } from './designers-signup/designers-signup.co
 import { ShopsSignupComponent } from './shops-signup/shops-signup.component';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 
 
 
@@ -21,6 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     ShopsSignupComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     AuthRoutingModule,
     SharedModule,

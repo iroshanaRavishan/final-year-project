@@ -1,9 +1,12 @@
-<h1>SHOP PAGE</h1>
-
-<div *ngFor="let product of (products | async)">
-    {{product.name}}
-    <p>{{product.description}}</p>
-    <p>{{product.id}} - this costs : $ {{product.price}}</p>
-    <button>Buy this product {{product.name}}</button>
-    <br/><br/><br/><br/>
+<h1>All Shops</h1>
+<hr />
+<div *ngIf="hShops.length > 0">
+  <div *ngFor="let hShop of hShops">
+    <div>
+      <span>{{ hShop.hShopRegUsername }}</span>
+    </div>
+  </div>
 </div>
+
+
+

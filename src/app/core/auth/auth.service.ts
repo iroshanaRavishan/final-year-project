@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Designer } from '@core/model/designerRegistration';
 import { HShop } from '@core/model/hShopRegistration';
 import { EMPTY, of, Subject, throwError } from 'rxjs';
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError, map } from 'rxjs/operators';
 import { LogService } from '../../core-logs/log.service';
 import { User } from '../model/userRegistration';
 import { TokenStorageService } from './token-storage.service';
@@ -31,12 +31,45 @@ export class AuthService {
  
   private user$ = new Subject<User>();
   private designer$ = new Subject<Designer>();
+  private designers$ = new Subject<Designer[]>();
+
   private hShop$ = new Subject<HShop>();
-  
+  private hShops$ = new Subject<HShop[]>();
   private apiUrl = '/api/auth/';
 
+  
+  private designers: Designer[] = [];
+  private hShops: HShop[] = [];
+ 
   constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService, private logService: LogService) { }
   
+  getDesigners() {
+    this.httpClient.get<{ designers: Designer[] }>(`${this.apiUrl}registerdesigner`).pipe(
+      map((designerData) => {
+        return designerData.designers;
+      })
+    ).subscribe((designers) => {
+      this.designers = designers;
+      this.designers$.next(this.designers);
+    });
+  }
+  getDesignersStream() {
+    return this.designers$.asObservable();
+  }
+
+  getHShops() {
+    this.httpClient.get<{ hShops: HShop[] }>(`${this.apiUrl}registerhshop`).pipe(
+      map((hShopData) => {
+        return hShopData.hShops;
+      })
+    ).subscribe((hShops) => {
+      this.hShops = hShops;
+      this.hShops$.next(this.hShops);
+    });
+  }
+  getHShopsStream() {
+    return this.hShops$.asObservable();
+  }
 
   userLogin(userLogEmail: string, userLogPassword: string) {
     const loginCredentials = {userLogEmail, userLogPassword};
@@ -123,7 +156,18 @@ export class AuthService {
     return this.hShop$.asObservable();
   }
 
-  userRegistration(userToSave: any) {
+  userRegistration(user: any, image: File) {
+    const userToSave = new FormData();
+
+    userToSave.append("userRegUsername", user.userRegUsername);
+    userToSave.append("userRegEmail", user.userRegEmail);
+    userToSave.append("userRegPassword", user.userRegPassword);
+    userToSave.append("userRegConfirmPassword", user.userRegConfirmPassword);
+    userToSave.append("userRegProfilePic", image);
+    userToSave.append("userRegTelephone", user.userRegTelephone);
+    userToSave.append("userRegAddress", user.userRegAddress);
+    userToSave.append("userRegDistrict", user.userRegDistrict);
+   
     return this.httpClient.post<any>(`${this.apiUrl}registeruser`, userToSave).pipe(
       switchMap(({user, token})=> { // separating the user object to user and token from the payload
         this.setUser(user); //setting the user 
@@ -138,7 +182,29 @@ export class AuthService {
     );
   }
 
-  designerRegistration(designerToSave: any) {
+  designerRegistration(designer: any, imgFiles: File[]) {
+    const designerToSave = new FormData();
+
+    designerToSave.append("designerRegUsername", designer.designerRegUsername);
+    designerToSave.append("designerRegEmail", designer.designerRegEmail);
+    designerToSave.append("designerRegNIC", designer.designerRegNIC);
+    designerToSave.append("designerRegPassword", designer.designerRegPassword);
+    designerToSave.append("designerRegConfirmPassword", designer.designerRegConfirmPassword);
+    designerToSave.append("designerRegProfilePics", imgFiles[0]);
+    designerToSave.append("designerRegTelephone", designer.designerRegTelephone);
+    designerToSave.append("designerRegAddress", designer.designerRegAddress);
+    designerToSave.append("designerRegDistrict", designer.designerRegDistrict);
+    designerToSave.append("designerRegShopName", designer.designerRegShopName);
+    designerToSave.append("designerRegShopDesc", designer.designerRegShopDesc);
+    designerToSave.append("designerRegShopEmail", designer.designerRegShopEmail);
+    designerToSave.append("designerRegShopAddress", designer.designerRegShopAddress);
+    designerToSave.append("designerRegShopDistrict", designer.designerRegShopDistrict);
+    designerToSave.append("designerRegShopPostalCode", designer.designerRegShopPostalCode);
+    designerToSave.append("designerRegShopLocation", designer.designerRegShopLocation);
+    designerToSave.append("designerRegShopTelephone", designer.designerRegShopTelephone);
+    designerToSave.append("designerRegProfilePics", imgFiles[1]);
+    designerToSave.append("designerRegPricing", designer.designerRegPricing);
+
     return this.httpClient.post<any>(`${this.apiUrl}registerdesigner`, designerToSave).pipe(
       switchMap(({designer, token})=> { // separating the user object to user and token from the payload
         this.setDesigner(designer); //setting the user 
@@ -153,7 +219,29 @@ export class AuthService {
     );
   }
 
-  hShopRegistration(hShopToSave: any) {
+  hShopRegistration(hShop: any, imgFiles: File[]) {
+    const hShopToSave = new FormData();
+
+    hShopToSave.append("hShopRegUsername", hShop.hShopRegUsername);
+    hShopToSave.append("hShopRegEmail", hShop.hShopRegEmail);
+    hShopToSave.append("hShopRegNIC", hShop.hShopRegNIC);
+    hShopToSave.append("hShopRegPassword", hShop.hShopRegPassword);
+    hShopToSave.append("hShopRegConfirmPassword", hShop.hShopRegConfirmPassword);
+    hShopToSave.append("hShopRegProfilePics", imgFiles[0]);
+    hShopToSave.append("hShopRegTelephone", hShop.hShopRegTelephone);
+    hShopToSave.append("hShopRegAddress", hShop.hShopRegAddress);
+    hShopToSave.append("hShopRegDistrict", hShop.hShopRegDistrict);
+    hShopToSave.append("hShopRegShopName", hShop.hShopRegShopName);
+    hShopToSave.append("hShopRegShopDesc", hShop.hShopRegShopDesc);
+    hShopToSave.append("hShopRegShopEmail", hShop.hShopRegShopEmail);
+    hShopToSave.append("hShopRegShopAddress", hShop.hShopRegShopAddress);
+    hShopToSave.append("hShopRegShopDistrict", hShop.hShopRegShopDistrict);
+    hShopToSave.append("hShopRegShopPostalCode", hShop.hShopRegShopPostalCode);
+    hShopToSave.append("hShopRegShopLocation", hShop.hShopRegShopLocation);
+    hShopToSave.append("hShopRegShopTelephone", hShop.hShopRegShopTelephone);
+    hShopToSave.append("hShopRegProfilePics", imgFiles[1]);
+    hShopToSave.append("hShopRegPricing", hShop.hShopRegPricing);
+
     return this.httpClient.post<any>(`${this.apiUrl}registerhshop`, hShopToSave).pipe(
       switchMap(({hShop, token})=> { // separating the user object to user and token from the payload
         this.setHShop(hShop); //setting the user 

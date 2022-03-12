@@ -174,7 +174,7 @@ input[type="password"]:hover{
       border-width: 0.1em; 
       color: #555f66;
       padding: 0;
-      margin-bottom: 2em;
+      margin-bottom: 1em;
     }
     .upload-box:hover{
       border-color: rgb(255, 230, 90);
@@ -195,6 +195,24 @@ input[type="password"]:hover{
       font-weight: 200;
     
     }
+    
+    .profile-picture-on-login-signup {
+      padding-left: 0em;
+      margin-left: 0em;
+      margin-bottom: 2em;
+      vertical-align: middle;
+      width: 100px;
+      height: 100px;
+      box-sizing: border-box;
+      justify-content: center;
+      align-items: center;
+      clip-path: circle();
+      box-shadow: 2px 2px 20px#535151;
+      object-fit: cover;
+      overflow: hidden;
+      transition-duration: 0.5s;
+      transition-delay: 0.5s;
+  }
     
 
 
@@ -238,6 +256,17 @@ input[type="password"]:hover{
     margin-bottom: 2em;
     font-size: .8em;
     color: #dc3545;
+}
+.pricing-area{
+  margin-left: -2.5em;
+  margin-top: 2em;
+  text-align: center;
+  font-size: 1.5em;
+  padding-top: 1em;
+  background-color: #dc354628;
+  height: 2.5em;
+  border-radius: 5px;
+  letter-spacing: 2px;
 }
 
 .down-form-container{

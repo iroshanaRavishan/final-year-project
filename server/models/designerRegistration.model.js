@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 // schema for users
 const DesignerSchema = new mongoose.Schema({
     designerRegUsername : {type : String, required: true},
-    designerRegEmail : {type : String, required: true, unique: true, match: [
+    designerRegEmail : {type : String, required: true, match: [
             /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             'Please enter a valid email'
         ]
     },
-    designerRegNIC : {type : String, required: true, unique: true},
+    designerRegNIC : {type : String, required: true},
     designerHashedRegPassword : {type : String, required: true},
     createdAt : {type : Date, default: Date.now},
     designerRoles : [{type : String}],
@@ -24,7 +24,7 @@ const DesignerSchema = new mongoose.Schema({
     designerRegShopPostalCode : {type : String, required: true},
     designerRegShopLocation : {type : String, required: true},
     designerRegShopTelephone : {type : String, required: true},
-    designerRegShopPic:  {type : String, required: true},
+    designerRegShopPic:  {type : String},
     designerRegPricing : {type : String, required: true}
     
 
