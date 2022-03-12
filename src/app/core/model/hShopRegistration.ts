@@ -8,7 +8,7 @@ export interface HShop{
     hShopRegTelephone: string,
     hShopRegAddress: string,
     hShopRegDistrict: string,
-    hShopRoles?: any[],
+    Roles?: any[],
     hShopRegShopName: string,
     hShopRegShopDesc: string,
     hShopRegShopEmail: string,

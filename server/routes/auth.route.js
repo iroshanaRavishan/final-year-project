@@ -39,6 +39,8 @@ async function insertUser(req, res, next) {
     const userRegTelephone = req.body.userRegTelephone;
     const userRegAddress = req.body.userRegAddress;
     const userRegDistrict = req.body.userRegDistrict;
+    const Roles = 'user';
+
     delete userRegPassword;
     
     const user = new UserRegistration({
@@ -49,6 +51,7 @@ async function insertUser(req, res, next) {
         userRegTelephone,
         userRegAddress,
         userRegDistrict,
+        Roles
       });
 
     console.log('Saving the user to the DB', user);
@@ -77,6 +80,7 @@ async function insertDesigner(req, res, next) {
     const designerRegShopTelephone = req.body.designerRegShopTelephone;
     const designerRegShopPic = 'http://localhost:4050/images/' + req.files[1].filename; // Note: set path dynamically
     const designerRegPricing = req.body.designerRegPricing;
+    const Roles = 'vender';
 
     delete designerRegPassword;
     
@@ -98,7 +102,8 @@ async function insertDesigner(req, res, next) {
         designerRegShopLocation,
         designerRegShopTelephone,
         designerRegShopPic,
-        designerRegPricing
+        designerRegPricing,
+        Roles
     });
 
     console.log('registering the designer', designer);
@@ -127,6 +132,7 @@ async function insertHShop(req, res, next) {
     const hShopRegShopTelephone = req.body.hShopRegShopTelephone;
     const hShopRegShopPic = 'http://localhost:4050/images/' + req.files[1].filename; // Note: set path dynamically
     const hShopRegPricing = req.body.hShopRegPricing;
+    const Roles = 'vender';
 
     delete hShopRegPassword;
     
@@ -148,7 +154,8 @@ async function insertHShop(req, res, next) {
         hShopRegShopLocation,
         hShopRegShopTelephone,
         hShopRegShopPic,
-        hShopRegPricing
+        hShopRegPricing,
+        Roles
     });
 
     console.log('registering the hShop', hShop);

@@ -8,7 +8,7 @@ export interface Designer{
     designerRegTelephone: string,
     designerRegAddress: string,
     designerRegDistrict: string,
-    designerRoles?: any[],
+    Roles?: any[],
     designerRegShopName: string,
     designerRegShopDesc: string,
     designerRegShopEmail: string,

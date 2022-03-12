@@ -350,12 +350,12 @@ export class LoginSignupComponent implements OnInit {
 
   designerLogin(){
     this.error = '';
-    this.authService.designerLogin(this.designerLogEmail, this.designerLogPassword).subscribe(s => this.router.navigate(['auth/signupsuccess']), e => (this.error = e));
+    this.authService.designerLogin(this.designerLogEmail, this.designerLogPassword).subscribe(s => this.router.navigate(['auth/designersignup']), e => (this.error = e));
   }
 
   hShopLogin(){
     this.error = '';
-    this.authService.hShopLogin(this.hShopLogEmail, this.hShopLogPassword).subscribe(s => this.router.navigate(['auth/signupsuccess']),  e => (this.error = e));
+    this.authService.hShopLogin(this.hShopLogEmail, this.hShopLogPassword).subscribe(s => this.router.navigate(['auth/shopssignup']),  e => (this.error = e));
   }
 
 

@@ -11,7 +11,7 @@ const DesignerSchema = new mongoose.Schema({
     designerRegNIC : {type : String, required: true},
     designerHashedRegPassword : {type : String, required: true},
     createdAt : {type : Date, default: Date.now},
-    designerRoles : [{type : String}],
+    Roles : [{type : String}],
     designerRegProfilePic: {type: String},
     designerRegTelephone : {type : String, required: true},
     designerRegAddress : {type : String, required: true},

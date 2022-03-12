@@ -1,12 +1,20 @@
-<h1>All Designers</h1>
-<hr />
 <div *ngIf="designers.length > 0">
   <div *ngFor="let designer of designers">
-    <div>
-      <span>{{ designer.designerRegUsername }}</span>
-    </div>
+    <section class="items">
+      <div class="container">
+        <div class="card">
+           <img src={{designer.designerRegShopPic}} class="profile-picture" alt="{{designer.designerRegShopPic}}"> 
+           <div class="info-container">
+            <span class="shop-name">{{designer.designerRegShopName}}</span>
+            <span class="shop-description">{{designer.designerRegShopDesc}}</span> 
+            <button class="btn">View</button> 
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-</div>
+</div> 
+
 
 
 

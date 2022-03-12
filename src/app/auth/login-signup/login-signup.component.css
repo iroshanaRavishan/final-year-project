@@ -113,8 +113,6 @@ input[type="password"]:hover{
     .btn:hover{
         background-color: rgb(9, 83, 126);
         color: #ffffff;
-
-        
     }
 
     .btn-reset{
