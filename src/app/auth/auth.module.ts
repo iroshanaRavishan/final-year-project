@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import { EditDesignerComponent } from './edit-designer/edit-designer.component';
 import { DashboardDesignerComponent } from './dashboard-designer/dashboard-designer.component';
+import { LogoutPopupComponent } from './logout-popup/logout-popup.component';
 
 
 
@@ -23,7 +24,8 @@ import { DashboardDesignerComponent } from './dashboard-designer/dashboard-desig
     DesignersSignupComponent,
     ShopsSignupComponent,
     EditDesignerComponent,
-    DashboardDesignerComponent
+    DashboardDesignerComponent,
+    LogoutPopupComponent
   ],
   imports: [
     FormsModule,

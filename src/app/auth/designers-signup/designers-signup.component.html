@@ -19,25 +19,25 @@
                          <!-- routerLink="/auth/designersignup/edit/{{designer._id}}" -->
                         <a>
                             <span class="icon"><img src="assets/image/help.png" alt=""></span>
-                            <span class="title">Update Data</span>
+                            <span class="title">Update User Data</span>
                         </a>
                     </li>
                     <li class="hoveredItem" (click)="callActivating('settings',designer)">
                         <a>
                             <span class="icon"><img src="assets/image/setting.png" alt=""></span>
-                            <span class="title">Settings</span>
+                            <span class="title">Update Images</span>
                         </a>
                     </li>
                     <li class="hoveredItem" (click)="callActivating('changepass',designer)">
                         <a>
                             <span class="icon"><img src="assets/image/password.png" alt=""></span>
-                            <span class="title">Password</span>
+                            <span class="title">Change Password</span>
                         </a>
                     </li>
-                    <li class="hoveredItem" (click)="callActivating('signup',designer)">
+                    <li class="hoveredItem" (click)="callActivating('logout',designer)"> <!-- (click)="logout()" -->
                         <a>
                             <span class="icon"><img src="assets/image/logout.png" alt=""></span>
-                            <span class="title">Sign Up</span>
+                            <span class="title">Log Out</span>
                         </a>
                     </li>
                 </ul>
@@ -109,6 +109,9 @@
             </div>
             <div *ngIf="compo=='updatedata'">
                 <app-edit-designer [designer]="designerId"></app-edit-designer>
+            </div>
+            <div *ngIf="compo=='logout'">
+                <app-logout-popup (event)="receivePath($event)"></app-logout-popup>
             </div>
         </div>      
     </div>
