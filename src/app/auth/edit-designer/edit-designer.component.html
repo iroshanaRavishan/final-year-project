@@ -1,0 +1,116 @@
+    <!-- <p>edit-designer works! the Name is :{{abc.designerRegUsername}}</p> -->
+    <div id="downDesignerSU" class="down-form-container">
+        <form [formGroup]="designerRegGroup" enctype="multipart/form-data" method="post">
+          
+          <div class="down-form-left">
+            <h3 class="down-form-form-section">Personal Information</h3>
+              <div>
+                <label>Username<span class="req"> *</span></label>
+                <input type="text" formControlName="designerRegUsername" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegUsername.errors }"  placeholder="Enter Username" required>                                
+                <div *ngIf="submitted && designerRegFormValidation.designerRegUsername.errors" class="invalid-feedback">
+                  <div *ngIf="designerRegFormValidation.designerRegUsername.errors.required" >Username is required !</div>
+                </div>
+              </div> 
+              
+              <div>
+                <label>Email Address<span class="req"> *</span></label>
+                <input type="email" formControlName="designerRegEmail" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegEmail.errors }"placeholder="Enter Email" required>                 
+                <div *ngIf="submitted && designerRegFormValidation.designerRegEmail.errors" class="invalid-feedback">
+                  <div *ngIf="designerRegFormValidation.designerRegEmail.errors.required" >Email is required !</div>
+                </div>
+              </div>
+              
+              <div>
+                <label>NIC Number<span class="req"> *</span></label>
+                <input type="text" formControlName="designerRegNIC" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegNIC.errors }" placeholder="Enter NIC Number" required>
+                <div *ngIf="submitted && designerRegFormValidation.designerRegNIC.errors" class="invalid-feedback">
+                  <div *ngIf="designerRegFormValidation.designerRegNIC.errors.required" >NIC is required !</div>
+                </div>
+              </div>
+    
+            <h3 class="down-form-form-section">Contact Information</h3>  
+              <div>
+                <label>Telephone<span class="req"> *</span></label>
+                <input type="text" formControlName="designerRegTelephone" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegTelephone.errors }" placeholder="Enter Telephone" required>
+                <div *ngIf="submitted && designerRegFormValidation.designerRegTelephone.errors" class="invalid-feedback">
+                  <div *ngIf="designerRegFormValidation.designerRegTelephone.errors.required" >Telephone is required !</div>
+                </div>
+              </div>
+    
+              <div>
+                <label for="address">Address<span class="req"> *</span></label>
+                <input type="text" formControlName="designerRegAddress" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegAddress.errors }" placeholder="Enter Address" required>
+                <div *ngIf="submitted && designerRegFormValidation.designerRegAddress.errors" class="invalid-feedback">
+                  <div *ngIf="designerRegFormValidation.designerRegAddress.errors.required" >Address is required !</div>
+                </div>
+                <input type="text" formControlName="designerRegDistrict" placeholder="Enter District" >
+              </div> 
+
+            <h3 class="down-form-form-section">Business Information</h3>
+              <div>
+                <label>Name of the shop<span class="req"> *</span></label>
+                <input type="text" formControlName="designerRegShopName" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegShopName.errors }" placeholder="Enter Shop Name" required>                                
+                <div *ngIf="submitted && designerRegFormValidation.designerRegShopName.errors" class="invalid-feedback">
+                  <div *ngIf="designerRegFormValidation.designerRegShopName.errors.required" >Shop name is required !</div>
+                </div>
+              </div> 
+              
+              <div>
+                <label>Description of the shop<span class="req"> *</span></label>
+                <input type="text" formControlName="designerRegShopDesc" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegShopDesc.errors }" placeholder="Enter Description" required>                 
+                <div *ngIf="submitted && designerRegFormValidation.designerRegShopDesc.errors" class="invalid-feedback">
+                  <div *ngIf="designerRegFormValidation.designerRegShopDesc.errors.required" >Shop description is required !</div>
+                </div>
+              </div>
+    
+              <div>
+                <label>Email of the shop<span class="req"> *</span></label>
+                <input type="email" formControlName="designerRegShopEmail" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegShopEmail.errors }" placeholder="Enter Email" required>                 
+                <div *ngIf="submitted && designerRegFormValidation.designerRegShopEmail.errors" class="invalid-feedback">
+                  <div *ngIf="designerRegFormValidation.designerRegShopEmail.errors.required" >Shop email is required !</div>
+                </div>
+              </div>
+              
+              <div>
+                <label>Address of the Shop<span class="req"> *</span></label>
+                <input type="text" formControlName="designerRegShopAddress" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegShopAddress.errors }" placeholder="Enter Address" required>
+                <div *ngIf="submitted && designerRegFormValidation.designerRegShopAddress.errors" class="invalid-feedback">
+                  <div *ngIf="designerRegFormValidation.designerRegShopAddress.errors.required" >Shop address is required !</div>
+                </div>
+                <input type="text" formControlName="designerRegShopDistrict" placeholder="Enter District" >
+              </div>
+    
+              <div>
+                <label>Postal Code<span class="req"> *</span></label>
+                <input type="text" formControlName="designerRegShopPostalCode" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegShopPostalCode.errors }" placeholder="Enter Postal Code" required>
+                <div *ngIf="submitted && designerRegFormValidation.designerRegShopPostalCode.errors" class="invalid-feedback">
+                  <div *ngIf="designerRegFormValidation.designerRegShopPostalCode.errors.required" >Postal code is required !</div>
+                </div>
+              </div>
+    
+              <div>
+                <label>Digital Location of the shop<span class="req"> *</span></label>
+                <input type="text" formControlName="designerRegShopLocation" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegShopLocation.errors }" placeholder="Enter Location" required>
+                <div *ngIf="submitted && designerRegFormValidation.designerRegShopLocation.errors" class="invalid-feedback">
+                  <div *ngIf="designerRegFormValidation.designerRegShopLocation.errors.required" >Digital location is required !</div>
+                </div>
+              </div>
+     
+              <div>
+                <label>Shop Telephone<span class="req"> *</span></label>
+                <input type="text" formControlName="designerRegShopTelephone" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegShopTelephone.errors }" placeholder="Enter Telephone" required>
+                <div *ngIf="submitted && designerRegFormValidation.designerRegShopTelephone.errors" class="invalid-feedback">
+                  <div *ngIf="designerRegFormValidation.designerRegShopTelephone.errors.required" >Shop telephone is required !</div>
+                </div>
+              </div>
+          </div>
+    
+          <div class="down-form-center">
+            <div>
+              <!-- <button class="btn" type="submit" >Register</button> -->
+              <button class="btn" type="submit" (click)="updateDesigner()">Update</button>
+              <button class="btn-reset" type="reset">Reset</button>
+            </div>
+          </div>
+        </form> 
+      </div>

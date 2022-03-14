@@ -31,7 +31,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/customJsFiles/jsForAdmins.js"
+            ]
           },
           "configurations": {
             "production": {

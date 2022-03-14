@@ -10,6 +10,8 @@ import { ShopsSignupComponent } from './shops-signup/shops-signup.component';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import { EditDesignerComponent } from './edit-designer/edit-designer.component';
+import { DashboardDesignerComponent } from './dashboard-designer/dashboard-designer.component';
 
 
 
@@ -19,7 +21,9 @@ import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
     LoginSignupComponent,
     SignupSuccessComponent,
     DesignersSignupComponent,
-    ShopsSignupComponent
+    ShopsSignupComponent,
+    EditDesignerComponent,
+    DashboardDesignerComponent
   ],
   imports: [
     FormsModule,

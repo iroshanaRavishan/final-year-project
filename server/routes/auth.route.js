@@ -23,6 +23,8 @@ router.post("/loginhshop", asyncHandler(getUserByEmailIdAndPasswordHShop), login
 router.get("/registerdesigner", getDesigners, loginDesigner);
 router.get("/registerhshop", getHShops, loginHShop);
 
+router.put("/updatedesigner/:id", asyncHandler(updateDesigner), loginDesigner);
+
 router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
 /**
  * function of user inserting
@@ -176,6 +178,33 @@ async function getHShops(req, res) {
     res.status(200).json({ hShops });
 };
 
+async function updateDesigner(req, res, next) {
+
+    const designer = {
+        designerRegUsername: req.body.designerRegUsername,
+        designerRegEmail: req.body.designerRegEmail,
+        designerRegNIC: req.body.designerRegNIC,
+        designerRegTelephone: req.body.designerRegTelephone,
+        designerRegAddress: req.body.designerRegAddress,
+        designerRegDistrict: req.body.designerRegDistrict,
+        designerRegShopName: req.body.designerRegShopName,
+        designerRegShopDesc: req.body.designerRegShopDesc,
+        designerRegShopEmail: req.body.designerRegShopEmail,
+        designerRegShopAddress: req.body.designerRegShopAddress,
+        designerRegShopDistrict: req.body.designerRegShopDistrict,
+        designerRegShopPostalCode: req.body.designerRegShopPostalCode,
+        designerRegShopLocation: req.body.designerRegShopLocation,
+        designerRegShopTelephone: req.body.designerRegShopTelephone,
+        designerRegPricing: req.body.designerRegPricing,
+    };
+
+    req.designer = await DesignerRegistration.findByIdAndUpdate(req.params.id, { $set: designer }, {new: true}).then((err, data) =>{        
+        if(!err){
+            console.log('updated');
+            next();
+        }
+    });
+}
 /**
  * getting the user by emailId and password
  * @param {*} req 

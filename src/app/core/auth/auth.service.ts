@@ -256,6 +256,21 @@ export class AuthService {
     );
   }
 
+  updateDesigner(designer: any, id: any, ) {
+    return this.httpClient.put<any>(`${this.apiUrl}updatedesigner`+`/${id}`, designer).pipe(
+      switchMap(({designer, token})=> { // separating the user object to user and token from the payload
+        this.setDesigner(designer); //setting the user 
+        this.tokenStorage.setToken(token); //storing the user in the local storage
+        console.log('designer updated successfully', designer);
+        return of(designer);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+        return throwError(`Registration Failed, please contact admin`);
+      })
+    );
+  }
+
   //when the browser refresh, this will take care of that
   findMe() { 
     const token = this.tokenStorage.getToken();
