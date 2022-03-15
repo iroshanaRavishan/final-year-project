@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import { EditDesignerComponent } from './edit-designer/edit-designer.component';
 import { DashboardDesignerComponent } from './dashboard-designer/dashboard-designer.component';
 import { LogoutPopupComponent } from './logout-popup/logout-popup.component';
+import { ImageEditDesignerComponent } from './image-edit-designer/image-edit-designer.component';
 
 
 
@@ -25,7 +26,8 @@ import { LogoutPopupComponent } from './logout-popup/logout-popup.component';
     ShopsSignupComponent,
     EditDesignerComponent,
     DashboardDesignerComponent,
-    LogoutPopupComponent
+    LogoutPopupComponent,
+    ImageEditDesignerComponent
   ],
   imports: [
     FormsModule,

@@ -269,7 +269,11 @@ input[type="password"]:hover{
 
 .down-form-container{
     padding-top: 0em;
-    width: 100%;
+    /* width: 100%; */
+    background: white;
+    margin: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
 }
 
 .down-form-header{

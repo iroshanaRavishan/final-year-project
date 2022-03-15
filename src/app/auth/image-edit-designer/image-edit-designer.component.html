@@ -1,0 +1,50 @@
+<form [formGroup]="designerRegGroup" enctype="multipart/form-data" method="post">
+    <div class="container">
+            <div>
+                <div class="header-section">
+                    <h2>User's Profile Picture</h2>
+                </div>
+                <div class="wrapper">                
+                    <input type="file" (change)="onFileSelectDesignerUserPro($event)" class="my-file" name="designerRegProfilePics" required>
+                   
+                    <div> 
+                        <div *ngIf="!imageDataDesignerUserPro">
+                            <img class="profile-picture-on-login-signup" src="{{designer.designerRegProfilePic}}" >    
+                        </div>  
+                        <div  *ngIf="imageDataDesignerUserPro">
+                            <img class="profile-picture-on-login-signup" [src]="imageDataDesignerUserPro" [alt]="designerRegGroup.value.designerRegUsername">
+                        </div>
+                    </div>
+                </div>  
+                <div *ngIf="fileTypeDesignerUserPro" class="invalid-feedback">
+                    {{fileTypeDesignerUserPro}}
+                </div>      
+                <label>User Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
+            </div>
+            <div>
+                <div class="header-section">
+                    <h2>Shop's Profile Picture</h2>
+                </div>
+                <div class="wrapper">
+                    
+                    <input type="file" (change)="onFileSelectDesignerShopPro($event)" class="my-file" name="designerRegProfilePics" required>
+                    <div>     
+                        <div  *ngIf="!imageDataDesignerShopPro">
+                            <img class="profile-picture-on-login-signup" src="{{designer.designerRegShopPic}}" >
+                        </div>
+                        <div  *ngIf="imageDataDesignerShopPro">
+                            <img class="profile-picture-on-login-signup" [src]="imageDataDesignerShopPro" [alt]="designerRegGroup.value.designerRegUsername">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="fileTypeDesignerShopPro" class="invalid-feedback">
+                    {{fileTypeDesignerShopPro}}
+                </div>      
+                <label class="lable">Shop Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
+            </div>
+            <div class="down-form-center">
+                <button class="btn" type="submit" (click)="updateDesignerProfilePics()">Update</button>
+            </div>
+    </div>
+ 
+</form>

@@ -14,8 +14,8 @@ declare const activatingLinks: any;
 export class DesignersSignupComponent implements OnInit {
 
   designer: any;
-  compo: string ="dashboard";
-  designerId: any;
+  compPath: string ="dashboard";
+  Designer: any;
   
   userSubscription: Subscription | any;
   designerSubscription: Subscription | any;
@@ -29,15 +29,14 @@ export class DesignersSignupComponent implements OnInit {
   callToggling() {
     toggling();
   }
-  callActivating(comp: string, id:any){
-    this.compo = comp;
-    this.designerId = id;
-    console.log(this.designerId);
+  callActivating(compPath: string, designer:any){
+    this.compPath = compPath;
+    this.Designer = designer;
     activatingLinks();
   }
   
   receivePath($event: any) {
-    this.compo = $event;
+    this.compPath = $event;
   }
 
   ngOnInit(): void {

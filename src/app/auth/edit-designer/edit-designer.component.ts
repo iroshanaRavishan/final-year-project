@@ -12,27 +12,13 @@ import { AuthService } from '@core/auth/auth.service';
 export class EditDesignerComponent implements OnInit {
 
   @Input() designer: any;
-    
-    id:any;
-    data: any;
-
+ 
     designerId:any;
-
-    error: string | any;
     submitted = false;
-   
-    userRegGroup!: FormGroup;
+  
     designerRegGroup!: FormGroup;
     hShopRegGroup!: FormGroup;
-  
-    imageDataDesignerUserPro: string | any; 
-    imageDataDesignerShopPro: string | any; 
-  
-    fileTypeDesignerUserPro: String | any;
-    fileTypeDesignerShopPro: String | any;
-  
-    designerLogEmail: string | any;
-    designerLogPassword: string | any;
+
   
   constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder) { }
 
@@ -62,57 +48,8 @@ export class EditDesignerComponent implements OnInit {
       });
   }
   
-    // designerPasswordMatch(control: FormControl){
-    //   const password = control.root.get('designerRegPassword');
-    //   return password && control.value !== password.value ? {
-    //     designerPasswordMatch: true
-    //   } : null;
-    // }
-  
     get designerRegFormValidation(){
       return this.designerRegGroup.controls;
-    }
-  
-    onFileSelectDesignerUserPro(event: Event) { //execute when fire on selecting the file form the input
-      console.log("A file selected");
-      const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
-      this.designerRegGroup.patchValue({ designerRegProfilePic: file });
-      const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
-  
-      if (file && allowedMimeTypes.includes(file.type)) {
-        const reader = new FileReader(); // this reads the file asynchronusly and store the content
-        reader.onload = () => {
-          this.imageDataDesignerUserPro = reader.result as string;
-          this.fileTypeDesignerUserPro = null;
-        }
-        reader.readAsDataURL(file);
-      } 
-      else { // if the file type is not applicable
-        this.fileTypeDesignerUserPro = "File type is not acceptable";
-        this.imageDataDesignerUserPro = null;
-      }
-      console.log(this.designerRegGroup.value.designerRegProfilePic);
-    }
-  
-    onFileSelectDesignerShopPro(event: Event) { //execute when fire on selecting the file form the input
-      console.log("A file selected");
-      const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
-      this.designerRegGroup.patchValue({ designerRegShopPic: file });
-      const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
-  
-      if (file && allowedMimeTypes.includes(file.type)) {
-        const reader = new FileReader(); // this reads the file asynchronusly and store the content
-        reader.onload = () => {
-          this.imageDataDesignerShopPro = reader.result as string;
-          this.fileTypeDesignerShopPro = null;
-        }
-        reader.readAsDataURL(file);
-      } 
-      else { // if the file type is not applicable
-        this.fileTypeDesignerShopPro = "File type is not acceptable";
-        this.imageDataDesignerShopPro = null;
-      }
-      console.log(this.designerRegGroup.value.designerRegShopPic);
     }
 
     updateDesigner(){

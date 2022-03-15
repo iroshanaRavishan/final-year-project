@@ -20,18 +20,6 @@
     box-shadow: 5px 8px 12px 0 rgba(0,0,0,0.2);
 }
 
-.top-form {
-    display: flex;
-    justify-content: flex-end;
-
-}
-
-.top-form .close-modal {
-    cursor: pointer;
-    padding: 0 20px;
-    font-size: 20px;
-}
-
 .login-form h2 {
     letter-spacing: 2px;
     margin-top: 10px;
@@ -51,10 +39,9 @@
     color: #555f66;
     margin-right: 0.5em;
     transition-duration: 0.1s;
-    /* transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1); */
 }
 
-.btn-reset{
+.btn-cancel{
     background-color: rgb(255, 255, 255);
     width: 40%; 
     border-radius: 30px;
@@ -76,7 +63,7 @@
     transform: scale(1.05);
 }
 
-.btn-reset:hover{
+.btn-cancel:hover{
     background-color: rgb(9, 83, 126);
     color: #ffffff;
     box-shadow: 3px 3px 5px gray;

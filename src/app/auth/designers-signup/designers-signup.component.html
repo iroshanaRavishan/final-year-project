@@ -22,7 +22,7 @@
                             <span class="title">Update User Data</span>
                         </a>
                     </li>
-                    <li class="hoveredItem" (click)="callActivating('settings',designer)">
+                    <li class="hoveredItem" (click)="callActivating('updateimages',designer)">
                         <a>
                             <span class="icon"><img src="assets/image/setting.png" alt=""></span>
                             <span class="title">Update Images</span>
@@ -56,7 +56,7 @@
                     </label>
                 </div>
                 <div class="user">
-                    <img src="{{designer.designerRegProfilePic}}">
+                    <img src="{{designer.designerRegShopPic}}">
                 </div>
             </div>
     <!-- cared -->
@@ -104,15 +104,19 @@
 
 
            
-            <div  *ngIf="compo=='dashboard'">
+            <div  *ngIf="compPath=='dashboard'">
                 <app-dashboard-designer ></app-dashboard-designer> 
             </div>
-            <div *ngIf="compo=='updatedata'">
-                <app-edit-designer [designer]="designerId"></app-edit-designer>
+            <div *ngIf="compPath=='updatedata'">
+                <app-edit-designer [designer]="Designer"></app-edit-designer>
             </div>
-            <div *ngIf="compo=='logout'">
+            <div *ngIf="compPath=='updateimages'">
+                <app-image-edit-designer [designer]="Designer"></app-image-edit-designer>
+            </div>
+            <div *ngIf="compPath=='logout'">
                 <app-logout-popup (event)="receivePath($event)"></app-logout-popup>
             </div>
+
         </div>      
     </div>
 </div>

@@ -270,6 +270,29 @@ export class AuthService {
       })
     );
   }
+  
+  updateDesignerProfilePics(designer: File[], id: any, ) {
+
+    const designerPicsToSaveupdate = new FormData();
+
+    designerPicsToSaveupdate.append("designerRegProfilePics", designer[0]);
+    designerPicsToSaveupdate.append("designerRegProfilePics", designer[1]);
+
+    return this.httpClient.put<any>(`${this.apiUrl}updatedesignerprofilepics`+`/${id}`, designerPicsToSaveupdate).pipe(
+      switchMap(({designer, token})=> { // separating the user object to user and token from the payload
+        this.setDesigner(designer); //setting the user 
+        this.tokenStorage.setToken(token); //storing the user in the local storage
+        console.log('designer updated successfully', designer);
+        return of(designer);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+        return throwError(`Registration Failed, please contact admin`);
+      })
+    );
+  }
+
+
 
   //when the browser refresh, this will take care of that
   findMe() { 
