@@ -113,10 +113,12 @@
             <div *ngIf="compPath=='updateimages'">
                 <app-image-edit-designer [designer]="Designer"></app-image-edit-designer>
             </div>
+            <div *ngIf="compPath=='changepass'">
+                <app-change-pass-designer [designer]="Designer"></app-change-pass-designer>
+            </div>
             <div *ngIf="compPath=='logout'">
                 <app-logout-popup (event)="receivePath($event)"></app-logout-popup>
             </div>
-
         </div>      
     </div>
 </div>

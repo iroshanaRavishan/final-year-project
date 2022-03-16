@@ -26,7 +26,7 @@ async function getUserByEmailIdAndPasswordDesigner(designerRegEmail, designerReg
 
     if(isUserValidDesigner(designer, designerRegPassword, designer.designerHashedRegPassword)) {
         designer = designer.toObject();
-        delete designer.designerHashedRegPassword;
+        //delete designer.designerHashedRegPassword;
         return designer;
     } else {
         return null;
@@ -63,7 +63,7 @@ async function getUserById(id) {
         }
         else if(designer) {
             designer = designer.toObject();
-            delete designer.designerHashedRegPassword;
+            //delete designer.designerHashedRegPassword;
             return designer;
         }
         else if(hShop){
@@ -102,3 +102,27 @@ module.exports = {
     getUserByEmailIdAndPasswordHShop,
     getUserById
 };
+
+// async function getUserByEmailIdAndPasswordDesigner(designerRegEmail, designerRegPassword) {
+//     let designer = await DesignerRegistration.findOne({designerRegEmail});
+
+//     // if(isUserValidDesigner(designer, designerRegPassword, designer.designerHashedRegPassword)) {
+//         designer = designer.toObject();
+//         //designer = 
+//         //  designer.designerRegPassword;
+//         // "password"; usually stored in the database in the user's row.
+//         //var stored_hash = '$2a$10$vxliJ./aXotlnxS9HaJoXeeASt48.ddU7sHNOpXC/cLhgzJGdASCe'
+//         // "password"; usually stored in the database in the user's row.
+//             // var stored_hash = '$2a$10$vxliJ./aXotlnxS9HaJoXeeASt48.ddU7sHNOpXC/cLhgzJGdASCe'
+//             bcrypt.compare(designerRegPassword, designer.designerHashedRegPassword, function(err, res) {
+//                 let a = res;
+//             });
+        
+//         //delete designer.designerHashedRegPassword;    ("userRegUsername", user.userRegUsername);
+//         // designer = designer.
+//         return designer;
+//     // }   
+//     // else {
+//     //     return null;
+//     // }
+// }

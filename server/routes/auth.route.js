@@ -25,7 +25,7 @@ router.get("/registerhshop", getHShops, loginHShop);
 
 router.put("/updatedesigner/:id", asyncHandler(updateDesigner), loginDesigner);
 router.put("/updatedesignerprofilepics/:id", userStorage.array('designerRegProfilePics', 2), asyncHandler(updateDesignerProfilePics), loginDesigner);
-
+router.put("/updatedesignerpassword/:id", asyncHandler(updateDesignerPassword), loginDesigner);
 
 router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
 /**
@@ -214,15 +214,26 @@ async function updateDesignerProfilePics(req, res, next) {
         designerRegProfilePic: 'http://localhost:4050/images/' + req.files[0].filename,
         designerRegShopPic: 'http://localhost:4050/images/' + req.files[1].filename
     };
-
     req.designer = await DesignerRegistration.findByIdAndUpdate(req.params.id, { $set: designer }, {new: true}).then((err, data) =>{        
         if(!err){
-            console.log('updated');
+            console.log('updated profile pictures');
             next();
         }
     });
 }
 
+async function updateDesignerPassword(req, res, next) {
+
+    const designer = {
+        designerHashedRegPassword: bcrypt.hashSync(req.body.designerRegPassword, 10),
+    };
+    req.designer = await DesignerRegistration.findByIdAndUpdate(req.params.id, { $set: designer }, {new: true}).then((err, data) =>{        
+        if(!err){
+            console.log('updated password');
+            next();
+        }
+    });
+}
 /**
  * getting the user by emailId and password
  * @param {*} req 

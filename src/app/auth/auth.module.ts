@@ -14,6 +14,7 @@ import { EditDesignerComponent } from './edit-designer/edit-designer.component';
 import { DashboardDesignerComponent } from './dashboard-designer/dashboard-designer.component';
 import { LogoutPopupComponent } from './logout-popup/logout-popup.component';
 import { ImageEditDesignerComponent } from './image-edit-designer/image-edit-designer.component';
+import { ChangePassDesignerComponent } from './change-pass-designer/change-pass-designer.component';
 
 
 
@@ -27,7 +28,8 @@ import { ImageEditDesignerComponent } from './image-edit-designer/image-edit-des
     EditDesignerComponent,
     DashboardDesignerComponent,
     LogoutPopupComponent,
-    ImageEditDesignerComponent
+    ImageEditDesignerComponent,
+    ChangePassDesignerComponent
   ],
   imports: [
     FormsModule,
