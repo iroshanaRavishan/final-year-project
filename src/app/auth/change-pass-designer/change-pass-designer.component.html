@@ -4,17 +4,17 @@
             <div>
                 <div>
                     <label>Old Password<span class="req"> *</span></label>
-                    <input type="password" formControlName="designerRegPassword" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegPassword.errors }"  placeholder="Enter Old Password" required>         
-                    <div *ngIf="submitted && designerRegFormValidation.designerRegPassword.errors" class="invalid-feedback">
-                      <div *ngIf="designerRegFormValidation.designerRegPassword.errors.required" >Password is required !</div>
+                    <input type="password" formControlName="designerRegOldPassword" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegOldPassword.errors }"  placeholder="Enter Old Password" required>         
+                    <div *ngIf="submitted && designerRegFormValidation.designerRegOldPassword.errors" class="invalid-feedback">
+                      <div *ngIf="designerRegFormValidation.designerRegOldPassword.errors.required" >Password is required !</div>
                     </div>
                 </div>
 
                 <div>
                     <label>New Password<span class="req"> *</span></label>
-                    <input type="password" formControlName="designerRegPassword" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegPassword.errors }"  placeholder="Enter New Password" required>         
-                    <div *ngIf="submitted && designerRegFormValidation.designerRegPassword.errors" class="invalid-feedback">
-                      <div *ngIf="designerRegFormValidation.designerRegPassword.errors.required" >Password is required !</div>
+                    <input type="password" formControlName="designerRegNewPassword" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegNewPassword.errors }"  placeholder="Enter New Password" required>         
+                    <div *ngIf="submitted && designerRegFormValidation.designerRegNewPassword.errors" class="invalid-feedback">
+                      <div *ngIf="designerRegFormValidation.designerRegNewPassword.errors.required" >Password is required !</div>
                     </div>
                 </div>
         

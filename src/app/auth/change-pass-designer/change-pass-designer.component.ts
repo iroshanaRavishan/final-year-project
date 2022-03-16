@@ -29,7 +29,9 @@ export class ChangePassDesignerComponent implements OnInit {
 
   createDesignerRegForm(){
     this.designerRegGroup = new FormGroup({
-      designerRegPassword: new FormControl (this.designer.designerRegPassword),
+      designerRegEmail: new FormControl(this.designer.designerRegEmail),
+      designerRegNewPassword: new FormControl (this.designer.designerRegNewPassword),
+      designerRegOldPassword: new FormControl (this.designer.designerRegOldPassword),
       designerRegConfirmPassword: new FormControl (this.designer.designerRegConfirmPassword),
     });
 }
@@ -54,11 +56,11 @@ export class ChangePassDesignerComponent implements OnInit {
   get designerRegEmail() {
     return this.designerRegGroup.get('designerRegEmail');
   }
-  get designerRegPassword() {
+  get designerRegNewPassword() {
     return this.designerRegGroup.get('designerRegPassword');
   }
-  get designerRegConfirmPassword() {
-    return this.designerRegGroup.get('designerRegConfirmPassword');
+  get designerRegOldPassword() {
+    return this.designerRegGroup.get('designerRegOldPassword');
   }
 
 

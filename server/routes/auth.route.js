@@ -25,7 +25,7 @@ router.get("/registerhshop", getHShops, loginHShop);
 
 router.put("/updatedesigner/:id", asyncHandler(updateDesigner), loginDesigner);
 router.put("/updatedesignerprofilepics/:id", userStorage.array('designerRegProfilePics', 2), asyncHandler(updateDesignerProfilePics), loginDesigner);
-router.put("/updatedesignerpassword/:id", asyncHandler(updateDesignerPassword), loginDesigner);
+router.put("/updatedesignerpassword/:id", asyncHandler(getOldUserByEmailIdAndPasswordDesigner), asyncHandler(updateDesignerPassword), loginDesigner);
 
 router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
 /**
@@ -223,16 +223,19 @@ async function updateDesignerProfilePics(req, res, next) {
 }
 
 async function updateDesignerPassword(req, res, next) {
-
-    const designer = {
-        designerHashedRegPassword: bcrypt.hashSync(req.body.designerRegPassword, 10),
-    };
-    req.designer = await DesignerRegistration.findByIdAndUpdate(req.params.id, { $set: designer }, {new: true}).then((err, data) =>{        
-        if(!err){
-            console.log('updated password');
-            next();
-        }
-    });
+    if(req.designer!==null){
+        const designer = {
+            designerHashedRegPassword: bcrypt.hashSync(req.body.designerRegNewPassword, 10),
+        };
+        req.designer = await DesignerRegistration.findByIdAndUpdate(req.params.id, { $set: designer }, {new: true}).then((err, data) =>{        
+            if(!err){
+                console.log('updated password');
+                next();
+            }
+        });
+    } else {
+        console.log('The Old Password is Wrong')
+    }
 }
 /**
  * getting the user by emailId and password
@@ -256,6 +259,16 @@ async function getUserByEmailIdAndPasswordDesigner(req, res, next) {
 
     // taking the user's username and password from the class to the request
     const savedDesigner = await userController.getUserByEmailIdAndPasswordDesigner(designer.designerLogEmail, designer.designerLogPassword); 
+    req.designer = savedDesigner;
+    next(); //calling to the nest pipeline of the middleware
+}
+
+async function getOldUserByEmailIdAndPasswordDesigner(req, res, next) {
+    const designer = req.body;
+    console.log(`Searching user for`, designer);
+
+    // taking the user's username and password from the class to the request
+    const savedDesigner = await userController.getUserByEmailIdAndPasswordDesigner(designer.designerRegEmail, designer.designerRegOldPassword); 
     req.designer = savedDesigner;
     next(); //calling to the nest pipeline of the middleware
 }
