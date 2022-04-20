@@ -1,200 +1,130 @@
-<div class="main-container"> 
-    <div class="container">
-        <div class="navigation">
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="icon"><img src="" alt=""></span>
-                        <span class="title">Brand Name</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><img src="" alt=""></span>
-                        <span class="title">Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><img src="" alt=""></span>
-                        <span class="title">Help</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><img src="" alt=""></span>
-                        <span class="title">Settings</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><img src="" alt=""></span>
-                        <span class="title">Password</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><img src="" alt=""></span>
-                        <span class="title">Sign Up</span>
-                    </a>
-                </li>
-            </ul>
+<div *ngIf="hShop">
+    <div class="main-container"> 
+        <div class="container">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a>
+                            <span class="icon"><img src="assets/image/apple.png" alt=""></span>
+                            <span class="title">{{hShop.hShopRegShopName}} <font class="shop-mail">({{hShop.hShopRegShopEmail}})</font></span><br>
+                        </a>
+                    </li>
+                    <li class="hoveredItem h" (click)="callActivating('dashboard', hShop)">
+                        <a>
+                            <span class="icon"><img src="assets/image/dashboard.png" alt=""></span>
+                            <span class="title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="hoveredItem h"  (click)="callActivating('addItems', hShop)">
+                        <a>
+                            <span class="icon"><img src="assets/image/dashboard.png" alt=""></span>
+                            <span class="title">Add Items</span>
+                        </a>
+                    </li>
+                    <li class="hoveredItem"  (click)="callActivating('updatedata', hShop)">
+                        <!-- routerLink="/auth/designersignup/edit/{{designer._id}}" -->
+                       <a>
+                           <span class="icon"><img src="assets/image/help.png" alt=""></span>
+                           <span class="title">Update User Data</span>
+                       </a>
+                   </li>
+                   <li class="hoveredItem"  (click)="callActivating('updateimages', hShop)">
+                        <a>
+                            <span class="icon"><img src="assets/image/setting.png" alt=""></span>
+                            <span class="title">Update Images</span>
+                        </a>
+                    </li>
+                    <li class="hoveredItem" (click)="callActivating('changepass', hShop)">
+                        <a>
+                            <span class="icon"><img src="assets/image/password.png" alt=""></span>
+                            <span class="title">Change Password</span>
+                        </a>
+                    </li>
+                    <li class="hoveredItem" (click)="callActivating('logout', hShop)"> <!-- (click)="logout()" -->
+                        <a>
+                            <span class="icon"><img src="assets/image/logout.png" alt=""></span>
+                            <span class="title">Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    <!-- main -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <img (click)="callToggling()" src="assets/image/side-bar-toggle.png">
+                </div>
+                <div class="userName">
+                    <label>
+                        Welcome {{hShop.hShopRegUsername | titlecase}}!
+                    </label>
+                </div>
+                <div class="user">
+                    <img src="{{hShop.hShopRegShopPic}}">
+                </div>
+            </div>
+    <!-- cared -->
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                        <div class="numbers">1, 504</div>
+                        <div class="cardName">Daily Views</div>
+                    </div>
+                    <div class="iconBx">
+                        <img src="assets/image/search.png" alt="" class="eye-outline">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">80</div>
+                        <div class="cardName">sales</div>
+                    </div>
+                    <div class="iconBx">
+                        <img src="assets/image/search.png" alt="" class="eye-outline">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">253</div>
+                        <div class="cardName">Comments</div>
+                    </div>
+                    <div class="iconBx">
+                        <img src="assets/image/search.png" alt="" class="eye-outline">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">$560</div>
+                        <div class="cardName">Earning</div>
+                    </div>
+                    <div class="iconBx">
+                        <img src="assets/image/search.png" alt="" class="eye-outline">
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="compPath=='dashboard'">
+                <app-dashboard-shop></app-dashboard-shop>
+            </div>
+            <div *ngIf="compPath=='addItems'">
+               <app-add-product-shop [hShop]="HShop"></app-add-product-shop>
+            </div>
+            <div *ngIf="compPath=='updatedata'">
+                <app-edit-shop [hShop]="HShop"></app-edit-shop>
+            </div>
+            <div *ngIf="compPath=='updateimages'">
+                <app-image-edit-shop [hShop]="HShop"></app-image-edit-shop>
+            </div>
+            <div *ngIf="compPath=='changepass'">
+                <app-change-pass-shop [hShop]="HShop"></app-change-pass-shop>
+            </div>
+            <div *ngIf="compPath=='logout'">
+                <app-logout-popup  (event)="receivePath($event)"></app-logout-popup>
+            </div>
+        </div>      
     </div>
-<!-- main -->
-    <div class="main">
-        <div class="topbar">
-            <div class="toggle">
-                <img src="assets/image/side-bar-toggle.png">
-            </div>
-            <!-- <div class="search">
-                <label>
-                    <input type="text" placeholder="Search here">
-                    <img src="assets/image/search.png">
-                </label>
-            </div> -->
-            <div class="user">
-                <img src="assets/image/sample-profile-1.jpg">
-            </div>
-        </div>
-<!-- cared -->
-        <div class="cardBox">
-            <div class="card">
-                <div>
-                    <div class="numbers">1, 504</div>
-                    <div class="cardName">Daily Views</div>
-                </div>
-                <div class="iconBx">
-                    <img src="assets/image/search.png" alt="" class="eye-outline">
-                </div>
-            </div>
-
-            <div class="card">
-                <div>
-                    <div class="numbers">80</div>
-                    <div class="cardName">sales</div>
-                </div>
-                <div class="iconBx">
-                    <img src="assets/image/search.png" alt="" class="eye-outline">
-                </div>
-            </div>
-
-            <div class="card">
-                <div>
-                    <div class="numbers">253</div>
-                    <div class="cardName">Comments</div>
-                </div>
-                <div class="iconBx">
-                    <img src="assets/image/search.png" alt="" class="eye-outline">
-                </div>
-            </div>
-
-            <div class="card">
-                <div>
-                    <div class="numbers">$560</div>
-                    <div class="cardName">Earning</div>
-                </div>
-                <div class="iconBx">
-                    <img src="assets/image/search.png" alt="" class="eye-outline">
-                </div>
-            </div>
-        </div>
-
-
-        <div class="details">
-            <!-- order details list -->
-            <div class="recentOrders">
-                <div class="cardHeader">
-                    <h2>Recent Orders</h2>
-                    <a href="#" class="btn">View all</a>
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Name</td>
-                            <td>Price </td>
-                            <td>Payment</td>
-                            <td>Status</td>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Item</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td><span class="status delivered">Delivered</span></td>
-                        </tr>
-                        <tr>
-                            <td>Item</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td><span class="status return">Return</span></td>
-                        </tr>
-                        <tr>
-                            <td>Item</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td><span class="status inprogress">Inprogress</span></td>
-                        </tr>
-                        <tr>
-                            <td>Item</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td><span class="status pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>Item</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td><span class="status return">Return</span></td>
-                        </tr>
-                        <tr>
-                            <td>Item</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td><span class="status inprogress">Inprogress</span></td>
-                        </tr>
-                        <tr>
-                            <td>Item</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td><span class="status delivered">Delivered</span></td>
-                        </tr>
-                        <tr>
-                            <td>Item</td>
-                            <td>$1200</td>
-                            <td>Paid</td>
-                            <td><span class="status return">Return</span></td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>      
 </div>
-
-
-
-<script>
-    //menu toggle
-    let toggle = document.querySelector('.toggle');
-    let navigation = document.querySelector('.navigation');
-    let main = document.querySelector('.main');
-
-    toggle.onclick = function(){
-        navigation.classList.toggle('active');
-        main.classList.toggle('active');
-    }
-
-    // add hovered class in the selected item list
-    let list = document.querySelectorAll('.main container navigation li');
-    function activeLink() {
-        list.forEach((item) => 
-        item.classList.remove('hovered'));
-        this.classList.add('hovered');
-    }
-    list.forEach((item) =>
-    item.addEventListener('mouseover', activeLink));
-</script>

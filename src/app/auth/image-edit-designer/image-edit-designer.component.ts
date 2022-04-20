@@ -14,10 +14,10 @@ export class ImageEditDesignerComponent implements OnInit {
   @Input() designer: any;
 
   designerId:any;
-  submitted = false;
-
-  designerRegGroup!: FormGroup;
-  hShopRegGroup!: FormGroup;
+  submittedU = false;
+  submittedS = false;
+  designerImageUpdateUserGroup!: FormGroup
+  designerImageUpdateShopGroup!: FormGroup;
  
   imageDataDesignerUserPro: string | any; 
   imageDataDesignerShopPro: string | any; 
@@ -25,31 +25,41 @@ export class ImageEditDesignerComponent implements OnInit {
   fileTypeDesignerUserPro: String | any;
   fileTypeDesignerShopPro: String | any;
  
-
-
   constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.designerId = this.designer._id;
-    this.updateDesignerProfilePicsForm();
+    this.updateDesignerUserProfilePicForm();
+    this.updateDesignerShopProfilePicForm();
   }
+  
 
-  updateDesignerProfilePicsForm(){
-    this.designerRegGroup = new FormGroup({
-      
-      designerRegProfilePic: new FormControl(null),
-      designerRegShopPic: new FormControl(null)
+  updateDesignerUserProfilePicForm(){
+    this.designerImageUpdateUserGroup = new FormGroup({
+      designerUserProfilePics: new FormControl(null),
+      designerUserProfilePic: new FormControl(null)
     });
   }
 
-  get designerRegFormValidation(){
-    return this.designerRegGroup.controls;
+  updateDesignerShopProfilePicForm(){
+    this.designerImageUpdateShopGroup = new FormGroup({
+      designerShopProfilePics: new FormControl(null),
+      designerShopProfilePic: new FormControl(null)
+    });
+  }
+
+  get designerUserProfilePicUpdateFormValidation(){
+    return this.designerImageUpdateUserGroup.controls;
+  }
+
+  get designerShopProfilePicUpdateFormValidation(){
+    return this.designerImageUpdateShopGroup.controls;
   }
 
   onFileSelectDesignerUserPro(event: Event) { //execute when fire on selecting the file form the input
     console.log("A file selected");
     const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
-    this.designerRegGroup.patchValue({ designerRegProfilePic: file });
+    this.designerImageUpdateUserGroup.patchValue({ designerUserProfilePics: file });
     const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
 
     if (file && allowedMimeTypes.includes(file.type)) {
@@ -64,13 +74,13 @@ export class ImageEditDesignerComponent implements OnInit {
       this.fileTypeDesignerUserPro = "File type is not acceptable. Please select given type of image";
       this.imageDataDesignerUserPro = null;
     }
-    console.log(this.designerRegGroup.value.designerRegProfilePic);
+    console.log(this.designerImageUpdateUserGroup.value.designerUserProfilePics);
   }
 
   onFileSelectDesignerShopPro(event: Event) { //execute when fire on selecting the file form the input
     console.log("A file selected");
     const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
-    this.designerRegGroup.patchValue({ designerRegShopPic: file });
+    this.designerImageUpdateShopGroup.patchValue({ designerShopProfilePics: file });
     const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
 
     if (file && allowedMimeTypes.includes(file.type)) {
@@ -85,35 +95,32 @@ export class ImageEditDesignerComponent implements OnInit {
       this.fileTypeDesignerShopPro = "File type is not acceptable. Please select given type of image";
       this.imageDataDesignerShopPro = null;
     }
-    console.log(this.designerRegGroup.value.designerRegShopPic);
+    console.log(this.designerImageUpdateShopGroup.value.designerShopProfilePics);
   }
 
-  updateDesignerProfilePics(){
-    this.submitted = true;
-    if(this.designerRegGroup.invalid){
+  updateDesignerUserProfilePic(){
+    this.submittedU = true;
+    if(this.designerImageUpdateUserGroup.invalid){
       return;
     }
 
     let designerRegProfilePics : File[] = [];
-    
-    designerRegProfilePics.push(this.designerRegGroup.value.designerRegProfilePic);
-    designerRegProfilePics.push(this.designerRegGroup.value.designerRegShopPic);
+    designerRegProfilePics.push(this.designerImageUpdateUserGroup.value.designerUserProfilePics);
 
     // const designer = this.designerRegGroup.getRawValue();
-    this.authService.updateDesignerProfilePics(designerRegProfilePics, this.designerId).subscribe(s => this.router.navigate(['auth/signupsuccess']));
+    this.authService.updateDesignerUserProfilePic(designerRegProfilePics, this.designerId).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }
 
+  updateDesignerShopProfilePic(){
+    this.submittedS = true;
+    if(this.designerImageUpdateShopGroup.invalid){
+      return;
+    }
 
-  get designerRegUsername() {
-    return this.designerRegGroup.get('designerRegUsername');
-  }
-  get designerRegEmail() {
-    return this.designerRegGroup.get('designerRegEmail');
-  }
-  get designerRegPassword() {
-    return this.designerRegGroup.get('designerRegPassword');
-  }
-  get designerRegConfirmPassword() {
-    return this.designerRegGroup.get('designerRegConfirmPassword');
+    let designerRegProfilePics : File[] = [];
+    designerRegProfilePics.push(this.designerImageUpdateShopGroup.value.designerShopProfilePics);
+
+    // const designer = this.designerRegGroup.getRawValue();
+    this.authService.updateDesignerShopProfilePic(designerRegProfilePics, this.designerId).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }
 }

@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from '@core/auth/auth.service';
 
-
 @Component({
   selector: 'app-edit-designer',
   templateUrl: './edit-designer.component.html',
@@ -15,11 +14,8 @@ export class EditDesignerComponent implements OnInit {
  
     designerId:any;
     submitted = false;
-  
     designerRegGroup!: FormGroup;
-    hShopRegGroup!: FormGroup;
 
-  
   constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -43,8 +39,7 @@ export class EditDesignerComponent implements OnInit {
         designerRegShopDistrict: new FormControl (this.designer.designerRegShopDistrict),
         designerRegShopPostalCode: new FormControl (this.designer.designerRegShopPostalCode),
         designerRegShopLocation: new FormControl(this.designer.designerRegShopLocation),
-        designerRegShopTelephone: new FormControl (this.designer.designerRegShopTelephone),
-        designerRegPricing: new FormControl (this.designer.designerRegPricing)
+        designerRegShopTelephone: new FormControl (this.designer.designerRegShopTelephone)
       });
   }
   

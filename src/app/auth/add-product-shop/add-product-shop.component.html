@@ -1,0 +1,119 @@
+<div class="down-form-container">
+    <div class="top-bar">         
+        <div class="down-form-left"> <!-- class="selector" -->
+            <form [formGroup]="hShopProductTopForm">
+                <div id="selectField">
+                    <p>Please select a category</p>
+                </div>
+                <ul id="list">
+                    <div *ngIf="categories.length>0">
+                        <div *ngFor="let type of categories">             
+                            <li (click)="valueOfDropdown(type)" class="options">
+                                <p >{{type}}</p>
+                            </li>
+                        </div>
+                    </div>
+                </ul>       
+                <input type="text" class="adding-category" formControlName="category" id="addNewCategory" placeholder="Add new category">        
+                <button class="btn" (click)="addNewCategory()">+</button>
+
+                <div *ngIf="selectedCategory">
+                    <button class="btn" (click)="addAnItem()">Create An Item</button>
+                    <label >Selected Category: {{selectedCategory}}</label>
+                </div>
+            </form>
+        </div> 
+    </div>
+</div>
+
+<div class="down-form-container">
+    <!-- <form enctype="multipart/form-data" method="post"> -->
+    <div  *ngIf="clicked==true">
+        <form [formGroup]="hShopAddProductForm" method="post">
+
+            <div class="down-form-registering-an-item">
+                <h3 class="down-form-form-section">Design Information</h3>             
+                <div>
+                    <label>Name<span class="req"> *</span></label>
+                    <input type="text" formControlName="itemName" [ngClass]="{ 'is-invalid' : submitted && hShopAddingItemFormValidation.itemName.errors }"  placeholder="Enter Name" required>                                
+                    <div *ngIf="submitted && hShopAddingItemFormValidation.itemName.errors" class="invalid-feedback">
+                        <div *ngIf="hShopAddingItemFormValidation.itemName.errors.required" >Name is required !</div>
+                    </div>
+                </div> 
+                  
+                <div>
+                    <label>Description<span class="req"> *</span></label>
+                    <input type="text" formControlName="itemDescription" [ngClass]="{ 'is-invalid' : submitted && hShopAddingItemFormValidation.itemDescription.errors }"placeholder="Enter Description" required>                 
+                    <div *ngIf="submitted && hShopAddingItemFormValidation.itemDescription.errors" class="invalid-feedback">
+                        <div *ngIf="hShopAddingItemFormValidation.itemDescription.errors.required" >Description is required !</div>
+                    </div>
+                </div>
+    
+                <div>
+                    <label>Price<span class="req"> *</span></label>
+                    <input type="number" formControlName="itemPrice" [ngClass]="{ 'is-invalid' : submitted && hShopAddingItemFormValidation.itemPrice.errors }" placeholder="Enter Estimsted Cost" required>
+                    <div *ngIf="submitted && hShopAddingItemFormValidation.itemPrice.errors" class="invalid-feedback">
+                        <div *ngIf="hShopAddingItemFormValidation.itemPrice.errors.required" >Estimsted Cost is required !</div>
+                    </div>
+                    <div *ngIf="negativeVal">
+                        <div *ngIf="negativeValField=='price'">
+                            <p class="invalid-feedback" >{{negativeVal}} in {{negativeValField}}</p>
+                        </div>
+                    </div>
+                </div>   
+                  
+                <div>
+                    <label>QC pass<span class="req"> *</span></label>
+                    <div class="radio-button">
+                        <label> 
+                            Yes <input type="radio" value="Yes" formControlName="itemIsQCPass" [ngClass]="{ 'is-invalid' : submitted && hShopAddingItemFormValidation.itemIsQCPass.errors }" name="itemIsQCPass"> 
+                            No <input type="radio" value="No" formControlName="itemIsQCPass" name="itemIsQCPass">
+                        </label>                  
+                    </div>
+                    <div *ngIf="submitted && hShopAddingItemFormValidation.itemIsQCPass.errors" class="invalid-feedback">
+                        <div>
+                            <div *ngIf="hShopAddingItemFormValidation.itemIsQCPass.errors.required" >This field is required !</div>
+                        </div>
+                    </div> 
+                </div>
+    
+                <div>
+                    <label>Images of the design (add only images - .png, jpeg & jpg)<span class="req"> *</span></label>
+                    <input type="file" (change)="onFileSelectItemImages($event)" class="upload-box" name="itemImagesOfItem" formControlName="itemImagesOfItem" placeholder="Attach design Images" required>
+                    <div>                
+                        <div *ngIf="itemImageDataItem">
+                            <img class="profile-picture-on-login-signup" [src]="itemImageDataItem" [alt]="hShopAddProductForm.value.itemName">
+                        </div>
+                        <div *ngIf="fileTypeItemImages" class="invalid-feedback">
+                            {{fileTypeItemImages}}
+                        </div>
+                        <div *ngIf="submitted && hShopAddingItemFormValidation.itemImagesOfItem.errors" class="invalid-feedback">
+                            <div *ngIf="hShopAddingItemFormValidation.itemImagesOfItem.errors.required" >This field is required !</div>
+                        </div>
+                    </div>
+                </div>
+    <!-- 
+                <div>
+                    <label>Images of the design (add only images - .png, jpeg & jpg)<span class="req"> *</span></label>
+                    <input type="file" (change)="onFileSelectItemImagesT($event)" class="upload-box" name="itemImagesOfItem" placeholder="Attach design Images" required>
+                    <div>                
+                        <div *ngIf="itemImageDataItemT">
+                            <img class="profile-picture-on-login-signup" [src]="itemImageDataItemT" [alt]="hShopAddProductForm.value.designName">
+                        </div>
+                        <div *ngIf="fileTypeItemImagesT" class="invalid-feedback">
+                            {{fileTypeItemImagesT}}
+                        </div>
+                    </div>
+                </div> -->         
+                <div *ngIf="negativeVal">
+                    <p class="invalid-feedback-submit" >Error in {{negativeValField}}!</p>
+                </div> 
+            </div>
+          
+            <div class="down-form-center">               
+                <button class="btn" type="submit"  (click)="submitProduct()" >Add Item</button>
+                <button class="btn-reset" type="reset">Reset</button>      
+            </div>
+        </form>
+    </div>
+</div>

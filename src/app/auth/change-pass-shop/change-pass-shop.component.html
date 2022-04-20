@@ -1,0 +1,35 @@
+<div class="down-form-container">
+    <form [formGroup]="hShopPassUpdateGroup" enctype="multipart/form-data" method="post">
+        <div class="down-form-center">
+            <div>
+                <div>
+                    <label>Old Password<span class="req"> *</span></label>
+                    <input type="password" formControlName="hShopOldPassword" [ngClass]="{ 'is-invalid' : submitted && hShopFormValidation.hShopOldPassword.errors }"  placeholder="Enter Old Password" required>         
+                    <div *ngIf="submitted && hShopFormValidation.hShopOldPassword.errors" class="invalid-feedback">
+                      <div *ngIf="hShopFormValidation.hShopOldPassword.errors.required" >Password is required !</div>
+                    </div>
+                </div>
+
+                <div>
+                    <label>New Password<span class="req"> *</span></label>
+                    <input type="password" formControlName="hShopNewPassword" [ngClass]="{ 'is-invalid' : submitted && hShopFormValidation.hShopNewPassword.errors }"  placeholder="Enter New Password" required>         
+                    <div *ngIf="submitted && hShopFormValidation.hShopNewPassword.errors" class="invalid-feedback">
+                      <div *ngIf="hShopFormValidation.hShopNewPassword.errors.required" >Password is required !</div>
+                    </div>
+                </div>
+        
+                <div>
+                    <label>Confirm New Password<span class="req"> *</span></label>
+                    <input type="password" formControlName="hShopConfirmPassword" [ngClass]="{ 'is-invalid' : submitted && hShopFormValidation.hShopConfirmPassword.errors }" placeholder="Re-Enter New Password" required>
+                    <div *ngIf="submitted && hShopFormValidation.hShopConfirmPassword.errors" class="invalid-feedback">
+                      <div *ngIf="hShopFormValidation.hShopConfirmPassword.errors.required" >Confirmation is required !</div>
+                    </div>
+                </div>
+
+                <!-- <button class="btn" type="submit" >Register</button> -->
+                <button class="btn" type="submit" (click)="updatePassword()">Update</button>
+                <button class="btn-reset" type="reset">Reset</button>
+            </div>
+        </div>
+    </form> 
+</div>

@@ -74,17 +74,12 @@
    color: #287bff;
 }
 
-.navigation ul li a.icon{
-    position: relative;
-    display: block;
-    min-width: 50px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-}
-
-.navigation ul li a.icon img{
-    font-size: 1.75em;
+.navigation ul li a img{
+    height: 30px;
+    width: 30px;
+    margin-right: 2em;
+    z-index:200000;
+    margin: 7px 2em 7px 0;
 }
 
 .navigation ul li a.title{
@@ -95,6 +90,11 @@
     line-height: 50px;
     text-align: start;
     white-space: nowrap
+}
+
+.shop-mail{
+   font-size: 15px;
+   color: #c5c5c5;
 }
 
 /* curve of the out list*/
@@ -160,33 +160,32 @@
     cursor: pointer;
 }
 
-.search {
+.userName {
     position: relative;
     width: 400px;
     margin: 0 10px;
 }
 
-.search label{
+.userName label{
     position: relative;
     width: 100%;
-}
-
-.search label input{
-    width: 100%;
+    font-size: 20px;
     height: 40px;
     border-radius: 40px;
-    padding: 5px 20px;
+    padding: 5px 40px;
     outline: none;
-    border: 1px solid gray;
-    padding-left: 35px;
-    font-size: 18px;
+  
+    border: 1px gray;
+    box-shadow: -5px -5px 20px rgba(255,255,255,0.1),
+    5px 5px 10px rgb(59, 59, 59),
+    inset -2px -2px 5px rgba(255,255,255,0.1),
+    inset 2px 2px 5px rgba(56, 56, 56, 0.5),
+    0 0 0 2px #1f1f1f;
+    transition: 0.3s;
 }
 
-.search label img{
-    position: absolute;
-    top: 0;
-    left: 10px;
-    font-size: 1.2em;
+.userName label:hover{
+    background: rgb(236, 236, 236);
     
 }
 
@@ -222,7 +221,7 @@
 .cardBox .card{
     position: relative;
     background: white;
-    padding: 30px;
+    padding: 15px 20px 15px 20px;
     border-radius: 20px;
     display: flex;
     justify-content: space-between;
@@ -246,6 +245,11 @@
 }
 
 .cardBox .card .iconBx {
+    height: 50px;
+    width: 50px;
+}
+
+.cardBox .card .iconBx img{
     height: 50px;
     width: 50px;
 }

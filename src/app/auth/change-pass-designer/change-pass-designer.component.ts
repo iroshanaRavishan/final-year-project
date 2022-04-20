@@ -15,9 +15,7 @@ export class ChangePassDesignerComponent implements OnInit {
    
   designerId:any;
   submitted = false;
-
   designerRegGroup!: FormGroup;
-  hShopRegGroup!: FormGroup;
 
   constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder) { }
 
@@ -34,7 +32,7 @@ export class ChangePassDesignerComponent implements OnInit {
       designerRegOldPassword: new FormControl (this.designer.designerRegOldPassword),
       designerRegConfirmPassword: new FormControl (this.designer.designerRegConfirmPassword),
     });
-}
+  }
 
   get designerRegFormValidation(){
     return this.designerRegGroup.controls;

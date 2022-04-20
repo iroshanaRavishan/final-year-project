@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginSignupComponent } from './login-signup/login-signup.component';
 import { SignupSuccessComponent } from './signup-success/signup-success.component';
@@ -15,9 +14,12 @@ import { DashboardDesignerComponent } from './dashboard-designer/dashboard-desig
 import { LogoutPopupComponent } from './logout-popup/logout-popup.component';
 import { ImageEditDesignerComponent } from './image-edit-designer/image-edit-designer.component';
 import { ChangePassDesignerComponent } from './change-pass-designer/change-pass-designer.component';
-
-
-
+import { AddProductDesignerComponent } from './add-product-designer/add-product-designer.component';
+import { DashboardShopComponent } from './dashboard-shop/dashboard-shop.component';
+import { AddProductShopComponent } from './add-product-shop/add-product-shop.component';
+import { EditShopComponent } from './edit-shop/edit-shop.component';
+import { ImageEditShopComponent } from './image-edit-shop/image-edit-shop.component';
+import { ChangePassShopComponent } from './change-pass-shop/change-pass-shop.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,13 @@ import { ChangePassDesignerComponent } from './change-pass-designer/change-pass-
     DashboardDesignerComponent,
     LogoutPopupComponent,
     ImageEditDesignerComponent,
-    ChangePassDesignerComponent
+    ChangePassDesignerComponent,
+    AddProductDesignerComponent,
+    DashboardShopComponent,
+    AddProductShopComponent,
+    EditShopComponent,
+    ImageEditShopComponent,
+    ChangePassShopComponent
   ],
   imports: [
     FormsModule,

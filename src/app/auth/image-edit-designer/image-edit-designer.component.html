@@ -1,50 +1,63 @@
-<form [formGroup]="designerRegGroup" enctype="multipart/form-data" method="post">
-    <div class="container">
-            <div>
-                <div class="header-section">
-                    <h2>User's Profile Picture</h2>
-                </div>
-                <div class="wrapper">                
-                    <input type="file" (change)="onFileSelectDesignerUserPro($event)" class="my-file" name="designerRegProfilePics" required>
-                   
-                    <div> 
-                        <div *ngIf="!imageDataDesignerUserPro">
-                            <img class="profile-picture-on-login-signup" src="{{designer.designerRegProfilePic}}" >    
-                        </div>  
-                        <div  *ngIf="imageDataDesignerUserPro">
-                            <img class="profile-picture-on-login-signup" [src]="imageDataDesignerUserPro" [alt]="designerRegGroup.value.designerRegUsername">
-                        </div>
-                    </div>
-                </div>  
-                <div *ngIf="fileTypeDesignerUserPro" class="invalid-feedback">
-                    {{fileTypeDesignerUserPro}}
-                </div>      
-                <label>User Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
+<div class="container">
+    <form [formGroup]="designerImageUpdateUserGroup" enctype="multipart/form-data" method="post">
+        <div>
+            <div class="header-section">
+                <h2>User's Profile Picture</h2>
             </div>
-            <div>
-                <div class="header-section">
-                    <h2>Shop's Profile Picture</h2>
-                </div>
-                <div class="wrapper">
-                    
-                    <input type="file" (change)="onFileSelectDesignerShopPro($event)" class="my-file" name="designerRegProfilePics" required>
-                    <div>     
-                        <div  *ngIf="!imageDataDesignerShopPro">
-                            <img class="profile-picture-on-login-signup" src="{{designer.designerRegShopPic}}" >
-                        </div>
-                        <div  *ngIf="imageDataDesignerShopPro">
-                            <img class="profile-picture-on-login-signup" [src]="imageDataDesignerShopPro" [alt]="designerRegGroup.value.designerRegUsername">
-                        </div>
+            <div class="wrapper">                
+                <input type="file" (change)="onFileSelectDesignerUserPro($event)" class="my-file" name="designerUserProfilePic" formControlName="designerUserProfilePic" required>
+                
+                <div> 
+                    <div *ngIf="!imageDataDesignerUserPro">
+                        <img class="profile-picture-on-login-signup" src="{{designer.designerRegProfilePic}}" >    
+                    </div>  
+                    <div  *ngIf="imageDataDesignerUserPro">
+                        <img class="profile-picture-on-login-signup" [src]="imageDataDesignerUserPro" [alt]="designerImageUpdateUserGroup.value.designerRegUsername">
                     </div>
                 </div>
-                <div *ngIf="fileTypeDesignerShopPro" class="invalid-feedback">
-                    {{fileTypeDesignerShopPro}}
-                </div>      
-                <label class="lable">Shop Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
+            </div>  
+            <div *ngIf="fileTypeDesignerUserPro" class="invalid-feedback">
+                {{fileTypeDesignerUserPro}}
+            </div>      
+            <label class="image-types">User Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
+            <div *ngIf="submittedU && designerUserProfilePicUpdateFormValidation.designerUserProfilePic.errors" class="invalid-feedback">
+                <div *ngIf="designerUserProfilePicUpdateFormValidation.designerUserProfilePic.errors.required" >It is required select a file to update!</div>
             </div>
-            <div class="down-form-center">
-                <button class="btn" type="submit" (click)="updateDesignerProfilePics()">Update</button>
+
+        </div>
+        <div class="down-form-center">
+            <button class="btn" type="submit" (click)="updateDesignerUserProfilePic()">Update</button>
+        </div>
+    </form>
+    
+    <form [formGroup]="designerImageUpdateShopGroup" enctype="multipart/form-data" method="post">
+        <div>
+            <div class="header-section">
+                <h2>Shop's Profile Picture</h2>
             </div>
-    </div>
- 
-</form>
+            <div class="wrapper">
+                
+                <input type="file" (change)="onFileSelectDesignerShopPro($event)" class="my-file" name="designerShopProfilePic" formControlName="designerShopProfilePic" required>
+                <div>     
+                    <div  *ngIf="!imageDataDesignerShopPro">
+                        <img class="profile-picture-on-login-signup" src="{{designer.designerRegShopPic}}" >
+                    </div>
+                    <div  *ngIf="imageDataDesignerShopPro">
+                        <img class="profile-picture-on-login-signup" [src]="imageDataDesignerShopPro" [alt]="designerImageUpdateShopGroup.value.designerRegUsername">
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="fileTypeDesignerShopPro" class="invalid-feedback">
+                {{fileTypeDesignerShopPro}}
+            </div>      
+            <label class="image-types">Shop Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
+
+            <div *ngIf="submittedS && designerShopProfilePicUpdateFormValidation.designerShopProfilePic.errors" class="invalid-feedback">
+                <div *ngIf="designerShopProfilePicUpdateFormValidation.designerShopProfilePic.errors.required" >It is required select a file to update!</div>
+            </div>
+        </div>
+        <div class="down-form-center">
+            <button class="btn" type="submit" (click)="updateDesignerShopProfilePic()">Update</button>
+        </div>
+    </form>
+</div>

@@ -15,6 +15,12 @@
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
+                    <li class="hoveredItem h" (click)="callActivating('addItems',designer)">
+                        <a>
+                            <span class="icon"><img src="assets/image/dashboard.png" alt=""></span>
+                            <span class="title">Add Items</span>
+                        </a>
+                    </li>
                      <li class="hoveredItem" (click)="callActivating('updatedata',designer)">
                          <!-- routerLink="/auth/designersignup/edit/{{designer._id}}" -->
                         <a>
@@ -101,11 +107,12 @@
                     </div>
                 </div>
             </div>
-
-
            
-            <div  *ngIf="compPath=='dashboard'">
+            <div *ngIf="compPath=='dashboard'">
                 <app-dashboard-designer ></app-dashboard-designer> 
+            </div>
+            <div *ngIf="compPath=='addItems'">
+                <app-add-product-designer [designer]="Designer"></app-add-product-designer>
             </div>
             <div *ngIf="compPath=='updatedata'">
                 <app-edit-designer [designer]="Designer"></app-edit-designer>

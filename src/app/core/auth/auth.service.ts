@@ -270,15 +270,27 @@ export class AuthService {
       })
     );
   }
+  updateHShop(hShop: any, id: any) {
+    return this.httpClient.put<any>(`${this.apiUrl}updatehshop`+`/${id}`, hShop).pipe(
+      switchMap(({hShop, token})=> { // separating the user object to user and token from the payload
+        this.setHShop(hShop); //setting the user 
+        this.tokenStorage.setToken(token); //storing the user in the local storage
+        console.log('hShop updated successfully', hShop);
+        return of(hShop);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+        return throwError(`Registration Failed, please contact admin`);
+      })
+    );
+  }
   
-  updateDesignerProfilePics(designer: File[], id: any, ) {
+  updateDesignerUserProfilePic(designer: File[], id: any, ) {
 
     const designerPicsToSaveupdate = new FormData();
+    designerPicsToSaveupdate.append("designerUserProfilePic", designer[0]);
 
-    designerPicsToSaveupdate.append("designerRegProfilePics", designer[0]);
-    designerPicsToSaveupdate.append("designerRegProfilePics", designer[1]);
-
-    return this.httpClient.put<any>(`${this.apiUrl}updatedesignerprofilepics`+`/${id}`, designerPicsToSaveupdate).pipe(
+    return this.httpClient.put<any>(`${this.apiUrl}updatedesigneruserprofilepics`+`/${id}`, designerPicsToSaveupdate).pipe(
       switchMap(({designer, token})=> { // separating the user object to user and token from the payload
         this.setDesigner(designer); //setting the user 
         this.tokenStorage.setToken(token); //storing the user in the local storage
@@ -291,7 +303,66 @@ export class AuthService {
       })
     );
   }
+
+  updateDesignerShopProfilePic(designer: File[], id: any, ) {
+
+    const designerPicsToSaveupdate = new FormData();
+    designerPicsToSaveupdate.append("designerShopProfilePic", designer[0]);
+
+    return this.httpClient.put<any>(`${this.apiUrl}updatedesignershopprofilepics`+`/${id}`, designerPicsToSaveupdate).pipe(
+      switchMap(({designer, token})=> { // separating the user object to user and token from the payload
+        this.setDesigner(designer); //setting the user 
+        this.tokenStorage.setToken(token); //storing the user in the local storage
+        console.log('designer updated successfully', designer);
+        return of(designer);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+        return throwError(`Registration Failed, please contact admin`);
+      })
+    );
+  }
+
+  updateHShopUserProfilePic(hShop: File[], id: any, ) {
+
+    const hShopPicsToSaveupdate = new FormData();
+
+    hShopPicsToSaveupdate.append("hShopUserProfilePic", hShop[0]);
+
+    return this.httpClient.put<any>(`${this.apiUrl}updatehshopuserprofilepics`+`/${id}`, hShopPicsToSaveupdate).pipe(
+      switchMap(({hShop, token})=> { // separating the user object to user and token from the payload
+        this.setHShop(hShop); //setting the user 
+        this.tokenStorage.setToken(token); //storing the user in the local storage
+        console.log('hShop updated successfully', hShop);
+        return of(hShop);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+        return throwError(`Registration Failed, please contact admin`);
+      })
+    );
+  }
   
+  updateHShopShopProfilePic(hShop: File[], id: any, ) {
+
+    const hShopPicsToSaveupdate = new FormData();
+
+    hShopPicsToSaveupdate.append("hShopShopProfilePic", hShop[0]);
+
+    return this.httpClient.put<any>(`${this.apiUrl}updatehshopshopprofilepics`+`/${id}`, hShopPicsToSaveupdate).pipe(
+      switchMap(({hShop, token})=> { // separating the user object to user and token from the payload
+        this.setHShop(hShop); //setting the user 
+        this.tokenStorage.setToken(token); //storing the user in the local storage
+        console.log('hShop updated successfully', hShop);
+        return of(hShop);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+        return throwError(`Registration Failed, please contact admin`);
+      })
+    );
+  }
+
   updatePassword(designer: any, id: any, ) {
     return this.httpClient.put<any>(`${this.apiUrl}updatedesignerpassword`+`/${id}`, designer).pipe(
       switchMap(({designer, token})=> { // separating the user object to user and token from the payload
@@ -307,7 +378,86 @@ export class AuthService {
     );
   }
 
+  updatePasswordHShop(hShop: any, id: any) {
+    return this.httpClient.put<any>(`${this.apiUrl}updatehshoppassword`+`/${id}`, hShop).pipe(
+      switchMap(({hShop, token})=> { // separating the user object to user and token from the payload
+        this.setHShop(hShop); //setting the user 
+        this.tokenStorage.setToken(token); //storing the user in the local storage
+        console.log('hShop updated successfully', hShop);
+        return of(hShop);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+        return throwError(`Registration Failed, please contact admin`);
+      })
+    );
+  } 
 
+  addDesignItems(item: any, designImagesOfDesign: File[], category: any) {
+    
+    const itemToSave = new FormData();
+
+    itemToSave.append("designerSystemId", item.designerSystemId);
+    itemToSave.append("designerEmail", item.designerEmail);
+    itemToSave.append("designerShopName", item.designerShopName);
+    itemToSave.append("designerShopEmail", item.designerShopEmail);
+    itemToSave.append("designCategory", category);
+    itemToSave.append("designName", item.designName);
+    itemToSave.append("designDescription", item.designDescription);
+    itemToSave.append("designArea", item.designArea);
+    itemToSave.append("designNoOfFloors", item.designNoOfFloors);
+    itemToSave.append("designEstCost", item.designEstCost);
+    itemToSave.append("designIsGarage", item.designIsGarage);
+    itemToSave.append("designIsBalcony", item.designIsBalcony);
+    itemToSave.append("designIsVarenda", item.designIsVarenda);
+    itemToSave.append("designNoOfBathRooms", item.designNoOfBathRooms);
+    itemToSave.append("designIsBathRoomAttached", item.designIsBathRoomAttached);;
+    itemToSave.append("designImagesOfDesign", designImagesOfDesign[0]);
+    //itemToSave.append("designImagesOfDesign", designImagesOfDesign[1]);
+
+    return this.httpClient.post<any>(`${this.apiUrl}addinganitem`, itemToSave).pipe(
+      switchMap(({designer, token})=> {
+      this.setDesigner(designer);
+      this.tokenStorage.setToken(token);
+      console.log('The Item uploaded successfully', designer);
+      return of(designer);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+        return throwError(`Registration Failed, please contact admin`);
+      })
+    );
+  }
+
+  addProductItems(item: any, itemImagesOfDesign: File[], category: any) {
+       
+    const itemToSave = new FormData();
+
+    itemToSave.append("hShopSystemId", item.hShopSystemId);
+    itemToSave.append("hShopEmail", item.hShopEmail);
+    itemToSave.append("hShopShopName", item.hShopShopName);
+    itemToSave.append("hShopShopEmail", item.hShopShopEmail);
+    itemToSave.append("itemCategory", category);
+    itemToSave.append("itemName", item.itemName);
+    itemToSave.append("itemDescription", item.itemDescription);
+    itemToSave.append("itemPrice", item.itemPrice);
+    itemToSave.append("itemIsQCPass", item.itemIsQCPass);
+    itemToSave.append("itemImagesOfDesign", itemImagesOfDesign[0]);
+    //itemToSave.append("itemImagesOfDesign", itemImagesOfDesign[1]);
+
+    return this.httpClient.post<any>(`${this.apiUrl}addinganitemhshop`, itemToSave).pipe(
+      switchMap(({hShop, token})=> {
+      this.setHShop(hShop);
+      this.tokenStorage.setToken(token);
+      console.log('The Item uploaded successfully', hShop);
+      return of(hShop);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+        return throwError(`Registration Failed, please contact admin`);
+      })
+    ); 
+  }
 
   //when the browser refresh, this will take care of that
   findMe() { 

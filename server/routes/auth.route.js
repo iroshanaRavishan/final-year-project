@@ -8,6 +8,8 @@ const userStorage = require('../helpers/storage');
 const UserRegistration = require('../models/userRegistration.model');
 const DesignerRegistration = require('../models/designerRegistration.model');
 const HShopRegistration =  require('../models/hShopRegistration.model');
+const ItemAdding = require('../models/ItemAdding.model');
+const ItemAddingHShop = require ('../models/ItemAddingHShop.model');
 const bcrypt = require('bcrypt');
 
 
@@ -24,8 +26,16 @@ router.get("/registerdesigner", getDesigners, loginDesigner);
 router.get("/registerhshop", getHShops, loginHShop);
 
 router.put("/updatedesigner/:id", asyncHandler(updateDesigner), loginDesigner);
-router.put("/updatedesignerprofilepics/:id", userStorage.array('designerRegProfilePics', 2), asyncHandler(updateDesignerProfilePics), loginDesigner);
+router.post("/addinganitem", userStorage.array('designImagesOfDesign', 2), asyncHandler(insertAnItem), addedItem);
+router.put("/updatedesigneruserprofilepics/:id", userStorage.array('designerUserProfilePic', 2), asyncHandler(updateDesignerUserProfilePics), loginDesigner);
+router.put("/updatedesignershopprofilepics/:id", userStorage.array('designerShopProfilePic', 2), asyncHandler(updateDesignerShopProfilePics), loginDesigner);
 router.put("/updatedesignerpassword/:id", asyncHandler(getOldUserByEmailIdAndPasswordDesigner), asyncHandler(updateDesignerPassword), loginDesigner);
+
+router.put("/updatehshop/:id", asyncHandler(updateHShop), loginHShop);
+router.post("/addinganitemhshop", userStorage.array('itemImagesOfDesign', 2), asyncHandler(insertAnItemHShop), addedItem);
+router.put("/updatehshopuserprofilepics/:id", userStorage.array('hShopUserProfilePic', 2), asyncHandler(updateHShopUserProfilePics), loginHShop);
+router.put("/updatehshopshopprofilepics/:id", userStorage.array('hShopShopProfilePic', 2), asyncHandler(updateHShopShopProfilePics), loginHShop);
+router.put("/updatehshoppassword/:id", asyncHandler(getOldUserByEmailIdAndPasswordHShop), asyncHandler(updateHShopPassword), loginHShop);
 
 router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
 /**
@@ -181,7 +191,6 @@ async function getHShops(req, res) {
 };
 
 async function updateDesigner(req, res, next) {
-
     const designer = {
         designerRegUsername: req.body.designerRegUsername,
         designerRegEmail: req.body.designerRegEmail,
@@ -196,8 +205,7 @@ async function updateDesigner(req, res, next) {
         designerRegShopDistrict: req.body.designerRegShopDistrict,
         designerRegShopPostalCode: req.body.designerRegShopPostalCode,
         designerRegShopLocation: req.body.designerRegShopLocation,
-        designerRegShopTelephone: req.body.designerRegShopTelephone,
-        designerRegPricing: req.body.designerRegPricing,
+        designerRegShopTelephone: req.body.designerRegShopTelephone
     };
 
     req.designer = await DesignerRegistration.findByIdAndUpdate(req.params.id, { $set: designer }, {new: true}).then((err, data) =>{        
@@ -208,13 +216,47 @@ async function updateDesigner(req, res, next) {
     });
 }
 
-async function updateDesignerProfilePics(req, res, next) {
-
+async function updateDesignerUserProfilePics(req, res, next) {
     const designer = {
-        designerRegProfilePic: 'http://localhost:4050/images/' + req.files[0].filename,
-        designerRegShopPic: 'http://localhost:4050/images/' + req.files[1].filename
+        designerRegProfilePic: 'http://localhost:4050/images/' + req.files[0].filename
     };
     req.designer = await DesignerRegistration.findByIdAndUpdate(req.params.id, { $set: designer }, {new: true}).then((err, data) =>{        
+        if(!err){
+            console.log('updated profile pictures');
+            next();
+        }
+    });
+}
+
+async function updateDesignerShopProfilePics(req, res, next) {
+    const designer = {
+        designerRegShopPic: 'http://localhost:4050/images/' + req.files[0].filename
+    };
+    req.designer = await DesignerRegistration.findByIdAndUpdate(req.params.id, { $set: designer }, {new: true}).then((err, data) =>{        
+        if(!err){
+            console.log('updated profile pictures');
+            next();
+        }
+    });
+}
+
+async function updateHShopUserProfilePics(req, res, next) {
+    const hShop = {
+        hShopRegProfilePic: 'http://localhost:4050/images/' + req.files[0].filename
+    };
+    req.hShop = await HShopRegistration.findByIdAndUpdate(req.params.id, { $set: hShop }, {new: true}).then((err, data) =>{        
+        if(!err){
+            console.log('updated profile pictures');
+            next();
+        }
+    });
+}
+
+async function updateHShopShopProfilePics(req, res, next) {
+    const hShop = {
+        hShopRegShopPic: 'http://localhost:4050/images/' + req.files[0].filename
+    };
+    req.hShop = await HShopRegistration.findByIdAndUpdate(req.params.id, { $set: hShop }, {new: true}).then((err, data) =>{        
         if(!err){
             console.log('updated profile pictures');
             next();
@@ -237,6 +279,125 @@ async function updateDesignerPassword(req, res, next) {
         console.log('The Old Password is Wrong')
     }
 }
+
+async function updateHShopPassword(req, res, next) {
+    if(req.hShop!==null){
+        const hShop = {
+            hShopHashedRegPassword: bcrypt.hashSync(req.body.hShopNewPassword, 10),
+        };
+        req.hShop = await HShopRegistration.findByIdAndUpdate(req.params.id, { $set: hShop }, {new: true}).then((err, data) =>{        
+            if(!err){
+                console.log('updated password');
+                next();
+            }
+        });
+    } else {
+        console.log('The Old Password is Wrong')
+    }
+}
+
+async function insertAnItem(req, res, next) {
+    const designerSystemId = req.body.designerSystemId;
+    const designerEmail = req.body.designerEmail;
+    const designerShopName = req.body.designerShopName;
+    const designerShopEmail = req.body.designerShopEmail;
+    const designCategory = req.body.designCategory;
+    const designName = req.body.designName;
+    const designDescription = req.body.designDescription;
+    const designArea = req.body.designArea;
+    const designNoOfFloors = req.body.designNoOfFloors;
+    const designEstCost = req.body.designEstCost;
+    const designIsGarage = req.body.designIsGarage;
+    const designIsBalcony = req.body.designIsBalcony;
+    const designIsVarenda = req.body.designIsVarenda;
+    const designNoOfBathRooms = req.body.designNoOfBathRooms;
+    const designIsBathRoomAttached = req.body.designIsBathRoomAttached;
+    const designImages = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
+    
+    const item = new ItemAdding({
+        designerSystemId,
+        designerEmail,
+        designerShopName,
+        designerShopEmail,
+        designCategory,
+        designName,
+        designDescription,
+        designArea,
+        designNoOfFloors,
+        designEstCost,
+        designIsGarage,
+        designIsBalcony ,
+        designIsVarenda,
+        designNoOfBathRooms,
+        designIsBathRoomAttached,
+        designImages,
+       // designImagesT
+    });
+
+    console.log('adding an item', item);
+    req.item = await item.save(); // taking the user from the class to the request
+    console.log('added the item');
+    next();
+}
+
+async function updateHShop(req, res, next) {
+    const hShop = {
+        hShopRegUsername: req.body.hShopRegUsername,
+        hShopRegEmail: req.body.hShopRegEmail,
+        hShopRegNIC: req.body.hShopRegNIC,
+        hShopRegTelephone: req.body.hShopRegTelephone,
+        hShopRegAddress: req.body.hShopRegAddress,
+        hShopRegDistrict: req.body.hShopRegDistrict,
+        hShopRegShopName: req.body.hShopRegShopName,
+        hShopRegShopDesc: req.body.hShopRegShopDesc,
+        hShopRegShopEmail: req.body.hShopRegShopEmail,
+        hShopRegShopAddress: req.body.hShopRegShopAddress,
+        hShopRegShopDistrict: req.body.hShopRegShopDistrict,
+        hShopRegShopPostalCode: req.body.hShopRegShopPostalCode,
+        hShopRegShopLocation: req.body.hShopRegShopLocation,
+        hShopRegShopTelephone: req.body.hShopRegShopTelephone
+    };
+
+    req.hShop = await HShopRegistration.findByIdAndUpdate(req.params.id, { $set: hShop }, {new: true}).then((err, data) =>{        
+        if(!err){
+            console.log('updated');
+            next();
+        }
+    });
+}
+
+async function insertAnItemHShop(req, res, next) {
+    const hShopSystemId = req.body.hShopSystemId;
+    const hShopEmail = req.body.hShopEmail;
+    const hShopShopName = req.body.hShopShopName;
+    const hShopShopEmail = req.body.hShopShopEmail;
+    const itemCategory = req.body.itemCategory;
+    const itemName = req.body.itemName;
+    const itemDescription = req.body.itemDescription;
+    const itemPrice = req.body.itemPrice;
+    const itemIsQCPass = req.body.itemIsQCPass;
+    const itemImages = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
+    
+    const item = new ItemAddingHShop({
+        hShopSystemId,
+        hShopEmail,
+        hShopShopName,
+        hShopShopEmail,
+        itemCategory,
+        itemName,
+        itemDescription,
+        itemPrice,
+        itemIsQCPass,
+        itemImages,
+       // designImagesT
+    });
+
+    console.log('adding an item', item);
+    req.item = await item.save(); // taking the user from the class to the request
+    console.log('added the item');
+    next();
+}
+
 /**
  * getting the user by emailId and password
  * @param {*} req 
@@ -283,6 +444,16 @@ async function getUserByEmailIdAndPasswordHShop(req, res, next) {
     next(); //calling to the nest pipeline of the middleware
 }
 
+async function getOldUserByEmailIdAndPasswordHShop(req, res, next) {
+    const hShop = req.body;
+    console.log(`Searching user for`, hShop);
+
+    // taking the user's username and password from the class to the request
+    const savedHShop = await userController.getUserByEmailIdAndPasswordHShop(hShop.hShopRegEmail, hShop.hShopOldPassword); 
+    req.hShop = savedHShop;
+    next(); //calling to the nest pipeline of the middleware
+}
+
 /**
  * third pipeling
  * @param {*} req 
@@ -305,6 +476,14 @@ function loginDesigner(req, res) {
     res.json({ 
         designer,
         token
+    });
+}
+
+function addedItem(req, res) { 
+    const item = req.item; 
+    // sending the user and token in the response
+    res.json({ 
+        item     
     });
 }
 

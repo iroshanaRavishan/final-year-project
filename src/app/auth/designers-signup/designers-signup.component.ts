@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/auth/auth.service';
 import { Subscription } from 'rxjs';
 
-
 declare const toggling: any;
 declare const activatingLinks: any;
 
@@ -16,10 +15,7 @@ export class DesignersSignupComponent implements OnInit {
   designer: any;
   compPath: string ="dashboard";
   Designer: any;
-  
-  userSubscription: Subscription | any;
   designerSubscription: Subscription | any;
-  hShopSubscription: Subscription | any;
 
   constructor(private authService: AuthService) { 
     this.authService.findMe().subscribe(designers => (this.designer = designers));
@@ -29,6 +25,7 @@ export class DesignersSignupComponent implements OnInit {
   callToggling() {
     toggling();
   }
+  
   callActivating(compPath: string, designer:any){
     this.compPath = compPath;
     this.Designer = designer;
