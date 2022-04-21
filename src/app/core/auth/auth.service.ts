@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DesignerItems } from '@core/model/designerItemsRegistration';
 import { Designer } from '@core/model/designerRegistration';
 import { HShop } from '@core/model/hShopRegistration';
 import { EMPTY, of, Subject, throwError } from 'rxjs';
@@ -24,6 +25,16 @@ interface HShopDto {
   token: string;
 }
 
+interface DesignerItemsDto { 
+  designerItems: DesignerItems;
+  token: string;
+}
+
+interface HShopItemsDto { 
+  hShop: HShop;
+  token: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -35,6 +46,8 @@ export class AuthService {
 
   private hShop$ = new Subject<HShop>();
   private hShops$ = new Subject<HShop[]>();
+
+  private designerItems$ = new Subject<DesignerItems>();
   private apiUrl = '/api/auth/';
 
   
@@ -112,6 +125,29 @@ export class AuthService {
       })
     );
   }
+
+  loadingRelShopItemsDesigner(id: string, email: string) {
+  
+    return this.httpClient.post<DesignerItemsDto>(`${this.apiUrl}loadingdesigneritems`+`/${id}`, id).pipe(
+      switchMap(({ designerItems}) => {
+        if(designerItems==null){
+          return EMPTY;
+        }
+          this.setDesignerItems(designerItems);// setting the user
+          //console.log(`designerItems found`, designerItems);
+          return of(designerItems);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e)
+        return throwError(`Your login details could not be verified. Please try again!!!!`);
+      })
+    );
+  }
+
+
+  
+
+
 
   hShopLogin(hShopLogEmail: string, hShopLogPassword: string) {
     const loginCredentials = {hShopLogEmail, hShopLogPassword};
@@ -459,6 +495,8 @@ export class AuthService {
     ); 
   }
 
+
+
   //when the browser refresh, this will take care of that
   findMe() { 
     const token = this.tokenStorage.getToken();
@@ -483,5 +521,9 @@ export class AuthService {
   }
   private setHShop(hShop: any){
     this.hShop$.next(hShop);
+  }
+
+  private setDesignerItems(designerItems: any){
+    this.designerItems$.next(designerItems);
   }
 }

@@ -1,6 +1,7 @@
 const UserRegistration = require('../models/userRegistration.model');
 const DesignerRegistration = require('../models/designerRegistration.model');
-const HShopRegistration = require('../models/hShopRegistration.model')
+const HShopRegistration = require('../models/hShopRegistration.model');
+const ItemAdding = require('../models/ItemAdding.model');
 const bcrypt = require('bcrypt');
 
 /**
@@ -43,6 +44,16 @@ async function getUserByEmailIdAndPasswordHShop(hShopRegEmail, hShopRegPassword)
     } else {
         return null;
     }
+}
+
+async function getItemsByDesignerId(id) {
+    let designerItems = await ItemAdding.find({id});
+    let items = [];
+    for (const item of designerItems) {
+        items.push(item.toObject());
+    }
+    //designerItems = designerItems.toObject();
+    return items;
 }
 
 /**
@@ -99,5 +110,6 @@ module.exports = {
     getUserByEmailIdAndPasswordUser,
     getUserByEmailIdAndPasswordDesigner,
     getUserByEmailIdAndPasswordHShop,
-    getUserById
+    getUserById,
+    getItemsByDesignerId
 };

@@ -1,7 +1,112 @@
-.items {
+/* .items {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     padding: 30px 20px; 
     grid-column-gap: 20px;
     grid-row-gap: 30px;
+} */
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 30px 20px; 
+    grid-column-gap: 20px;
+    grid-row-gap: 30px;
+    justify-content: space-between;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    height: 400px;
+    width: 300px;
+    background-color: #fdfeff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.profile-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition-property: all;
+    transition-duration: 0.3s;
+   
+}
+
+.card:hover > .profile-picture {
+    margin-top: 0px;
+    height: 60%;
+    width: 100%;
+    border-radius: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 5px 5px 20px gray;
+    transition-timing-function: cubic-bezier(0.1, 0.3, 0.7, 0.8); 
+}
+
+.info-container {
+    width: 100%;
+    height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-delay: 0.1s;
+    transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.card:hover > .info-container {
+    flex: 1;
+}
+
+.shop-name {
+    margin-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.shop-description {
+    margin-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.btn{
+    background-color: rgb(255, 218, 5);
+    width: 50%; 
+    border-radius: 30px;
+    height: 2.5em;
+    border-style: none;
+    margin-top: 1em;
+    margin-bottom: 1em; 
+    font-weight: bold;
+    color: #555f66;
+    transition-duration: 0.1s;
+    /* transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1); */
+}
+
+.btn:hover{
+    background-color: rgb(9, 83, 126);
+    color: #ffffff;
+    box-shadow: 3px 3px 5px gray;
+    transform: scale(1.05);
 }

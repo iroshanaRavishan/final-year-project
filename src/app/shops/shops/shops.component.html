@@ -1,7 +1,7 @@
 <h1>All Shops</h1>
 <hr />
 
-
+<!-- 
 <div *ngIf="hShops.length > 0">
   <div *ngFor="let hShop of hShops">
     <div class="items">
@@ -35,5 +35,29 @@
     <h1>pizza</h1>
     <button> Order</button>
   </div>
-</section>
+</section> -->
+
+
+
+<div *ngIf="hShops.length > 0">
+  <div *ngFor="let hShop of hShops">
+    <section class="items">
+      <div class="container">
+        <div class="card">
+           <img src={{hShop.hShopRegShopPic}} class="profile-picture" alt="{{hShop.hShopRegShopPic}}"> 
+           <div class="info-container">
+            <span class="shop-name">{{hShop.hShopRegShopName}}</span>
+            <span class="shop-description">{{hShop.hShopRegShopDesc}}</span> 
+            <button class="btn">View</button> 
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div> 
+
+
+
+
+
 

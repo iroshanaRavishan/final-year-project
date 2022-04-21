@@ -37,6 +37,8 @@ router.put("/updatehshopuserprofilepics/:id", userStorage.array('hShopUserProfil
 router.put("/updatehshopshopprofilepics/:id", userStorage.array('hShopShopProfilePic', 2), asyncHandler(updateHShopShopProfilePics), loginHShop);
 router.put("/updatehshoppassword/:id", asyncHandler(getOldUserByEmailIdAndPasswordHShop), asyncHandler(updateHShopPassword), loginHShop);
 
+router.post("/loadingdesigneritems/:id", asyncHandler(getItemsByDesignerId), designerItems);
+
 router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
 /**
  * function of user inserting
@@ -454,6 +456,13 @@ async function getOldUserByEmailIdAndPasswordHShop(req, res, next) {
     next(); //calling to the nest pipeline of the middleware
 }
 
+async function getItemsByDesignerId(req, res, next) {
+   
+    const savedDesignerItems = await userController.getItemsByDesignerId(req.params.id); 
+    req.designerItems = savedDesignerItems;
+    next(); //calling to the nest pipeline of the middleware
+}
+
 /**
  * third pipeling
  * @param {*} req 
@@ -484,6 +493,14 @@ function addedItem(req, res) {
     // sending the user and token in the response
     res.json({ 
         item     
+    });
+}
+
+function designerItems(req, res) { 
+    const designerItems = req.designerItems;
+    // sending the user and token in the response
+    res.json({ 
+        designerItems
     });
 }
 
