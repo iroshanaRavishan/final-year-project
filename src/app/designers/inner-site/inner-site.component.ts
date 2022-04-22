@@ -14,10 +14,12 @@ export class InnerSiteComponent implements OnInit {
 
   designer: any;
   designerSubscription: Subscription | any;
-  idOfSelectedDesigner:any;
-  selectedEmail:any;
-  loadedItems: File| any;
-  relItems: File[]=[];
+  idOfSelectedDesigner: any;
+  selectedEmail: any;
+  loadedItems: File | any;
+  relItems: DesignerItems[] = [];
+
+
 
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute) { }
 
@@ -36,6 +38,7 @@ export class InnerSiteComponent implements OnInit {
       }
     });
     this.loadingRelShopItemsDesigner();
+    
   }
 
   onDestroy(): void {
@@ -53,5 +56,6 @@ export class InnerSiteComponent implements OnInit {
       }
       console.log(this.relItems);
     });
+   
   };
 }

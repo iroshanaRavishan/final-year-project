@@ -205,7 +205,7 @@ input[type="password"]:hover{
       justify-content: center;
       align-items: center;
       clip-path: circle();
-      box-shadow: 2px 2px 20px#535151;
+      box-shadow: 2px 2px 20px #535151;
       object-fit: cover;
       overflow: hidden;
       transition-duration: 0.5s;
