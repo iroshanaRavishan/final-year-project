@@ -20,6 +20,8 @@ export class AddProductShopComponent implements OnInit {
   submitted = false;
   itemImageDataItem: string | any; 
   fileTypeItemImages: String | any;
+  readOnlyToggle: string = 'true';
+  newDisVal: string ='';
 
   itemImageDataItemT: string | any; 
   fileTypeItemImagesT: String | any;
@@ -34,7 +36,7 @@ export class AddProductShopComponent implements OnInit {
   ngOnInit(): void {
     this.hShopId = this.hShop._id;
     console.log(this.hShopId);  
-    this.categories = ['one', 'two', 'three', 'four'];
+    this.categories = ['Building', 'Paints', 'Electrical', 'Plumbing', 'Steel', 'Roofing', 'Tools', 'Garden & Decor', 'Ceiling', 'Fence'];  
     this.addItemHShopForm();
     this.addProductForm();
 
@@ -57,7 +59,11 @@ export class AddProductShopComponent implements OnInit {
         hShopShopEmail: new FormControl(this.hShop.hShopRegShopEmail),
         itemName: new FormControl ('', [Validators.required]),
         itemDescription: new FormControl ('', [Validators.required]),
+        itemSubCategory: new FormControl('', [Validators.required]),
+        itemPortionType: new FormControl ('', [Validators.required]),        
         itemPrice: new FormControl ('', [Validators.required]),
+        itemIsDiscount: new FormControl('', [Validators.required]),
+        itemDiscount: new FormControl('0', [Validators.required]),
         itemIsQCPass: new FormControl ('', [Validators.required]),
         itemImagesOfItem: new FormControl(null),
         itemImages: new FormControl(null),
@@ -80,6 +86,14 @@ export class AddProductShopComponent implements OnInit {
     if(this.hShopProductTopForm.value.category){
       this.clicked = true;
     }   
+  }
+
+  discountToggle(event: any) {
+    this.readOnlyToggle = event;
+    console.log(this.readOnlyToggle);
+    if(event=='false') {
+     alert('The Discount will no be added if you click on **No** option!');
+    }
   }
 
   get hShopAddingItemFormValidation(){
@@ -113,15 +127,21 @@ export class AddProductShopComponent implements OnInit {
       return;
     }
     
-    if((this.hShopAddProductForm.value.itemPrice < 0)) {  //|| (this.hShopAddProductForm.value.designNoOfFloors < 0) || (this.hShopAddProductForm.value.designEstCost < 0) || (this.hShopAddProductForm.value.designNoOfBathRooms < 0)) 
+    if((this.hShopAddProductForm.value.itemPrice < 0)) { // || (this.hShopAddProductForm.value.itemPortionPrice < 0)) || (this.hShopAddProductForm.value.designEstCost < 0) || (this.hShopAddProductForm.value.designNoOfBathRooms < 0)) 
       if((this.hShopAddProductForm.value.itemPrice < 0)){
         this.negativeValField = "price"
 
       }
-    //   if( (this.hShopAddProductForm.value.designNoOfFloors < 0)){
-    //     this.negativeValField = "No of floors"
+      if( (this.hShopAddProductForm.value.designDiscount < 0)){
+        this.negativeValField = "Discount"
+      }
+      if( (this.hShopAddProductForm.value.designDiscount > 100)){
+        this.negativeValField = "Discount"
+      } 
+      // if( (this.hShopAddProductForm.value.itemPortionPrice < 0)){
+      //   this.negativeValField = "portion price"
 
-    //   }
+      // }
     //   if( (this.hShopAddProductForm.value.designEstCost < 0)){
     //     this.negativeValField = "Estimsted Cost"
 
@@ -138,10 +158,16 @@ export class AddProductShopComponent implements OnInit {
 
     let itemImagesOfDesign : File[] = [];
     itemImagesOfDesign.push(this.hShopAddProductForm.value.itemImages);    
-    //itemImagesOfDesign.push(this.hShopAddProductForm.value.itemImagesT);      
-    
+    //itemImagesOfDesign.push(this.hShopAddProductForm.value.itemImagesT);
+    if(this.readOnlyToggle=='false') {
+      this.newDisVal = '0'
+    } 
+    if(this.readOnlyToggle=='true') {
+      this.newDisVal = this.hShopAddProductForm.value.itemDiscount;
+    }
+    const priceWithUnit: string = `1 ${this.hShopAddProductForm.value.itemPortionType}`+` - Rs. ${this.hShopAddProductForm.value.itemPrice}/=`;
     const item: File = this.hShopAddProductForm.getRawValue();
-    this.authService.addProductItems(item, itemImagesOfDesign, this.selectedCategory).subscribe(s => this.router.navigate(['auth/signupsuccess']));
+    this.authService.addProductItems(item, this.newDisVal, itemImagesOfDesign, this.selectedCategory, priceWithUnit).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }
 
 }

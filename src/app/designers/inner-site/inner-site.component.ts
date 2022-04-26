@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@core/auth/auth.service';
 import { DesignerItems } from '@core/model/designerItemsRegistration';
 import { Designer } from '@core/model/designerRegistration';
-import { empty, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-inner-site',
@@ -18,7 +18,16 @@ export class InnerSiteComponent implements OnInit {
   selectedEmail: any;
   loadedItems: File | any;
   relItems: DesignerItems[] = [];
+  temp: any;
 
+  categoryList: any[] = [];
+  hashCategoryList: any[] = [];
+  luxuryCatArr: any[] = [];
+  hotelCatArr: any[] = [];
+  commericalCatArr: any[] = [];
+  shopCatArr: any[] = [];
+  boxCatArr: any[] = [];
+  oldCatArr: any[] = [];
 
 
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute) { }
@@ -38,7 +47,6 @@ export class InnerSiteComponent implements OnInit {
       }
     });
     this.loadingRelShopItemsDesigner();
-    
   }
 
   onDestroy(): void {
@@ -54,8 +62,53 @@ export class InnerSiteComponent implements OnInit {
           this.relItems.push(this.loadedItems[index]);
         }
       }
+
+      for (let i = 0; i < this.relItems.length; i++) {
+        if(this.categoryList.indexOf(this.relItems[i].designCategory)===-1){
+          this.categoryList.push(this.relItems[i].designCategory);
+        }
+     
+        if(this.relItems[i].designCategory == 'Luxury Type') {
+          this.luxuryCatArr.push(this.relItems[i]);
+        }
+        if(this.relItems[i].designCategory == 'Commercial') {
+          this.commericalCatArr.push(this.relItems[i]);
+        }
+        if(this.relItems[i].designCategory == 'Hotels') {
+          this.hotelCatArr.push(this.relItems[i]);
+        }
+        if(this.relItems[i].designCategory == 'Shop') {
+          this.shopCatArr.push(this.relItems[i]);
+        }
+        if(this.relItems[i].designCategory == 'Box Type') {
+          this.boxCatArr.push(this.relItems[i]);
+        }
+        if(this.relItems[i].designCategory == 'Older Types') {
+          this.oldCatArr.push(this.relItems[i]);
+        }
+
+
+      
+        //if(this.newInnerCategoryList.indexOf([this.relItems[i].itemSubCategory, this.relItems[j].itemName])===-1){
+          //this.newInnerCategoryList.push([this.relItems[i].itemSubCategory, this.relItems[j].itemName]);
+      }
+
+      for (let j = 0; j < this.categoryList.length; j++) {
+        if(this.hashCategoryList.indexOf('#'+this.categoryList[j].replace(/\s/g, ''))===-1){
+
+          this.hashCategoryList.push('#'+this.categoryList[j].replace(/\s/g, ''));
+        }
+
+        // if((this.relItems[i].designCategory)==(this.categoryList[j])) {
+        //   this.innerSubCatList.push([this.relItems[i].designCategory, this.relItems[i].itemSubCategory]); 
+        // }      
+      }
+
+
+
+
+
       console.log(this.relItems);
     });
-   
   };
 }

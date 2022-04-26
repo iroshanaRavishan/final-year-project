@@ -34,9 +34,9 @@ body, input, select, textarea {
 
 /**** HEADER ****/
 
-#skel-layers-wrapper {
+/* #skel-layers-wrapper {
     padding-top: 3em;
-}
+} */
 
 header {
     background: #fff;
@@ -45,7 +45,7 @@ header {
     height: 7.5em; /*////////////////////////////////////////////////////////////////////////////// */
     left: 0;
     line-height: 3em;
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     width: 100%;
     z-index: 10000;
@@ -234,7 +234,7 @@ header {
         justify-content: center;
         align-items: center;
         clip-path: circle();
-        box-shadow: 2px 2px 20px#535151;
+        box-shadow: 2px 2px 20px #535151;
         object-fit: cover;
         overflow: hidden;
         transition-duration: 0.8s;
@@ -471,6 +471,42 @@ input[type="text"]:hover{
     height: 100px;
     width: 200px;
 }
+
+.jump-to-top {
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 2px solid #46464656;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: absolute;
+    right: 1em;
+    top: 550px;
+    position: fixed;
+    z-index: 10000;
+    background: #fde140;
+    border-radius: 50px;
+    box-shadow: -5px -5px 20px rgba(255,255,255,0.1),
+    5px 5px 10px rgb(59, 59, 59),
+    inset -2px -2px 5px rgba(255,255,255,0.1),
+    inset 2px 2px 5px rgba(56, 56, 56, 0.5),
+    0 0 0 2px #b19c2a;
+    transition-duration: 0.5s;
+}
+
+
+.jump-to-top:hover{
+    transform: scale(1.05);
+    box-shadow: -5px -5px 20px rgba(255, 255, 255, 0.027),
+    5px 5px 10px rgba(59, 59, 59, 0.384),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.034),
+    inset 2px 2px 5px rgba(56, 56, 56, 0.096),
+    0 0 0 2px #b19c2a;
+}
+
+
 
 .image-headphone {
     padding-top: 1em;

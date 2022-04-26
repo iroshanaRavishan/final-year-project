@@ -1,63 +1,18 @@
 <h1>All Shops</h1>
 <hr />
 
-<!-- 
-<div *ngIf="hShops.length > 0">
+<div class="items" *ngIf="hShops.length > 0">
   <div *ngFor="let hShop of hShops">
-    <div class="items">
-      <span>{{ hShop.hShopRegUsername }}</span>
-    </div>
-  </div>
-</div>
-
-<section class="items">
-  <div class="item">
-    <h1>pizza</h1>
-    <button> Order</button>
-  </div>
-  <div class="item">
-    <h1>pizza</h1>
-    <button> Order</button>
-  </div>
-  <div class="item">
-    <h1>pizza</h1>
-    <button> Order</button>
-  </div>
-  <div class="item">
-    <h1>pizza</h1>
-    <button> Order</button>
-  </div>
-  <div class="item">
-    <h1>pizza</h1>
-    <button> Order</button>
-  </div>
-  <div class="item">
-    <h1>pizza</h1>
-    <button> Order</button>
-  </div>
-</section> -->
-
-
-
-<div *ngIf="hShops.length > 0">
-  <div *ngFor="let hShop of hShops">
-    <section class="items">
+    <section>
       <div class="container">
         <div class="card">
            <img src={{hShop.hShopRegShopPic}} class="profile-picture" alt="{{hShop.hShopRegShopPic}}"> 
+           <span class="shop-name">{{hShop.hShopRegShopName}}</span>
            <div class="info-container">
-            <span class="shop-name">{{hShop.hShopRegShopName}}</span>
-            <span class="shop-description">{{hShop.hShopRegShopDesc}}</span> 
-            <button class="btn">View</button> 
+            <button class="btn" (click)="goInnerPage(hShop)">View</button> 
           </div>
         </div>
       </div>
     </section>
   </div>
 </div> 
-
-
-
-
-
-

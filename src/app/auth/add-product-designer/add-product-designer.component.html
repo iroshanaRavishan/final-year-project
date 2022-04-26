@@ -2,7 +2,7 @@
     <div class="top-bar">         
         <div class="down-form-left"> <!-- class="selector" -->
             <form [formGroup]="designerProductTopForm">
-                <div id="selectField">
+                <!-- <div id="selectField">
                     <p>Please select a category</p>
                 </div>
                 <ul id="list">
@@ -13,7 +13,19 @@
                             </li>
                         </div>
                     </div>
-                </ul>       
+                </ul>        -->
+
+                <div class="category-area">
+                    <div class="cardBox" *ngIf="categories.length > 0">
+                        <div *ngFor="let type of categories">
+                                    <a class="c-card" (click)="valueOfDropdown(type)">
+                                        <div class="category">{{type}}</div>
+                                    </a>
+                            </div>
+                    </div>
+                </div>
+
+
                 <input type="text" class="adding-category" formControlName="category" id="addNewCategory" placeholder="Add new category">        
                 <button class="btn" (click)="addNewCategory()">+</button>
                 
@@ -51,7 +63,7 @@
      
                  <div>
                     <label>Area of the plan<span class="req"> *</span></label>
-                    <input type="number" formControlName="designArea" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designArea.errors }" placeholder="Enter Area of the plan" required>
+                    <input type="number" formControlName="designArea" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designArea.errors }" placeholder="Enter Area of the plan in squre feet" required>
                     <div *ngIf="submitted && designerRegFormValidation.designArea.errors" class="invalid-feedback">
                         <div *ngIf="designerRegFormValidation.designArea.errors.required" >Area is required !</div>
                     </div>
@@ -90,6 +102,36 @@
                         </div>
                     </div>
                 </div>   
+
+                <div>
+                    <label>Discount Availability<span class="req"> *</span></label>
+                    <div class="radio-button" >
+                        <label> 
+                            Yes <input type="radio" (click)="discountToggle('true')" value="true" formControlName="designIsDiscount" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designIsDiscount.errors }" name="designIsDiscount"> 
+                            No <input type="radio" (click)="discountToggle('false')"  value="false" formControlName="designIsDiscount" name="designIsDiscount" [checked]>
+                        </label>             
+                    </div>
+                    <div *ngIf="submitted && designerRegFormValidation.designIsDiscount.errors" class="invalid-feedback">
+                        <div>
+                            <div *ngIf="designerRegFormValidation.designIsDiscount.errors.required" >This field is required !</div>
+                        </div>
+                    </div> 
+                </div>
+                <!-- *ngIf="compPath=='dashboard'"  *ngIf="readOnlyToggle=='false'"-->
+                <div>
+                    <label>Discount<span class="req"> *</span ></label>
+                    <input type="number" formControlName="designDiscount" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designDiscount.errors }" placeholder="Enter Discount" required>
+                    <div *ngIf="submitted && designerRegFormValidation.designDiscount.errors" class="invalid-feedback">
+                        <div *ngIf="designerRegFormValidation.designDiscount.errors.required" >Discount is required !</div>
+                    </div>
+
+                    <div *ngIf="negativeVal">
+                        <div *ngIf="negativeValField=='Discount'">
+                            <p class="invalid-feedback" >{{negativeVal}} in {{negativeValField}}</p>
+                        </div>
+                    </div>
+                </div>   
+
                   
                 <div>
                     <label>Garage<span class="req"> *</span></label>
@@ -136,6 +178,19 @@
                     </div> 
                 </div>
     
+                <div>
+                    <label>No of Bed-rooms<span class="req"> *</span></label>
+                    <input type="number" formControlName="designNoOfBedRooms" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designNoOfBedRooms.errors }" placeholder="Enter No of Bed-rooms" required>
+                    <div *ngIf="submitted && designerRegFormValidation.designNoOfBedRooms.errors" class="invalid-feedback">
+                        <div *ngIf="designerRegFormValidation.designNoOfBedRooms.errors.required" >This field is required !</div>
+                    </div>
+
+                    <div *ngIf="negativeVal">
+                        <div *ngIf="negativeValField=='No of Bed-rooms'">
+                            <p class="invalid-feedback" >{{negativeVal}} in {{negativeValField}}</p>
+                        </div>
+                    </div>
+                </div>
                 <div>
                     <div>
                         <label>No of Bath-rooms<span class="req"> *</span></label>

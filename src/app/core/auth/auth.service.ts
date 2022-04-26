@@ -31,7 +31,7 @@ interface DesignerItemsDto {
 }
 
 interface HShopItemsDto { 
-  hShop: HShop;
+  hShopItems: HShop;
   token: string;
 }
 
@@ -144,9 +144,22 @@ export class AuthService {
     );
   }
 
-
-  
-
+  loadingRelShopItemsHShop(id: string, email: string) {
+    return this.httpClient.post<HShopItemsDto>(`${this.apiUrl}loadinghshopitems`+`/${id}`, id).pipe(
+      switchMap(({ hShopItems }) => {
+        if(hShopItems==null){
+          return EMPTY;
+        }
+          this.setHShopItems(hShopItems);// setting the user
+          //console.log(`hShopItems found`, hShopItems);
+          return of(hShopItems);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e)
+        return throwError(`Your login details could not be verified. Please try again!!!!`);
+      })
+    );
+  }
 
 
   hShopLogin(hShopLogEmail: string, hShopLogPassword: string) {
@@ -429,7 +442,7 @@ export class AuthService {
     );
   } 
 
-  addDesignItems(item: any, designImagesOfDesign: File[], category: any) {
+  addDesignItems(item: any, discount: any, designImagesOfDesign: File[], category: any) {
     
     const itemToSave = new FormData();
 
@@ -443,9 +456,12 @@ export class AuthService {
     itemToSave.append("designArea", item.designArea);
     itemToSave.append("designNoOfFloors", item.designNoOfFloors);
     itemToSave.append("designEstCost", item.designEstCost);
+    itemToSave.append("designIsDiscount", item.designIsDiscount);
+    itemToSave.append("designDiscount", discount);
     itemToSave.append("designIsGarage", item.designIsGarage);
     itemToSave.append("designIsBalcony", item.designIsBalcony);
     itemToSave.append("designIsVarenda", item.designIsVarenda);
+    itemToSave.append("designNoOfBedRooms", item.designNoOfBedRooms);
     itemToSave.append("designNoOfBathRooms", item.designNoOfBathRooms);
     itemToSave.append("designIsBathRoomAttached", item.designIsBathRoomAttached);;
     itemToSave.append("designImagesOfDesign", designImagesOfDesign[0]);
@@ -465,18 +481,21 @@ export class AuthService {
     );
   }
 
-  addProductItems(item: any, itemImagesOfDesign: File[], category: any) {
-       
-    const itemToSave = new FormData();
+  addProductItems(item: any, discount: any, itemImagesOfDesign: File[], category: any, priceWithUnit: any) {
 
+    const itemToSave = new FormData();
     itemToSave.append("hShopSystemId", item.hShopSystemId);
     itemToSave.append("hShopEmail", item.hShopEmail);
     itemToSave.append("hShopShopName", item.hShopShopName);
     itemToSave.append("hShopShopEmail", item.hShopShopEmail);
     itemToSave.append("itemCategory", category);
     itemToSave.append("itemName", item.itemName);
-    itemToSave.append("itemDescription", item.itemDescription);
+    itemToSave.append("itemDescription", item.itemDescription);    
+    itemToSave.append("itemSubCategory", item.itemSubCategory);
     itemToSave.append("itemPrice", item.itemPrice);
+    itemToSave.append("itemIsDiscount", item.itemIsDiscount);
+    itemToSave.append("itemDiscount", discount);
+    itemToSave.append("priceWithUnit",priceWithUnit);
     itemToSave.append("itemIsQCPass", item.itemIsQCPass);
     itemToSave.append("itemImagesOfDesign", itemImagesOfDesign[0]);
     //itemToSave.append("itemImagesOfDesign", itemImagesOfDesign[1]);
@@ -494,8 +513,6 @@ export class AuthService {
       })
     ); 
   }
-
-
 
   //when the browser refresh, this will take care of that
   findMe() { 
@@ -522,8 +539,10 @@ export class AuthService {
   private setHShop(hShop: any){
     this.hShop$.next(hShop);
   }
-
   private setDesignerItems(designerItems: any){
+    this.designerItems$.next(designerItems);
+  }
+  private setHShopItems(designerItems: any){
     this.designerItems$.next(designerItems);
   }
 }

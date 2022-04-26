@@ -1,0 +1,354 @@
+<!-- Banner -->
+    <div class="main-container" *ngIf="hShop">
+        <div class="inner">
+            <div class="shop-details">   
+                <h2>{{hShop.hShopRegShopName}}</h2>
+                <p>We build for the next generation</p>
+            </div>
+
+            <div class="shop-search">
+                <input type="text"  placeholder="Search here">
+            </div>
+
+            <div class="shoping-icon">
+                <a class="shoping-icon-link" href=""><img src="assets/image/shopping-cart-24.png" alt=""></a>
+                <a class="shoping-icon-link" href=""><img src="assets/image/shopping-bag-24.png" alt=""></a>
+            </div>
+        </div>
+        <section id="banner">
+            <div>
+                <img class="profile-picture-on-login-signup" src={{hShop.hShopRegShopPic}} alt="{{hShop.hShopRegShopPic}}">
+            </div> 
+        </section>
+
+    <div class="category-area">
+        <h4>Here is what you are looking for...</h4>
+        <div class="cardBox" *ngIf="categoryList.length > 0">
+            <div *ngFor="let category of categoryList; let id of hashCategoryList">
+                <div class="c-card">               
+                    <a class="category" pageScroll [href]="id">{{category}}</a><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Building" *ngIf="innerSubCatList.length > 0">    
+        <!-- <div *ngFor="let item of categoryList; let j = index"> -->
+        <div class="section-heading">
+            <p>Building Products</p> 
+        </div>
+            <div class="items" *ngIf="buildingCatArr.length > 0">
+                <div *ngFor="let item of buildingCatArr">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-section">
+                                <div class="item-image">
+                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                </div>
+                                <div *ngIf="item.itemDiscount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                </div>
+                                <div class="description">
+                                    <span class="item-name">{{item.itemName}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                </div>
+                                <div class="item-action">
+                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div> 
+
+    <div id="Paints" *ngIf="innerSubCatList.length > 0">    
+        <!-- <div *ngFor="let item of categoryList; let j = index"> -->
+            <div class="section-heading">
+                <p>Paint Products</p> 
+            </div>
+            <div class="items" *ngIf="paintsCatArr.length > 0">
+                <div *ngFor="let item of paintsCatArr">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-section">
+                                <div class="item-image">
+                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                </div>
+                                 <div *ngIf="item.itemDiscount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                </div>
+                                <div class="description">
+                                    <span class="item-name">{{item.itemName}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                </div>
+                                <div class="item-action">
+                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+
+    <div id="Electtric" *ngIf="innerSubCatList.length > 0">    
+        <!-- <div *ngFor="let item of categoryList; let j = index"> -->
+            <div class="section-heading">
+                <p>Electrical Products</p> 
+            </div>
+            <div class="items" *ngIf="electricalCatArr.length > 0">
+                <div *ngFor="let item of electricalCatArr">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-section">
+                                <div class="item-image">
+                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                </div>
+                                 <div *ngIf="item.itemDiscount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                </div>
+                                <div class="description">
+                                    <span class="item-name">{{item.itemName}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                </div>
+                                <div class="item-action">
+                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div> 
+
+    <div id="Plumbing" *ngIf="innerSubCatList.length > 0">    
+        <!-- <div *ngFor="let item of categoryList; let j = index"> -->
+            <div class="section-heading">
+                <p>Plumbing Products</p> 
+            </div>
+            <div class="items" *ngIf="plumbingCatArr.length > 0">
+                <div *ngFor="let item of plumbingCatArr">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-section">
+                                <div class="item-image">
+                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                </div>
+                                 <div *ngIf="item.itemDiscount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                </div>
+                                <div class="description">
+                                    <span class="item-name">{{item.itemName}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                </div>
+                                <div class="item-action">
+                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+
+    <div id="Steel" *ngIf="innerSubCatList.length > 0">    
+        <!-- <div *ngFor="let item of categoryList; let j = index"> -->
+            <div class="section-heading">
+                <p>Steel Products</p> 
+            </div>
+            <div class="items" *ngIf="steelCatArr.length > 0">
+                <div *ngFor="let item of steelCatArr">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-section">
+                                <div class="item-image">
+                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                </div>
+                                 <div *ngIf="item.itemDiscount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                </div>
+                                <div class="description">
+                                    <span class="item-name">{{item.itemName}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                </div>
+                                <div class="item-action">
+                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+
+    <div id="Roofing" *ngIf="innerSubCatList.length > 0">    
+        <!-- <div *ngFor="let item of categoryList; let j = index"> -->
+            <div class="section-heading">
+                <p>Roofing Products</p> 
+            </div>
+            <div class="items" *ngIf="roofingCatArr.length > 0">
+                <div *ngFor="let item of roofingCatArr">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-section">
+                                <div class="item-image">
+                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                </div>
+                                 <div *ngIf="item.itemDiscount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                </div>
+                                <div class="description">
+                                    <span class="item-name">{{item.itemName}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                </div>
+                                <div class="item-action">
+                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+
+    <div id="Tools" *ngIf="innerSubCatList.length > 0">    
+        <!-- <div *ngFor="let item of categoryList; let j = index"> -->
+            <div class="section-heading">
+                <p>Tool Products</p> 
+            </div>
+            <div class="items" *ngIf="toolsCatArr.length > 0">
+                <div *ngFor="let item of toolsCatArr">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-section">
+                                <div class="item-image">
+                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                </div>
+                                 <div *ngIf="item.itemDiscount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                </div>
+                                <div class="description">
+                                    <span class="item-name">{{item.itemName}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                </div>
+                                <div class="item-action">
+                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+
+    <div id="Garden" *ngIf="innerSubCatList.length > 0">    
+        <!-- <div *ngFor="let item of categoryList; let j = index"> -->
+            <div class="section-heading">
+                <p>Garden & Deco Products</p> 
+            </div>
+            <div class="items" *ngIf="gardenCatArr.length > 0">
+                <div *ngFor="let item of gardenCatArr">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-section">
+                                <div class="item-image">
+                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                </div>
+                                 <div *ngIf="item.itemDiscount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                </div>
+                                <div class="description">
+                                    <span class="item-name">{{item.itemName}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                </div>
+                                <div class="item-action">
+                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+
+    <div id="Ceiling" *ngIf="innerSubCatList.length > 0">    
+        <!-- <div *ngFor="let item of categoryList; let j = index"> -->
+            <div class="section-heading">
+                <p>Ceiling Products</p> 
+            </div>
+            <div class="items" *ngIf="ceilingCatArr.length > 0">
+                <div *ngFor="let item of ceilingCatArr">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-section">
+                                <div class="item-image">
+                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                </div>
+                                 <div *ngIf="item.itemDiscount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                </div>
+                                <div class="description">
+                                    <span class="item-name">{{item.itemName}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                </div>
+                                <div class="item-action">
+                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+
+    <div id="Fence" *ngIf="innerSubCatList.length > 0">    
+        <!-- <div *ngFor="let item of categoryList; let j = index"> -->
+            <div class="section-heading">
+                <p>Fence Products</p> 
+            </div>
+            <div class="items" *ngIf="fenceCatArr.length > 0">
+                <div *ngFor="let item of fenceCatArr">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-section">
+                                <div class="item-image">
+                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                </div>
+                                 <div *ngIf="item.itemDiscount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                </div>
+                                <div class="description">
+                                    <span class="item-name">{{item.itemName}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                </div>
+                                <div class="item-action">
+                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>       
+        <!-- </div> -->
+    </div>
+</div> 

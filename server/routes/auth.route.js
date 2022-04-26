@@ -38,6 +38,7 @@ router.put("/updatehshopshopprofilepics/:id", userStorage.array('hShopShopProfil
 router.put("/updatehshoppassword/:id", asyncHandler(getOldUserByEmailIdAndPasswordHShop), asyncHandler(updateHShopPassword), loginHShop);
 
 router.post("/loadingdesigneritems/:id", asyncHandler(getItemsByDesignerId), designerItems);
+router.post("/loadinghshopitems/:id", asyncHandler(getItemsByHShopId), hSHopItems);
 
 router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
 /**
@@ -309,9 +310,12 @@ async function insertAnItem(req, res, next) {
     const designArea = req.body.designArea;
     const designNoOfFloors = req.body.designNoOfFloors;
     const designEstCost = req.body.designEstCost;
+    const designIsDiscount =  req.body.designIsDiscount;
+    const designDiscount = req.body.designDiscount;
     const designIsGarage = req.body.designIsGarage;
     const designIsBalcony = req.body.designIsBalcony;
     const designIsVarenda = req.body.designIsVarenda;
+    const designNoOfBedRooms = req.body.designNoOfBedRooms;
     const designNoOfBathRooms = req.body.designNoOfBathRooms;
     const designIsBathRoomAttached = req.body.designIsBathRoomAttached;
     const designImages = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
@@ -327,9 +331,12 @@ async function insertAnItem(req, res, next) {
         designArea,
         designNoOfFloors,
         designEstCost,
+        designIsDiscount,
+        designDiscount,
         designIsGarage,
         designIsBalcony ,
         designIsVarenda,
+        designNoOfBedRooms,
         designNoOfBathRooms,
         designIsBathRoomAttached,
         designImages,
@@ -376,7 +383,11 @@ async function insertAnItemHShop(req, res, next) {
     const itemCategory = req.body.itemCategory;
     const itemName = req.body.itemName;
     const itemDescription = req.body.itemDescription;
+    const itemSubCategory = req.body.itemSubCategory;
     const itemPrice = req.body.itemPrice;
+    const itemIsDiscount = req.body.itemIsDiscount;
+    const itemDiscount = req.body.itemDiscount;
+    const priceWithUnit = req.body.priceWithUnit;
     const itemIsQCPass = req.body.itemIsQCPass;
     const itemImages = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
     
@@ -388,7 +399,11 @@ async function insertAnItemHShop(req, res, next) {
         itemCategory,
         itemName,
         itemDescription,
+        itemSubCategory,
         itemPrice,
+        itemIsDiscount,
+        itemDiscount,
+        priceWithUnit,
         itemIsQCPass,
         itemImages,
        // designImagesT
@@ -456,10 +471,15 @@ async function getOldUserByEmailIdAndPasswordHShop(req, res, next) {
     next(); //calling to the nest pipeline of the middleware
 }
 
-async function getItemsByDesignerId(req, res, next) {
-   
+async function getItemsByDesignerId(req, res, next) { 
     const savedDesignerItems = await userController.getItemsByDesignerId(req.params.id); 
     req.designerItems = savedDesignerItems;
+    next(); //calling to the nest pipeline of the middleware
+}
+
+async function getItemsByHShopId(req, res, next) { 
+    const savedHShopItems = await userController.getItemsByHShopId(req.params.id); 
+    req.hShopItems = savedHShopItems;
     next(); //calling to the nest pipeline of the middleware
 }
 
@@ -511,6 +531,14 @@ function loginHShop(req, res) {
     res.json({ 
         hShop,
         token
+    });
+}
+
+function hSHopItems(req, res) { 
+    const hShopItems = req.hShopItems;
+    // sending the user and token in the response
+    res.json({ 
+        hShopItems
     });
 }
 

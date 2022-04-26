@@ -1,32 +1,69 @@
   <!-- Banner -->
-<div *ngIf="designer">
+<div class="main-container" *ngIf="designer">
+  <div class="inner">
+    <div class="shop-details">   
+        <h2>{{designer.designerRegShopName}}</h2>
+        <p>We build for the next generation</p>
+    </div>
+
+    <div class="shop-search">
+        <input type="text"  placeholder="Search here">
+    </div>
+
+    <div class="shoping-icon">
+        <a class="shoping-icon-link" href=""><img src="assets/image/shopping-cart-24.png" alt=""></a>
+        <a class="shoping-icon-link" href=""><img src="assets/image/shopping-bag-24.png" alt=""></a>
+    </div>
+</div>
+
   <section id="banner">
     <div >
       <img class="profile-picture-on-login-signup" src={{designer.designerRegShopPic}} alt="{{designer.designerRegShopPic}}">
     </div> 
-    <div class="inner">
-      <h2>{{designer.designerRegShopName}}</h2>
-      <p>We build for the next generation</p>
-      <div class="actions">
-        <button href="contact-us.html" class="btn-on-banner ">Contact Us</button>
-        <button href="#gallery" class="btn-on-banner-otr ">Rate Us</button>
-        
-      </div>
-    </div>
   </section>
 
-  <div class="items" *ngIf="relItems.length > 0">
-    <div *ngFor="let item of relItems">
-      <section >
+  <div class="category-area">
+      <h4>Here is what you are looking for...</h4>
+      <div class="cardBox" *ngIf="categoryList.length > 0">
+          <div *ngFor="let category of categoryList; let id of hashCategoryList">
+              <div class="c-card">               
+                  <a class="category" pageScroll [href]="id">{{category}}</a><br/>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+<div id="LuxuryType" *ngIf="relItems.length > 0">
+    <div class="section-heading">
+      <p>Luxury Houses</p> 
+    </div>
+  <div class="items" *ngIf="luxuryCatArr.length > 0">
+    <div *ngFor="let item of luxuryCatArr">
         <div class="container">
           <div class="card">
             <div class="left-section">
-              <img src={{item.designImages}} class="profile-picture" alt="{{item.designImages}}"> 
-              <span class="shop-name"><font class="shop-name-topic">{{item.designName}}</font></span>           
+              <div class="image-area">
+                <img src={{item.designImages}} class="design-picture" alt="{{item.designImages}}"> 
+              </div>
+             <div class="down-description">
+              <div class="rooms">
+                <img src="assets/image/bed-35.png" alt="bed">{{item.designNoOfBedRooms}}
+                <img src="assets/image/tub-37.png" alt="bed">{{item.designNoOfBathRooms}}
+              </div>
+              <div class="stories">
+                <p>
+                  Storey(s) - {{item.designNoOfFloors}}
+                </p>
+              </div>
+            </div> 
+            </div>
+            <div *ngIf="item.designDiscount > 0" class="discount">
+              OFF! <br/> <p>{{item.designDiscount}} <span>%</span> </p> 
             </div>
             <div class="right-section">
+              <h2>{{item.designName}}</h2>
               <div class="description">
-                <h2>Description</h2>
                 <span>{{item.designDescription}}. With {{item.designNoOfFloors}} story(s),
                     the design is with a luxurious view and {{item.designArea}} sqr.ft. 
                     This is a {{item.designCategory}} type trending design...</span> 
@@ -40,7 +77,254 @@
             </div>
           </div>
         </div>
-      </section>
     </div>
   </div> 
+</div>
+
+
+<div id="Commercial" *ngIf="relItems.length > 0">
+  <div class="section-heading">
+    <p>Hotels Designings</p> 
+</div>
+<div class="items" *ngIf="hotelCatArr.length > 0">
+  <div *ngFor="let item of hotelCatArr">
+      <div class="container">
+        <div class="card">
+          <div class="left-section">
+            <div class="image-area">
+              <img src={{item.designImages}} class="design-picture" alt="{{item.designImages}}"> 
+            </div>
+            <div class="down-description">
+              <div class="rooms">
+                <img src="assets/image/bed-35.png" alt="bed">{{item.designNoOfBedRooms}}
+                <img src="assets/image/tub-37.png" alt="bed">{{item.designNoOfBathRooms}}
+              </div>
+              <div class="stories">
+                <p>
+                  Storey(s) - {{item.designNoOfFloors}}
+                </p>
+              </div>
+            </div>       
+          </div>
+          <div *ngIf="item.designDiscount > 0" class="discount">
+            OFF! <br/> <p>{{item.designDiscount}} <span>%</span> </p> 
+          </div>
+          <div class="right-section">
+            <h2>{{item.designName}}</h2>
+            <div class="description">
+              <span>{{item.designDescription}}. With {{item.designNoOfFloors}} story(s),
+                  the design is with a luxurious view and {{item.designArea}} sqr.ft. 
+                  This is a {{item.designCategory}} type trending design...</span> 
+            </div>
+            <span>Est. Min Cost - Rs.{{item.designEstCost}}/=</span> 
+
+            <div class="info-container">
+              <button class="btn-into">View</button> 
+              <button class="btn-into-ac">Add to cart</button> 
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div> 
+</div>
+
+
+
+<div id="Hotels" *ngIf="relItems.length > 0">
+  <div class="section-heading">
+    <p>Commercial Designings</p> 
+</div>
+<div class="items" *ngIf="commericalCatArr.length > 0">
+  <div *ngFor="let item of commericalCatArr">
+      <div class="container">
+        <div class="card">
+          <div class="left-section">
+            <div class="image-area">
+              <img src={{item.designImages}} class="design-picture" alt="{{item.designImages}}"> 
+            </div>
+          <div class="down-description">
+            <div class="rooms">
+              <img src="assets/image/bed-35.png" alt="bed">{{item.designNoOfBedRooms}}
+              <img src="assets/image/tub-37.png" alt="bed">{{item.designNoOfBathRooms}}
+            </div>
+            <div class="stories">
+              <p>
+                Storey(s) - {{item.designNoOfFloors}}
+              </p>
+            </div>
+          </div>          
+          </div>
+          <div *ngIf="item.designDiscount > 0" class="discount">
+            OFF! <br/> <p>{{item.designDiscount}} <span>%</span> </p> 
+          </div>
+          <div class="right-section">
+            <h2>{{item.designName}}</h2>
+            <div class="description">
+              <span>{{item.designDescription}}. With {{item.designNoOfFloors}} story(s),
+                  the design is with a luxurious view and {{item.designArea}} sqr.ft. 
+                  This is a {{item.designCategory}} type trending design...</span> 
+            </div>
+            <span>Est. Min Cost - Rs.{{item.designEstCost}}/=</span> 
+
+            <div class="info-container">
+              <button class="btn-into">View</button> 
+              <button class="btn-into-ac">Add to cart</button> 
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div> 
+</div>
+
+<div id="Shop" *ngIf="relItems.length > 0">
+  <div class="section-heading">
+    <p>Shop Designings</p> 
+  </div>
+<div class="items" *ngIf="shopCatArr.length > 0">
+  <div *ngFor="let item of shopCatArr">
+      <div class="container">
+        <div class="card">
+          <div class="left-section">
+            <div class="image-area">
+              <img src={{item.designImages}} class="design-picture" alt="{{item.designImages}}"> 
+            </div>
+             <div class="down-description">
+              <!-- <div class="rooms">
+                <img src="assets/image/bed-35.png" alt="bed">{{item.designNoOfFloors}}
+                <img src="assets/image/tub-37.png" alt="bed">{{item.designNoOfFloors}}
+              </div> -->
+              <div class="stories">
+                <p>
+                  Storey(s) - {{item.designNoOfFloors}}
+                </p>
+              </div>
+            </div>        
+          </div>
+          <div *ngIf="item.designDiscount > 0" class="discount">
+            OFF! <br/> <p>{{item.designDiscount}} <span>%</span> </p> 
+          </div>
+          <div class="right-section">
+            <h2>{{item.designName}}</h2>
+            <div class="description">
+              <span>{{item.designDescription}}. With {{item.designNoOfFloors}} story(s),
+                  the design is with a luxurious view and {{item.designArea}} sqr.ft. 
+                  This is a {{item.designCategory}} type trending design...</span> 
+            </div>
+            <span>Est. Min Cost - Rs.{{item.designEstCost}}/=</span> 
+
+            <div class="info-container">
+              <button class="btn-into">View</button> 
+              <button class="btn-into-ac">Add to cart</button> 
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div> 
+</div>
+
+<div id="BoxType" *ngIf="relItems.length > 0">
+  <div class="section-heading">
+    <p>Box Type Designings</p> 
+  </div>
+<div class="items" *ngIf="boxCatArr.length > 0">
+  <div *ngFor="let item of boxCatArr">
+      <div class="container">
+        <div class="card">
+
+          <div class="left-section">
+            <div class="image-area">
+              <img src={{item.designImages}} class="design-picture" alt="{{item.designImages}}"> 
+            </div>
+             <div class="down-description">
+              <div class="rooms">
+                <img src="assets/image/bed-35.png" alt="bed">{{item.designNoOfBedRooms}}
+                <img src="assets/image/tub-37.png" alt="bed">{{item.designNoOfBathRooms}}
+              </div>
+              <div class="stories">
+                <p>
+                  Storey(s) - {{item.designNoOfFloors}}
+                </p>
+              </div>
+            </div> 
+          </div>
+          <div *ngIf="item.designDiscount > 0" class="discount">
+            OFF! <br/> <p>{{item.designDiscount}} <span>%</span> </p> 
+          </div>
+
+          <div class="right-section">
+            
+            <h2>{{item.designName}}</h2>
+            <div class="description">
+              <span>{{item.designDescription}}. With {{item.designNoOfFloors}} story(s),
+                  the design is with a luxurious view and {{item.designArea}} sqr.ft. 
+                  This is a {{item.designCategory}} type trending design...</span> 
+            </div>
+            <span>Est. Min Cost - Rs.{{item.designEstCost}}/=</span> 
+
+            <div class="info-container">
+              <button class="btn-into">View</button> 
+              <button class="btn-into-ac">Add to cart</button> 
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div> 
+</div>
+
+
+
+<div id="OlderTypes" *ngIf="relItems.length > 0">
+  <div class="section-heading">
+    <p>Older Designings</p> 
+  </div>
+<div class="items" *ngIf="oldCatArr.length > 0">
+  <div *ngFor="let item of oldCatArr">
+      <div class="container">
+        <div class="card">
+          <div class="left-section">
+            <div class="image-area">
+              <img src={{item.designImages}} class="design-picture" alt="{{item.designImages}}"> 
+            </div>
+
+            <div class="down-description">
+              <div class="rooms">
+                <img src="assets/image/bed-35.png" alt="bed">{{item.designNoOfBedRooms}}
+                <img src="assets/image/tub-37.png" alt="bed">{{item.designNoOfBathRooms}}
+              </div>
+              <div class="stories">
+                <p>
+                  Storey(s) - {{item.designNoOfFloors}}
+                </p>
+              </div>
+            </div> 
+          </div>
+          <div *ngIf="item.designDiscount > 0" class="discount">
+            OFF! <br/> <p>{{item.designDiscount}} <span>%</span> </p> 
+          </div>
+          <div class="right-section">
+            <h2>{{item.designName}}</h2>
+            <div class="description">
+              <span>{{item.designDescription}}. With {{item.designNoOfFloors}} story(s),
+                  the design is with a luxurious view and {{item.designArea}} sqr.ft. 
+                  This is a {{item.designCategory}} type trending design...</span> 
+            </div>
+            <span>Est. Min Cost - Rs.{{item.designEstCost}}/=</span> 
+
+            <div class="info-container">
+              <button class="btn-into">View</button> 
+              <button class="btn-into-ac">Add to cart</button> 
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div> 
+</div>
+
+
+
 </div>

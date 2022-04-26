@@ -2,6 +2,7 @@ const UserRegistration = require('../models/userRegistration.model');
 const DesignerRegistration = require('../models/designerRegistration.model');
 const HShopRegistration = require('../models/hShopRegistration.model');
 const ItemAdding = require('../models/ItemAdding.model');
+const ItemAddingHShop = require('../models/ItemAddingHShop.model');
 const bcrypt = require('bcrypt');
 
 /**
@@ -56,6 +57,14 @@ async function getItemsByDesignerId(id) {
     return items;
 }
 
+async function getItemsByHShopId(id) {
+    let hShopItems = await ItemAddingHShop.find({id});
+    let items = [];
+    for (const item of hShopItems) {
+        items.push(item.toObject());
+    }
+    return items;
+}
 /**
  * getting user by id
  * @param {*} id 
@@ -111,5 +120,6 @@ module.exports = {
     getUserByEmailIdAndPasswordDesigner,
     getUserByEmailIdAndPasswordHShop,
     getUserById,
-    getItemsByDesignerId
+    getItemsByDesignerId,
+    getItemsByHShopId
 };

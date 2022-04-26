@@ -981,23 +981,23 @@ input[type="radio"]:checked{
      background: #555;
      border-radius: 50%;
      transition: 0.4s;
-    }
-    input[type="radio"]:checked::after{
+  }
+  input[type="radio"]:checked::after{
      left: calc(65px + 40px);
      background-color: #fcf376;
      box-shadow: 0 0 5px #fcf376,
      0 0 15px #fcf376,
      0 0 30px #fcf376;
-    }
+  }
 
-    input[type=radio]:checked +label::after{
+  input[type=radio]:checked +label::after{
      content: attr(data-checked);
      color: rgba(25, 138, 2, 0.678);
      font-size: 15px;
     top: 20px;
-   }
+  }
 
-    li {
+  li {
     position: relative;
     margin-top: 20px;
     font-family: "Open Sans Condensed", sans-serif;

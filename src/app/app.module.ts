@@ -1,6 +1,7 @@
 import { AppComponent } from './blocks/root/app.component';
 import { FooterComponent } from './share-comp/footer/footer.component';
 
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +26,7 @@ import { DesignersModule } from './designers/designers.module';
     ShopsModule,
     DesignersModule,
     CoreModule,
+    Ng2PageScrollModule
   ],
   providers: [
     ProductDataService

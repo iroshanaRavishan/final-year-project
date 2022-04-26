@@ -22,7 +22,6 @@ export class DesignersComponent implements OnInit {
     this.designerSubscription = this.authService.getDesignersStream().subscribe((designers: Designer[]) => {
       this.designers = designers;
     });
- 
   }
 
   ngOnDestroy() {

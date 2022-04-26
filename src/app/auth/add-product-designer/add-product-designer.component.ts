@@ -20,6 +20,8 @@ export class AddProductDesignerComponent implements OnInit {
   submitted = false;
   designImageDataDesign: string | any; 
   fileTypeDesignImages: String | any;
+  readOnlyToggle: string = 'true';
+  newDisVal: string ='';
 
   designImageDataDesignT: string | any; 
   fileTypeDesignImagesT: String | any;
@@ -34,7 +36,7 @@ export class AddProductDesignerComponent implements OnInit {
   ngOnInit(): void {
     this.designerId = this.designer._id;
     console.log(this.designerId);  
-    this.categories = ['Story Houses', 'Old Type', 'New Type', 'Box Type'];
+    this.categories = ['Luxury Type', 'Commercial', 'Hotels', 'Shop', 'Box Type', 'Older Types'];
     this.addItemDesignerForm();
     this.addProductForm();
 
@@ -60,9 +62,12 @@ export class AddProductDesignerComponent implements OnInit {
       designArea: new FormControl ('', [Validators.required]),
       designNoOfFloors: new FormControl ('', [Validators.required]),
       designEstCost: new FormControl ('', [Validators.required]),
+      designIsDiscount: new FormControl('', [Validators.required]),
+      designDiscount: new FormControl('0', [Validators.required]),
       designIsGarage: new FormControl ('', [Validators.required]),
       designIsBalcony: new FormControl ('', [Validators.required]),
       designIsVarenda: new FormControl ('', [Validators.required]),
+      designNoOfBedRooms: new FormControl ('', [Validators.required]),
       designNoOfBathRooms: new FormControl ('', [Validators.required]),
       designIsBathRoomAttached: new FormControl (''),
       designImagesOfDesign: new FormControl(null),
@@ -87,6 +92,15 @@ export class AddProductDesignerComponent implements OnInit {
       this.clicked = true;
     }   
   }
+
+  discountToggle(event: any) {
+    this.readOnlyToggle = event;
+    console.log(this.readOnlyToggle);
+    if(event=='false') {
+     alert('The Discount will no be added if you click on **No** option!');
+    }
+  }
+
 
   get designerRegFormValidation(){
     return this.designerAddProductForm.controls;
@@ -150,6 +164,15 @@ export class AddProductDesignerComponent implements OnInit {
       if( (this.designerAddProductForm.value.designEstCost < 0)){
         this.negativeValField = "Estimsted Cost"
       }
+      if( (this.designerAddProductForm.value.designDiscount < 0)){
+        this.negativeValField = "Discount"
+      }
+      if( (this.designerAddProductForm.value.designDiscount > 100)){
+        this.negativeValField = "Discount"
+      }    
+      if( (this.designerAddProductForm.value.designNoOfBedRooms < 0)){
+        this.negativeValField = "No of Bed-rooms"
+      }
       if( (this.designerAddProductForm.value.designNoOfBathRooms < 0)){
         this.negativeValField = "No of Bath-rooms"
       }
@@ -161,10 +184,17 @@ export class AddProductDesignerComponent implements OnInit {
 
     let designImagesOfDesign : File[] = [];
     designImagesOfDesign.push(this.designerAddProductForm.value.designImages);    
-    //designImagesOfDesign.push(this.designerAddProductForm.value.designImagesT);      
+    //designImagesOfDesign.push(this.designerAddProductForm.value.designImagesT);   
 
     const item: File = this.designerAddProductForm.getRawValue();
-    this.authService.addDesignItems(item, designImagesOfDesign, this.selectedCategory).subscribe(s => this.router.navigate(['auth/signupsuccess']));
+    if(this.readOnlyToggle=='false') {
+      this.newDisVal = '0'
+    } 
+    if(this.readOnlyToggle=='true') {
+      this.newDisVal = this.designerAddProductForm.value.designDiscount;
+    }
+
+    this.authService.addDesignItems(item, this.newDisVal, designImagesOfDesign, this.selectedCategory).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }
 
   
