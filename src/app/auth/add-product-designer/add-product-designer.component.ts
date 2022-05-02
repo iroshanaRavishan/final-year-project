@@ -40,7 +40,7 @@ export class AddProductDesignerComponent implements OnInit {
     this.addItemDesignerForm();
     this.addProductForm();
 
-    if(this.designerAddProductForm.value.designNoOfBathRooms > 0){
+    if(this.designerAddProductForm.value.noOfBathRooms > 0){
       this.br = true;
     }
   }
@@ -57,21 +57,21 @@ export class AddProductDesignerComponent implements OnInit {
       designerEmail: new FormControl(this.designer.designerRegEmail),
       designerShopName: new FormControl (this.designer.designerRegShopName),
       designerShopEmail: new FormControl(this.designer.designerRegShopEmail),
-      designName: new FormControl ('', [Validators.required]),
-      designDescription: new FormControl ('', [Validators.required]),
-      designArea: new FormControl ('', [Validators.required]),
-      designNoOfFloors: new FormControl ('', [Validators.required]),
-      designEstCost: new FormControl ('', [Validators.required]),
-      designIsDiscount: new FormControl('', [Validators.required]),
-      designDiscount: new FormControl('0', [Validators.required]),
-      designIsGarage: new FormControl ('', [Validators.required]),
-      designIsBalcony: new FormControl ('', [Validators.required]),
-      designIsVarenda: new FormControl ('', [Validators.required]),
-      designNoOfBedRooms: new FormControl ('', [Validators.required]),
-      designNoOfBathRooms: new FormControl ('', [Validators.required]),
-      designIsBathRoomAttached: new FormControl (''),
-      designImagesOfDesign: new FormControl(null),
-      designImages: new FormControl(null),
+      name: new FormControl ('', [Validators.required]),
+      description: new FormControl ('', [Validators.required]),
+      area: new FormControl ('', [Validators.required]),
+      noOfFloors: new FormControl ('', [Validators.required]),
+      estCost: new FormControl ('', [Validators.required]),
+      isDiscount: new FormControl('', [Validators.required]),
+      discount: new FormControl('0', [Validators.required]),
+      isGarage: new FormControl ('', [Validators.required]),
+      isBalcony: new FormControl ('', [Validators.required]),
+      isVarenda: new FormControl ('', [Validators.required]),
+      noOfBedRooms: new FormControl ('', [Validators.required]),
+      noOfBathRooms: new FormControl ('', [Validators.required]),
+      isBathRoomAttached: new FormControl (''),
+      imagesOfDesign: new FormControl(null),
+      images: new FormControl(null),
       //designImagesT: new FormControl(null),
     });
   }
@@ -109,7 +109,7 @@ export class AddProductDesignerComponent implements OnInit {
   onFileSelectDesignImages(event: Event) { //execute when fire on selecting the file form the input
     console.log("A file selected");
     const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
-    this.designerAddProductForm.patchValue({ designImages: file });
+    this.designerAddProductForm.patchValue({ images: file });
     const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
 
     if (file && allowedMimeTypes.includes(file.type)) {
@@ -124,13 +124,13 @@ export class AddProductDesignerComponent implements OnInit {
       this.fileTypeDesignImages = "File type is not acceptable";
       this.designImageDataDesign = null;
     }
-    console.log(this.designerAddProductForm.value.designImages);
+    console.log(this.designerAddProductForm.value.images);
   }
 
   // onFileSelectDesignImagesT(event: Event) { //execute when fire on selecting the file form the input
   //   console.log("A file selected");
   //   const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
-  //   this.designerAddProductForm.patchValue({ designImagesT: file });
+  //   this.designerAddProductForm.patchValue({ imagesT: file });
   //   const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
 
   //   if (file && allowedMimeTypes.includes(file.type)) {
@@ -145,7 +145,7 @@ export class AddProductDesignerComponent implements OnInit {
   //     this.fileTypeDesignImages = "File type is not acceptable";
   //     this.designImageDataDesign = null;
   //   }
-  //   console.log(this.designerAddProductForm.value.designImages);
+  //   console.log(this.designerAddProductForm.value.imagesT);
   // }
 
   submitProduct() {
@@ -154,26 +154,26 @@ export class AddProductDesignerComponent implements OnInit {
       return;
     }
     
-    if((this.designerAddProductForm.value.designArea < 0) || (this.designerAddProductForm.value.designNoOfFloors < 0) || (this.designerAddProductForm.value.designEstCost < 0) || (this.designerAddProductForm.value.designNoOfBathRooms < 0)) {
-      if((this.designerAddProductForm.value.designArea < 0)){
+    if((this.designerAddProductForm.value.area < 0) || (this.designerAddProductForm.value.noOfFloors < 0) || (this.designerAddProductForm.value.estCost < 0) || ((this.designerAddProductForm.value.discount < 0)) || ((this.designerAddProductForm.value.discount > 100)) || (this.designerAddProductForm.value.noOfBedRooms < 0) || (this.designerAddProductForm.value.noOfBathRooms < 0)) {
+      if((this.designerAddProductForm.value.area < 0)){
         this.negativeValField = "Area of the plan"
       }
-      if( (this.designerAddProductForm.value.designNoOfFloors < 0)){
+      if( (this.designerAddProductForm.value.noOfFloors < 0)){
         this.negativeValField = "No of floors"
       }
-      if( (this.designerAddProductForm.value.designEstCost < 0)){
+      if( (this.designerAddProductForm.value.estCost < 0)){
         this.negativeValField = "Estimsted Cost"
       }
-      if( (this.designerAddProductForm.value.designDiscount < 0)){
+      if( (this.designerAddProductForm.value.discount < 0)){
         this.negativeValField = "Discount"
       }
-      if( (this.designerAddProductForm.value.designDiscount > 100)){
+      if( (this.designerAddProductForm.value.discount > 100)){
         this.negativeValField = "Discount"
       }    
-      if( (this.designerAddProductForm.value.designNoOfBedRooms < 0)){
+      if( (this.designerAddProductForm.value.noOfBedRooms < 0)){
         this.negativeValField = "No of Bed-rooms"
       }
-      if( (this.designerAddProductForm.value.designNoOfBathRooms < 0)){
+      if( (this.designerAddProductForm.value.noOfBathRooms < 0)){
         this.negativeValField = "No of Bath-rooms"
       }
       
@@ -183,15 +183,15 @@ export class AddProductDesignerComponent implements OnInit {
     }
 
     let designImagesOfDesign : File[] = [];
-    designImagesOfDesign.push(this.designerAddProductForm.value.designImages);    
-    //designImagesOfDesign.push(this.designerAddProductForm.value.designImagesT);   
+    designImagesOfDesign.push(this.designerAddProductForm.value.images);    
+    //designImagesOfDesign.push(this.designerAddProductForm.value.imagesT);   
 
     const item: File = this.designerAddProductForm.getRawValue();
     if(this.readOnlyToggle=='false') {
       this.newDisVal = '0'
     } 
     if(this.readOnlyToggle=='true') {
-      this.newDisVal = this.designerAddProductForm.value.designDiscount;
+      this.newDisVal = this.designerAddProductForm.value.discount;
     }
 
     this.authService.addDesignItems(item, this.newDisVal, designImagesOfDesign, this.selectedCategory).subscribe(s => this.router.navigate(['auth/signupsuccess']));

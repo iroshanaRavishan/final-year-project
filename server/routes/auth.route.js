@@ -10,6 +10,7 @@ const DesignerRegistration = require('../models/designerRegistration.model');
 const HShopRegistration =  require('../models/hShopRegistration.model');
 const ItemAdding = require('../models/ItemAdding.model');
 const ItemAddingHShop = require ('../models/ItemAddingHShop.model');
+const AllSells = require('../models/allSells.model');
 const bcrypt = require('bcrypt');
 
 
@@ -25,20 +26,26 @@ router.post("/loginhshop", asyncHandler(getUserByEmailIdAndPasswordHShop), login
 router.get("/registerdesigner", getDesigners, loginDesigner);
 router.get("/registerhshop", getHShops, loginHShop);
 
+router.get("/addinganitemhshop", getHShopItems, loginHShop);
+
 router.put("/updatedesigner/:id", asyncHandler(updateDesigner), loginDesigner);
-router.post("/addinganitem", userStorage.array('designImagesOfDesign', 2), asyncHandler(insertAnItem), addedItem);
+router.post("/addinganitem", userStorage.array('imagesOfDesign', 2), asyncHandler(insertAnItem), addedItem);
 router.put("/updatedesigneruserprofilepics/:id", userStorage.array('designerUserProfilePic', 2), asyncHandler(updateDesignerUserProfilePics), loginDesigner);
 router.put("/updatedesignershopprofilepics/:id", userStorage.array('designerShopProfilePic', 2), asyncHandler(updateDesignerShopProfilePics), loginDesigner);
 router.put("/updatedesignerpassword/:id", asyncHandler(getOldUserByEmailIdAndPasswordDesigner), asyncHandler(updateDesignerPassword), loginDesigner);
 
 router.put("/updatehshop/:id", asyncHandler(updateHShop), loginHShop);
-router.post("/addinganitemhshop", userStorage.array('itemImagesOfDesign', 2), asyncHandler(insertAnItemHShop), addedItem);
+router.post("/addinganitemhshop", userStorage.array('imagesOfDesign', 2), asyncHandler(insertAnItemHShop), addedItem);
 router.put("/updatehshopuserprofilepics/:id", userStorage.array('hShopUserProfilePic', 2), asyncHandler(updateHShopUserProfilePics), loginHShop);
 router.put("/updatehshopshopprofilepics/:id", userStorage.array('hShopShopProfilePic', 2), asyncHandler(updateHShopShopProfilePics), loginHShop);
 router.put("/updatehshoppassword/:id", asyncHandler(getOldUserByEmailIdAndPasswordHShop), asyncHandler(updateHShopPassword), loginHShop);
 
 router.post("/loadingdesigneritems/:id", asyncHandler(getItemsByDesignerId), designerItems);
 router.post("/loadinghshopitems/:id", asyncHandler(getItemsByHShopId), hSHopItems);
+
+router.post("/confirmedorderdetails", asyncHandler(orderConfirming), addedOrder);
+
+router.post("/validatinguser", asyncHandler(getUserByEmailIdAndPasswordUser), loginUser);
 
 router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
 /**
@@ -97,7 +104,7 @@ async function insertDesigner(req, res, next) {
     const designerRegShopTelephone = req.body.designerRegShopTelephone;
     const designerRegShopPic = 'http://localhost:4050/images/' + req.files[1].filename; // Note: set path dynamically
     const designerRegPricing = req.body.designerRegPricing;
-    const Roles = 'vender';
+    const Roles = 'designer';
 
     delete designerRegPassword;
     
@@ -149,7 +156,7 @@ async function insertHShop(req, res, next) {
     const hShopRegShopTelephone = req.body.hShopRegShopTelephone;
     const hShopRegShopPic = 'http://localhost:4050/images/' + req.files[1].filename; // Note: set path dynamically
     const hShopRegPricing = req.body.hShopRegPricing;
-    const Roles = 'vender';
+    const Roles = 'hshop';
 
     delete hShopRegPassword;
     
@@ -191,6 +198,12 @@ async function getHShops(req, res) {
     const hShops = await HShopRegistration.find();
     console.log('found hardware shops');
     res.status(200).json({ hShops });
+};
+
+async function getHShopItems(req, res) {
+    const hShopItem = await ItemAddingHShop.find();
+    console.log('found hardware shop Items');
+    res.status(200).json({ hShopItem });
 };
 
 async function updateDesigner(req, res, next) {
@@ -304,42 +317,42 @@ async function insertAnItem(req, res, next) {
     const designerEmail = req.body.designerEmail;
     const designerShopName = req.body.designerShopName;
     const designerShopEmail = req.body.designerShopEmail;
-    const designCategory = req.body.designCategory;
-    const designName = req.body.designName;
-    const designDescription = req.body.designDescription;
-    const designArea = req.body.designArea;
-    const designNoOfFloors = req.body.designNoOfFloors;
-    const designEstCost = req.body.designEstCost;
-    const designIsDiscount =  req.body.designIsDiscount;
-    const designDiscount = req.body.designDiscount;
-    const designIsGarage = req.body.designIsGarage;
-    const designIsBalcony = req.body.designIsBalcony;
-    const designIsVarenda = req.body.designIsVarenda;
-    const designNoOfBedRooms = req.body.designNoOfBedRooms;
-    const designNoOfBathRooms = req.body.designNoOfBathRooms;
-    const designIsBathRoomAttached = req.body.designIsBathRoomAttached;
-    const designImages = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
+    const category = req.body.category;
+    const name = req.body.name;
+    const description = req.body.description;
+    const area = req.body.area;
+    const noOfFloors = req.body.noOfFloors;
+    const estCost = req.body.estCost;
+    const isDiscount =  req.body.isDiscount;
+    const discount = req.body.discount;
+    const isGarage = req.body.isGarage;
+    const isBalcony = req.body.isBalcony;
+    const isVarenda = req.body.isVarenda;
+    const noOfBedRooms = req.body.noOfBedRooms;
+    const noOfBathRooms = req.body.noOfBathRooms;
+    const isBathRoomAttached = req.body.isBathRoomAttached;
+    const images = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
     
     const item = new ItemAdding({
         designerSystemId,
         designerEmail,
         designerShopName,
         designerShopEmail,
-        designCategory,
-        designName,
-        designDescription,
-        designArea,
-        designNoOfFloors,
-        designEstCost,
-        designIsDiscount,
-        designDiscount,
-        designIsGarage,
-        designIsBalcony ,
-        designIsVarenda,
-        designNoOfBedRooms,
-        designNoOfBathRooms,
-        designIsBathRoomAttached,
-        designImages,
+        category,
+        name,
+        description,
+        area,
+        noOfFloors,
+        estCost,
+        isDiscount,
+        discount,
+        isGarage,
+        isBalcony ,
+        isVarenda,
+        noOfBedRooms,
+        noOfBathRooms,
+        isBathRoomAttached,
+        images,
        // designImagesT
     });
 
@@ -380,38 +393,72 @@ async function insertAnItemHShop(req, res, next) {
     const hShopEmail = req.body.hShopEmail;
     const hShopShopName = req.body.hShopShopName;
     const hShopShopEmail = req.body.hShopShopEmail;
-    const itemCategory = req.body.itemCategory;
-    const itemName = req.body.itemName;
-    const itemDescription = req.body.itemDescription;
-    const itemSubCategory = req.body.itemSubCategory;
-    const itemPrice = req.body.itemPrice;
-    const itemIsDiscount = req.body.itemIsDiscount;
-    const itemDiscount = req.body.itemDiscount;
+    const category = req.body.category;
+    const name = req.body.name;
+    const description = req.body.description;
+    const subCategory = req.body.subCategory;
+    const price = req.body.price;
+    const isDiscount = req.body.isDiscount;
+    const discount = req.body.discount;
     const priceWithUnit = req.body.priceWithUnit;
-    const itemIsQCPass = req.body.itemIsQCPass;
-    const itemImages = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
+    const isQCPass = req.body.isQCPass;
+    const images = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
     
     const item = new ItemAddingHShop({
         hShopSystemId,
         hShopEmail,
         hShopShopName,
         hShopShopEmail,
-        itemCategory,
-        itemName,
-        itemDescription,
-        itemSubCategory,
-        itemPrice,
-        itemIsDiscount,
-        itemDiscount,
+        category,
+        name,
+        description,
+        subCategory,
+        price,
+        isDiscount,
+        discount,
         priceWithUnit,
-        itemIsQCPass,
-        itemImages,
+        isQCPass,
+        images,
        // designImagesT
     });
 
     console.log('adding an item', item);
     req.item = await item.save(); // taking the user from the class to the request
     console.log('added the item');
+    next();
+}
+
+async function orderConfirming(req, res, next) {
+
+    const fullName = req.body.fullName;
+    const useremail = req.body.useremail;
+    const telephone = req.body.telephone;
+    const address = req.body.address;
+    const district = req.body.district;
+    const zipcode = req.body.zipcode;
+    const collectAt = req.body.collectAt;
+    const payementType = req.body.payementType;
+    const venderType = req.body.venderType;
+    const sts = req.body.status;
+    const itemId = req.body.itemId;
+    
+    const order = new AllSells({
+        fullName,
+        useremail,
+        telephone,
+        address,
+        district,
+        zipcode,
+        collectAt,
+        payementType,
+        venderType,
+        sts,
+        itemId
+    });
+
+    console.log('adding an order', order);
+    req.order = await order.save(); // taking the user from the class to the request
+    console.log('added the order');
     next();
 }
 
@@ -513,6 +560,14 @@ function addedItem(req, res) {
     // sending the user and token in the response
     res.json({ 
         item     
+    });
+}
+
+function addedOrder(req, res) { 
+    const order = req.order; 
+    // sending the user and token in the response
+    res.json({ 
+        order     
     });
 }
 

@@ -47,25 +47,25 @@
                 <h3 class="down-form-form-section">Design Information</h3>
                 <div>
                     <label>Name<span class="req"> *</span></label>
-                    <input type="text" formControlName="designName" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designName.errors }"  placeholder="Enter Name" required>                                
-                    <div *ngIf="submitted && designerRegFormValidation.designName.errors" class="invalid-feedback">
-                        <div *ngIf="designerRegFormValidation.designName.errors.required" >Name is required !</div>
+                    <input type="text" formControlName="name" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.name.errors }"  placeholder="Enter Name" required>                                
+                    <div *ngIf="submitted && designerRegFormValidation.name.errors" class="invalid-feedback">
+                        <div *ngIf="designerRegFormValidation.name.errors.required" >Name is required !</div>
                     </div>
                 </div> 
                   
                 <div>
                     <label>Description<span class="req"> *</span></label>
-                    <input type="text" formControlName="designDescription" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designDescription.errors }"placeholder="Enter Description" required>                 
-                    <div *ngIf="submitted && designerRegFormValidation.designDescription.errors" class="invalid-feedback">
-                        <div *ngIf="designerRegFormValidation.designDescription.errors.required" >Description is required !</div>
+                    <input type="text" formControlName="description" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.description.errors }"placeholder="Enter Description" required>                 
+                    <div *ngIf="submitted && designerRegFormValidation.description.errors" class="invalid-feedback">
+                        <div *ngIf="designerRegFormValidation.description.errors.required" >Description is required !</div>
                     </div>
                 </div>
      
                  <div>
                     <label>Area of the plan<span class="req"> *</span></label>
-                    <input type="number" formControlName="designArea" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designArea.errors }" placeholder="Enter Area of the plan in squre feet" required>
-                    <div *ngIf="submitted && designerRegFormValidation.designArea.errors" class="invalid-feedback">
-                        <div *ngIf="designerRegFormValidation.designArea.errors.required" >Area is required !</div>
+                    <input type="number" formControlName="area" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.area.errors }" placeholder="Enter Area of the plan in squre feet" required>
+                    <div *ngIf="submitted && designerRegFormValidation.area.errors" class="invalid-feedback">
+                        <div *ngIf="designerRegFormValidation.area.errors.required" >Area is required !</div>
                     </div>
 
                     <div *ngIf="negativeVal">
@@ -77,9 +77,9 @@
     
                 <div>
                     <label>No of floors<span class="req"> *</span></label>
-                    <input type="number" formControlName="designNoOfFloors" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designNoOfFloors.errors }" placeholder="No of floors" required>
-                    <div *ngIf="submitted && designerRegFormValidation.designNoOfFloors.errors" class="invalid-feedback">
-                        <div *ngIf="designerRegFormValidation.designNoOfFloors.errors.required" >No of floors is required !</div>
+                    <input type="number" formControlName="noOfFloors" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.noOfFloors.errors }" placeholder="No of floors" required>
+                    <div *ngIf="submitted && designerRegFormValidation.noOfFloors.errors" class="invalid-feedback">
+                        <div *ngIf="designerRegFormValidation.noOfFloors.errors.required" >No of floors is required !</div>
                     </div>
 
                     <div *ngIf="negativeVal">
@@ -91,9 +91,9 @@
     
                 <div>
                     <label>Estimsted Cost<span class="req"> *</span></label>
-                    <input type="text" formControlName="designEstCost" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designEstCost.errors }" placeholder="Enter Estimsted Cost" required>
-                    <div *ngIf="submitted && designerRegFormValidation.designEstCost.errors" class="invalid-feedback">
-                        <div *ngIf="designerRegFormValidation.designEstCost.errors.required" >Estimsted Cost is required !</div>
+                    <input type="text" formControlName="estCost" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.estCost.errors }" placeholder="Enter Estimsted Cost" required>
+                    <div *ngIf="submitted && designerRegFormValidation.estCost.errors" class="invalid-feedback">
+                        <div *ngIf="designerRegFormValidation.estCost.errors.required" >Estimsted Cost is required !</div>
                     </div>
 
                     <div *ngIf="negativeVal">
@@ -107,22 +107,22 @@
                     <label>Discount Availability<span class="req"> *</span></label>
                     <div class="radio-button" >
                         <label> 
-                            Yes <input type="radio" (click)="discountToggle('true')" value="true" formControlName="designIsDiscount" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designIsDiscount.errors }" name="designIsDiscount"> 
-                            No <input type="radio" (click)="discountToggle('false')"  value="false" formControlName="designIsDiscount" name="designIsDiscount" [checked]>
+                            Yes <input type="radio" (click)="discountToggle('true')" value="true" formControlName="isDiscount" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.isDiscount.errors }" name="isDiscount"> 
+                            No <input type="radio" (click)="discountToggle('false')"  value="false" formControlName="isDiscount" name="isDiscount" [checked]>
                         </label>             
                     </div>
-                    <div *ngIf="submitted && designerRegFormValidation.designIsDiscount.errors" class="invalid-feedback">
+                    <div *ngIf="submitted && designerRegFormValidation.isDiscount.errors" class="invalid-feedback">
                         <div>
-                            <div *ngIf="designerRegFormValidation.designIsDiscount.errors.required" >This field is required !</div>
+                            <div *ngIf="designerRegFormValidation.isDiscount.errors.required" >This field is required !</div>
                         </div>
                     </div> 
                 </div>
                 <!-- *ngIf="compPath=='dashboard'"  *ngIf="readOnlyToggle=='false'"-->
                 <div>
                     <label>Discount<span class="req"> *</span ></label>
-                    <input type="number" formControlName="designDiscount" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designDiscount.errors }" placeholder="Enter Discount" required>
-                    <div *ngIf="submitted && designerRegFormValidation.designDiscount.errors" class="invalid-feedback">
-                        <div *ngIf="designerRegFormValidation.designDiscount.errors.required" >Discount is required !</div>
+                    <input type="number" formControlName="discount" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.discount.errors }" placeholder="Enter Discount" required>
+                    <div *ngIf="submitted && designerRegFormValidation.discount.errors" class="invalid-feedback">
+                        <div *ngIf="designerRegFormValidation.discount.errors.required" >Discount is required !</div>
                     </div>
 
                     <div *ngIf="negativeVal">
@@ -137,13 +137,13 @@
                     <label>Garage<span class="req"> *</span></label>
                     <div class="radio-button">
                         <label> 
-                            Yes <input type="radio" value="Yes" formControlName="designIsGarage" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designIsGarage.errors }" name="designIsGarage"> 
-                            No <input type="radio" value="No" formControlName="designIsGarage" name="designIsGarage">
+                            Yes <input type="radio" value="Yes" formControlName="isGarage" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.isGarage.errors }" name="isGarage"> 
+                            No <input type="radio" value="No" formControlName="isGarage" name="isGarage">
                         </label>                  
                     </div>
-                    <div *ngIf="submitted && designerRegFormValidation.designIsGarage.errors" class="invalid-feedback">
+                    <div *ngIf="submitted && designerRegFormValidation.isGarage.errors" class="invalid-feedback">
                         <div>
-                            <div *ngIf="designerRegFormValidation.designIsGarage.errors.required" >This field is required !</div>
+                            <div *ngIf="designerRegFormValidation.isGarage.errors.required" >This field is required !</div>
                         </div>
                     </div> 
                 </div>
@@ -152,13 +152,13 @@
                     <label>Balcony<span class="req"> *</span></label>
                         <div class="radio-button">
                             <label>
-                                Yes <input type="radio" value="Yes" formControlName="designIsBalcony" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designIsBalcony.errors }" name="designIsBalcony">           
-                                No <input type="radio" value="No" formControlName="designIsBalcony" name="designIsBalcony"  >
+                                Yes <input type="radio" value="Yes" formControlName="isBalcony" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.isBalcony.errors }" name="isBalcony">           
+                                No <input type="radio" value="No" formControlName="isBalcony" name="isBalcony"  >
                             </label>
                         </div>
-                    <div *ngIf="submitted && designerRegFormValidation.designIsBalcony.errors" class="invalid-feedback">
+                    <div *ngIf="submitted && designerRegFormValidation.isBalcony.errors" class="invalid-feedback">
                         <div class="pricing-area">
-                            <div *ngIf="designerRegFormValidation.designIsBalcony.errors.required" >This field is required !</div>
+                            <div *ngIf="designerRegFormValidation.isBalcony.errors.required" >This field is required !</div>
                         </div>
                     </div> 
                 </div>
@@ -167,22 +167,22 @@
                     <label>Varenda<span class="req"> *</span></label>
                        <div class="radio-button">
                             <label>
-                                Yes <input type="radio" value="Yes" formControlName="designIsVarenda" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designIsVarenda.errors }" name="designIsVarenda">                                            
-                                No <input type="radio" value="No" formControlName="designIsVarenda" name="designIsVarenda"  >
+                                Yes <input type="radio" value="Yes" formControlName="isVarenda" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.isVarenda.errors }" name="isVarenda">                                            
+                                No <input type="radio" value="No" formControlName="isVarenda" name="isVarenda"  >
                             </label>
                         </div>
-                    <div *ngIf="submitted && designerRegFormValidation.designIsVarenda.errors" class="invalid-feedback">
+                    <div *ngIf="submitted && designerRegFormValidation.isVarenda.errors" class="invalid-feedback">
                         <div class="pricing-area">
-                            <div *ngIf="designerRegFormValidation.designIsVarenda.errors.required" >This field is required !</div>
+                            <div *ngIf="designerRegFormValidation.isVarenda.errors.required" >This field is required !</div>
                         </div>
                     </div> 
                 </div>
     
                 <div>
                     <label>No of Bed-rooms<span class="req"> *</span></label>
-                    <input type="number" formControlName="designNoOfBedRooms" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designNoOfBedRooms.errors }" placeholder="Enter No of Bed-rooms" required>
-                    <div *ngIf="submitted && designerRegFormValidation.designNoOfBedRooms.errors" class="invalid-feedback">
-                        <div *ngIf="designerRegFormValidation.designNoOfBedRooms.errors.required" >This field is required !</div>
+                    <input type="number" formControlName="noOfBedRooms" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.noOfBedRooms.errors }" placeholder="Enter No of Bed-rooms" required>
+                    <div *ngIf="submitted && designerRegFormValidation.noOfBedRooms.errors" class="invalid-feedback">
+                        <div *ngIf="designerRegFormValidation.noOfBedRooms.errors.required" >This field is required !</div>
                     </div>
 
                     <div *ngIf="negativeVal">
@@ -194,9 +194,9 @@
                 <div>
                     <div>
                         <label>No of Bath-rooms<span class="req"> *</span></label>
-                        <input type="number" formControlName="designNoOfBathRooms" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designNoOfBathRooms.errors }" placeholder="Enter No of Bath-rooms" required>
-                        <div *ngIf="submitted && designerRegFormValidation.designNoOfBathRooms.errors" class="invalid-feedback">
-                            <div *ngIf="designerRegFormValidation.designNoOfBathRooms.errors.required" >This field is required !</div>
+                        <input type="number" formControlName="noOfBathRooms" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.noOfBathRooms.errors }" placeholder="Enter No of Bath-rooms" required>
+                        <div *ngIf="submitted && designerRegFormValidation.noOfBathRooms.errors" class="invalid-feedback">
+                            <div *ngIf="designerRegFormValidation.noOfBathRooms.errors.required" >This field is required !</div>
                         </div>
 
                         <div *ngIf="negativeVal">
@@ -209,8 +209,8 @@
                         <label>Attachment of the Bath-rooms<span class="req"> *</span></label>
                         <div class="radio-button">
                             <label>
-                                Yes <input type="radio" value="Yes" formControlName="designIsBathRoomAttached" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designIsBathRoomAttached.errors }" name="designIsBathRoomAttached"  >
-                                No <input type="radio" value="No" formControlName="designIsBathRoomAttached" name="designIsBathRoomAttached"  >
+                                Yes <input type="radio" value="Yes" formControlName="isBathRoomAttached" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.isBathRoomAttached.errors }" name="isBathRoomAttached"  >
+                                No <input type="radio" value="No" formControlName="isBathRoomAttached" name="isBathRoomAttached"  >
                             </label>
                         </div>
                     </div>
@@ -218,26 +218,26 @@
     
                 <div>
                     <label>Images of the design (add only images - .png, jpeg & jpg)<span class="req"> *</span></label>
-                    <input type="file" (change)="onFileSelectDesignImages($event)" class="upload-box" name="designImagesOfDesign" formControlName="designImagesOfDesign" placeholder="Attach design Images" required>
+                    <input type="file" (change)="onFileSelectDesignImages($event)" class="upload-box" name="imagesOfDesign" formControlName="imagesOfDesign" placeholder="Attach design Images" required>
                     <div>                
                         <div *ngIf="designImageDataDesign">
-                            <img class="profile-picture-on-login-signup" [src]="designImageDataDesign" [alt]="designerAddProductForm.value.designName">
+                            <img class="profile-picture-on-login-signup" [src]="designImageDataDesign" [alt]="designerAddProductForm.value.name">
                         </div>
                         <div *ngIf="fileTypeDesignImages" class="invalid-feedback">
                             {{fileTypeDesignImages}}
                         </div>
-                        <div *ngIf="submitted && designerRegFormValidation.designImagesOfDesign.errors" class="invalid-feedback">
-                            <div *ngIf="designerRegFormValidation.designImagesOfDesign.errors.required" >This field is required !</div>
+                        <div *ngIf="submitted && designerRegFormValidation.imagesOfDesign.errors" class="invalid-feedback">
+                            <div *ngIf="designerRegFormValidation.imagesOfDesign.errors.required" >This field is required !</div>
                         </div>
                     </div>
                 </div>
     <!-- 
                 <div>
                     <label>Images of the design (add only images - .png, jpeg & jpg)<span class="req"> *</span></label>
-                    <input type="file" (change)="onFileSelectDesignImagesT($event)" class="upload-box" name="designImagesOfDesign" placeholder="Attach design Images" required>
+                    <input type="file" (change)="onFileSelectDesignImagesT($event)" class="upload-box" name="imagesOfDesign" placeholder="Attach design Images" required>
                     <div>                
                         <div *ngIf="designImageDataDesignT">
-                            <img class="profile-picture-on-login-signup" [src]="designImageDataDesignT" [alt]="designerAddProductForm.value.designName">
+                            <img class="profile-picture-on-login-signup" [src]="designImageDataDesignT" [alt]="designerAddProductForm.value.name">
                         </div>
                         <div *ngIf="fileTypeDesignImagesT" class="invalid-feedback">
                             {{fileTypeDesignImagesT}}

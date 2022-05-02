@@ -57,17 +57,17 @@ export class AddProductShopComponent implements OnInit {
         hShopEmail: new FormControl(this.hShop.hShopRegEmail),
         hShopShopName: new FormControl (this.hShop.hShopRegShopName),
         hShopShopEmail: new FormControl(this.hShop.hShopRegShopEmail),
-        itemName: new FormControl ('', [Validators.required]),
-        itemDescription: new FormControl ('', [Validators.required]),
-        itemSubCategory: new FormControl('', [Validators.required]),
-        itemPortionType: new FormControl ('', [Validators.required]),        
-        itemPrice: new FormControl ('', [Validators.required]),
-        itemIsDiscount: new FormControl('', [Validators.required]),
-        itemDiscount: new FormControl('0', [Validators.required]),
-        itemIsQCPass: new FormControl ('', [Validators.required]),
-        itemImagesOfItem: new FormControl(null),
-        itemImages: new FormControl(null),
-        //itemImagesT: new FormControl(null),
+        name: new FormControl ('', [Validators.required]),
+        description: new FormControl ('', [Validators.required]),
+        subCategory: new FormControl('', [Validators.required]),
+        portionType: new FormControl ('', [Validators.required]),        
+        price: new FormControl ('', [Validators.required]),
+        isDiscount: new FormControl('', [Validators.required]),
+        discount: new FormControl('0', [Validators.required]),
+        isQCPass: new FormControl ('', [Validators.required]),
+        imagesOfItem: new FormControl(null),
+        images: new FormControl(null),
+        //imagesT: new FormControl(null),
     });
   }
 
@@ -103,7 +103,7 @@ export class AddProductShopComponent implements OnInit {
   onFileSelectItemImages(event: Event) { //execute when fire on selecting the file form the input
     console.log("A file selected");
     const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
-    this.hShopAddProductForm.patchValue({ itemImages: file });
+    this.hShopAddProductForm.patchValue({ images: file });
     const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
 
     if (file && allowedMimeTypes.includes(file.type)) {
@@ -118,7 +118,7 @@ export class AddProductShopComponent implements OnInit {
       this.fileTypeItemImages = "File type is not acceptable";
       this.itemImageDataItem = null;
     }
-    console.log(this.hShopAddProductForm.value.itemImages);
+    console.log(this.hShopAddProductForm.value.images);
   }
 
   submitProduct() {
@@ -127,26 +127,26 @@ export class AddProductShopComponent implements OnInit {
       return;
     }
     
-    if((this.hShopAddProductForm.value.itemPrice < 0)) { // || (this.hShopAddProductForm.value.itemPortionPrice < 0)) || (this.hShopAddProductForm.value.designEstCost < 0) || (this.hShopAddProductForm.value.designNoOfBathRooms < 0)) 
-      if((this.hShopAddProductForm.value.itemPrice < 0)){
+    if((this.hShopAddProductForm.value.price < 0) || (this.hShopAddProductForm.value.discount < 0) || (this.hShopAddProductForm.value.discount > 100)) { // || (this.hShopAddProductForm.value.designEstCost < 0) || (this.hShopAddProductForm.value.designNoOfBathRooms < 0)) 
+      if((this.hShopAddProductForm.value.price < 0)){
         this.negativeValField = "price"
 
       }
-      if( (this.hShopAddProductForm.value.designDiscount < 0)){
+      if( (this.hShopAddProductForm.value.discount < 0)){
         this.negativeValField = "Discount"
       }
-      if( (this.hShopAddProductForm.value.designDiscount > 100)){
+      if( (this.hShopAddProductForm.value.discount > 100)){
         this.negativeValField = "Discount"
       } 
-      // if( (this.hShopAddProductForm.value.itemPortionPrice < 0)){
+      // if( (this.hShopAddProductForm.value.portionPrice < 0)){
       //   this.negativeValField = "portion price"
 
       // }
-    //   if( (this.hShopAddProductForm.value.designEstCost < 0)){
+    //   if( (this.hShopAddProductForm.value.estCost < 0)){
     //     this.negativeValField = "Estimsted Cost"
 
     //   }
-    //   if( (this.hShopAddProductForm.value.designNoOfBathRooms < 0)){
+    //   if( (this.hShopAddProductForm.value.noOfBathRooms < 0)){
     //     this.negativeValField = "No of Bath-rooms"
 
     //   }
@@ -157,15 +157,15 @@ export class AddProductShopComponent implements OnInit {
      }
 
     let itemImagesOfDesign : File[] = [];
-    itemImagesOfDesign.push(this.hShopAddProductForm.value.itemImages);    
-    //itemImagesOfDesign.push(this.hShopAddProductForm.value.itemImagesT);
+    itemImagesOfDesign.push(this.hShopAddProductForm.value.images);    
+    //itemImagesOfDesign.push(this.hShopAddProductForm.value.imagesT);
     if(this.readOnlyToggle=='false') {
       this.newDisVal = '0'
     } 
     if(this.readOnlyToggle=='true') {
-      this.newDisVal = this.hShopAddProductForm.value.itemDiscount;
+      this.newDisVal = this.hShopAddProductForm.value.discount;
     }
-    const priceWithUnit: string = `1 ${this.hShopAddProductForm.value.itemPortionType}`+` - Rs. ${this.hShopAddProductForm.value.itemPrice}/=`;
+    const priceWithUnit: string = `1 ${this.hShopAddProductForm.value.portionType}`+` - Rs. ${this.hShopAddProductForm.value.price}/=`;
     const item: File = this.hShopAddProductForm.getRawValue();
     this.authService.addProductItems(item, this.newDisVal, itemImagesOfDesign, this.selectedCategory, priceWithUnit).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }

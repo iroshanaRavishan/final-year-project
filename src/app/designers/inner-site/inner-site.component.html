@@ -18,7 +18,7 @@
 
   <section id="banner">
     <div >
-      <img class="profile-picture-on-login-signup" src={{designer.designerRegShopPic}} alt="{{designer.designerRegShopPic}}">
+      <img class="profile-picture-on-login-signup" src={{designer.designerRegShopPic}} alt="{{designer.erRegShopPic}}">
     </div> 
   </section>
 
@@ -44,31 +44,31 @@
           <div class="card">
             <div class="left-section">
               <div class="image-area">
-                <img src={{item.designImages}} class="design-picture" alt="{{item.designImages}}"> 
+                <img src={{item.images}} class="design-picture" alt="{{item.images}}"> 
               </div>
              <div class="down-description">
               <div class="rooms">
-                <img src="assets/image/bed-35.png" alt="bed">{{item.designNoOfBedRooms}}
-                <img src="assets/image/tub-37.png" alt="bed">{{item.designNoOfBathRooms}}
+                <img src="assets/image/bed-35.png" alt="bed">{{item.noOfBedRooms}}
+                <img src="assets/image/tub-37.png" alt="bed">{{item.noOfBathRooms}}
               </div>
               <div class="stories">
                 <p>
-                  Storey(s) - {{item.designNoOfFloors}}
+                  Storey(s) - {{item.noOfFloors}}
                 </p>
               </div>
             </div> 
             </div>
-            <div *ngIf="item.designDiscount > 0" class="discount">
-              OFF! <br/> <p>{{item.designDiscount}} <span>%</span> </p> 
+            <div *ngIf="item.discount > 0" class="discount">
+              OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
             </div>
             <div class="right-section">
-              <h2>{{item.designName}}</h2>
+              <h2>{{item.name}}</h2>
               <div class="description">
-                <span>{{item.designDescription}}. With {{item.designNoOfFloors}} story(s),
-                    the design is with a luxurious view and {{item.designArea}} sqr.ft. 
-                    This is a {{item.designCategory}} type trending design...</span> 
+                <span>{{item.description}}. With {{item.noOfFloors}} story(s),
+                    the design is with a luxurious view and {{item.area}} sqr.ft. 
+                    This is a {{item.category}} type trending design...</span> 
               </div>
-              <span>Est. Min Cost - Rs.{{item.designEstCost}}/=</span> 
+              <span>Est. Min Cost - Rs.{{item.estCost}}/=</span> 
 
               <div class="info-container">
                 <button class="btn-into">View</button> 
@@ -84,7 +84,7 @@
 
 <div id="Commercial" *ngIf="relItems.length > 0">
   <div class="section-heading">
-    <p>Hotels Designings</p> 
+    <p>Commercial ings</p> 
 </div>
 <div class="items" *ngIf="hotelCatArr.length > 0">
   <div *ngFor="let item of hotelCatArr">
@@ -92,31 +92,31 @@
         <div class="card">
           <div class="left-section">
             <div class="image-area">
-              <img src={{item.designImages}} class="design-picture" alt="{{item.designImages}}"> 
+              <img src={{item.images}} class="design-picture" alt="{{item.images}}"> 
             </div>
             <div class="down-description">
               <div class="rooms">
-                <img src="assets/image/bed-35.png" alt="bed">{{item.designNoOfBedRooms}}
-                <img src="assets/image/tub-37.png" alt="bed">{{item.designNoOfBathRooms}}
+                <img src="assets/image/bed-35.png" alt="bed">{{item.noOfBedRooms}}
+                <img src="assets/image/tub-37.png" alt="bed">{{item.noOfBathRooms}}
               </div>
               <div class="stories">
                 <p>
-                  Storey(s) - {{item.designNoOfFloors}}
+                  Storey(s) - {{item.noOfFloors}}
                 </p>
               </div>
             </div>       
           </div>
-          <div *ngIf="item.designDiscount > 0" class="discount">
-            OFF! <br/> <p>{{item.designDiscount}} <span>%</span> </p> 
+          <div *ngIf="item.discount > 0" class="discount">
+            OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
           </div>
           <div class="right-section">
-            <h2>{{item.designName}}</h2>
+            <h2>{{item.name}}</h2>
             <div class="description">
-              <span>{{item.designDescription}}. With {{item.designNoOfFloors}} story(s),
-                  the design is with a luxurious view and {{item.designArea}} sqr.ft. 
-                  This is a {{item.designCategory}} type trending design...</span> 
+              <span>{{item.description}}. With {{item.noOfFloors}} story(s),
+                  the design is with a luxurious view and {{item.area}} sqr.ft. 
+                  This is a {{item.category}} type trending design...</span> 
             </div>
-            <span>Est. Min Cost - Rs.{{item.designEstCost}}/=</span> 
+            <span>Est. Min Cost - Rs.{{item.estCost}}/=</span> 
 
             <div class="info-container">
               <button class="btn-into">View</button> 
@@ -133,7 +133,7 @@
 
 <div id="Hotels" *ngIf="relItems.length > 0">
   <div class="section-heading">
-    <p>Commercial Designings</p> 
+    <p>Hotels ings</p> 
 </div>
 <div class="items" *ngIf="commericalCatArr.length > 0">
   <div *ngFor="let item of commericalCatArr">
@@ -141,31 +141,31 @@
         <div class="card">
           <div class="left-section">
             <div class="image-area">
-              <img src={{item.designImages}} class="design-picture" alt="{{item.designImages}}"> 
+              <img src={{item.images}} class="design-picture" alt="{{item.images}}"> 
             </div>
           <div class="down-description">
             <div class="rooms">
-              <img src="assets/image/bed-35.png" alt="bed">{{item.designNoOfBedRooms}}
-              <img src="assets/image/tub-37.png" alt="bed">{{item.designNoOfBathRooms}}
+              <img src="assets/image/bed-35.png" alt="bed">{{item.noOfBedRooms}}
+              <img src="assets/image/tub-37.png" alt="bed">{{item.noOfBathRooms}}
             </div>
             <div class="stories">
               <p>
-                Storey(s) - {{item.designNoOfFloors}}
+                Storey(s) - {{item.noOfFloors}}
               </p>
             </div>
           </div>          
           </div>
-          <div *ngIf="item.designDiscount > 0" class="discount">
-            OFF! <br/> <p>{{item.designDiscount}} <span>%</span> </p> 
+          <div *ngIf="item.discount > 0" class="discount">
+            OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
           </div>
           <div class="right-section">
-            <h2>{{item.designName}}</h2>
+            <h2>{{item.name}}</h2>
             <div class="description">
-              <span>{{item.designDescription}}. With {{item.designNoOfFloors}} story(s),
-                  the design is with a luxurious view and {{item.designArea}} sqr.ft. 
-                  This is a {{item.designCategory}} type trending design...</span> 
+              <span>{{item.description}}. With {{item.noOfFloors}} story(s),
+                  the design is with a luxurious view and {{item.area}} sqr.ft. 
+                  This is a {{item.category}} type trending design...</span> 
             </div>
-            <span>Est. Min Cost - Rs.{{item.designEstCost}}/=</span> 
+            <span>Est. Min Cost - Rs.{{item.estCost}}/=</span> 
 
             <div class="info-container">
               <button class="btn-into">View</button> 
@@ -180,7 +180,7 @@
 
 <div id="Shop" *ngIf="relItems.length > 0">
   <div class="section-heading">
-    <p>Shop Designings</p> 
+    <p>Shop ings</p> 
   </div>
 <div class="items" *ngIf="shopCatArr.length > 0">
   <div *ngFor="let item of shopCatArr">
@@ -188,31 +188,31 @@
         <div class="card">
           <div class="left-section">
             <div class="image-area">
-              <img src={{item.designImages}} class="design-picture" alt="{{item.designImages}}"> 
+              <img src={{item.images}} class="design-picture" alt="{{item.images}}"> 
             </div>
              <div class="down-description">
               <!-- <div class="rooms">
-                <img src="assets/image/bed-35.png" alt="bed">{{item.designNoOfFloors}}
-                <img src="assets/image/tub-37.png" alt="bed">{{item.designNoOfFloors}}
+                <img src="assets/image/bed-35.png" alt="bed">{{item.noOfFloors}}
+                <img src="assets/image/tub-37.png" alt="bed">{{item.noOfFloors}}
               </div> -->
               <div class="stories">
                 <p>
-                  Storey(s) - {{item.designNoOfFloors}}
+                  Storey(s) - {{item.noOfFloors}}
                 </p>
               </div>
             </div>        
           </div>
-          <div *ngIf="item.designDiscount > 0" class="discount">
-            OFF! <br/> <p>{{item.designDiscount}} <span>%</span> </p> 
+          <div *ngIf="item.discount > 0" class="discount">
+            OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
           </div>
           <div class="right-section">
-            <h2>{{item.designName}}</h2>
+            <h2>{{item.name}}</h2>
             <div class="description">
-              <span>{{item.designDescription}}. With {{item.designNoOfFloors}} story(s),
-                  the design is with a luxurious view and {{item.designArea}} sqr.ft. 
-                  This is a {{item.designCategory}} type trending design...</span> 
+              <span>{{item.description}}. With {{item.noOfFloors}} story(s),
+                  the design is with a luxurious view and {{item.area}} sqr.ft. 
+                  This is a {{item.category}} type trending design...</span> 
             </div>
-            <span>Est. Min Cost - Rs.{{item.designEstCost}}/=</span> 
+            <span>Est. Min Cost - Rs.{{item.estCost}}/=</span> 
 
             <div class="info-container">
               <button class="btn-into">View</button> 
@@ -227,7 +227,7 @@
 
 <div id="BoxType" *ngIf="relItems.length > 0">
   <div class="section-heading">
-    <p>Box Type Designings</p> 
+    <p>Box Type ings</p> 
   </div>
 <div class="items" *ngIf="boxCatArr.length > 0">
   <div *ngFor="let item of boxCatArr">
@@ -236,33 +236,33 @@
 
           <div class="left-section">
             <div class="image-area">
-              <img src={{item.designImages}} class="design-picture" alt="{{item.designImages}}"> 
+              <img src={{item.images}} class="design-picture" alt="{{item.images}}"> 
             </div>
              <div class="down-description">
               <div class="rooms">
-                <img src="assets/image/bed-35.png" alt="bed">{{item.designNoOfBedRooms}}
-                <img src="assets/image/tub-37.png" alt="bed">{{item.designNoOfBathRooms}}
+                <img src="assets/image/bed-35.png" alt="bed">{{item.noOfBedRooms}}
+                <img src="assets/image/tub-37.png" alt="bed">{{item.noOfBathRooms}}
               </div>
               <div class="stories">
                 <p>
-                  Storey(s) - {{item.designNoOfFloors}}
+                  Storey(s) - {{item.noOfFloors}}
                 </p>
               </div>
             </div> 
           </div>
-          <div *ngIf="item.designDiscount > 0" class="discount">
-            OFF! <br/> <p>{{item.designDiscount}} <span>%</span> </p> 
+          <div *ngIf="item.discount > 0" class="discount">
+            OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
           </div>
 
           <div class="right-section">
             
-            <h2>{{item.designName}}</h2>
+            <h2>{{item.name}}</h2>
             <div class="description">
-              <span>{{item.designDescription}}. With {{item.designNoOfFloors}} story(s),
-                  the design is with a luxurious view and {{item.designArea}} sqr.ft. 
-                  This is a {{item.designCategory}} type trending design...</span> 
+              <span>{{item.description}}. With {{item.noOfFloors}} story(s),
+                  the design is with a luxurious view and {{item.area}} sqr.ft. 
+                  This is a {{item.category}} type trending design...</span> 
             </div>
-            <span>Est. Min Cost - Rs.{{item.designEstCost}}/=</span> 
+            <span>Est. Min Cost - Rs.{{item.estCost}}/=</span> 
 
             <div class="info-container">
               <button class="btn-into">View</button> 
@@ -279,7 +279,7 @@
 
 <div id="OlderTypes" *ngIf="relItems.length > 0">
   <div class="section-heading">
-    <p>Older Designings</p> 
+    <p>Older ings</p> 
   </div>
 <div class="items" *ngIf="oldCatArr.length > 0">
   <div *ngFor="let item of oldCatArr">
@@ -287,32 +287,32 @@
         <div class="card">
           <div class="left-section">
             <div class="image-area">
-              <img src={{item.designImages}} class="design-picture" alt="{{item.designImages}}"> 
+              <img src={{item.images}} class="design-picture" alt="{{item.images}}"> 
             </div>
 
             <div class="down-description">
               <div class="rooms">
-                <img src="assets/image/bed-35.png" alt="bed">{{item.designNoOfBedRooms}}
-                <img src="assets/image/tub-37.png" alt="bed">{{item.designNoOfBathRooms}}
+                <img src="assets/image/bed-35.png" alt="bed">{{item.noOfBedRooms}}
+                <img src="assets/image/tub-37.png" alt="bed">{{item.noOfBathRooms}}
               </div>
               <div class="stories">
                 <p>
-                  Storey(s) - {{item.designNoOfFloors}}
+                  Storey(s) - {{item.noOfFloors}}
                 </p>
               </div>
             </div> 
           </div>
-          <div *ngIf="item.designDiscount > 0" class="discount">
-            OFF! <br/> <p>{{item.designDiscount}} <span>%</span> </p> 
+          <div *ngIf="item.discount > 0" class="discount">
+            OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
           </div>
           <div class="right-section">
-            <h2>{{item.designName}}</h2>
+            <h2>{{item.name}}</h2>
             <div class="description">
-              <span>{{item.designDescription}}. With {{item.designNoOfFloors}} story(s),
-                  the design is with a luxurious view and {{item.designArea}} sqr.ft. 
-                  This is a {{item.designCategory}} type trending design...</span> 
+              <span>{{item.description}}. With {{item.noOfFloors}} story(s),
+                  the design is with a luxurious view and {{item.area}} sqr.ft. 
+                  This is a {{item.category}} type trending design...</span> 
             </div>
-            <span>Est. Min Cost - Rs.{{item.designEstCost}}/=</span> 
+            <span>Est. Min Cost - Rs.{{item.estCost}}/=</span> 
 
             <div class="info-container">
               <button class="btn-into">View</button> 

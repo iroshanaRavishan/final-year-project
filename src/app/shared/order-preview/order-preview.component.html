@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="header">
+        <h2>Dear Customer, One More Step to GO!</h2>
+    </div>
+    <div>
+        <div class="details" *ngIf="relItem">
+            <div class="item-details">
+                <div class="item-details-pre">
+                    <div class="item-details-area">
+                        <div class="item-image-box">
+                            <img class="item-image" src="{{relItem.images}}" alt="">
+                        </div>
+                        <div class="item-detail">
+                            <p>{{relItem.name}}</p>
+                            <p>{{relItem.price | currency: ' Rs.'}}</p>
+                           
+                        </div>
+                    </div>
+                    <div class="item-pricing-area">
+                        <div class="quentity"> <!--formControlName="amount"-->
+                          <input class="amount"  [(ngModel)]="quentity" type="number" name="" id="">
+                          <button class="confirm" (click)="confirm()">Confirm</button>
+                         <div class="final-price">
+                            <p>{{finalPrice | currency: ' Rs.'}}</p>
+                         </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-details-action">
+                    <button class="back">go back</button>
+                    <button class="checkout" (click)="checkout()">checkout</button>
+                </div>
+            </div>
+            <div class="item-summery">
+                <div class="item-summery-details">
+                    <div class="up">
+                        <div class="prices">
+                            <p>{{quentity | number: '1.0-0'}} Items</p>
+                            <p>{{finalPrice| currency: ' Rs.'}}</p>
+                        </div>
+                    </div>
+                    <div class="up">
+                        <div class="prices">
+                            <p>shipping</p>
+                          
+                            <p>{{shippingFee | currency: ' Rs.'}}</p>
+                        </div>
+                    </div>
+                    <div class="up">
+                        <div class="prices">
+                            <p>Total (including tax)</p>
+                          
+                            <p>{{total | currency: ' Rs.'}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-summery-action">
+                    <button class="checkout" (click)="checkout()" >checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,7 @@ import { InnerSiteComponent } from './inner-site/inner-site.component';
 // creating inner path for routes of shop
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: ShopsComponent},
-  {path: 'shops/:id/:email', pathMatch: 'full', component: InnerSiteComponent}
+  {path: 'shops/:sid/:email', pathMatch: 'full', component: InnerSiteComponent}
 ];
 
 @NgModule({

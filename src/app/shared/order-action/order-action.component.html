@@ -1,0 +1,163 @@
+<div class="container">
+    <div >
+        <div class="details" *ngIf="relItem">
+            <div class="item-details">
+                <div class="item-details-header">
+                    <div class="container">
+                        <div class="tab">
+                          <ul>
+                            <li id="userSU" [class.color]="idSignup === 'userSU'" >Personal Info</li> <!-- (click)="tabChangesignup('userSU')"-->
+                            <li id="designerSU" [class.color]="idSignup === 'designerSU'" >Shipping Method</li> <!-- (click)="tabChangesignup('designerSU')"-->
+                            <li id="hShopSU" [class.color]="idSignup === 'hShopSU'" >Payment</li> <!-- (click)="tabChangesignup('hShopSU')"-->
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-details-body">
+                    <form [formGroup]="userDetails" enctype="multipart/form-data" method="post">   
+                    <div *ngIf="idSignup ==='userSU'" >
+                        
+                        <div>
+                            <label>Email Address<span class="req"> *</span></label>
+                            <input type="email" formControlName="useremail" [ngClass]="{ 'is-invalid' : submitted && userFormValidation.useremail.errors }" placeholder="Enter useremail" required>                 
+                            <div *ngIf="submitted && userFormValidation.useremail.errors" class="invalid-feedback">
+                                <div *ngIf="userFormValidation.useremail.errors.required" >Email is required !</div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label>Password<span class="req"> *</span></label>
+                            <input type="password" formControlName="password" [ngClass]="{ 'is-invalid' : submitted && userFormValidation.password.errors }" placeholder="Enter Password" required>         
+                            <div *ngIf="submitted && userFormValidation.password.errors" class="invalid-feedback">
+                                <div *ngIf="userFormValidation.password.errors.required" >Password is required !</div>
+                            </div>
+                        </div>
+
+                        <div >
+                            <label>Full Name<span class="req"> *</span></label>
+                            <input type="text" formControlName="fullName" [ngClass]="{ 'is-invalid' : submitted && userFormValidation.fullName.errors }" placeholder="Enter Full Name" required>                                
+                            <div *ngIf="submitted && userFormValidation.fullName.errors" class="invalid-feedback">
+                                <div *ngIf="userFormValidation.fullName.errors.required" >Full name is required !</div>
+                            </div>
+                        </div> 
+                        
+                        <div>
+                            <label>Telephone<span class="req"> *</span></label>
+                            <input type="text" formControlName="telephone" [ngClass]="{ 'is-invalid' : submitted && userFormValidation.telephone.errors }" placeholder="Enter Telephone" required>
+                            <div *ngIf="submitted && userFormValidation.telephone.errors" class="invalid-feedback">
+                                <div *ngIf="userFormValidation.telephone.errors.required" >Telephone is required !</div>
+                            </div>
+                        </div>
+        
+                        <div>
+                            <label>Address<span class="req"> *</span></label>
+                            <input type="text" formControlName="address" [ngClass]="{ 'is-invalid' : submitted && userFormValidation.address.errors }" placeholder="Enter Address" >
+                            <div *ngIf="submitted && userFormValidation.address.errors" class="invalid-feedback">
+                                <div *ngIf="userFormValidation.address.errors.required" >Address is required !</div>
+                            </div>
+                            <input type="text" formControlName="district" placeholder="Enter District" >      
+                            <input type="number" formControlName="zipcode" placeholder="Enter Zipcode" >                                       
+                        </div> 
+
+                        <form #form="ngForm">
+                            <p>Please verify bellow captcha for further proceedence. If it is not showing, please check your internet connection!</p>
+                            <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+                            <div *ngIf="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)" class="invalid-feedback-recaptcha">
+                              <div *ngIf="recaptcha.errors?.['required']">This field is required.</div>
+                            </div>
+                           
+                          <div class="item-details-body-action">
+                            <button class="btn-reset btn-other-page" type="button" >Back</button> 
+                            <button class="btn btn-other-page" (click)="send(form, 'designerSU')" type="button" >Shipping Method</button><br/>
+                          </div>
+                        </form>       
+                    </div>
+                    <div  *ngIf="idSignup ==='designerSU'" >                        
+                        <form [formGroup]="shippingDetails" enctype="multipart/form-data" method="post">    
+                            <div>
+                                <label>Collect At <font class="total-fee">(Shipping fee - {{shippingFee}})</font> <span class="req"> *</span></label>
+                                <div class="radio-button" >
+                                    <label> 
+                                        <input type="radio"  value="shop" formControlName="collectAt" [ngClass]="{ 'is-invalid' : submittedShippingD && shippingFormValidation.collectAt.errors }" name="collectAt"> I collect from Shop <!-- (click)="onlineToggle('true')" -->
+                                        <input type="radio" value="deliver" formControlName="collectAt" name="collectAt"> Deliver Items <!-- (click)="onlineToggle('false')"  -->
+                                    </label>             
+                                </div>
+                                <div *ngIf="submittedShippingD && shippingFormValidation.collectAt.errors" class="invalid-feedback">
+                                    <div>
+                                        <div *ngIf="shippingFormValidation.collectAt.errors.required" >This field is required !</div>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div *ngIf="error" class="invalid-feedback">{{error}}</div>
+                            <div class="item-details-body-action">
+                                <button class="btn-reset btn-other-page" (click)="tabChangesignup('userSU')" type="button" >Prevoius</button> 
+                                <button class="btn btn-other-page"   (click)="shippingChecking('hShopSU')"   type="submit" >Payment</button><br/>
+                            </div>  
+                        </form>
+                    </div>
+                    </form>
+                    <div *ngIf="idSignup ==='hShopSU'">
+                        <form [formGroup]="allDetails" method="post">
+                        
+                            <label>Payment Type <font class="total-fee">(Total payment - {{total}})</font> <span class="req"> *</span></label>
+                            <div class="radio-button" >
+                                <label> 
+                                    <input type="radio" (change)="onlineToggle($event)" value="cashOnDelivery" formControlName="payementType" [ngClass]="{ 'is-invalid' : submittedAll && allFormValidation.payementType.errors }" name="payementType" [checked]> Cash on delivery
+                                    <input type="radio"  (change)="onlineToggle($event)" value="online" formControlName="payementType" name="payementType"> Online
+                                </label>        
+                            </div>
+                            <div *ngIf="submittedAll && allFormValidation.payementType.errors" class="invalid-feedback">
+                                <div>
+                                    <div *ngIf="allFormValidation.payementType.errors.required" >This field is required !</div>
+                                </div>
+                            </div> 
+
+                            <div *ngIf="method==false; else elseBlock">
+                                <google-pay-button environment="TEST" buttonType="buy" buttonColor="black"  [paymentRequest]="paymentRequest" (loadpaymentdata)="onLoadPaymentData($event)" (error)="onError($event)" [paymentAuthorizedCallback]="onPaymentDataAuthorized"></google-pay-button>
+                            </div>
+                            <ng-template #elseBlock>You have selected Offline method</ng-template>
+                        
+                            <div class="item-details-body-action">
+                                <button class="btn-reset btn-other-page" type="button" (click)="tabChangesignup('designerSU')" >Prevoius</button> 
+                                <button class="btn btn-other-page" (click)="allChecking()"  type="button" >Submit</button><br/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-summery">
+                <div class="item-summery-details">
+                    <div class="up">
+                        <div class="prices">
+                            <h3>{{relItem.name}}</h3>
+                        </div>
+                    </div>
+                    <div class="up">
+                        <div class="prices">
+                            <p>{{quentity | number: '1.0-0'}} Items</p>
+                            <p>{{finalPrice| currency: ' Rs.'}}</p>
+                        </div>
+                    </div>
+                    <div class="up">
+                        <div class="prices">
+                            <p>shipping</p>
+                              
+                            <p>{{shippingFee | currency: ' Rs.'}}</p>
+                        </div>
+                    </div>
+                    <div class="up">
+                        <div class="prices">
+                            <p>Total (including tax)</p>
+                          
+                            <p>{{last | currency: ' Rs.'}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-summery-action">
+                    <button class="checkout" >checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

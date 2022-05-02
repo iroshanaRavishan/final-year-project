@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'designers', pathMatch:'full', loadChildren: () => import('./designers/designers.module').then(m => m.DesignersModule)},
   { path: 'shops', pathMatch:'full', loadChildren: () => import('./shops/shops.module').then(m => m.ShopsModule)},
   { path: 'auth', pathMatch:'full', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
+  { path: 'shared', pathMatch:'full', loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule)},
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

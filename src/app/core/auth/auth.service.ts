@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DesignerItems } from '@core/model/designerItemsRegistration';
 import { Designer } from '@core/model/designerRegistration';
+import { HShopItems } from '@core/model/hShopItemsRegistration';
 import { HShop } from '@core/model/hShopRegistration';
 import { EMPTY, of, Subject, throwError } from 'rxjs';
 import { switchMap, catchError, map } from 'rxjs/operators';
@@ -47,12 +48,17 @@ export class AuthService {
   private hShop$ = new Subject<HShop>();
   private hShops$ = new Subject<HShop[]>();
 
+  private hShopItem$ = new Subject<HShopItems[]>();
+
   private designerItems$ = new Subject<DesignerItems>();
   private apiUrl = '/api/auth/';
 
   
   private designers: Designer[] = [];
   private hShops: HShop[] = [];
+
+  private hShopItems: HShopItems[] = [];
+  //private hShops: HShop[] = [];
  
   constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService, private logService: LogService) { }
   
@@ -82,6 +88,20 @@ export class AuthService {
   }
   getHShopsStream() {
     return this.hShops$.asObservable();
+  }
+
+  getHShopsItems() {
+    this.httpClient.get<{ hShopItem: HShopItems[] }>(`${this.apiUrl}addinganitemhshop`).pipe(
+      map((hShopItemsData) => {
+        return hShopItemsData.hShopItem;
+      })
+    ).subscribe((hShopItems) => {
+      this.hShopItems = hShopItems;
+      this.hShopItem$.next(this.hShopItems);
+    });
+  }
+  getHShopsItemsStream() {
+    return this.hShopItem$.asObservable();
   }
 
   userLogin(userLogEmail: string, userLogPassword: string) {
@@ -450,22 +470,22 @@ export class AuthService {
     itemToSave.append("designerEmail", item.designerEmail);
     itemToSave.append("designerShopName", item.designerShopName);
     itemToSave.append("designerShopEmail", item.designerShopEmail);
-    itemToSave.append("designCategory", category);
-    itemToSave.append("designName", item.designName);
-    itemToSave.append("designDescription", item.designDescription);
-    itemToSave.append("designArea", item.designArea);
-    itemToSave.append("designNoOfFloors", item.designNoOfFloors);
-    itemToSave.append("designEstCost", item.designEstCost);
-    itemToSave.append("designIsDiscount", item.designIsDiscount);
-    itemToSave.append("designDiscount", discount);
-    itemToSave.append("designIsGarage", item.designIsGarage);
-    itemToSave.append("designIsBalcony", item.designIsBalcony);
-    itemToSave.append("designIsVarenda", item.designIsVarenda);
-    itemToSave.append("designNoOfBedRooms", item.designNoOfBedRooms);
-    itemToSave.append("designNoOfBathRooms", item.designNoOfBathRooms);
-    itemToSave.append("designIsBathRoomAttached", item.designIsBathRoomAttached);;
-    itemToSave.append("designImagesOfDesign", designImagesOfDesign[0]);
-    //itemToSave.append("designImagesOfDesign", designImagesOfDesign[1]);
+    itemToSave.append("category", category);
+    itemToSave.append("name", item.name);
+    itemToSave.append("description", item.description);
+    itemToSave.append("area", item.area);
+    itemToSave.append("noOfFloors", item.noOfFloors);
+    itemToSave.append("estCost", item.estCost);
+    itemToSave.append("isDiscount", item.isDiscount);
+    itemToSave.append("discount", discount);
+    itemToSave.append("isGarage", item.isGarage);
+    itemToSave.append("isBalcony", item.isBalcony);
+    itemToSave.append("isVarenda", item.isVarenda);
+    itemToSave.append("noOfBedRooms", item.noOfBedRooms);
+    itemToSave.append("noOfBathRooms", item.noOfBathRooms);
+    itemToSave.append("isBathRoomAttached", item.isBathRoomAttached);;
+    itemToSave.append("imagesOfDesign", designImagesOfDesign[0]);
+    //itemToSave.append("imagesOfDesign", imagesOfDesign[1]);
 
     return this.httpClient.post<any>(`${this.apiUrl}addinganitem`, itemToSave).pipe(
       switchMap(({designer, token})=> {
@@ -488,17 +508,17 @@ export class AuthService {
     itemToSave.append("hShopEmail", item.hShopEmail);
     itemToSave.append("hShopShopName", item.hShopShopName);
     itemToSave.append("hShopShopEmail", item.hShopShopEmail);
-    itemToSave.append("itemCategory", category);
-    itemToSave.append("itemName", item.itemName);
-    itemToSave.append("itemDescription", item.itemDescription);    
-    itemToSave.append("itemSubCategory", item.itemSubCategory);
-    itemToSave.append("itemPrice", item.itemPrice);
-    itemToSave.append("itemIsDiscount", item.itemIsDiscount);
-    itemToSave.append("itemDiscount", discount);
+    itemToSave.append("category", category);
+    itemToSave.append("name", item.name);
+    itemToSave.append("description", item.description);    
+    itemToSave.append("subCategory", item.subCategory);
+    itemToSave.append("price", item.price);
+    itemToSave.append("isDiscount", item.isDiscount);
+    itemToSave.append("discount", discount);
     itemToSave.append("priceWithUnit",priceWithUnit);
-    itemToSave.append("itemIsQCPass", item.itemIsQCPass);
-    itemToSave.append("itemImagesOfDesign", itemImagesOfDesign[0]);
-    //itemToSave.append("itemImagesOfDesign", itemImagesOfDesign[1]);
+    itemToSave.append("isQCPass", item.isQCPass);
+    itemToSave.append("imagesOfDesign", itemImagesOfDesign[0]);
+    //itemToSave.append("imagesOfDesign", itemImagesOfDesign[1]);
 
     return this.httpClient.post<any>(`${this.apiUrl}addinganitemhshop`, itemToSave).pipe(
       switchMap(({hShop, token})=> {
@@ -512,6 +532,42 @@ export class AuthService {
         return throwError(`Registration Failed, please contact admin`);
       })
     ); 
+  }
+
+  confirmedOrderDetail(userData: File) {
+    return this.httpClient.post<any>(`${this.apiUrl}confirmedorderdetails`, userData).pipe (
+      switchMap(({ order }) => {
+        if(order==null){
+          return EMPTY;
+        }
+          this.setOrder(order);// setting the user
+          //console.log(`order found`, order);
+          return of(order);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e)
+        return throwError(`Your login details could not be verified. Please try again!!!!`);
+      })
+    );
+  }
+
+  validatingUser(userLogEmail: string, userLogPassword: string) {
+    const loginCredentials = {userLogEmail, userLogPassword};
+    return this.httpClient.post<UserDto>(`${this.apiUrl}validatinguser`, loginCredentials).pipe(
+      switchMap(({ user, token }) => {
+        if(user==null){
+          return EMPTY;
+        }
+          this.setUser(user);// setting the user
+          this.tokenStorage.setToken(token); //storing the user in the local storage
+          console.log(`user found`, user);
+          return of(user);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e)
+        return throwError(`Your login details could not be verified. Please go back and enter a valid email and password!`);
+      })
+    );
   }
 
   //when the browser refresh, this will take care of that
@@ -545,4 +601,9 @@ export class AuthService {
   private setHShopItems(designerItems: any){
     this.designerItems$.next(designerItems);
   }
+
+  private setOrder(order: any){
+    this.designerItems$.next(order);
+  }
+
 }

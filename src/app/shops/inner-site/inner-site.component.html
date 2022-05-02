@@ -43,17 +43,17 @@
                         <div class="card">
                             <div class="card-section">
                                 <div class="item-image">
-                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                    <img src={{item.images}} class="item-picture" alt="{{item.images}}"> 
                                 </div>
-                                <div *ngIf="item.itemDiscount > 0" class="discount">
-                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                <div *ngIf="item.discount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
                                 </div>
                                 <div class="description">
-                                    <span class="item-name">{{item.itemName}}</span>  
-                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                    <span class="item-name">{{item.name}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.price}}/=</span>                               
                                 </div>
                                 <div class="item-action">
-                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into" (click)="previewBefore(item)" >BUY</button> 
                                     <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
                                 </div>
                             </div>
@@ -75,17 +75,17 @@
                         <div class="card">
                             <div class="card-section">
                                 <div class="item-image">
-                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                    <img src={{item.images}} class="item-picture" alt="{{item.images}}"> 
                                 </div>
-                                 <div *ngIf="item.itemDiscount > 0" class="discount">
-                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                <div *ngIf="item.discount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
                                 </div>
                                 <div class="description">
-                                    <span class="item-name">{{item.itemName}}</span>  
-                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                    <span class="item-name">{{item.name}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.price}}/=</span>                               
                                 </div>
                                 <div class="item-action">
-                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into" (click)="previewBefore(item)">BUY</button> 
                                     <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
                                 </div>
                             </div>
@@ -107,17 +107,17 @@
                         <div class="card">
                             <div class="card-section">
                                 <div class="item-image">
-                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                    <img src={{item.images}} class="item-picture" alt="{{item.images}}"> 
                                 </div>
-                                 <div *ngIf="item.itemDiscount > 0" class="discount">
-                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                <div *ngIf="item.discount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
                                 </div>
                                 <div class="description">
-                                    <span class="item-name">{{item.itemName}}</span>  
-                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                    <span class="item-name">{{item.name}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.price}}/=</span>                               
                                 </div>
                                 <div class="item-action">
-                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into" (click)="previewBefore(item)">BUY</button> 
                                     <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
                                 </div>
                             </div>
@@ -139,17 +139,17 @@
                         <div class="card">
                             <div class="card-section">
                                 <div class="item-image">
-                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                    <img src={{item.images}} class="item-picture" alt="{{item.images}}"> 
                                 </div>
-                                 <div *ngIf="item.itemDiscount > 0" class="discount">
-                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                <div *ngIf="item.discount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
                                 </div>
                                 <div class="description">
-                                    <span class="item-name">{{item.itemName}}</span>  
-                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                    <span class="item-name">{{item.name}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.price}}/=</span>                               
                                 </div>
                                 <div class="item-action">
-                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into" (click)="previewBefore(item)">BUY</button> 
                                     <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
                                 </div>
                             </div>
@@ -171,17 +171,17 @@
                         <div class="card">
                             <div class="card-section">
                                 <div class="item-image">
-                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                    <img src={{item.images}} class="item-picture" alt="{{item.images}}"> 
                                 </div>
-                                 <div *ngIf="item.itemDiscount > 0" class="discount">
-                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                <div *ngIf="item.discount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
                                 </div>
                                 <div class="description">
-                                    <span class="item-name">{{item.itemName}}</span>  
-                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                    <span class="item-name">{{item.name}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.price}}/=</span>                               
                                 </div>
                                 <div class="item-action">
-                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into" (click)="previewBefore(item)">BUY</button> 
                                     <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
                                 </div>
                             </div>
@@ -203,17 +203,17 @@
                         <div class="card">
                             <div class="card-section">
                                 <div class="item-image">
-                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                    <img src={{item.images}} class="item-picture" alt="{{item.images}}"> 
                                 </div>
-                                 <div *ngIf="item.itemDiscount > 0" class="discount">
-                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                <div *ngIf="item.discount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
                                 </div>
                                 <div class="description">
-                                    <span class="item-name">{{item.itemName}}</span>  
-                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                    <span class="item-name">{{item.name}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.price}}/=</span>                               
                                 </div>
                                 <div class="item-action">
-                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into" (click)="previewBefore(item)">BUY</button> 
                                     <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
                                 </div>
                             </div>
@@ -235,17 +235,17 @@
                         <div class="card">
                             <div class="card-section">
                                 <div class="item-image">
-                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                    <img src={{item.images}} class="item-picture" alt="{{item.images}}"> 
                                 </div>
-                                 <div *ngIf="item.itemDiscount > 0" class="discount">
-                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                <div *ngIf="item.discount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
                                 </div>
                                 <div class="description">
-                                    <span class="item-name">{{item.itemName}}</span>  
-                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                    <span class="item-name">{{item.name}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.price}}/=</span>                               
                                 </div>
                                 <div class="item-action">
-                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into" (click)="previewBefore(item)">BUY</button> 
                                     <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
                                 </div>
                             </div>
@@ -267,17 +267,17 @@
                         <div class="card">
                             <div class="card-section">
                                 <div class="item-image">
-                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                    <img src={{item.images}} class="item-picture" alt="{{item.images}}"> 
                                 </div>
-                                 <div *ngIf="item.itemDiscount > 0" class="discount">
-                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                <div *ngIf="item.discount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
                                 </div>
                                 <div class="description">
-                                    <span class="item-name">{{item.itemName}}</span>  
-                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                    <span class="item-name">{{item.name}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.price}}/=</span>                               
                                 </div>
                                 <div class="item-action">
-                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into" (click)="previewBefore(item)">BUY</button> 
                                     <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
                                 </div>
                             </div>
@@ -299,17 +299,17 @@
                         <div class="card">
                             <div class="card-section">
                                 <div class="item-image">
-                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                    <img src={{item.images}} class="item-picture" alt="{{item.images}}"> 
                                 </div>
-                                 <div *ngIf="item.itemDiscount > 0" class="discount">
-                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                <div *ngIf="item.discount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
                                 </div>
                                 <div class="description">
-                                    <span class="item-name">{{item.itemName}}</span>  
-                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                    <span class="item-name">{{item.name}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.price}}/=</span>                               
                                 </div>
                                 <div class="item-action">
-                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into" (click)="previewBefore(item)">BUY</button> 
                                     <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
                                 </div>
                             </div>
@@ -331,17 +331,17 @@
                         <div class="card">
                             <div class="card-section">
                                 <div class="item-image">
-                                    <img src={{item.itemImages}} class="item-picture" alt="{{item.itemImages}}"> 
+                                    <img src={{item.images}} class="item-picture" alt="{{item.images}}"> 
                                 </div>
-                                 <div *ngIf="item.itemDiscount > 0" class="discount">
-                                    OFF! <br/> <p>{{item.itemDiscount}} <span>%</span> </p> 
+                                <div *ngIf="item.discount > 0" class="discount">
+                                    OFF! <br/> <p>{{item.discount}} <span>%</span> </p> 
                                 </div>
                                 <div class="description">
-                                    <span class="item-name">{{item.itemName}}</span>  
-                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.itemPrice}}/=</span>                               
+                                    <span class="item-name">{{item.name}}</span>  
+                                    <span class="item-price"> <font class="item-price-currency">Rs</font> .{{item.price}}/=</span>                               
                                 </div>
                                 <div class="item-action">
-                                    <button class="btn-into">BUY</button> 
+                                    <button class="btn-into" (click)="previewBefore(item)">BUY</button> 
                                     <button class="btn-into-ac"><img src="assets/image/shopping-cart-24.png" alt="cart"></button>       
                                 </div>
                             </div>
