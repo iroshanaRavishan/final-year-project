@@ -75,7 +75,7 @@
                     <div  *ngIf="idSignup ==='designerSU'" >                        
                         <form [formGroup]="shippingDetails" enctype="multipart/form-data" method="post">    
                             <div>
-                                <label>Collect At <font class="total-fee">(Shipping fee - {{shippingFee}})</font> <span class="req"> *</span></label>
+                                <label>Collect At <font class="total-fee">(Shipping fee - {{shippingFee | currency:'LKR. '}})</font> <span class="req"> *</span></label>
                                 <div class="radio-button" >
                                     <label> 
                                         <input type="radio"  value="shop" formControlName="collectAt" [ngClass]="{ 'is-invalid' : submittedShippingD && shippingFormValidation.collectAt.errors }" name="collectAt"> I collect from Shop <!-- (click)="onlineToggle('true')" -->
@@ -99,7 +99,7 @@
                     <div *ngIf="idSignup ==='hShopSU'">
                         <form [formGroup]="allDetails" method="post">
                         
-                            <label>Payment Type <font class="total-fee">(Total payment - {{total}})</font> <span class="req"> *</span></label>
+                            <label>Payment Type <font class="total-fee">(Total payment - {{last | currency:'LKR. '}})</font> <span class="req"> *</span></label>
                             <div class="radio-button" >
                                 <label> 
                                     <input type="radio" (change)="onlineToggle($event)" value="cashOnDelivery" formControlName="payementType" [ngClass]="{ 'is-invalid' : submittedAll && allFormValidation.payementType.errors }" name="payementType" [checked]> Cash on delivery

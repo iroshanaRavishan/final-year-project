@@ -1,5 +1,10 @@
 <div class="down-form-container">
-    <div class="top-bar">         
+    <div class="top-bar">    
+        <div class="header-section">
+            <p class="word-nav">Hardware Shop > Add Items</p>
+            <div class="cardHeader">
+                <h2>Add Items</h2>   
+        </div>  
         <div class="down-form-left"> <!-- class="selector" -->
             <form [formGroup]="hShopProductTopForm">
                 
@@ -46,6 +51,13 @@
                     <input type="text" formControlName="description" [ngClass]="{ 'is-invalid' : submitted && hShopAddingItemFormValidation.description.errors }"placeholder="Enter Description" required>                 
                     <div *ngIf="submitted && hShopAddingItemFormValidation.description.errors" class="invalid-feedback">
                         <div *ngIf="hShopAddingItemFormValidation.description.errors.required" >Description is required !</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Item Availability<span class="req"> *</span></label>
+                    <input type="text" formControlName="availability" [ngClass]="{ 'is-invalid' : submitted && hShopAddingItemFormValidation.availability.errors }"placeholder="Enter availability" required>                 
+                    <div *ngIf="submitted && hShopAddingItemFormValidation.availability.errors" class="invalid-feedback">
+                        <div *ngIf="hShopAddingItemFormValidation.availability.errors.required" >availability is required !</div>
                     </div>
                 </div>
                 
@@ -148,19 +160,7 @@
                         </div>
                     </div>
                 </div>
-    <!-- 
-                <div>
-                    <label>Images of the design (add only images - .png, jpeg & jpg)<span class="req"> *</span></label>
-                    <input type="file" (change)="onFileSelectItemImagesT($event)" class="upload-box" name="imagesOfItem" placeholder="Attach design Images" required>
-                    <div>                
-                        <div *ngIf="itemImageDataItemT">
-                            <img class="profile-picture-on-login-signup" [src]="itemImageDataItemT" [alt]="hShopAddProductForm.value.name">
-                        </div>
-                        <div *ngIf="fileTypeItemImagesT" class="invalid-feedback">
-                            {{fileTypeItemImagesT}}
-                        </div>
-                    </div>
-                </div> -->         
+  
                 <div *ngIf="negativeVal">
                     <p class="invalid-feedback-submit" >Error in {{negativeValField}}!</p>
                 </div> 

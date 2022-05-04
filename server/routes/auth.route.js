@@ -47,6 +47,14 @@ router.post("/confirmedorderdetails", asyncHandler(orderConfirming), addedOrder)
 
 router.post("/validatinguser", asyncHandler(getUserByEmailIdAndPasswordUser), loginUser);
 
+router.put("/updatedsell/:id", asyncHandler(updateSellStatus), allSells);
+
+router.put("/updatinganitemhshop/:id", asyncHandler(updateHShopItem), hSHopItems);
+
+router.delete("/deletinganitemhshop/:id", asyncHandler(deleteHShopItem), hSHopItems);
+
+router.get("/auth", getAllSells, allSells);
+
 router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
 /**
  * function of user inserting
@@ -204,6 +212,12 @@ async function getHShopItems(req, res) {
     const hShopItem = await ItemAddingHShop.find();
     console.log('found hardware shop Items');
     res.status(200).json({ hShopItem });
+};
+
+async function getAllSells(req, res) {
+    const allSells = await AllSells.find();
+    console.log('found all sells');
+    res.status(200).json({ allSells });
 };
 
 async function updateDesigner(req, res, next) {
@@ -382,10 +396,38 @@ async function updateHShop(req, res, next) {
 
     req.hShop = await HShopRegistration.findByIdAndUpdate(req.params.id, { $set: hShop }, {new: true}).then((err, data) =>{        
         if(!err){
-            console.log('updated');
-            next();
+            console.log('updated');          
         }
     });
+    next();
+}
+
+async function updateHShopItem(req, res, next) {
+    const hShopItem = {
+        name: req.body.name,
+        description: req.body.description,
+        availability: req.body.availability,
+        price: req.body.price,
+        isDiscount: req.body.isDiscount,
+        discount: req.body.discount,
+        priceWithUnit: req.body.priceWithUnit, 
+    };
+    req.hShopItem = await ItemAddingHShop.findByIdAndUpdate(req.params.id, { $set: hShopItem }, {new: true}).then((err, data) =>{        
+        if(!err){
+            console.log('updated hShop Item');          
+        }
+    });
+    next();
+}
+
+async function deleteHShopItem(req, res, next) {
+
+    req.hShopItem = await ItemAddingHShop.findByIdAndDelete(req.params.id).then((err, data) =>{        
+        if(!err){
+            console.log('deleted hShop Item');
+        }
+    });
+    next();
 }
 
 async function insertAnItemHShop(req, res, next) {
@@ -396,6 +438,7 @@ async function insertAnItemHShop(req, res, next) {
     const category = req.body.category;
     const name = req.body.name;
     const description = req.body.description;
+    const availability = req.body.availability;
     const subCategory = req.body.subCategory;
     const price = req.body.price;
     const isDiscount = req.body.isDiscount;
@@ -412,6 +455,7 @@ async function insertAnItemHShop(req, res, next) {
         category,
         name,
         description,
+        availability,
         subCategory,
         price,
         isDiscount,
@@ -439,8 +483,13 @@ async function orderConfirming(req, res, next) {
     const collectAt = req.body.collectAt;
     const payementType = req.body.payementType;
     const venderType = req.body.venderType;
-    const sts = req.body.status;
+    const sts = req.body.sts;
     const itemId = req.body.itemId;
+    const itemName = req.body.itemName;
+    const total = req.body.total;
+    const shopId = req.body.shopId;
+    const quentity = req.body.quentity;
+    const shippingFee = req.body.shippingFee;
     
     const order = new AllSells({
         fullName,
@@ -453,12 +502,30 @@ async function orderConfirming(req, res, next) {
         payementType,
         venderType,
         sts,
-        itemId
+        itemId,
+        itemName,
+        total,
+        shopId,
+        quentity,
+        shippingFee
     });
 
     console.log('adding an order', order);
     req.order = await order.save(); // taking the user from the class to the request
     console.log('added the order');
+    next();
+}
+
+async function updateSellStatus(req, res, next) {
+    const sellStatus = {
+        sts: req.body.sts
+    };
+
+    req.sellStatus = await AllSells.findByIdAndUpdate(req.params.id, { $set: sellStatus }, {new: true}).then((err, data) =>{        
+        if(!err){
+            console.log('updated sells status');         
+        }
+    });
     next();
 }
 
@@ -594,6 +661,15 @@ function hSHopItems(req, res) {
     // sending the user and token in the response
     res.json({ 
         hShopItems
+    });
+}
+
+function allSells(req, res) { 
+    const sellStatus = req.sellStatus;
+    //const token = authController.generateTokenHShop(allSells);
+    // sending the user and token in the response
+    res.json({ 
+        sellStatus
     });
 }
 

@@ -1,0 +1,431 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-container {
+    margin-left: -8px;
+    margin-top: -15px;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+}
+
+.container {
+    position: relative;
+    width: 100%;
+}
+
+
+.details {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    /* grid-template-columns: 2fr 1fr; */
+    grid-gap: 30px;
+    /* margin-top: 10px; */
+}
+
+.details .recentOrders {
+    position: relative;
+    display: grid;
+    min-width: 500px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.cardHeader h2{
+    font-weight: 600;
+    color: #287bff;
+}
+
+.btn {
+    position: relative;
+    padding: 5px 10px;
+    background: #287bff;
+    text-decoration: none;
+    color: white;
+    border-radius: 6px;
+}
+
+.details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.details table thead td {
+    font-weight: 600;
+}
+
+.details .recentOrders table tr {
+    color: rgb(19, 18, 18);
+    border-bottom: 1px solid rgb(228, 228, 228);
+}
+
+.details .recentOrders table tr:last-child {
+    border-bottom: none;
+}
+
+.details .recentOrders table tbody tr:hover {
+    background: #287bff;
+    color: white;
+}
+
+.details .recentOrders table tr td {
+    padding: 10px;
+}
+.details .recentOrders table tr td:last-child {
+    text-align: end;
+}
+
+.details .recentOrders table tr td:nth-child(2) {
+    text-align: end;
+}
+
+.details .recentOrders table tr td:nth-child(3) {
+    text-align: center;
+}
+
+.status.delivered{
+    padding: 2px 4px;
+    background: #8de02c;
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status.pending{
+    padding: 2px 4px;
+    background: #f5df1c;
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status.return{
+    padding: 2px 4px;
+    background: #ec1e1e;
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status.inprogress{
+    padding: 2px 4px;
+    background: #b021f3;
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.down-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 2em 1em;
+    width: 97%;
+
+}
+
+.down-area .view {
+    box-sizing: border-box;
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* align-items: center; */
+    margin: 0.5em 1em;
+    padding: 2em 2em;
+    width: 50%;
+    color: #1f1f1f;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.down-area .view p{
+    padding: 0 5px;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.down-area .editing-area {
+    box-sizing: border-box;
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em 1em;
+    width: 50%;
+}
+
+.down-area .form-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0.5em 1em;
+    width: 50%;
+}
+
+.down-area .action-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5em 1em;
+    width: 100%;
+}
+
+.down-area .form-area label {
+    color: #1f1f1f;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+
+.req{
+    color: rgb(216, 0, 0);
+}
+
+
+.btn-update{
+    background-color: rgb(255, 218, 5);
+    width: 50%; 
+    cursor: pointer;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 30px;
+    height: 3.5em;
+    border-style: none;
+    margin: 2em 1em 0em 1em;
+    font-weight: bold;
+    color: #555f66;
+    transition-duration: 0.3s;
+}
+
+.btn-update:disabled{
+    background-color: rgb(155, 149, 117);
+    width: 50%; 
+    cursor: pointer;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 30px;
+    height: 3.5em;
+    border-style: none;
+    margin: 2em 1em 0em 1em;
+    font-weight: bold;
+    color: #b8b8b8;
+    transition-duration: 0.3s;
+}
+.btn-update:hover{
+    background-color: rgb(9, 83, 126);
+    color: #ffffff;
+}
+
+.btn-update:hover:disabled{
+    background-color: rgb(86, 127, 151);
+    color: #ffffff;
+}
+
+.btn-toggling-updating{
+    background-color: transparent;
+    width: 70%; 
+    cursor: pointer;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 15px;
+    height: 3em;
+    border-style: solid;
+    border-color: #b62222;
+    margin-top: 1em;
+    margin-bottom: 2.5em;
+    font-weight: bold;
+    color: #ad6969;
+    transition-duration: 0.3s;
+}
+.btn-toggling-updating:active{
+    background-color: rgb(194, 40, 40);
+    color: white;
+
+}
+
+.btn-back{
+
+    background-color: rgb(255, 255, 255);
+    width: 50%; 
+    cursor: pointer;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 30px;
+    height: 3.5em;
+    border-style: 1px solid black;
+    margin: 2em 1em 0em 1em;
+    font-weight: bold;
+    color: #555f66;
+    transition-duration: 0.3s;
+}
+
+.btn-back:hover{
+    background-color: rgb(9, 83, 126);
+    color: #ffffff;
+    
+}
+
+input[type="radio"]{
+    margin: 2em 1.5em;
+    position: fixed;
+    position: relative;
+    width: 120px;
+    height: 40px;
+    outline: none;
+    background: rgb(70, 70, 70);
+    -webkit-appearance: none;
+   cursor: pointer;
+   border-radius: 20px;
+   box-shadow: -5px -5px 20px rgba(255,255,255,0.1),
+               5px 5px 10px rgba(0,0,0,1),
+               inset -2px -2px 5px rgba(255,255,255,0.1),
+               inset 2px 2px 5px rgba(0,0,0,0.5),
+               0 0 0 2px #1f1f1f;
+               transition: 0.3s;
+}
+
+input[type="radio"] + label{
+  left: 20px;
+  top: 20px;
+}
+
+input[type="radio"]:checked{
+   background: #fffb20;   
+}
+
+input[type="radio"]::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(to top, #000, #555);
+    border-radius: 20px;
+    box-shadow: 0 0 0 1px #232323;
+    transform: scale(0.98,0.98);
+    transition: 0.3s;
+}
+
+input[type="radio"]:checked::before{
+    left: 40px;
+}
+input[type="radio"]::after{
+    content: '';
+    position: absolute;
+    left: 65px;
+    top: calc(50% - 2px);
+    width: 4px;
+    height: 4px;
+    background: #555;
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+  input[type="radio"]:checked::after{
+    left: calc(65px + 40px);
+    background-color: #fcf376;
+    box-shadow: 0 0 5px #fcf376,
+    0 0 15px #fcf376,
+    0 0 30px #fcf376;
+  }
+
+  input[type=radio]:checked +label::after{
+    content: attr(data-checked);
+    color: rgba(209, 7, 0, 0.678);
+    font-size: 15px;
+    top: 20px;
+ }
+
+ li {
+    position: relative;
+    margin-top: 20px;
+    font-family: "Open Sans Condensed", sans-serif;
+    text-align: center;
+    position: relative;
+}
+
+.radio-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+
+/* Responsive designing */
+@media(max-width: 991px){
+
+    .main {
+        width: 100%;
+        left: 0;
+    }
+
+    .main.active{
+        left: 300px
+    }
+
+    .recentOrders {
+        overflow-x: auto;
+    }
+
+}
+
+@media(max-width: 768px){
+    .details {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .recentOrders {
+        overflow-x: auto;
+    }
+
+    .status.inprogress {
+        white-space: nowrap;
+    }
+}
+
+@media(max-width: 180px){
+
+    .main.active .toggle {
+        color: #fff;
+        position: fixed;
+        right: 0;
+        left: initial;
+    }
+
+}

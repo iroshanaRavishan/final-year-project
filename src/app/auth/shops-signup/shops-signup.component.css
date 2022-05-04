@@ -14,6 +14,23 @@
 
 }
 
+.trnspnt {
+    height: 7em;
+    width: 292px;
+    top: 0em;
+    left: 0;
+    position:  fixed;
+    background-color: #287bff;
+    z-index: -1000;
+    transition: 0.5s;
+    overflow: hidden;
+    border-bottom-right-radius: 10px;
+}
+
+.trnspnt.active {
+    width: 72px;
+}
+
 .container {
     position: relative;
     width: 100%;
@@ -26,6 +43,7 @@
     border-left: 10px solid #287bff;
     transition: 0.5s;
     overflow: hidden;
+    border-top-right-radius: 10px;
 
 }
 .navigation.active {
@@ -33,7 +51,7 @@
 }
 .navigation ul {
     position: absolute;
-    top: 0;
+    top: 1.5em;
     left: 0;
     width: 100%;
 
@@ -65,8 +83,8 @@
     text-decoration: none;
     color: white;
     min-width: 50px;
-    height: 50px;
-    line-height: 50px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     padding-left: 20px;
 }
@@ -88,8 +106,8 @@
     position: relative;
     display: block;
     padding: 0 20px;
-    height: 50px;
-    line-height: 50px;
+    height: 40px;
+    line-height: 40px;
     text-align: start;
     white-space: nowrap
 }

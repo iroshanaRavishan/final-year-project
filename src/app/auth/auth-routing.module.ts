@@ -6,6 +6,8 @@ import { EditDesignerComponent } from './edit-designer/edit-designer.component';
 import { LoginSignupComponent } from './login-signup/login-signup.component';
 import { ShopsSignupComponent } from './shops-signup/shops-signup.component';
 import { SignupSuccessComponent } from './signup-success/signup-success.component';
+import { UpdateItemsShopComponent } from './update-items-shop/update-items-shop.component';
+import { UpdateSellsComponent } from './update-sells/update-sells.component';
 
 
 const routes: Routes = [
@@ -13,8 +15,8 @@ const routes: Routes = [
       { path: 'auth/signupsuccess', component: SignupSuccessComponent},
       { path: 'auth/designersignup', component: DesignersSignupComponent},
       { path: 'auth/shopssignup', component: ShopsSignupComponent },
-      // { path: 'auth/designersignup/edit/id', component:  EditDesignerComponent},
-      // { path: 'auth/designersignup/dashboard', component:  DashboardDesignerComponent},
+      { path: 'auth/shopsignup/editsells/:id', component: UpdateSellsComponent},
+      { path: 'auth/shopsignup/edititem/:sid/:id', component:  UpdateItemsShopComponent},
 ];
 
 @NgModule({

@@ -17,6 +17,62 @@
     width: 100%;
 }
 
+.cardBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 30px;
+}
+
+.cardBox .card{
+    position: relative;
+    background: white;
+    padding: 15px 20px 15px 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.cardBox .card .numbers {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.1em;
+    color: #287bff;
+
+}
+
+.cardBox .card .cardName {
+    color: rgb(128, 128, 128);
+    font-size: 0.9em;
+    margin-top: 5px;
+
+}
+
+.cardBox .card .iconBx {
+    height: 50px;
+    width: 50px;
+}
+
+.cardBox .card .iconBx img{
+    height: 50px;
+    width: 50px;
+}
+
+.cardBox .card:hover {
+    background:#287bff;
+}
+
+.cardBox .card:hover .numbers,
+.cardBox .card:hover .cardName {
+    color: white;
+}
+
+
+
 
 .details {
     position: relative;

@@ -8,6 +8,7 @@ const ItemSchema = new mongoose.Schema({
     category: {type: String},    
     name: {type: String},
     description: {type: String},
+    availability: {type: String},
     subCategory: {type: String},
     price: {type: String},
     isDiscount: {type: String},

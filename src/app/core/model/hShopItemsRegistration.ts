@@ -7,6 +7,7 @@ export interface HShopItems{
     category: String,
     name: String,
     description: String,
+    availability: String,
     subCategory: String,
     portionType: String,
     price: String,

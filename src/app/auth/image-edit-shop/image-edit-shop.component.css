@@ -1,17 +1,14 @@
 .container {
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px; 
+    display: flex;
+    flex-direction: column;
     padding: 3em 3em 5em 3em; 
-    display: grid;
-    grid-template-columns: repeat(2, 2fr);
-    grid-column-gap: 20px;
-    grid-row-gap: 30px;
-    text-align: center;
     justify-items: center;
     justify-content: center;
     background: white;
     margin: 20px;
     align-items: center;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-    border-radius: 20px;
 }
 form {
     display: block;
@@ -34,6 +31,47 @@ form {
     display: grid;
     justify-content: space-between;
 }
+.header-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: white;
+    align-items: center;
+    width: 100%;
+}
+
+.image-section {
+    display: flex;
+    flex-direction: row;
+    padding: 1em 1em 5em 1em; 
+    justify-content: space-around;
+    background: white;
+    margin: 20px;
+    align-items: center;
+    width: 100%;
+   
+}
+
+.word-nav{
+    color: dimgrey;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 10px;
+}
+
+.cardHeader h2{
+    font-weight: 600;
+    color: #287bff;
+}
+
 
 .profile-picture-on-login-signup {
     vertical-align: middle;

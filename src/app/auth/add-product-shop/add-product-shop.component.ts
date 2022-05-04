@@ -59,6 +59,7 @@ export class AddProductShopComponent implements OnInit {
         hShopShopEmail: new FormControl(this.hShop.hShopRegShopEmail),
         name: new FormControl ('', [Validators.required]),
         description: new FormControl ('', [Validators.required]),
+        availability: new FormControl ('', [Validators.required]),
         subCategory: new FormControl('', [Validators.required]),
         portionType: new FormControl ('', [Validators.required]),        
         price: new FormControl ('', [Validators.required]),
@@ -165,7 +166,7 @@ export class AddProductShopComponent implements OnInit {
     if(this.readOnlyToggle=='true') {
       this.newDisVal = this.hShopAddProductForm.value.discount;
     }
-    const priceWithUnit: string = `1 ${this.hShopAddProductForm.value.portionType}`+` - Rs. ${this.hShopAddProductForm.value.price}/=`;
+    const priceWithUnit: string = `1 ${this.hShopAddProductForm.value.portionType}`+` - LKR. ${this.hShopAddProductForm.value.price}/=`;
     const item: File = this.hShopAddProductForm.getRawValue();
     this.authService.addProductItems(item, this.newDisVal, itemImagesOfDesign, this.selectedCategory, priceWithUnit).subscribe(s => this.router.navigate(['auth/signupsuccess']));
   }

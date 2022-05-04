@@ -1,0 +1,179 @@
+        <div class="main">
+            <div class="details">
+                <!-- order details list -->
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>All Orders</h2>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Price </td>
+                                <td>Description</td>
+                                <td>Price with unit</td>
+                            </tr>
+                        </thead>
+
+                        
+                        <tbody *ngIf="relItems">
+                            <tr *ngFor="let item of relItems" >
+                                <td >{{item.name}}</td>
+                                <td >LKR. {{item.price}}.00</td>
+                                <td >{{item.description}}</td>
+                                <td ><span class="status delivered">{{item.priceWithUnit}}</span></td>
+                            </tr>                   
+                        </tbody> 
+                    </table>
+                    <div class="down-area">
+                        <div class="view-area">
+                            <div class="view">
+                                <tbody *ngIf="relavantItem">
+                                    <tr>
+                                        <td>Shop Owner Email </td>
+                                        <td><p>:</p> </td>
+                                        <td><p> {{ relavantItem.hShopEmail}}</p></td>
+                                    </tr> 
+                                    <tr>
+                                        <td>Shop Name </td>
+                                        <td><p>:</p> </td>
+                                        <td><p> {{ relavantItem.hShopShopName}}</p></td>
+                                    </tr> 
+                                    <tr>
+                                        <td>Shop Email </td>
+                                        <td><p>:</p> </td>
+                                        <td><p> {{ relavantItem.hShopShopEmail}}</p></td>
+                                    </tr>                 
+                                    <tr>
+                                        <td>Item Name </td>
+                                        <td><p>:</p> </td>
+                                        <td><p> {{ relavantItem.name}}</p></td>
+                                    </tr> 
+                                    <tr>
+                                        <td>Item Description </td>
+                                        <td><p>:</p> </td>
+                                        <td><p> {{ relavantItem.description}}</p></td>
+                                    </tr> 
+                                    <tr>
+                                        <td>Item Availability </td>
+                                        <td><p>:</p> </td>
+                                        <td><p> {{ relavantItem.availability}}</p></td>
+                                    </tr> 
+                                    <tr>
+                                        <td>Item price </td>
+                                        <td><p>:</p> </td>
+                                        <td><p> {{ relavantItem.price | currency: "LKR. "}}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item price With Unit</td>
+                                        <td><p>:</p> </td>
+                                        <td><p> {{ relavantItem.priceWithUnit}}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Discount (Yes/ No) </td>
+                                        <td><p>:</p> </td>
+                                        <td><p> {{ relavantItem.isDiscount}}</p></td>
+                                    </tr> 
+                                    <tr>
+                                        <td>Discount Amount </td>
+                                        <td><p>:</p> </td>
+                                        <td><p> {{ relavantItem.discount}}</p></td>
+                                    </tr>  
+    
+                                </tbody>
+                            </div>
+
+                            <div class="view-action">
+                                <button class="btn-reset" (click)="backNavigation()" >Go Back</button>
+                                <button class="btn" (click)="deleteItem(relavantItem)">Delete This Item</button>                               
+                            </div>
+                        </div>
+
+                        <div class="down-form-container"  *ngIf="relavantItem">
+                            <form [formGroup]="hShopUpdateProductForm" method="post">     
+                                <div class="down-form-registering-an-item">
+
+                                    <div>
+                                        <label>Item Name<span class="req"> *</span></label>
+                                        <input type="text" formControlName="name" [ngClass]="{ 'is-invalid' : submitted && hShopUpdatingItemFormValidation.name.errors }"  placeholder="Enter Name" required>                                
+                                        <div *ngIf="submitted && hShopUpdatingItemFormValidation.name.errors" class="invalid-feedback">
+                                            <div *ngIf="hShopUpdatingItemFormValidation.name.errors.required" >Name is required !</div>
+                                        </div>
+                                    </div> 
+                                    
+                                    <div>
+                                        <label>Description<span class="req"> *</span></label>
+                                        <input type="text" formControlName="description" [ngClass]="{ 'is-invalid' : submitted && hShopUpdatingItemFormValidation.description.errors }"placeholder="Enter Description" required>                 
+                                        <div *ngIf="submitted && hShopUpdatingItemFormValidation.description.errors" class="invalid-feedback">
+                                            <div *ngIf="hShopUpdatingItemFormValidation.description.errors.required" >Description is required !</div>
+                                        </div>
+                                    </div> 
+
+                                    <div>
+                                        <label>Item Availability<span class="req"> *</span></label>
+                                        <input type="text" formControlName="availability" [ngClass]="{ 'is-invalid' : submitted && hShopUpdatingItemFormValidation.availability.errors }"placeholder="Enter availability" required>                 
+                                        <div *ngIf="submitted && hShopUpdatingItemFormValidation.availability.errors" class="invalid-feedback">
+                                            <div *ngIf="hShopUpdatingItemFormValidation.availability.errors.required" >availability is required !</div>
+                                        </div>
+                                    </div> 
+                    
+                                    <div>
+                                        <label>Price of one quentity/piece<span class="req"> *</span></label>         
+                                        <input type="number" formControlName="price" [ngClass]="{ 'is-invalid' : submitted && hShopUpdatingItemFormValidation.price.errors }" placeholder="Enter price" required>
+                                        <div *ngIf="submitted && hShopUpdatingItemFormValidation.price.errors" class="invalid-feedback">
+                                            <div *ngIf="hShopUpdatingItemFormValidation.price.errors.required" >Price is required !</div>
+                                        </div>
+                                        <div *ngIf="negativeVal">
+                                            <div *ngIf="negativeValField=='price'">
+                                                <p class="invalid-feedback" >{{negativeVal}} in {{negativeValField}}</p>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    
+                                    <div>
+                                        <label>Discount Availability<span class="req"> *</span></label>
+                                        <div class="radio-button" >
+                                            <label> 
+                                                Yes <input type="radio" (click)="discountToggle('true')" value="true" formControlName="isDiscount" [ngClass]="{ 'is-invalid' : submitted && hShopUpdatingItemFormValidation.isDiscount.errors }" name="isDiscount"> 
+                                                No <input type="radio" (click)="discountToggle('false')"  value="false" formControlName="isDiscount" name="isDiscount" [checked]>
+                                            </label>             
+                                        </div>
+                                        <div *ngIf="submitted && hShopUpdatingItemFormValidation.isDiscount.errors" class="invalid-feedback">
+                                            <div>
+                                                <div *ngIf="hShopUpdatingItemFormValidation.isDiscount.errors.required" >This field is required !</div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                
+                                    <div>
+                                        <label>Discount<span class="req"> *</span ></label>
+                                        <input type="number" formControlName="discount" [ngClass]="{ 'is-invalid' : submitted && hShopUpdatingItemFormValidation.discount.errors }" placeholder="Enter Discount" required>
+                                        <div *ngIf="submitted && hShopUpdatingItemFormValidation.discount.errors" class="invalid-feedback">
+                                            <div *ngIf="hShopUpdatingItemFormValidation.discount.errors.required" >Discount is required !</div>
+                                        </div>
+                    
+                                        <div *ngIf="negativeVal">
+                                            <div *ngIf="negativeValField=='Discount'">
+                                                <p class="invalid-feedback" >{{negativeVal}} in {{negativeValField}}</p>
+                                            </div>
+                                        </div>
+                                    </div>   
+                        
+                                    <div *ngIf="negativeVal">
+                                        <p class="invalid-feedback-submit" >Error in {{negativeValField}}!</p>
+                                    </div> 
+                                </div> 
+                            
+                                <div class="down-form-center">        
+                                    <button class="btn-reset" type="reset">Reset</button>          
+                                    <button class="btn" type="submit"  (click)="updateProduct()" >Updatee Item</button>
+                                      
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                        
+

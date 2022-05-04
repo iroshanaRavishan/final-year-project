@@ -1,0 +1,30 @@
+<div class="main">
+    <div class="details">
+        <!-- order details list -->
+        <div class="recentOrders">
+            <p>Hardware Shop > Update Items</p>
+            <div class="cardHeader">
+                <h2>Update Items</h2>
+                <a class="btn">View all</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Nassme</td>
+                        <td>Price </td>
+                        <td>Description</td>
+                        <td>Price with unit</td>
+                    </tr>
+                </thead>        
+                <tbody *ngIf="relItems">
+                    <tr *ngFor="let item of relItems" >
+                        <td (click)="updatehShopItem('updateItem', item)">{{item.name}}</td>
+                        <td (click)="updatehShopItem('updateItem', item)">LKR. {{item.price}}.00</td>
+                        <td (click)="updatehShopItem('updateItem', item)">{{item.description}}</td>
+                        <td (click)="updatehShopItem('updateItem', item)"><span class="status delivered">{{item.priceWithUnit}}</span></td>
+                    </tr>                   
+                </tbody> 
+            </table>
+        </div>
+    </div>
+</div>

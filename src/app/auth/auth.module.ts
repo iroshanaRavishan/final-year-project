@@ -20,6 +20,10 @@ import { AddProductShopComponent } from './add-product-shop/add-product-shop.com
 import { EditShopComponent } from './edit-shop/edit-shop.component';
 import { ImageEditShopComponent } from './image-edit-shop/image-edit-shop.component';
 import { ChangePassShopComponent } from './change-pass-shop/change-pass-shop.component';
+import { AllSellsComponent } from './all-sells/all-sells.component';
+import { UpdateSellsComponent } from './update-sells/update-sells.component';
+import { UpdateItemsShopComponent } from './update-items-shop/update-items-shop.component';
+import { AllItemsShopComponent } from './all-items-shop/all-items-shop.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { ChangePassShopComponent } from './change-pass-shop/change-pass-shop.com
     AddProductShopComponent,
     EditShopComponent,
     ImageEditShopComponent,
-    ChangePassShopComponent
+    ChangePassShopComponent,
+    AllSellsComponent,
+    UpdateSellsComponent,
+    UpdateItemsShopComponent,
+    AllItemsShopComponent
   ],
   imports: [
     FormsModule,

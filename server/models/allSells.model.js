@@ -12,7 +12,11 @@ const OrderSchema = new mongoose.Schema({
     venderType: {type: String},
     sts: {type: String},
     itemId: {type: String},
-
+    itemName: {type: String},
+    total: {type: String},
+    shopId: {type: String},
+    quentity: {type: String},
+    shippingFee: {type: String}
 });
 
 module.exports = mongoose.model('AllSells', OrderSchema);

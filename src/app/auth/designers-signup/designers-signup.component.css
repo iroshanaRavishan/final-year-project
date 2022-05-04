@@ -6,10 +6,26 @@
 
 .main-container {
     margin-left: -8px;
-    margin-top: -15px;
+    margin-top: 5px;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: hidden; 
+    top:1em;
+}
+.trnspnt {
+    height: 7em;
+    width: 292px;
+    top: 0em;
+    left: 0;
+    position:  fixed;
+    background-color: #287bff;
+    z-index: -1000;
+    transition: 0.5s;
+    overflow: hidden;
+    border-bottom-right-radius: 10px;
+}
 
+.trnspnt.active {
+    width: 72px;
 }
 
 .container {
@@ -24,6 +40,7 @@
     border-left: 10px solid #287bff;
     transition: 0.5s;
     overflow: hidden;
+    border-top-right-radius: 10px;
 
 }
 .navigation.active {
@@ -31,7 +48,7 @@
 }
 .navigation ul {
     position: absolute;
-    top: 0;
+    top: 1.5em;
     left: 0;
     width: 100%;
 

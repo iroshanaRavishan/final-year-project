@@ -1,0 +1,75 @@
+<div class="cardBox">
+              
+    <div class="card">
+        <div>
+            <div class="numbers">1, 504</div>
+            <div class="cardName">Daily Views</div>
+        </div>
+        <div class="iconBx">
+            <img src="assets/image/search.png" alt="" class="eye-outline">
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <div class="numbers">{{count}}</div>
+            <div class="cardName">sales</div>
+        </div>
+        <div class="iconBx">
+            <img src="assets/image/search.png" alt="" class="eye-outline">
+        </div>
+    </div>
+
+    <div class="card">
+        <div >
+            <div class="numbers">253</div>
+            <div class="cardName">Comments</div>
+        </div>
+        <div class="iconBx">
+            <img src="assets/image/search.png" alt="" class="eye-outline">
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <div class="numbers">{{earnings | currency: 'LKR. '}} </div>
+            <div class="cardName">Earning</div>
+        </div>
+        <div class="iconBx">
+            <img src="assets/image/search.png" alt="" class="eye-outline">
+        </div>
+    </div>
+</div>
+        <div class="main">
+            <div class="details">
+                <!-- order details list -->
+                <div class="recentOrders">
+                    <p>Shop > All Sells</p>
+                    <div class="cardHeader">
+                        <h2>All Sells</h2>
+                        <a class="btn">View all</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Namee</td>
+                                <td>Total </td>
+                                <td>Payment</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="allSells">
+                            <tr *ngFor="let sell of allSells" >
+                                <td (click)="updateStstus('updateOrder', sell)">{{sell.itemName}}</td>
+                                <td (click)="updateStstus('updateOrder', sell)">{{sell.total | currency: 'LKR. '}}</td>
+                                <td (click)="updateStstus('updateOrder', sell)">{{sell.payementType}}</td>
+                                <td (click)="updateStstus('updateOrder', sell)"><span class="status delivered">{{sell.sts}}</span></td>
+                            </tr>                   
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="compPath=='updateOrder'">
+                <app-update-sells [Order]="Order"></app-update-sells>
+            </div>
+        </div>

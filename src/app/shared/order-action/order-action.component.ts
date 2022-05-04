@@ -27,11 +27,14 @@ export class OrderActionComponent implements OnInit {
   sf:string | any;
   shippingFee: number = 0;
   total: number = 0;
+  totalLastPrice: any;
   trueValue: any;
   pr:string|any;
   last: number | any=0;
   error: string | any;
   success: any;
+  name: any;
+  shopId: any;
   userLogEmail: string | any;
   userLogPassword: string | any;
   
@@ -46,7 +49,6 @@ export class OrderActionComponent implements OnInit {
   readOnlyToggle: string = 'true';
   method : any;
   de: any[] = [];
-
   token: string|undefined;
 
   hShopItemSubscription: Subscription | any;
@@ -75,6 +77,7 @@ export class OrderActionComponent implements OnInit {
 
   ngOnInit(): void {
     this.siteKey = environment.recaptcha.siteKey;
+    this.shopId = this.activatedRoute.snapshot.paramMap.get("sid")
     this.idOfItem = this.activatedRoute.snapshot.paramMap.get("id");
     this.typeOfVender = this.activatedRoute.snapshot.paramMap.get("type"); 
     this.q = this.activatedRoute.snapshot.paramMap.get("quentity");
@@ -95,7 +98,9 @@ export class OrderActionComponent implements OnInit {
           this.relItem=(this.hShopsItem[index]);
           console.log(this.relItem);
           this.price = this.relItem.price;
+          this.name = this.relItem.name
           this.last = (this.price * this.quentity) + this.shippingFee;
+          this.totalLastPrice = (this.price * this.quentity) + this.shippingFee;
         } 
       }
     });
@@ -111,7 +116,7 @@ export class OrderActionComponent implements OnInit {
      password: new FormControl ('', [Validators.required]),
      telephone: new FormControl ('', [Validators.required]),
      address: new FormControl ('', [Validators.required]),
-     district: new FormControl ('', [Validators.required]),
+     district: new FormControl (''),
      zipcode: new FormControl ('', [Validators.required])
     });
   }
@@ -134,7 +139,12 @@ export class OrderActionComponent implements OnInit {
       payementType: new FormControl ('', [Validators.required]),
       venderType: new FormControl (this.typeOfVender),
       sts: new FormControl ('To be reviewed'),
-      itemId: new FormControl (this.idOfItem)    
+      itemId: new FormControl (this.idOfItem),    
+      itemName: new FormControl (this.name), 
+      total: new FormControl (this.last),
+      shopId: new FormControl (this.shopId),
+      quentity: new FormControl (this.quentity),
+      shippingFee: new FormControl (this.shippingFee)
     });
   }
 
@@ -254,6 +264,12 @@ export class OrderActionComponent implements OnInit {
     const district = this.userDetails.value.district;
     const zipcode = this.userDetails.value.zipcode;
     const collectAt = this.shippingDetails.value.collectAt;
+    const sts = 'To be reviewed';
+    const itemName = this.relItem.name;
+    const totalLastPrice = parseFloat(this.totalLastPrice).toFixed(2);
+    const shopId = this.shopId;  
+    const quentity = this.quentity;
+    const shippingFee = this.shippingFee.toFixed(2);
 
     this.allDetails.patchValue({ fullName: fullName });
     this.allDetails.patchValue({ useremail: useremail });
@@ -262,10 +278,14 @@ export class OrderActionComponent implements OnInit {
     this.allDetails.patchValue({ district: district });
     this.allDetails.patchValue({ zipcode: zipcode });
     this.allDetails.patchValue({ collectAt: collectAt }); 
+    this.allDetails.patchValue({ sts: sts});
+    this.allDetails.patchValue({ itemName: itemName }); 
+    this.allDetails.patchValue({ total: totalLastPrice});
+    this.allDetails.patchValue({ shopId: shopId});
+    this.allDetails.patchValue({ quentity: quentity});
+    this.allDetails.patchValue({ shippingFee: shippingFee});
 
    const user: File = this.allDetails.getRawValue();
-   console.log(user);
-
    this.authService.confirmedOrderDetail(user).subscribe(s => this.router.navigate(['shops/']));
   }
 }

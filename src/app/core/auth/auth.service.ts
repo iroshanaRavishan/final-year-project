@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AllSells } from '@core/model/allSells';
 import { DesignerItems } from '@core/model/designerItemsRegistration';
 import { Designer } from '@core/model/designerRegistration';
 import { HShopItems } from '@core/model/hShopItemsRegistration';
@@ -47,15 +48,20 @@ export class AuthService {
 
   private hShop$ = new Subject<HShop>();
   private hShops$ = new Subject<HShop[]>();
+  private allSells$ = new Subject<AllSells[]>();
 
   private hShopItem$ = new Subject<HShopItems[]>();
+  private hShopItems$ = new Subject<HShopItems>();
 
+  private designerItem$ = new Subject<DesignerItems>();
   private designerItems$ = new Subject<DesignerItems>();
+
   private apiUrl = '/api/auth/';
 
   
   private designers: Designer[] = [];
   private hShops: HShop[] = [];
+  private allSells: AllSells[] = [];
 
   private hShopItems: HShopItems[] = [];
   //private hShops: HShop[] = [];
@@ -90,6 +96,9 @@ export class AuthService {
     return this.hShops$.asObservable();
   }
 
+
+
+
   getHShopsItems() {
     this.httpClient.get<{ hShopItem: HShopItems[] }>(`${this.apiUrl}addinganitemhshop`).pipe(
       map((hShopItemsData) => {
@@ -102,6 +111,20 @@ export class AuthService {
   }
   getHShopsItemsStream() {
     return this.hShopItem$.asObservable();
+  }
+
+  getAllSells() {
+    this.httpClient.get<{ allSells: AllSells[] }>(`${this.apiUrl}auth`).pipe(
+      map((allSellsData) => {
+        return allSellsData.allSells;
+      })
+    ).subscribe((allSells) => {
+      this.allSells = allSells;
+      this.allSells$.next(this.allSells);
+    });
+  }
+  getAllSellsStream() {
+    return this.allSells$.asObservable();
   }
 
   userLogin(userLogEmail: string, userLogPassword: string) {
@@ -510,7 +533,8 @@ export class AuthService {
     itemToSave.append("hShopShopEmail", item.hShopShopEmail);
     itemToSave.append("category", category);
     itemToSave.append("name", item.name);
-    itemToSave.append("description", item.description);    
+    itemToSave.append("description", item.description); 
+    itemToSave.append("availability", item.availability);   
     itemToSave.append("subCategory", item.subCategory);
     itemToSave.append("price", item.price);
     itemToSave.append("isDiscount", item.isDiscount);
@@ -570,6 +594,61 @@ export class AuthService {
     );
   }
 
+  updateSell(status: any, id: any ) {
+    return this.httpClient.put<any>(`${this.apiUrl}updatedsell`+`/${id}`, status).pipe( 
+      
+      switchMap(({sellStatus})=> { // separating the user object to user and token from the payload
+        this.setSellStatus(sellStatus); //setting the user 
+        console.log('hShop updated successfully', sellStatus);
+        return of(sellStatus);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+        return throwError(`Registration Failed, please contact admin`);
+      })
+    );
+  }
+
+  updateHShopItems(item: any, discount: any, priceWithUnit: any, id: any) {
+
+    const itemToUpdate = new FormData();
+    itemToUpdate.append("name", item.name);
+    itemToUpdate.append("description", item.description); 
+    itemToUpdate.append("availability", item.availability);   
+    itemToUpdate.append("price", item.price);
+    itemToUpdate.append("isDiscount", item.isDiscount);
+    itemToUpdate.append("discount", discount);
+    itemToUpdate.append("priceWithUnit",priceWithUnit);
+
+    return this.httpClient.put<any>(`${this.apiUrl}updatinganitemhshop`+`/${id}`, item).pipe(
+       switchMap(({hShopItems})=> { // separating the user object to user and token from the payload
+        this.setHShopItems(hShopItems);// setting the user
+      //  this.tokenStorage.setToken(token); //storing the user in the local storage
+        console.log('hShop item updated successfully', hShopItems);
+        return of(hShopItems);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+        return throwError(`Registration Failed, please contact admin`);
+      })
+    ); 
+  }
+
+  deleteAnItemHshop(id: any) {
+    return this.httpClient.delete<any>(`${this.apiUrl}deletinganitemhshop`+`/${id}`).pipe(
+       switchMap(({hShopItems})=> { // separating the user object to user and token from the payload
+        this.setHShopItems(hShopItems);// setting the user
+      //  this.tokenStorage.setToken(token); //storing the user in the local storage
+        console.log('hShop item updated successfully', hShopItems);
+        return of(hShopItems);
+      }),
+      catchError(e => {
+        this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+        return throwError(`Registration Failed, please contact admin`);
+      })
+    ); 
+  }
+
   //when the browser refresh, this will take care of that
   findMe() { 
     const token = this.tokenStorage.getToken();
@@ -598,12 +677,15 @@ export class AuthService {
   private setDesignerItems(designerItems: any){
     this.designerItems$.next(designerItems);
   }
-  private setHShopItems(designerItems: any){
-    this.designerItems$.next(designerItems);
+  private setHShopItems(hShopItems: any){
+    this.hShopItems$.next(hShopItems);
   }
 
   private setOrder(order: any){
-    this.designerItems$.next(order);
+    //this.allSells$.next(order);
   }
 
+  private setSellStatus(sellStatus: any){
+   // this.designerItems$.next(sellStatus);
+  }
 }

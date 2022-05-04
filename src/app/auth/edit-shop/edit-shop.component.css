@@ -32,6 +32,29 @@
       margin-right: 4em;
   }
   
+  .header-section {
+    margin-left: 2em;
+  }
+  
+  .word-nav{
+    color: dimgrey;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 10px;
+}
+
+.cardHeader h2{
+    font-weight: 600;
+    color: #287bff;
+}
+
   h2 , p{
      margin-left: 0em;
      color: #575757;

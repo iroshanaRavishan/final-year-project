@@ -1,35 +1,43 @@
 <div class="down-form-container">
-    <form [formGroup]="designerRegGroup" enctype="multipart/form-data" method="post">
-        <div class="down-form-center">
-            <div>
+    <div class="header-section">
+        <p class="word-nav">Designer Shop > Change Password</p>
+        <div class="cardHeader">
+            <h2>Change Password</h2>   
+        </div>  
+    </div>
+    <div class="password-section">
+        <form [formGroup]="designerRegGroup" enctype="multipart/form-data" method="post">
+            <div class="down-form-center">
                 <div>
-                    <label>Old Password<span class="req"> *</span></label>
-                    <input type="password" formControlName="designerRegOldPassword" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegOldPassword.errors }"  placeholder="Enter Old Password" required>         
-                    <div *ngIf="submitted && designerRegFormValidation.designerRegOldPassword.errors" class="invalid-feedback">
-                      <div *ngIf="designerRegFormValidation.designerRegOldPassword.errors.required" >Password is required !</div>
+                    <div>
+                        <label>Old Password<span class="req"> *</span></label>
+                        <input type="password" formControlName="designerRegOldPassword" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegOldPassword.errors }"  placeholder="Enter Old Password" required>         
+                        <div *ngIf="submitted && designerRegFormValidation.designerRegOldPassword.errors" class="invalid-feedback">
+                          <div *ngIf="designerRegFormValidation.designerRegOldPassword.errors.required" >Password is required !</div>
+                        </div>
                     </div>
-                </div>
-
-                <div>
-                    <label>New Password<span class="req"> *</span></label>
-                    <input type="password" formControlName="designerRegNewPassword" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegNewPassword.errors }"  placeholder="Enter New Password" required>         
-                    <div *ngIf="submitted && designerRegFormValidation.designerRegNewPassword.errors" class="invalid-feedback">
-                      <div *ngIf="designerRegFormValidation.designerRegNewPassword.errors.required" >Password is required !</div>
+    
+                    <div>
+                        <label>New Password<span class="req"> *</span></label>
+                        <input type="password" formControlName="designerRegNewPassword" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegNewPassword.errors }"  placeholder="Enter New Password" required>         
+                        <div *ngIf="submitted && designerRegFormValidation.designerRegNewPassword.errors" class="invalid-feedback">
+                          <div *ngIf="designerRegFormValidation.designerRegNewPassword.errors.required" >Password is required !</div>
+                        </div>
                     </div>
-                </div>
-        
-                <div>
-                    <label>Confirm New Password<span class="req"> *</span></label>
-                    <input type="password" formControlName="designerRegConfirmPassword" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegConfirmPassword.errors }" placeholder="Re-Enter New Password" required>
-                    <div *ngIf="submitted && designerRegFormValidation.designerRegConfirmPassword.errors" class="invalid-feedback">
-                      <div *ngIf="designerRegFormValidation.designerRegConfirmPassword.errors.required" >Confirmation is required !</div>
+            
+                    <div>
+                        <label>Confirm New Password<span class="req"> *</span></label>
+                        <input type="password" formControlName="designerRegConfirmPassword" [ngClass]="{ 'is-invalid' : submitted && designerRegFormValidation.designerRegConfirmPassword.errors }" placeholder="Re-Enter New Password" required>
+                        <div *ngIf="submitted && designerRegFormValidation.designerRegConfirmPassword.errors" class="invalid-feedback">
+                          <div *ngIf="designerRegFormValidation.designerRegConfirmPassword.errors.required" >Confirmation is required !</div>
+                        </div>
                     </div>
+    
+                    <!-- <button class="btn" type="submit" >Register</button> -->
+                    <button class="btn" type="submit" (click)="updatePassword()">Update</button>
+                    <button class="btn-reset" type="reset">Reset</button>
                 </div>
-
-                <!-- <button class="btn" type="submit" >Register</button> -->
-                <button class="btn" type="submit" (click)="updatePassword()">Update</button>
-                <button class="btn-reset" type="reset">Reset</button>
             </div>
-        </div>
-    </form> 
+        </form> 
+    </div>
 </div>

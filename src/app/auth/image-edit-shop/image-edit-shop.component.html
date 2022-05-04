@@ -1,62 +1,70 @@
 <div class="container">
-    <form [formGroup]="hShopImageUpdateUserGroup" enctype="multipart/form-data" method="post">
-        <div>
-            <div class="header-section">
-                <h2>User's Profile Picture</h2>
-            </div>
-            <div class="wrapper">                
-                <input type="file" (change)="onFileSelectHShopUserPro($event)" class="my-file" name="hShopUserProfilePic" formControlName="hShopUserProfilePic" required>
-                <div> 
-                    <div *ngIf="!imageDataHShopUserPro">
-                        <img class="profile-picture-on-login-signup" src="{{hShop.hShopRegProfilePic}}" >    
-                    </div>  
-                    <div  *ngIf="imageDataHShopUserPro">
-                        <img class="profile-picture-on-login-signup" [src]="imageDataHShopUserPro" [alt]="hShopImageUpdateUserGroup.value.hShopRegUsername">
-                    </div>
+    <div class="header-section">
+        <p class="word-nav">Hardware Shop > Update Images</p>
+        <div class="cardHeader">
+            <h2>Update Images</h2>   
+        </div>  
+    </div> 
+    <div class="image-section">
+        <form [formGroup]="hShopImageUpdateUserGroup" enctype="multipart/form-data" method="post">
+            <div>
+                <div class="header-section">
+                    <h2>User's Profile Picture</h2>
                 </div>
-            </div>  
-            <div *ngIf="fileTypeHSHopUserPro" class="invalid-feedback">
-                {{fileTypeHSHopUserPro}}
-            </div>      
-            <label class="image-types">User Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-
-            <div *ngIf="submittedU && hShopUserProfilePicUpdateFormValidation.hShopUserProfilePic.errors" class="invalid-feedback">
-                <div *ngIf="hShopUserProfilePicUpdateFormValidation.hShopUserProfilePic.errors.required" >It is required select a file to update!</div>
-            </div>
-        </div>
-        <div>
-            <button class="btn" type="submit" (click)="updateHShopUserProfilePic()">Update</button>
-        </div>
-    </form>
-
-    <form [formGroup]="hShopImageUpdateShopGroup" enctype="multipart/form-data" method="post">
-        <div>
-            <div class="header-section">
-                <h2>Shop's Profile Picture</h2>
-            </div>
-            <div class="wrapper">
-                
-                <input type="file" (change)="onFileSelectHShopShopPro($event)" class="my-file" name="hShopShopProfilePic" formControlName="hShopShopProfilePic" required>
-                <div>     
-                    <div  *ngIf="!imageDataHShopShopPro">
-                        <img class="profile-picture-on-login-signup" src="{{hShop.hShopRegShopPic}}" >
+                <div class="wrapper">                
+                    <input type="file" (change)="onFileSelectHShopUserPro($event)" class="my-file" name="hShopUserProfilePic" formControlName="hShopUserProfilePic" required>
+                    <div> 
+                        <div *ngIf="!imageDataHShopUserPro">
+                            <img class="profile-picture-on-login-signup" src="{{hShop.hShopRegProfilePic}}" >    
+                        </div>  
+                        <div  *ngIf="imageDataHShopUserPro">
+                            <img class="profile-picture-on-login-signup" [src]="imageDataHShopUserPro" [alt]="hShopImageUpdateUserGroup.value.hShopRegUsername">
+                        </div>
                     </div>
-                    <div  *ngIf="imageDataHShopShopPro">
-                        <img class="profile-picture-on-login-signup" [src]="imageDataHShopShopPro" [alt]="hShopImageUpdateShopGroup.value.hShopRegUsername">
-                    </div>
+                </div>  
+                <div *ngIf="fileTypeHSHopUserPro" class="invalid-feedback">
+                    {{fileTypeHSHopUserPro}}
+                </div>      
+                <label class="image-types">User Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
+    
+                <div *ngIf="submittedU && hShopUserProfilePicUpdateFormValidation.hShopUserProfilePic.errors" class="invalid-feedback">
+                    <div *ngIf="hShopUserProfilePicUpdateFormValidation.hShopUserProfilePic.errors.required" >It is required select a file to update!</div>
                 </div>
             </div>
-            <div *ngIf="fileTypeHShopShopPro" class="invalid-feedback">
-                {{fileTypeHShopShopPro}}
-            </div>      
-            <label class="image-types">Shop Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
-
-            <div *ngIf="submittedS && hShopShopProfilePicUpdateFormValidation.hShopShopProfilePic.errors" class="invalid-feedback">
-                <div *ngIf="hShopShopProfilePicUpdateFormValidation.hShopShopProfilePic.errors.required" >It is required select a file to update!</div>
+            <div>
+                <button class="btn" type="submit" (click)="updateHShopUserProfilePic()">Update</button>
             </div>
-        </div>
-        <div>
-            <button class="btn" type="submit" (click)="updateHShopShopProfilePic()">Update</button>
-        </div>
-    </form>
+        </form>
+    
+        <form [formGroup]="hShopImageUpdateShopGroup" enctype="multipart/form-data" method="post">
+            <div>
+                <div class="header-section">
+                    <h2>Shop's Profile Picture</h2>
+                </div>
+                <div class="wrapper">
+                    
+                    <input type="file" (change)="onFileSelectHShopShopPro($event)" class="my-file" name="hShopShopProfilePic" formControlName="hShopShopProfilePic" required>
+                    <div>     
+                        <div  *ngIf="!imageDataHShopShopPro">
+                            <img class="profile-picture-on-login-signup" src="{{hShop.hShopRegShopPic}}" >
+                        </div>
+                        <div  *ngIf="imageDataHShopShopPro">
+                            <img class="profile-picture-on-login-signup" [src]="imageDataHShopShopPro" [alt]="hShopImageUpdateShopGroup.value.hShopRegUsername">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="fileTypeHShopShopPro" class="invalid-feedback">
+                    {{fileTypeHShopShopPro}}
+                </div>      
+                <label class="image-types">Shop Profile Picture (add only images - .png, jpeg, jpg, ...)<span class="req"> *</span></label>
+    
+                <div *ngIf="submittedS && hShopShopProfilePicUpdateFormValidation.hShopShopProfilePic.errors" class="invalid-feedback">
+                    <div *ngIf="hShopShopProfilePicUpdateFormValidation.hShopShopProfilePic.errors.required" >It is required select a file to update!</div>
+                </div>
+            </div>
+            <div>
+                <button class="btn" type="submit" (click)="updateHShopShopProfilePic()">Update</button>
+            </div>
+        </form>
+    </div>
 </div>

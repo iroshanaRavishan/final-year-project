@@ -1,0 +1,105 @@
+
+        <div class="main">
+            <div class="details">
+                <!-- order details list -->
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>All Orders</h2>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Total </td>
+                                <td>Payment</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="relSell">
+                            <tr>
+                                <td>{{relSell.itemName}}</td>
+                                <td>{{relSell.total | currency: 'LKR. '}}</td>
+                                <td>{{relSell.payementType}}</td>
+                                <td><span class="status delivered">{{relSell.sts}}</span></td>
+                            </tr>                   
+                        </tbody> 
+                    </table>
+                    <div class="down-area">
+                        <div class="view">
+                            <tbody *ngIf="relSell">
+                                <tr>
+                                    <td>Name </td>
+                                    <td><p>:</p> </td>
+                                    <td><p> {{ relSell.fullName}}</p></td>
+                                </tr> 
+                                <tr>
+                                    <td>User Email </td>
+                                    <td><p>:</p> </td>
+                                    <td><p> {{ relSell.useremail}}</p></td>
+                                </tr> 
+                                <tr>
+                                    <td>Tele </td>
+                                    <td><p>:</p> </td>
+                                    <td><p> {{ relSell.telephone}}</p></td>
+                                </tr>                 
+                                <tr>
+                                    <td>Address </td>
+                                    <td><p>:</p> </td>
+                                    <td><p> {{ relSell.address}}, {{ relSell.district}}, {{ relSell.zipcode}}</p></td>
+                                </tr> 
+                                <tr>
+                                    <td>Item Name </td>
+                                    <td><p>:</p> </td>
+                                    <td><p> {{ relSell.itemName}}</p></td>
+                                </tr> 
+                                <tr>
+                                    <td>Item Id </td>
+                                    <td><p>:</p> </td>
+                                    <td><p> {{ relSell.itemId}}</p></td>
+                                </tr> 
+                                <tr>
+                                    <td>Quentity </td>
+                                    <td><p>:</p> </td>
+                                    <td><p> {{ relSell.quentity}}</p></td>
+                                </tr>
+                                <tr>
+                                    <td>Shipping Fee </td>
+                                    <td><p>:</p> </td>
+                                    <td><p> {{ relSell.shippingFee | currency: 'LKR. '}}</p></td>
+                                </tr> 
+                                <tr>
+                                    <td>Total </td>
+                                    <td><p>:</p> </td>
+                                    <td><p> {{ relSell.total | currency: 'LKR. '}}</p></td>
+                                </tr>  
+
+                            </tbody> 
+                        </div>
+                        
+                        <div class="editing-area" >
+                            <button class="btn-toggling-updating" *ngIf="!buttonDisabled" (click)="buttonToggle()">Disable Updating</button>
+                            <button class="btn-toggling-updating" *ngIf="buttonDisabled" (click)="buttonToggle()">Enable Updating</button>
+                            <form class="form-area" [formGroup]="orderStatus" enctype="multipart/form-data" method="post">
+                                <label>Update order status<span class="req"> *</span></label>
+                                <div class="radio-button" *ngIf="buttonDisabled==false">
+                                    
+                                    <input type="radio" value="To be reviewed" formControlName="sts" [ngClass]="{ 'is-invalid' : submitted && orderValidation.sts.errors }"  name="sts">
+                                    <label class="req" for="rounded" data-checked="To be reviewed"></label>
+
+                                    <input type="radio" value="Checked" formControlName="sts" name="sts">
+                                    <label for="rounded" data-checked="Checked"></label>
+                                </div>    
+
+                                    <div *ngIf="submitted && orderValidation.sts.errors" class="invalid-feedback">
+                                        <div *ngIf="orderValidation.sts.errors.required" >Status is required !</div>
+                                    </div> 
+                                    <div class="action-area">
+                                        <button class="btn-back" (click)="backNavigation()" > Back</button>
+                                        <button class="btn-update" (click)="updateStatus()" [disabled]="buttonDisabled"> update</button>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

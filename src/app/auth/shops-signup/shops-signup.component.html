@@ -1,11 +1,13 @@
 <div *ngIf="hShop">
     <div class="main-container"> 
+        <div class="trnspnt">
+        </div>
         <div class="container">
-            <div class="navigation">
+            <div class="navigation">  
                 <ul>
                     <li>
                         <a>
-                            <span class="icon"><img src="assets/image/apple.png" alt=""></span>
+                            <span class="icon"><img src="assets/image/market-50.png" alt=""></span>
                             <span class="title">{{hShop.hShopRegShopName}} <font class="shop-mail">({{hShop.hShopRegShopEmail}})</font></span><br>
                         </a>
                     </li>
@@ -17,14 +19,20 @@
                     </li>
                     <li class="hoveredItem h"  (click)="callActivating('addItems', hShop)">
                         <a>
-                            <span class="icon"><img src="assets/image/dashboard.png" alt=""></span>
+                            <span class="icon"><img src="assets/image/add-50.png" alt=""></span>
                             <span class="title">Add Items</span>
+                        </a>
+                    </li>
+                    <li class="hoveredItem h"  (click)="callActivating('updateitems', hShop)">
+                        <a>
+                            <span class="icon"><img src="assets/image/updates-item-50.png" alt=""></span>
+                            <span class="title">Update Items</span>
                         </a>
                     </li>
                     <li class="hoveredItem"  (click)="callActivating('updatedata', hShop)">
                         <!-- routerLink="/auth/designersignup/edit/{{designer._id}}" -->
                        <a>
-                           <span class="icon"><img src="assets/image/help.png" alt=""></span>
+                           <span class="icon"><img src="assets/image/updates-data-50.png" alt=""></span>
                            <span class="title">Update User Data</span>
                        </a>
                    </li>
@@ -36,8 +44,14 @@
                     </li>
                     <li class="hoveredItem" (click)="callActivating('changepass', hShop)">
                         <a>
-                            <span class="icon"><img src="assets/image/password.png" alt=""></span>
+                            <span class="icon"><img src="assets/image/change-pass-50.png" alt=""></span>
                             <span class="title">Change Password</span>
+                        </a>
+                    </li>
+                    <li class="hoveredItem" (click)="callActivating('allsells', hShop)">
+                        <a>
+                            <span class="icon"><img src="assets/image/all-sell-50.png" alt=""></span>
+                            <span class="title">All Sells</span>
                         </a>
                     </li>
                     <li class="hoveredItem" (click)="callActivating('logout', hShop)"> <!-- (click)="logout()" -->
@@ -65,53 +79,16 @@
                 </div>
             </div>
     <!-- cared -->
-            <div class="cardBox">
-                <div class="card">
-                    <div>
-                        <div class="numbers">1, 504</div>
-                        <div class="cardName">Daily Views</div>
-                    </div>
-                    <div class="iconBx">
-                        <img src="assets/image/search.png" alt="" class="eye-outline">
-                    </div>
-                </div>
 
-                <div class="card">
-                    <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">sales</div>
-                    </div>
-                    <div class="iconBx">
-                        <img src="assets/image/search.png" alt="" class="eye-outline">
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers">253</div>
-                        <div class="cardName">Comments</div>
-                    </div>
-                    <div class="iconBx">
-                        <img src="assets/image/search.png" alt="" class="eye-outline">
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers">$560</div>
-                        <div class="cardName">Earning</div>
-                    </div>
-                    <div class="iconBx">
-                        <img src="assets/image/search.png" alt="" class="eye-outline">
-                    </div>
-                </div>
-            </div>
 
             <div *ngIf="compPath=='dashboard'">
-                <app-dashboard-shop></app-dashboard-shop>
+                <app-dashboard-shop [hShop]="HShop"></app-dashboard-shop>
             </div>
             <div *ngIf="compPath=='addItems'">
                <app-add-product-shop [hShop]="HShop"></app-add-product-shop>
+            </div>
+            <div *ngIf="compPath=='updateitems'">
+                <app-all-items-shop [hShop]="HShop"></app-all-items-shop>
             </div>
             <div *ngIf="compPath=='updatedata'">
                 <app-edit-shop [hShop]="HShop"></app-edit-shop>
@@ -121,6 +98,9 @@
             </div>
             <div *ngIf="compPath=='changepass'">
                 <app-change-pass-shop [hShop]="HShop"></app-change-pass-shop>
+            </div>
+            <div *ngIf="compPath=='allsells'">
+                <app-all-sells [hShop]="HShop"></app-all-sells>
             </div>
             <div *ngIf="compPath=='logout'">
                 <app-logout-popup  (event)="receivePath($event)"></app-logout-popup>

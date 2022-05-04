@@ -6,19 +6,21 @@ import { AllSells } from '@core/model/allSells';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-dashboard-shop',
-  templateUrl: './dashboard-shop.component.html',
-  styleUrls: ['./dashboard-shop.component.css']
+  selector: 'app-all-sells',
+  templateUrl: './all-sells.component.html',
+  styleUrls: ['./all-sells.component.css']
 })
-export class DashboardShopComponent implements OnInit {
+export class AllSellsComponent implements OnInit {
 
   @Input() hShop: any;
 
+  compPath: string = '';
   Order: any;
   sellsId: any;
   hShopId: any;
   count: number = 0;
   earnings: number = 0;
+  as: any[] = [];
   hs: any[]=[];
 
   allSells: AllSells[] = [];
@@ -28,8 +30,11 @@ export class DashboardShopComponent implements OnInit {
 
   ngOnInit(): void {
     this.hShopId = this.hShop._id;
+    console.log(this.hShopId);
+
     this.authService.getAllSells();
     this.allSellsSubscription = this.authService.getAllSellsStream().subscribe((allSells: AllSells[]) => {
+
       for (const allSell of allSells) {
         if(this.hShopId==allSell.shopId){
           this.allSells.push(allSell);
@@ -44,5 +49,12 @@ export class DashboardShopComponent implements OnInit {
 
   ngOnDestroy() {
     this.allSellsSubscription.unsubscribe();
+  }
+
+  updateStstus(compPath: string, sell: any) {
+    this.compPath = compPath;
+    this.Order = sell;
+   this.sellsId = sell._id;
+    this.router.navigate([`auth/shopsignup/editsells/`+`${this.sellsId}`]);
   }
 }

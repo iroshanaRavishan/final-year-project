@@ -1,74 +1,73 @@
-<div class="main">
-    <div class="details">
-        <!-- order details list -->
-        <div class="recentOrders">
-            <div class="cardHeader">
-                <h2>Recent Orders</h2>
-                <a href="#" class="btn">View all</a>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Price </td>
-                        <td>Payment</td>
-                        <td>Status</td>
-    
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Item#1</td>
-                        <td>$1100</td>
-                        <td>Paid</td>
-                        <td><span class="status delivered">Delivered</span></td>
-                    </tr>
-                    <tr>
-                        <td>Item#2</td>
-                        <td>$750</td>
-                        <td>Returned</td>
-                        <td><span class="status return">Return</span></td>
-                    </tr>
-                    <tr>
-                        <td>Item#3</td>
-                        <td>$105</td>
-                        <td>Not-Paid</td>
-                        <td><span class="status inprogress">Inprogress</span></td>
-                    </tr>
-                    <tr>
-                        <td>Item#4</td>
-                        <td>$120</td>
-                        <td>Not-Paid</td>
-                        <td><span class="status pending">Pending</span></td>
-                    </tr>
-                    <tr>
-                        <td>Item#5</td>
-                        <td>$45</td>
-                        <td>Returned</td>
-                        <td><span class="status return">Return</span></td>
-                    </tr>
-                    <tr>
-                        <td>Item#6</td>
-                        <td>$320</td>
-                        <td>Not-Paid</td>
-                        <td><span class="status inprogress">Inprogress</span></td>
-                    </tr>
-                    <tr>
-                        <td>Item#7</td>
-                        <td>$1500</td>
-                        <td>Paid</td>
-                        <td><span class="status delivered">Delivered</span></td>
-                    </tr>
-                    <tr>
-                        <td>Item#8</td>
-                        <td>$900</td>
-                        <td>Returned</td>
-                        <td><span class="status return">Return</span></td>
-                    </tr>
+        <div class="cardBox">
                     
-                </tbody>
-            </table>
+            <div class="card">
+                <div>
+                    <div class="numbers">1, 504</div>
+                    <div class="cardName">Daily Views</div>
+                </div>
+                <div class="iconBx">
+                    <img src="assets/image/search.png" alt="" class="eye-outline">
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="numbers">{{count}}</div>
+                    <div class="cardName">sales</div>
+                </div>
+                <div class="iconBx">
+                    <img src="assets/image/search.png" alt="" class="eye-outline">
+                </div>
+            </div>
+
+            <div class="card">
+                <div >
+                    <div class="numbers">253</div>
+                    <div class="cardName">Comments</div>
+                </div>
+                <div class="iconBx">
+                    <img src="assets/image/search.png" alt="" class="eye-outline">
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="numbers">{{earnings | currency: 'LKR. '}} </div>
+                    <div class="cardName">Earning</div>
+                </div>
+                <div class="iconBx">
+                    <img src="assets/image/search.png" alt="" class="eye-outline">
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
-    
+        <div class="main">
+            <div class="details">
+                <!-- order details list -->
+                <div class="recentOrders">
+                    <p>Hardware Shop > Dashboard</p>
+                    <div class="cardHeader">
+                        <h2>Dashboard</h2>
+                        
+                        <a href="#" class="btn">View all</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Total </td>
+                                <td>Payment</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="allSells">
+                            <tr *ngFor="let sell of allSells" >
+                                <td>{{sell.itemName}}</td>
+                                <td>{{sell.total | currency: 'LKR. '}}</td>
+                                <td>{{sell.payementType}}</td>
+                                <td><span class="status delivered">{{sell.sts}}</span></td>
+                            </tr>                   
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+        </div>
