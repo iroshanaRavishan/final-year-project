@@ -194,6 +194,20 @@
     font-weight: 500;
 }
 
+.chart{
+    position: relative;
+    display: grid;
+    min-width: 500px;
+    background: white;
+    padding: 3em;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+canvas {
+    height: 100px;
+    width: 10px;
+}
+
 /* Responsive designing */
 @media(max-width: 991px){
 

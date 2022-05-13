@@ -356,6 +356,20 @@ input[type="radio"] {
  
   }
 
+  .payment-status {
+      color: #535151;
+      font-size: 15px;
+      font-weight: 400;
+    
+  }
+
+  .estimated-time {
+    color: #dd6969;
+    font-size: 12px;
+    font-weight: 200;
+  
+}
+
 .item-details-body {
     width: 90%;
     display: flex;

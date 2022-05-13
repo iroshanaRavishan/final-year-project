@@ -19,6 +19,7 @@ export class LoginSignupComponent implements OnInit {
   userRegGroup!: FormGroup;
   designerRegGroup!: FormGroup;
   hShopRegGroup!: FormGroup;
+  username: string | any;
 
   imageDataUser: string | any; 
   imageDataDesignerUserPro: string | any; 
@@ -48,7 +49,7 @@ export class LoginSignupComponent implements OnInit {
       userRegEmail: new FormControl('', [Validators.required, Validators.email]),
       userRegPassword: new FormControl ('', [Validators.required]),
       userRegConfirmPassword: new FormControl ('', [Validators.required, this.userPasswordMatch]),
-      userRegProfilePic: new FormControl (null), 
+      profilePic: new FormControl (null), 
       userRegTelephone: new FormControl ('', [Validators.required]),
       userRegAddress: new FormControl ('', [Validators.required]),
       userRegDistrict: new FormControl ('', [Validators.required])
@@ -63,7 +64,7 @@ export class LoginSignupComponent implements OnInit {
       designerRegNIC: new FormControl ('', [Validators.required]),
       designerRegPassword: new FormControl ('', [Validators.required]),
       designerRegConfirmPassword: new FormControl ('', [Validators.required, this.designerPasswordMatch]),
-      designerRegProfilePic: new FormControl (null),
+      profilePic: new FormControl (null),
       designerRegTelephone: new FormControl ('', [Validators.required]),
       designerRegAddress: new FormControl ('', [Validators.required]),
       designerRegDistrict: new FormControl ('', [Validators.required]),
@@ -88,7 +89,7 @@ export class LoginSignupComponent implements OnInit {
       hShopRegNIC: new FormControl ('', [Validators.required]),
       hShopRegPassword: new FormControl ('', [Validators.required]),
       hShopRegConfirmPassword: new FormControl ('', [Validators.required, this.hShopPasswordMatch]),
-      hShopRegProfilePic: new FormControl (null),
+      profilePic: new FormControl (null),
       hShopRegTelephone: new FormControl ('', [Validators.required]),
       hShopRegAddress: new FormControl ('', [Validators.required]),
       hShopRegDistrict: new FormControl ('', [Validators.required]),
@@ -149,7 +150,7 @@ export class LoginSignupComponent implements OnInit {
   onFileSelectUser(event: Event) { //execute when fire on selecting the file form the input
     console.log("A file selected");
     const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
-    this.userRegGroup.patchValue({ userRegProfilePic: file }); // storing on the allocated variavle of the form
+    this.userRegGroup.patchValue({ profilePic: file }); // storing on the allocated variavle of the form
     const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
 
     if (file && allowedMimeTypes.includes(file.type)) {
@@ -164,13 +165,13 @@ export class LoginSignupComponent implements OnInit {
       this.fileTypeUser = "File type is not acceptable";
       this.imageDataUser = null;
     }
-    console.log(this.userRegGroup.value.userRegProfilePic);
+    console.log(this.userRegGroup.value.profilePic);
   }
 
   onFileSelectDesignerUserPro(event: Event) { //execute when fire on selecting the file form the input
     console.log("A file selected");
     const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
-    this.designerRegGroup.patchValue({ designerRegProfilePic: file });
+    this.designerRegGroup.patchValue({ profilePic: file });
     const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
 
     if (file && allowedMimeTypes.includes(file.type)) {
@@ -185,7 +186,7 @@ export class LoginSignupComponent implements OnInit {
       this.fileTypeDesignerUserPro = "File type is not acceptable";
       this.imageDataDesignerUserPro = null;
     }
-    console.log(this.designerRegGroup.value.designerRegProfilePic);
+    console.log(this.designerRegGroup.value.profilePic);
   }
 
   onFileSelectDesignerShopPro(event: Event) { //execute when fire on selecting the file form the input
@@ -212,7 +213,7 @@ export class LoginSignupComponent implements OnInit {
   onFileSelectHShopUserPro(event: Event) { //execute when fire on selecting the file form the input
     console.log("A file selected");
     const file = (event.target as HTMLInputElement | any).files[0]; // take the first file of the selected array
-    this.hShopRegGroup.patchValue({ hShopRegProfilePic: file });
+    this.hShopRegGroup.patchValue({ profilePic: file });
     const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"]; // allowing the needed file types
 
     if (file && allowedMimeTypes.includes(file.type)) {
@@ -227,7 +228,7 @@ export class LoginSignupComponent implements OnInit {
       this.fileTypeHShopUserPro = "File type is not acceptable";
       this.imageDataHShopUserPro = null;
     }
-    console.log(this.hShopRegGroup.value.hShopRegProfilePic);
+    console.log(this.hShopRegGroup.value.profilePic);
   }
 
   onFileSelectHShopShopPro(event: Event) { //execute when fire on selecting the file form the input
@@ -248,7 +249,7 @@ export class LoginSignupComponent implements OnInit {
       this.fileTypeHShopShopPro = "File type is not acceptable";
       this.imageDataHShopShopPro = null;
     }
-    console.log(this.hShopRegGroup.value.hShopRegProfilePic);
+    console.log(this.hShopRegGroup.value.profilePic);
   }
 
   idSignup:any = "userSU";
@@ -269,7 +270,8 @@ export class LoginSignupComponent implements OnInit {
       return;
     }
     const user: File = this.userRegGroup.getRawValue();
-    this.authService.userRegistration(user, this.userRegGroup.value.userRegProfilePic).subscribe(s => this.router.navigate(['auth/signupsuccess']));
+    this.username = this.userRegGroup.value.userRegUsername;
+    this.authService.userRegistration(user, this.userRegGroup.value.profilePic).subscribe(s => this.router.navigate([`auth/registersuccess/`+`${this.username}`]));
   }
 
   designerRegistration(){
@@ -279,13 +281,18 @@ export class LoginSignupComponent implements OnInit {
     }
 
     let designerRegProfilePics : File[] = [];
-    designerRegProfilePics.push(this.designerRegGroup.value.designerRegProfilePic);
+    designerRegProfilePics.push(this.designerRegGroup.value.profilePic);
     designerRegProfilePics.push(this.designerRegGroup.value.designerRegShopPic);
+    this.username = this.designerRegGroup.value.designerRegUsername;
 
     const designer: File = this.designerRegGroup.getRawValue();
-    this.authService.designerRegistration(designer, designerRegProfilePics).subscribe(s => this.router.navigate(['auth/signupsuccess']));
+    this.authService.designerRegistration(designer, designerRegProfilePics).subscribe(s => this.router.navigate([`auth/registersuccess/`+`${this.username}`]));
   }
 
+  /**
+   * hardware shop registration
+   * @returns 
+   */
   hShopRegistration(){
     this.submitted = true;
     if(this.hShopRegGroup.invalid){
@@ -293,11 +300,13 @@ export class LoginSignupComponent implements OnInit {
     }
 
     let hShopRegProfilePics : File[] = [];
-    hShopRegProfilePics.push(this.hShopRegGroup.value.hShopRegProfilePic);
+    hShopRegProfilePics.push(this.hShopRegGroup.value.profilePic);
     hShopRegProfilePics.push(this.hShopRegGroup.value.hShopRegShopPic);
 
+    this.username = this.hShopRegGroup.value.hShopRegUsername;
+
     const hShop: File = this.hShopRegGroup.getRawValue();
-    this.authService.hShopRegistration(hShop, hShopRegProfilePics).subscribe(s => this.router.navigate(['auth/signupsuccess']));
+    this.authService.hShopRegistration(hShop, hShopRegProfilePics).subscribe(s => this.router.navigate([`auth/registersuccess/`+`${this.username}`]));
   }
 
 
@@ -345,7 +354,7 @@ export class LoginSignupComponent implements OnInit {
 
   userLogin(){
     this.error = '';
-    this.authService.userLogin(this.userLogEmail, this.userLogPassword).subscribe(s => this.router.navigate(['auth/signupsuccess']), e => (this.error = e));
+    this.authService.userLogin(this.userLogEmail, this.userLogPassword).subscribe(s => this.router.navigate(['']), e => (this.error = e));
   }
 
   designerLogin(){

@@ -12,7 +12,7 @@ const DesignerSchema = new mongoose.Schema({
     designerHashedRegPassword : {type : String, required: true},
     createdAt : {type : Date, default: Date.now},
     Roles : [{type : String}],
-    designerRegProfilePic: {type: String},
+    profilePic: {type: String},
     designerRegTelephone : {type : String, required: true},
     designerRegAddress : {type : String, required: true},
     designerRegDistrict : {type : String},

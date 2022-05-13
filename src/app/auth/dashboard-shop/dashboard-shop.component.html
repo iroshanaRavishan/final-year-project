@@ -1,4 +1,5 @@
-        <div class="cardBox">
+    <div class="main">
+       <div class="cardBox">
                     
             <div class="card">
                 <div>
@@ -40,7 +41,7 @@
                 </div>
             </div>
         </div>
-        <div class="main">
+        
             <div class="details">
                 <!-- order details list -->
                 <div class="recentOrders">
@@ -70,4 +71,21 @@
                     </table>
                 </div>
             </div>
-        </div>
+     
+
+       
+            <div class="details">
+                <div class="chart">
+                    <div class="cardHeader">
+                        <!-- <h2>{{dateTime | date: 'LLL'}} | {{month}} | {{hrs}} \ {{hrsCount}} \\\{{minutes}}-- {{day}}</h2> -->
+                        <h2>Selling Summery</h2>
+
+                        <button class="btn" (click)="summery()">Load Summery</button>
+                    </div>
+                    <canvas id="summery_chart">
+
+                    </canvas>    
+                </div>
+            </div>
+       
+    </div>   

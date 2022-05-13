@@ -4,7 +4,7 @@ export interface HShop{
     hShopRegEmail: string,
     hShopRegNIC: string,
     hShopRegPassword: string,
-    hShopRegProfilePic: string,
+    profilePic: string,
     hShopRegTelephone: string,
     hShopRegAddress: string,
     hShopRegDistrict: string,

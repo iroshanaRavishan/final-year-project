@@ -4,7 +4,7 @@ export interface User{
   userRegEmail: string,
   userRegPassword: string,
   Roles?: any[],
-  userRegProfilePic: string,
+  profilePic: string,
   userRegTelephone: string,
   userRegAddress: string,
   userRegDistrict: string

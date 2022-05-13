@@ -4,7 +4,7 @@ export interface Designer{
     designerRegEmail: string,
     designerRegNIC: string,
     designerRegPassword: string,
-    designerRegProfilePic: string,
+    profilePic: string,
     designerRegTelephone: string,
     designerRegAddress: string,
     designerRegDistrict: string,

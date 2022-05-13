@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
     userHashedRegPassword : {type : String, required: true},
     createdAt : {type : Date, default: Date.now},
     Roles : [{type : String}],
-    userRegProfilePic: {type: String, required: true},
+    profilePic: {type: String, required: true},
     userRegTelephone : {type : String, required: true},
     userRegAddress : {type : String, required: true},
     userRegDistrict : {type : String}

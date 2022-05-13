@@ -42,7 +42,7 @@ header {
     background: #fff;
     color: #555f66;
     cursor: default;
-    height: 7.5em; /*////////////////////////////////////////////////////////////////////////////// */
+    height: 6.2em; /*////////////////////////////////////////////////////////////////////////////// */
     left: 0;
     line-height: 3em;
     /* position: fixed; */
@@ -54,7 +54,7 @@ header {
 }
 
 .main-container {
-    height: 8em;
+    height: 6.2em;
 }
 #header .container {
     position: relative;
@@ -65,13 +65,14 @@ header {
     }
    
         .logo{
-            height: inherit;
+            height: 80px;
             margin: 0;
             padding: 0;
             left: 1.25em;
             line-height: inherit;
             position: absolute;
-            top: 0;
+            top: 20px;
+            left: 30px;
            
         }
 
@@ -198,19 +199,37 @@ header {
             position: absolute;
             top: 1.2em;
             padding-right: 2em;
-         
 
         }
 
+        .btn-logout {
+            background-color: rgb(255, 218, 5);
+            border-radius: 10px;
+            height: 30px;
+            padding: 0 5px;
+            border-style: none;
+            font-weight: bold;
+            align-items: center;
+            color: #555f66;
+            transition-duration: 0.1s;
+            /* transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1); */
+        }
+
+        .btn-logout:hover {
+            background-color: rgb(9, 83, 126);
+            color: #ffffff;
+            box-shadow: 0px 0px 10px rgb(216, 216, 216);
+            
+        } 
 
 
     /**** CONTANER MIDDLE ****/  
     .container-top {
+        display: flex;
+        justify-content: flex-end;
         width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-top: 3em;
-        margin-left: 26em;
+        margin-top: 1.8em;
+        margin-right: 0em;
     }
    
     .list-item {
@@ -258,54 +277,12 @@ header {
     }
     .list-item-button:hover {
         background-color: rgb(254, 215, 0, 1);
-        transition: color 1s ease-in-out;
+        transition: color 0.3s ease-in-out;
+        color: #fff;
 
     }
 
    
-
-
-    
-   /**** CONTANER BOTTOM ****/  
-   .container-bottom {
-        height: 1em;
-       
-    }
-
-    .inline-list-bottom {
-        list-style: none;
-        height: 1em;
-        
-    }
-
-    .list-item-link {
-        text-decoration: none;
-        font-size: 0.9em;
-        color: #575757;
-        padding-left: 5em;
-    }
-
-    .list-item-anchor {
-       float: right;
-
-    }
-
-    .list-item-bottom {
-        position: absolute;
-        margin-top: -2em;
-        margin-left: 68em;
-        height: 0em;
-    
-    }
-
-    .list-item-link:hover {
-        color: rgb(254, 215, 0, 1);
-        transition: color 0.2s ease-in-out;
-    }
- 
-
-
-
 
 
 
@@ -323,13 +300,13 @@ header {
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
     width: 100%;
+    display: block;
 }
 .main-container-footer {
     margin: 7em 2em 0em 2em;
     padding: 10em 2em 0em 3em ;
     overflow: hidden;
     z-index: 20000;
-    display: block;
     position: relative;
    
 }
@@ -341,8 +318,6 @@ header {
     border-radius: 20px;
     height: 3em;
     width: 87.5%;
-    display: block;
-    z-index: 2100000;
     display: inline-flex;
     
 }
@@ -372,9 +347,7 @@ header {
 input[type="text"],
 input[type="email"],
 input[type="password"]:focus{
-    
     outline: none;
-   
 }
 
 .news-letter-span {
@@ -447,17 +420,13 @@ input[type="text"]:hover{
     
 }
 
-
-
-
 .table-row-two {
     display: inline-flex;
     padding : 0em 2em 1em 0em;
-    margin: 1em 1em 1em 1em;
+    margin: 1em 1em 2em 1em;
     height: 15em;
     width: 90%;
 }
-
 
 .company-details {
     padding : 0em 1em 1em 2em;
@@ -496,7 +465,6 @@ input[type="text"]:hover{
     transition-duration: 0.5s;
 }
 
-
 .jump-to-top:hover{
     transform: scale(1.05);
     box-shadow: -5px -5px 20px rgba(255, 255, 255, 0.027),
@@ -505,8 +473,6 @@ input[type="text"]:hover{
     inset 2px 2px 5px rgba(56, 56, 56, 0.096),
     0 0 0 2px #b19c2a;
 }
-
-
 
 .image-headphone {
     padding-top: 1em;
@@ -542,9 +508,6 @@ input[type="text"]:hover{
    
 }
 
-
-
-
 .find-in-fast {
     padding : 0em 1em 1em 0em;
     margin: 0em 1em 1em 1em;
@@ -563,20 +526,12 @@ input[type="text"]:hover{
     list-style: none;
     line-height: 2em;
     font-weight: 100;
-   
-    
+
 }
 .find-in-fast-list-link {
     text-decoration: none;
     color: #575757;
 }
-
-
-
-
-
-
-
 
 .information-one {
     padding : 0em 1em 1em 0em;
@@ -584,7 +539,6 @@ input[type="text"]:hover{
     vertical-align: top;
     width:  13em;
     height: 8em;
-
 
 }
 .information-one-para {
@@ -605,9 +559,6 @@ input[type="text"]:hover{
     color: #575757;
     
 }
-
-
-
 
 .information-two {
     padding : 0em 1em 1em 0em;
@@ -630,10 +581,6 @@ input[type="text"]:hover{
     color: #575757;
 }
 
-
-
-
-
 .at-glance {
     padding : 0em 1em 1em 0em;
     margin: 0em 1em 1em 1em;
@@ -642,36 +589,57 @@ input[type="text"]:hover{
     height: 8em;
 
 }
+
 .at-glance-para {
     font-weight: 700;
     color: #575757;
     font-size: large;
 }
+
 .at-glance-list {
     margin-left: -2.5em;
     list-style: none;
     line-height: 2em;
     font-weight: 100;
-   
-    
+
 }
+
 .at-glance-list-link {
     text-decoration: none;
     color: #575757;
 }
 
-
 .bottom-line {
-    margin: 6em 0em 0em 0em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     position: relative;
-    left: 0;
-    padding: 0.1em 5em  0.1em 8em;
+    overflow: hidden;
     background-color: rgba(85, 92, 92, 0.055);
     height: 3em;
-    
-    
+     
 }
-.bottom-line-para {
+
+.bottom-line p{
     font-weight: 100;
     font-size: 15px;
+    color: #8d8d8d;
+}
+
+.copyright {
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+    margin-right: 0.5em;
+}
+.ap {
+    display: flex;
+    width: 50%;
+    justify-content: flex-start;
+    margin-left: 0.5em;
+}
+.ap p a {
+    font-weight: 100;
+    font-size: 15px;
+    color: #8d8d8d;
 }

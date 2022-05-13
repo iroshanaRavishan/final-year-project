@@ -115,11 +115,11 @@
                             <div *ngIf="method==false; else elseBlock">
                                 <google-pay-button environment="TEST" buttonType="buy" buttonColor="black"  [paymentRequest]="paymentRequest" (loadpaymentdata)="onLoadPaymentData($event)" (error)="onError($event)" [paymentAuthorizedCallback]="onPaymentDataAuthorized"></google-pay-button>
                             </div>
-                            <ng-template #elseBlock>You have selected Offline method</ng-template>
-                        
+                            <ng-template #elseBlock > <font class="payment-status"> You have selected Offline method</font></ng-template>
+                            <p class="estimated-time">*Acceptance of this item takes 24 to 48 hours and the seller will contact you within these horse. </p>
                             <div class="item-details-body-action">
                                 <button class="btn-reset btn-other-page" type="button" (click)="tabChangesignup('designerSU')" >Prevoius</button> 
-                                <button class="btn btn-other-page" (click)="allChecking()"  type="button" >Submit</button><br/>
+                                <button class="btn btn-other-page" (click)="allChecking()"  type="button" >Buy this item</button><br/>
                             </div>
                         </form>
                     </div>
@@ -155,7 +155,7 @@
                     </div>
                 </div>
                 <div class="item-summery-action">
-                    <button class="checkout" >checkout</button>
+                    <button class="checkout" >Buy this item</button>
                 </div>
             </div>
         </div>

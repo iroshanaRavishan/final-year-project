@@ -5,6 +5,7 @@ import { DesignerItems } from '@core/model/designerItemsRegistration';
 import { Designer } from '@core/model/designerRegistration';
 import { HShopItems } from '@core/model/hShopItemsRegistration';
 import { HShop } from '@core/model/hShopRegistration';
+import { Summery } from '@core/model/summery';
 import { EMPTY, of, Subject, throwError } from 'rxjs';
 import { switchMap, catchError, map } from 'rxjs/operators';
 import { LogService } from '../../core-logs/log.service';
@@ -37,6 +38,10 @@ interface HShopItemsDto {
   token: string;
 }
 
+interface SummeryDto { 
+  summery: Summery;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -49,6 +54,7 @@ export class AuthService {
   private hShop$ = new Subject<HShop>();
   private hShops$ = new Subject<HShop[]>();
   private allSells$ = new Subject<AllSells[]>();
+  private allSummeries$ = new Subject<Summery[]>();
 
   private hShopItem$ = new Subject<HShopItems[]>();
   private hShopItems$ = new Subject<HShopItems>();
@@ -56,12 +62,14 @@ export class AuthService {
   private designerItem$ = new Subject<DesignerItems>();
   private designerItems$ = new Subject<DesignerItems>();
 
+  private summery$ = new Subject<Summery>();
   private apiUrl = '/api/auth/';
 
   
   private designers: Designer[] = [];
   private hShops: HShop[] = [];
   private allSells: AllSells[] = [];
+  private allSummeries: Summery[] = [];
 
   private hShopItems: HShopItems[] = [];
   //private hShops: HShop[] = [];
@@ -96,9 +104,6 @@ export class AuthService {
     return this.hShops$.asObservable();
   }
 
-
-
-
   getHShopsItems() {
     this.httpClient.get<{ hShopItem: HShopItems[] }>(`${this.apiUrl}addinganitemhshop`).pipe(
       map((hShopItemsData) => {
@@ -127,6 +132,26 @@ export class AuthService {
     return this.allSells$.asObservable();
   }
 
+  getAllSummery() {
+    this.httpClient.get<{ allSummeries: Summery[] }>(`${this.apiUrl}authallsummery`).pipe(
+      map((allSummeriesData) => {
+        return allSummeriesData.allSummeries;
+      })
+    ).subscribe((allSummeries) => {
+      this.allSummeries = allSummeries;
+      this.allSummeries$.next(this.allSummeries);
+    });
+  }
+  getAllSummeryStream() {
+    return this.allSummeries$.asObservable();
+  }
+
+  /**
+   * User Login
+   * @param userLogEmail 
+   * @param userLogPassword 
+   * @returns 
+   */
   userLogin(userLogEmail: string, userLogPassword: string) {
     const loginCredentials = {userLogEmail, userLogPassword};
     console.log('login credential', loginCredentials);
@@ -205,6 +230,12 @@ export class AuthService {
   }
 
 
+  /**
+   * hardware shop login
+   * @param hShopLogEmail 
+   * @param hShopLogPassword 
+   * @returns 
+   */
   hShopLogin(hShopLogEmail: string, hShopLogPassword: string) {
     const loginCredentials = {hShopLogEmail, hShopLogPassword};
     console.log('login credential', loginCredentials);
@@ -248,6 +279,12 @@ export class AuthService {
     return this.hShop$.asObservable();
   }
 
+  /**
+   * User Registration
+   * @param user 
+   * @param image 
+   * @returns 
+   */
   userRegistration(user: any, image: File) {
     const userToSave = new FormData();
 
@@ -255,7 +292,7 @@ export class AuthService {
     userToSave.append("userRegEmail", user.userRegEmail);
     userToSave.append("userRegPassword", user.userRegPassword);
     userToSave.append("userRegConfirmPassword", user.userRegConfirmPassword);
-    userToSave.append("userRegProfilePic", image);
+    userToSave.append("profilePic", image);
     userToSave.append("userRegTelephone", user.userRegTelephone);
     userToSave.append("userRegAddress", user.userRegAddress);
     userToSave.append("userRegDistrict", user.userRegDistrict);
@@ -311,6 +348,12 @@ export class AuthService {
     );
   }
 
+  /**
+   * hardware shop registering
+   * @param hShop 
+   * @param imgFiles 
+   * @returns 
+   */
   hShopRegistration(hShop: any, imgFiles: File[]) {
     const hShopToSave = new FormData();
 
@@ -649,6 +692,21 @@ export class AuthService {
     ); 
   }
 
+  summery(summery: any) {
+    return this.httpClient.post<SummeryDto>(`${this.apiUrl}summerysubmiting`, summery).pipe(
+      switchMap(({ summery })=> {
+        this.setSummery(summery);
+        //this.tokenStorage.setToken(token);
+        console.log(`user found`, summery);
+        return of(summery);
+        }),
+        catchError(e => {
+          this.logService.log(`Server Error Occured!: ${e.error.message}`, e);
+          return throwError(`Registration Failed, please contact admin`);
+        })
+    );
+  }
+
   //when the browser refresh, this will take care of that
   findMe() { 
     const token = this.tokenStorage.getToken();
@@ -687,5 +745,9 @@ export class AuthService {
 
   private setSellStatus(sellStatus: any){
    // this.designerItems$.next(sellStatus);
+  }
+
+  private setSummery(summery: any){
+    this.summery$.next(summery);
   }
 }

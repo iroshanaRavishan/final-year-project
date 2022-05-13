@@ -1,20 +1,43 @@
-<h1>HOME PAGE</h1>
-
-<!-- 
-<div *ngFor="let product of (products | async)">
-   
+<!-- <h1>HOME PAGE</h1>
+<ng-container *ngFor="let product of abc | filter:searchKey:'name'">
     {{product.name}}
     <p>{{product.description}}</p>
     <p>{{product.id}} - this costs : $ {{product.price}}</p>
     <button>Buy this product {{product.name}}</button>
     <br/><br/><br/><br/>
-</div> -->
+</ng-container>
+ -->
 
-
-        <ng-container *ngFor="let product of abc | filter:searchKey:'name'">
-            {{product.name}}
-            <p>{{product.description}}</p>
-            <p>{{product.id}} - this costs : $ {{product.price}}</p>
-            <button>Buy this product {{product.name}}</button>
-            <br/><br/><br/><br/>
-        </ng-container>
+<div class="container">
+    <div class="left-section">
+        <div class="main-text">
+            <h1>FIND YOUR OWN MASTER HERE...!</h1>
+        </div>
+        <div class="down-section">
+            <p>The Excellent plan designers, expert in architecture in building designn can be found here. 
+            DO NOT forget!, the hardware shops available for you</p>
+        </div>
+    </div>
+    <div class="right-section">
+        <div class="card-section">
+            <div class="card">
+                <div class="image-area">
+                    <img class="card-img" src="../../../assets/image/pd-img.png" alt="">
+                </div>
+                <div class="action-area">
+                    <button class="btn" routerLink="designers" >Designers</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-section">
+            <div class="card">
+                <div class="image-area">
+                    <img class="card-img" src="../../../assets/image/hs-img.jpg" alt="">
+                </div>
+                <div class="action-area">
+                    <button class="btn" routerLink="shops" >Shops</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

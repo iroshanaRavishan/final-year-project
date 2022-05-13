@@ -4,7 +4,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(238, 238, 238, 0.76);
     z-index: 10000;
     display: flex;
     justify-content: center;
@@ -12,11 +12,12 @@
 }
 
 .modal {
-    background: #ffffff8f;
+    background: #ffffffc9;
     padding: 30px;
     border-radius: 20px;
     width: 500px;
     text-align: center;
+    height: 350px;
     box-shadow: 5px 8px 12px 0 rgba(0,0,0,0.2);
 }
 
@@ -24,6 +25,7 @@ h2 {
     letter-spacing: 1px;
     margin-top: 10px;
     margin-bottom: 30px;
+    color: #7e7e7e;
 
 }
 

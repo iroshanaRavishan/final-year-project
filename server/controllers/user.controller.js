@@ -23,6 +23,12 @@ async function getUserByEmailIdAndPasswordUser(userRegEmail, userRegPassword) {
     }
 }
 
+/**
+ * verifying hardware shop data
+ * @param {*} designerRegEmail 
+ * @param {*} designerRegPassword 
+ * @returns 
+ */
 async function getUserByEmailIdAndPasswordDesigner(designerRegEmail, designerRegPassword) {
     let designer = await DesignerRegistration.findOne({designerRegEmail});
 

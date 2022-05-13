@@ -16,7 +16,7 @@
                 
                 <div> 
                     <div *ngIf="!imageDataDesignerUserPro">
-                        <img class="profile-picture-on-login-signup" src="{{designer.designerRegProfilePic}}" >    
+                        <img class="profile-picture-on-login-signup" src="{{designer.profilePic}}" >    
                     </div>  
                     <div  *ngIf="imageDataDesignerUserPro">
                         <img class="profile-picture-on-login-signup" [src]="imageDataDesignerUserPro" [alt]="designerImageUpdateUserGroup.value.designerRegUsername">

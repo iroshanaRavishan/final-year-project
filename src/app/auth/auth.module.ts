@@ -24,6 +24,8 @@ import { AllSellsComponent } from './all-sells/all-sells.component';
 import { UpdateSellsComponent } from './update-sells/update-sells.component';
 import { UpdateItemsShopComponent } from './update-items-shop/update-items-shop.component';
 import { AllItemsShopComponent } from './all-items-shop/all-items-shop.component';
+import { RegisterSuccessComponent } from './register-success/register-success.component';
+import { ShopChartComponent } from './shop-chart/shop-chart.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { AllItemsShopComponent } from './all-items-shop/all-items-shop.component
     AllSellsComponent,
     UpdateSellsComponent,
     UpdateItemsShopComponent,
-    AllItemsShopComponent
+    AllItemsShopComponent,
+    RegisterSuccessComponent,
+    ShopChartComponent
   ],
   imports: [
     FormsModule,

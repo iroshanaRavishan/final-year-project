@@ -12,7 +12,7 @@ const HShopsSchema = new mongoose.Schema({
     hShopHashedRegPassword : {type : String, required: true},
     createdAt : {type : Date, default: Date.now},
     Roles : [{type : String}],
-    hShopRegProfilePic: {type: String},
+    profilePic: {type: String},
     hShopRegTelephone : {type : String, required: true},
     hShopRegAddress : {type : String, required: true},
     hShopRegDistrict : {type : String},

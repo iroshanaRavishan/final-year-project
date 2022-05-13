@@ -11,11 +11,12 @@ const HShopRegistration =  require('../models/hShopRegistration.model');
 const ItemAdding = require('../models/ItemAdding.model');
 const ItemAddingHShop = require ('../models/ItemAddingHShop.model');
 const AllSells = require('../models/allSells.model');
+const AllSummery = require('../models/allSummery.model');
 const bcrypt = require('bcrypt');
 
 
 //localhost:4050/api/auth/registeruser
-router.post("/registeruser", userStorage.single('userRegProfilePic'), asyncHandler(insertUser), loginUser);
+router.post("/registeruser", userStorage.single('profilePic'), asyncHandler(insertUser), loginUser);
 router.post("/registerdesigner", userStorage.array('designerRegProfilePics', 2), asyncHandler(insertDesigner), loginDesigner);
 router.post("/registerhshop", userStorage.array('hShopRegProfilePics', 2), asyncHandler(insertHShop), loginHShop);
 
@@ -54,6 +55,10 @@ router.put("/updatinganitemhshop/:id", asyncHandler(updateHShopItem), hSHopItems
 router.delete("/deletinganitemhshop/:id", asyncHandler(deleteHShopItem), hSHopItems);
 
 router.get("/auth", getAllSells, allSells);
+router.get("/authallsummery", getAllSummery, allSummeries);
+
+
+router.post("/summerysubmiting", asyncHandler(summerysubmiting), summeryDetails);
 
 router.get("/findme", passport.authenticate("jwt", { session: false}), loginUser);
 /**
@@ -67,7 +72,7 @@ async function insertUser(req, res, next) {
     const userRegEmail = req.body.userRegEmail;
     const userHashedRegPassword = bcrypt.hashSync(req.body.userRegPassword, 10);
     const userRegPassword = req.body.userRegPassword;
-    const userRegProfilePic = 'http://localhost:4050/images/' + req.file.filename; // Note: set path dynamically
+    const profilePic = 'http://localhost:4050/images/' + req.file.filename; // Note: set path dynamically
     const userRegTelephone = req.body.userRegTelephone;
     const userRegAddress = req.body.userRegAddress;
     const userRegDistrict = req.body.userRegDistrict;
@@ -79,7 +84,7 @@ async function insertUser(req, res, next) {
         userRegUsername,
         userRegEmail,
         userHashedRegPassword,
-        userRegProfilePic,
+        profilePic,
         userRegTelephone,
         userRegAddress,
         userRegDistrict,
@@ -98,7 +103,7 @@ async function insertDesigner(req, res, next) {
     const designerRegNIC = req.body.designerRegNIC;
     const designerHashedRegPassword = bcrypt.hashSync(req.body.designerRegPassword, 10);
     const designerRegPassword = req.body.designerRegPassword;
-    const designerRegProfilePic = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
+    const profilePic = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
     const designerRegTelephone = req.body.designerRegTelephone;
     const designerRegAddress = req.body.designerRegAddress;
     const designerRegDistrict = req.body.designerRegDistrict;
@@ -121,7 +126,7 @@ async function insertDesigner(req, res, next) {
         designerRegEmail,
         designerRegNIC,
         designerHashedRegPassword,
-        designerRegProfilePic,
+        profilePic,
         designerRegTelephone,
         designerRegAddress,
         designerRegDistrict,
@@ -144,13 +149,20 @@ async function insertDesigner(req, res, next) {
     next();
 }
 
+
+/**
+ * Inserting hardware shop
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 async function insertHShop(req, res, next) {
     const hShopRegUsername = req.body.hShopRegUsername;
     const hShopRegEmail = req.body.hShopRegEmail;
     const hShopRegNIC = req.body.hShopRegNIC;
     const hShopHashedRegPassword = bcrypt.hashSync(req.body.hShopRegPassword, 10);
     const hShopRegPassword = req.body.hShopRegPassword;
-    const hShopRegProfilePic = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
+    const profilePic = 'http://localhost:4050/images/' + req.files[0].filename; // Note: set path dynamically
     const hShopRegTelephone = req.body.hShopRegTelephone;
     const hShopRegAddress = req.body.hShopRegAddress;
     const hShopRegDistrict = req.body.hShopRegDistrict;
@@ -173,7 +185,7 @@ async function insertHShop(req, res, next) {
         hShopRegEmail,
         hShopRegNIC,
         hShopHashedRegPassword,
-        hShopRegProfilePic,
+        profilePic,
         hShopRegTelephone,
         hShopRegAddress,
         hShopRegDistrict,
@@ -220,6 +232,12 @@ async function getAllSells(req, res) {
     res.status(200).json({ allSells });
 };
 
+async function getAllSummery(req, res) {
+    const allSummeries = await AllSummery.find();
+    console.log('found all summeries');
+    res.status(200).json({ allSummeries });
+};
+
 async function updateDesigner(req, res, next) {
     const designer = {
         designerRegUsername: req.body.designerRegUsername,
@@ -248,7 +266,7 @@ async function updateDesigner(req, res, next) {
 
 async function updateDesignerUserProfilePics(req, res, next) {
     const designer = {
-        designerRegProfilePic: 'http://localhost:4050/images/' + req.files[0].filename
+        profilePic: 'http://localhost:4050/images/' + req.files[0].filename
     };
     req.designer = await DesignerRegistration.findByIdAndUpdate(req.params.id, { $set: designer }, {new: true}).then((err, data) =>{        
         if(!err){
@@ -272,7 +290,7 @@ async function updateDesignerShopProfilePics(req, res, next) {
 
 async function updateHShopUserProfilePics(req, res, next) {
     const hShop = {
-        hShopRegProfilePic: 'http://localhost:4050/images/' + req.files[0].filename
+        profilePic: 'http://localhost:4050/images/' + req.files[0].filename
     };
     req.hShop = await HShopRegistration.findByIdAndUpdate(req.params.id, { $set: hShop }, {new: true}).then((err, data) =>{        
         if(!err){
@@ -529,6 +547,25 @@ async function updateSellStatus(req, res, next) {
     next();
 }
 
+async function summerysubmiting(req, res, next) {
+    const shopId = req.body.shopId;
+    const no = req.body.no;
+    const earnings = req.body.earnings;
+    const previouseD = req.body.previouseD;
+    
+    const summery = new AllSummery({
+        shopId,
+        no,
+        earnings,
+        previouseD
+    });
+
+    console.log('adding an summery', summery);
+    req.summery = await summery.save(); // taking the user from the class to the request
+    console.log('added the summery');
+    next();
+}
+
 /**
  * getting the user by emailId and password
  * @param {*} req 
@@ -565,6 +602,12 @@ async function getOldUserByEmailIdAndPasswordDesigner(req, res, next) {
     next(); //calling to the nest pipeline of the middleware
 }
 
+/**
+ * login hardware shop
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 async function getUserByEmailIdAndPasswordHShop(req, res, next) {
     const hShop = req.body;
     console.log(`Searching user for`, hShop);
@@ -612,6 +655,16 @@ function loginUser(req, res) {
     });
 }
 
+function summeryDetails(req, res) { 
+    const summery = req.summery;
+    //const token = authController.generateTokenUser(user);
+    // sending the user and token in the response
+    res.json({ 
+        summery,
+       // token
+    });
+}
+
 function loginDesigner(req, res) { 
     const designer = req.designer;
     const token = authController.generateTokenDesigner(designer);
@@ -646,6 +699,11 @@ function designerItems(req, res) {
     });
 }
 
+/**
+ * login hardware shop
+ * @param {*} req 
+ * @param {*} res 
+ */
 function loginHShop(req, res) { 
     const hShop = req.hShop;
     const token = authController.generateTokenHShop(hShop);
@@ -670,6 +728,15 @@ function allSells(req, res) {
     // sending the user and token in the response
     res.json({ 
         sellStatus
+    });
+}
+
+function allSummeries(req, res) { 
+    const summeries = req.summeries;
+    //const token = authController.generateTokenHShop(allSells);
+    // sending the user and token in the response
+    res.json({ 
+        summeries
     });
 }
 

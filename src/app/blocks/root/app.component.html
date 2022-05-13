@@ -2,15 +2,25 @@
     <div class="main-container" id="skel-layers-visibleWrapper">
         <header id="header" class="skel-layers-fixed">
             <img class="logo" src="/assets/image/logo.png" alt="logo">
-                <ul>
-                    <li><img class="phone" src="assets/image/phone.png" alt="phone"/><span>(+94) 78 303 0250</span></li>
-                    <li><img class="mail" src="assets/image/mail.png" alt="phone"/><span>sample@gmail.com</span> </li>
-                </ul>
                 <nav id="nav">
-                    <ul>
+                    <ul class="top-nav">
                         <li><a routerLink="" >Home</a></li>
                         <li><a routerLink="designers" >Designers</a></li>		
-                        <li><a routerLink="shops" >Shops</a></li>								
+                        <li><a routerLink="shops" >Shops</a></li>
+                        <li class="signup-area"> 
+                            <a *ngIf="!user && !designer && !hShop" routerLink="/auth">Register or Sign in</a>
+                            <div>
+                                <a *ngIf="user || designer || hShop">{{user.userRegUsername || user.designerRegUsername || user.hShopRegUsername}}  <img class="profile-picture-on-nav" src= "{{user.profilePic}}"> | <button (click)="logout()" class="btn-logout"> Logout</button></a>
+                            </div>
+                        </li>
+                         <!-- <li> 
+                            <a *ngIf="!user && !designer && !hShop" routerLink="/auth">Register or Sign in</a>
+                            <div>
+                                <a *ngIf="user">{{user.userRegUsername || user.designerRegUsername || user.hShopRegUsername}}  <img class="profile-picture-on-nav" src= "{{user.userRegProfilePic}}"> | <button (click)="logout()" class="btn-logout"> Logout</button></a>
+                                <a *ngIf="designer">{{designer.designerRegUsername}}  <img class="profile-picture-on-nav" src={{designer.designerRegProfilePic}}> |  <button (click)="logout()" class="btn-logout">Logout</button></a>
+                                <a *ngIf="hShop">{{hShop.hShopRegUsername}}  <img class="profile-picture-on-nav" src={{hShop.hShopRegProfilePic}}> |  <button (click)="logout()" class="btn-logout">Logout</button></a>
+                            </div>
+                        </li> -->
                     </ul>
                 </nav>
               <div class="container-top">
@@ -21,24 +31,12 @@
                             <li class="list-item"> <button  class="list-item-button">Rated Designer</button></li>
                             <li class="list-item"> <button class="list-item-button">Demamded Items</button></li>
                             <li class="list-item"> <button  class="list-item-button">Demanded Designs</button></li>
-                            <li class="list-item"> <a href="#"><img class="list-item-image" src="assets/image/wishlist.png" alt="wishlist"></a></li>
-                            <li class="list-item"> <a href="#"><img class="list-item-image" src="assets/image/shoppingcart.png" alt="orders"></a></li>
+                            <!-- <li class="list-item"> <a href="#"><img class="list-item-image" src="assets/image/wishlist.png" alt="wishlist"></a></li>
+                            <li class="list-item"> <a href="#"><img class="list-item-image" src="assets/image/shoppingcart.png" alt="orders"></a></li> -->
                         </ul>
                   </div>
+                  <a pageScroll href="#header"><img class="jump-to-top" src="/assets/image/up-arrow-one.gif" alt="logo"></a>
               </div>
-            <div class="container-bottom">
-                <ul class="inline-list-bottom">
-                    <li class="list-item-bottom"> 
-                        <a *ngIf="!user && !designer && !hShop" class="list-item-link" routerLink="/auth">Register or Sign in</a>
-                        <div>
-                            <a class="list-item-anchor" *ngIf="user">{{user.userRegUsername || user.designerRegUsername || user.hShopRegUsername}}  | <img class="profile-picture-on-nav" src= "{{user.hShopRegProfilePic}}"> | <button (click)="logout()" > Logout</button></a>
-                            <a class="list-item-anchor" *ngIf="designer">{{designer.designerRegUsername}} | <img class="profile-picture-on-nav" src={{designer.designerRegProfilePic}}> |  <button (click)="logout()" >Logout</button></a>
-                            <a class="list-item-anchor" *ngIf="hShop">{{hShop.hShopRegUsername}} | <img class="profile-picture-on-nav" src={{hShop.hShopRegProfilePic}}> |  <button (click)="logout()" >Logout</button></a>
-                        </div>
-                    </li>
-                </ul>
-                <a pageScroll href="#header"><img class="jump-to-top" src="/assets/image/up-arrow-one.gif" alt="logo"></a>
-            </div>
         </header>
     </div>
 
@@ -97,25 +95,23 @@
             <div class="find-in-fast" >
                 <p class="find-in-fast-para">Find In Fast</p> 
                 <ul class="find-in-fast-list">
-                    <li><a class="find-in-fast-list-link" href="#">Sample One</a></li>
-                    <li><a class="find-in-fast-list-link" href="#">Sample Two</a></li>
-                    <li><a class="find-in-fast-list-link"href="#">Sample Three</a></li>
-                    <li><a class="find-in-fast-list-link" href="#">Sample Four</a></li>
-                    <li><a class="find-in-fast-list-link" href="#">Sample Five</a></li>
-                    <li><a class="find-in-fast-list-link"href="#">Sample Six</a></li>
+                    <li><a class="find-in-fast-list-link" href="#">Rated Shops</a></li>
+                    <li><a class="find-in-fast-list-link" href="#">Rated Designers</a></li>
+                    <li><a class="find-in-fast-list-link"href="#">Demamded Items</a></li>
+                    <li><a class="find-in-fast-list-link" href="#">Demanded Designs</a></li>
+
                 </ul>
             </div>
             <div class="information-one" >
-                <p class="information-one-para">information</p>
+                <p class="information-one-para">Information</p>
                 <ul class="information-one-list">
-                    <li><a class="information-one-list-link" routerLink="aboutus">About Us</a></li>
-                    <li><a class="information-one-list-link" routerLink="contactus">Contact Us</a></li>
-                    <li><a class="information-one-list-link"href="#">Sample Three</a></li>
-                    <li><a class="information-one-list-link" href="#">Sample Four</a></li>
-                    <li><a class="information-one-list-link" href="#">Sample Five</a></li>
+                    <li><a class="information-one-list-link" routerLink="">Home</a></li>
+                    <li><a class="information-one-list-link">Support</a></li>
+                    <li><a class="information-one-list-link" routerLink="designers"> Designer shops</a></li>
+                    <li><a class="information-one-list-link" routerLink="shops"> Hardware Shops</a></li>
                 </ul>
-            </div>
-            <div class="information-two"  >
+            </div> -->
+             <!-- <div class="information-two"  >
                 <ul class="information-two-list">
                     <li><a class="information-two-list-link" href="#">Sample One</a></li>
                     <li><a class="information-two-list-link" href="#">Sample Two</a></li>
@@ -124,19 +120,26 @@
                     <li><a class="information-two-list-link" href="#">Sample Five</a></li>
                     <li><a class="information-two-list-link" href="#">Sample Five</a></li>
                 </ul>
-            </div>
-            <div class="at-glance" >
+            </div>  -->
+            <!-- <div class="at-glance" >
                 <p class="at-glance-para">At Glance</p>
                 <ul class="at-glance-list">
-                    <li><a class="at-glance-list-link" href="#">Sample One</a></li>
-                    <li><a class="at-glance-list-link" href="#">Sample Two</a></li>
-                    <li><a class="at-glance-list-link"href="#">Sample Three</a></li>
-                    <li><a class="at-glance-list-link" href="#">Sample Four</a></li>
+                    <li><a class="at-glance-list-link" href="#">Suggestions</a></li>
+                    <li><a class="at-glance-list-link" href="#">Help Us</a></li>
+                    <li><a class="at-glance-list-link"href="#">Community</a></li>
+                    <li><a class="at-glance-list-link" href="#">For Better Sri Lanka</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="bottom-line">
-        <p class="bottom-line-para" >© 2021 <strong>IT2018001</strong>. All Rights Reserved</p>
+        <div class="copyright">
+            <p >© 2021 <strong>IT2018001</strong>. All Rights Reserved </p>
+        </div>
+        <p> | </p>
+        <div class="ap">
+            <p><a routerLink="/auth">admin panel</a></p>
+        </div>
+        
     </div>
 </div> -->
